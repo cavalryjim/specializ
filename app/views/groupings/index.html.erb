@@ -1,0 +1,29 @@
+<h1>Listing groupings</h1>
+
+<table>
+  <tr>
+    <th>Name</th>
+    <th>Description</th>
+    <th>Company</th>
+    <th>Parent grouping</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @groupings.each do |grouping| %>
+  <tr>
+    <td><%= grouping.name %></td>
+    <td><%= grouping.description %></td>
+    <td><%= grouping.company_id %></td>
+    <td><%= grouping.parent_grouping %></td>
+    <td><%= link_to 'Show', grouping %></td>
+    <td><%= link_to 'Edit', edit_grouping_path(grouping) %></td>
+    <td><%= link_to 'Destroy', grouping, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Grouping', new_grouping_path %>

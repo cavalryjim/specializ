@@ -1,0 +1,25 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Name:</b>
+  <%= @grouping.name %>
+</p>
+
+<p>
+  <b>Description:</b>
+  <%= @grouping.description %>
+</p>
+
+<p>
+  <b>Company:</b>
+  <%= @grouping.company_id %>
+</p>
+
+<p>
+  <b>Parent grouping:</b>
+  <%= @grouping.parent_grouping %>
+</p>
+
+
+<%= link_to 'Edit', edit_grouping_path(@grouping) %> |
+<%= link_to 'Back', groupings_path %>

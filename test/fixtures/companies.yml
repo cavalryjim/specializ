@@ -1,0 +1,13 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  name: MyString
+  active: false
+  never_expires: false
+  expiration_date: 2011-09-03
+
+two:
+  name: MyString
+  active: false
+  never_expires: false
+  expiration_date: 2011-09-03
