@@ -9,9 +9,9 @@ development:
   adapter: mysql2
   encoding: utf8
   reconnect: false
-  database: specializ2
+  database: specializ_development
   pool: 5
-  username: specializ2
+  username: specializ
   password: password
   socket: /var/run/mysqld/mysqld.sock
 
@@ -22,9 +22,9 @@ test:
   adapter: mysql2
   encoding: utf8
   reconnect: false
-  database: specializ2
+  database: specializ_test
   pool: 5
-  username: specializ2
+  username: specializ
   password: password
   socket: /var/run/mysqld/mysqld.sock
 
@@ -32,7 +32,7 @@ production:
   adapter: mysql2
   encoding: utf8
   reconnect: false
-  database: specializ2
+  database: specializ_production
   pool: 5
   username: root
   password:
