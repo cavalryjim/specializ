@@ -19,6 +19,20 @@
     <%= f.label :last_name %><br />
     <%= f.text_field :last_name %>
   </div>
+  <div class="field">
+    <%= f.label :email %><br />
+    <%= f.text_field :email %>
+  </div>
+  <div class="field">
+    <%= f.label :active %><br />
+    <%= f.check_box :active %>
+  </div>
+  <% for role in Role.find(:all)%>
+	<div class="field">
+	<%= check_box_tag "user[role_ids][]", role.id, @user.roles.include?(role) %>
+	<%= role.name %>
+  	</div>
+  <% end %>
   <div class="actions">
     <%= f.submit %>
   </div>
