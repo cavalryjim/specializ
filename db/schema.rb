@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110905004200) do
+ActiveRecord::Schema.define(:version => 20110905173337) do
 
   create_table "companies", :force => true do |t|
     t.string   "name"
@@ -30,6 +30,13 @@ ActiveRecord::Schema.define(:version => 20110905004200) do
     t.datetime "updated_at"
   end
 
+  create_table "groupings_users", :id => false, :force => true do |t|
+    t.integer "grouping_id", :null => false
+    t.integer "user_id",     :null => false
+  end
+
+  add_index "groupings_users", ["grouping_id", "user_id"], :name => "index_groupings_users_on_grouping_id_and_user_id", :unique => true
+
   create_table "roles", :force => true do |t|
     t.string   "name"
     t.string   "description"
@@ -43,6 +50,18 @@ ActiveRecord::Schema.define(:version => 20110905004200) do
   end
 
   add_index "roles_users", ["role_id", "user_id"], :name => "index_roles_users_on_role_id_and_user_id", :unique => true
+
+  create_table "topics", :force => true do |t|
+    t.string   "name"
+    t.string   "description"
+    t.integer  "status"
+    t.integer  "update_frequency"
+    t.integer  "due_days"
+    t.boolean  "opt_out"
+    t.integer  "company_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "users", :force => true do |t|
     t.string   "first_name"

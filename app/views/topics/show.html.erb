@@ -1,0 +1,40 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Name:</b>
+  <%= @topic.name %>
+</p>
+
+<p>
+  <b>Description:</b>
+  <%= @topic.description %>
+</p>
+
+<p>
+  <b>Status:</b>
+  <%= @topic.status %>
+</p>
+
+<p>
+  <b>Update frequency:</b>
+  <%= @topic.update_frequency %>
+</p>
+
+<p>
+  <b>Due days:</b>
+  <%= @topic.due_days %>
+</p>
+
+<p>
+  <b>Opt out:</b>
+  <%= @topic.opt_out %>
+</p>
+
+<p>
+  <b>Company:</b>
+  <%= @topic.company_id %>
+</p>
+
+
+<%= link_to 'Edit', edit_topic_path(@topic) %> |
+<%= link_to 'Back', topics_path %>
