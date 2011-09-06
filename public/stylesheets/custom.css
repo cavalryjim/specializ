@@ -90,6 +90,12 @@ nav ul li a:hover {
   text-decoration: underline;
 }
 
+/* Browser */
+.browser {
+  float: left;
+}
+
+
 /* Sign up button */
 
 a.signup_button {
