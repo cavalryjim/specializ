@@ -29,6 +29,8 @@ GEM
       activesupport (= 3.0.9)
     activesupport (3.0.9)
     arel (2.0.10)
+    awesome_nested_set (2.0.1)
+      activerecord (>= 3.0.0)
     builder (2.1.2)
     cancan (1.6.5)
     declarative_authorization (0.5.3)
@@ -93,6 +95,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  awesome_nested_set
   cancan
   declarative_authorization
   mysql2 (= 0.2.7)

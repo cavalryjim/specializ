@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110906044850) do
+ActiveRecord::Schema.define(:version => 20110906184013) do
 
   create_table "companies", :force => true do |t|
     t.string   "name"
@@ -25,17 +25,12 @@ ActiveRecord::Schema.define(:version => 20110906044850) do
     t.string   "name"
     t.string   "description"
     t.integer  "company_id"
-    t.integer  "parent_grouping"
+    t.integer  "parent_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "lft"
+    t.integer  "rgt"
   end
-
-  create_table "groupings_link", :id => false, :force => true do |t|
-    t.integer "grouping_a_id", :null => false
-    t.integer "grouping_b_id", :null => false
-  end
-
-  add_index "groupings_link", ["grouping_a_id", "grouping_b_id"], :name => "index_groupings_link_on_grouping_a_id_and_grouping_b_id", :unique => true
 
   create_table "groupings_users", :id => false, :force => true do |t|
     t.integer "grouping_id", :null => false
