@@ -11,7 +11,9 @@
 <body>
     <div class="container">
       <%= render 'layouts/header' %>
-	  <%= render 'layouts/accordion' %>
+	  <section class="round">
+	    <%= render 'layouts/accordion' %>
+	  </section>
       <section class="round">
         <% flash.each do |key, value| %>
           <div class="flash <%= key %>"><%= value %></div>
