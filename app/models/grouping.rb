@@ -4,7 +4,7 @@ class Grouping < ActiveRecord::Base
   has_and_belongs_to_many :users, :uniq => true
   has_many :topic_groups
   
-  attr_accessible :name
+  attr_accessible :name, :description
   
   def fullname
     return self.self_and_ancestors.map(&:name).join("- ")
