@@ -41,6 +41,7 @@ class TopicsController < ApplicationController
   # POST /topics.xml
   def create
     @topic = Topic.new(params[:topic])
+    @topic.company_id = 1
 
     respond_to do |format|
       if @topic.save

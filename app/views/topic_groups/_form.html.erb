@@ -1,0 +1,41 @@
+<%= form_for(@topic_group) do |f| %>
+  <% if @topic_group.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@topic_group.errors.count, "error") %> prohibited this topic_group from being saved:</h2>
+
+      <ul>
+      <% @topic_group.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :name %><br />
+    <%= f.text_field :name %>
+  </div>
+  <div class="field">
+    <%= f.label :goal %><br />
+    <%= f.text_field :goal %>
+  </div>
+  <div class="field">
+    <%= f.label :active %><br />
+    <%= f.check_box :active %>
+  </div>
+  <div class="field">
+    <%= f.label :update_frequency %><br />
+    <%= f.text_field :update_frequency %>
+  </div>
+  <div class="field">
+    <%= f.label :topic_id %><br />
+    <%= f.select :topic_id, Topic.all {|t| "#{t.name}" }%>
+  </div>
+  <div class="field">
+    <%= f.label :grouping_id %><br />
+    <%= f.select :grouping_id, nested_set_options(Grouping, @grouping) {|i| "#{'-' * i.level} #{i.name}" } %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

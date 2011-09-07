@@ -1,8 +1,8 @@
 # Be sure to restart your server when you modify this file.
 
-Specializ2::Application.config.session_store :cookie_store, :key => '_specializ2_session'
+Specializ::Application.config.session_store :cookie_store, :key => '_specializ_session'
 
 # Use the database for sessions instead of the cookie-based default,
 # which shouldn't be used to store highly confidential information
 # (create the session table with "rails generate session_migration")
-# Specializ2::Application.config.session_store :active_record_store
+# Specializ::Application.config.session_store :active_record_store

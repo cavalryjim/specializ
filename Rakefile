@@ -4,4 +4,4 @@
 require File.expand_path('../config/application', __FILE__)
 require 'rake'
 
-Specializ2::Application.load_tasks
+Specializ::Application.load_tasks

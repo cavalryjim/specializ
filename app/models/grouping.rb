@@ -2,7 +2,13 @@ class Grouping < ActiveRecord::Base
   acts_as_nested_set
   belongs_to :company
   has_and_belongs_to_many :users, :uniq => true
+  has_many :topic_groups
   
+  attr_accessible :name
+  
+  def fullname
+    return self.self_and_ancestors.map(&:name).join("- ")
+  end
   
 #  has_and_belongs_to_many(:groupings,
 #    :join_table => "groupings_link",

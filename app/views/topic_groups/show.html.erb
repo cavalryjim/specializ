@@ -1,0 +1,35 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Name:</b>
+  <%= @topic_group.name %>
+</p>
+
+<p>
+  <b>Goal:</b>
+  <%= @topic_group.goal %>
+</p>
+
+<p>
+  <b>Active:</b>
+  <%= @topic_group.active %>
+</p>
+
+<p>
+  <b>Update frequency:</b>
+  <%= @topic_group.update_frequency %>
+</p>
+
+<p>
+  <b>Topic:</b>
+  <%= @topic_group.topic_id %>
+</p>
+
+<p>
+  <b>Grouping:</b>
+  <%= @topic_group.grouping_id %>
+</p>
+
+
+<%= link_to 'Edit', edit_topic_group_path(@topic_group) %> |
+<%= link_to 'Back', topic_groups_path %>

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110906184013) do
+ActiveRecord::Schema.define(:version => 20110907160106) do
 
   create_table "companies", :force => true do |t|
     t.string   "name"
@@ -52,6 +52,17 @@ ActiveRecord::Schema.define(:version => 20110906184013) do
   end
 
   add_index "roles_users", ["role_id", "user_id"], :name => "index_roles_users_on_role_id_and_user_id", :unique => true
+
+  create_table "topic_groups", :force => true do |t|
+    t.string   "name"
+    t.integer  "goal"
+    t.boolean  "active"
+    t.integer  "update_frequency"
+    t.integer  "topic_id"
+    t.integer  "grouping_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "topics", :force => true do |t|
     t.string   "name"

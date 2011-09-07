@@ -1,4 +1,6 @@
-Specializ2::Application.routes.draw do
+Specializ::Application.routes.draw do
+  resources :topic_groups
+
   resources :topics
 
   resources :users

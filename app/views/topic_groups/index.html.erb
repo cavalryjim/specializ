@@ -1,0 +1,33 @@
+<h1>Listing topic_groups</h1>
+
+<table>
+  <tr>
+    <th>Name</th>
+    <th>Goal</th>
+    <th>Active</th>
+    <th>Update frequency</th>
+    <th>Topic</th>
+    <th>Grouping</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @topic_groups.each do |topic_group| %>
+  <tr>
+    <td><%= topic_group.name %></td>
+    <td><%= topic_group.goal %></td>
+    <td><%= topic_group.active %></td>
+    <td><%= topic_group.update_frequency %></td>
+    <td><%= topic_group.topic_id %></td>
+    <td><%= topic_group.grouping_id %></td>
+    <td><%= link_to 'Show', topic_group %></td>
+    <td><%= link_to 'Edit', edit_topic_group_path(topic_group) %></td>
+    <td><%= link_to 'Destroy', topic_group, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Topic group', new_topic_group_path %>
