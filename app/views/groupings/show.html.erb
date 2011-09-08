@@ -20,6 +20,11 @@
   <%= @grouping.parent_id %>
 </p>
 
+<p>
+  <b>Users:</b>
+  <%= @grouping.users.collect { |u| [u.name, u.id] }  %>
+</p>
+
 
 <%= link_to 'Edit', edit_grouping_path(@grouping) %> |
 <%= link_to 'Back', groupings_path %>

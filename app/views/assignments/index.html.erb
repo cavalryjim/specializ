@@ -12,8 +12,8 @@
 
 <% @assignments.each do |assignment| %>
   <tr>
-    <td><%= assignment.user_id %></td>
-    <td><%= assignment.topic_group_id %></td>
+    <td><%= User.find(assignment.user_id).name %></td>
+    <td><%= TopicGroup.find(assignment.topic_group_id).name %></td>
     <td><%= assignment.manager %></td>
     <td><%= link_to 'Show', assignment %></td>
     <td><%= link_to 'Edit', edit_assignment_path(assignment) %></td>

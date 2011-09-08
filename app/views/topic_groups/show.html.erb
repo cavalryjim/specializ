@@ -30,6 +30,10 @@
   <%= @topic_group.grouping_id %>
 </p>
 
+<p>
+  <b>Users:</b>
+  <%= @topic_group.users.collect { |u| [u.name, u.id] }  %>
+</p>
 
 <%= link_to 'Edit', edit_topic_group_path(@topic_group) %> |
 <%= link_to 'Back', topic_groups_path %>
