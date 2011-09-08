@@ -29,7 +29,8 @@
   </div>
   <div class="field">
     <%= f.label :topic_id %><br />
-    <%= f.select :topic_id, Topic.all {|t| "#{t.name}" }%>
+JDavis: problem is likely here
+    <%= f.select :topic_id, Topic.select('distinct name').collect { |t| t.name }%>
   </div>
   <div class="field">
     <%= f.label :grouping_id %><br />

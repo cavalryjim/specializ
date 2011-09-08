@@ -3,8 +3,7 @@ class Grouping < ActiveRecord::Base
   belongs_to :company
   has_and_belongs_to_many :users, :uniq => true
   has_many :topic_groups
-  
-  attr_accessible :all
+ 
   
   def fullname
     return self.self_and_ancestors.map(&:name).join("- ")

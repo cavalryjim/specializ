@@ -1,7 +1,7 @@
 class Company < ActiveRecord::Base
   has_many :groupings
-  has_may :topics
+  has_many :topics
+  has_many :users
   
-  attr_accessible :all
   
 end
