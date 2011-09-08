@@ -29,8 +29,7 @@
   </div>
   <div class="field">
     <%= f.label :topic_id %><br />
-JDavis: problem is likely here
-    <%= f.select :topic_id, Topic.select('distinct name').collect { |t| t.name }%>
+    <%= f.select :topic_id, Topic.select('id, name').collect { |t| [t.name, t.id] }%>
   </div>
   <div class="field">
     <%= f.label :grouping_id %><br />

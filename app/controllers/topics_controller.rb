@@ -42,7 +42,7 @@ class TopicsController < ApplicationController
   # POST /topics.xml
   def create
     @topic = Topic.new(params[:topic])
-    @topic.company_id = 1
+    @topic.company_id = 1 #JDavis: this is hardcoded until I create a session variable to handle.
 
     respond_to do |format|
       if @topic.save
