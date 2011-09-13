@@ -1,0 +1,29 @@
+<h1>Listing iterations</h1>
+
+<table>
+  <tr>
+    <th>Num</th>
+    <th>Consensus</th>
+    <th>Active</th>
+    <th>Topic group</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @iterations.each do |iteration| %>
+  <tr>
+    <td><%= iteration.num %></td>
+    <td><%= iteration.consensus %></td>
+    <td><%= iteration.active %></td>
+    <td><%= iteration.topic_group_id %></td>
+    <td><%= link_to 'Show', iteration %></td>
+    <td><%= link_to 'Edit', edit_iteration_path(iteration) %></td>
+    <td><%= link_to 'Destroy', iteration, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Iteration', new_iteration_path %>

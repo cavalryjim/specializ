@@ -1,4 +1,9 @@
 Specializ::Application.routes.draw do
+  
+  resources :elements
+
+  resources :iterations
+
   resources :assignments
 
   resources :topic_groups

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110908162715) do
+ActiveRecord::Schema.define(:version => 20110913163738) do
 
   create_table "assignments", :force => true do |t|
     t.integer  "user_id"
@@ -26,6 +26,15 @@ ActiveRecord::Schema.define(:version => 20110908162715) do
     t.boolean  "active"
     t.boolean  "never_expires"
     t.date     "expiration_date"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "elements", :force => true do |t|
+    t.string   "name"
+    t.boolean  "current"
+    t.integer  "created_by"
+    t.integer  "edited_by"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -47,6 +56,23 @@ ActiveRecord::Schema.define(:version => 20110908162715) do
   end
 
   add_index "groupings_users", ["grouping_id", "user_id"], :name => "index_groupings_users_on_grouping_id_and_user_id", :unique => true
+
+  create_table "iteration_lists", :force => true do |t|
+    t.integer  "iteration_id"
+    t.integer  "element_id"
+    t.float    "avg_score"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "iterations", :force => true do |t|
+    t.integer  "num"
+    t.float    "consensus"
+    t.boolean  "active"
+    t.integer  "topic_group_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "roles", :force => true do |t|
     t.string   "name"
