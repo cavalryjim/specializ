@@ -16,6 +16,7 @@ Specializ::Application.routes.draw do
 
   resources :companies
   
+  root :to => 'topics#index'
 
 
   # The priority is based upon order of creation:

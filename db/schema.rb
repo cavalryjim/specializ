@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110913163738) do
+ActiveRecord::Schema.define(:version => 20110913164831) do
 
   create_table "assignments", :force => true do |t|
     t.integer  "user_id"
@@ -107,6 +107,15 @@ ActiveRecord::Schema.define(:version => 20110913163738) do
     t.integer  "due_days"
     t.boolean  "opt_out"
     t.integer  "company_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "user_lists", :force => true do |t|
+    t.integer  "user_id"
+    t.integer  "element_id"
+    t.integer  "score"
+    t.integer  "iteration_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
