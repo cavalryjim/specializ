@@ -5,6 +5,8 @@ gem 'mysql2', '0.2.7'
 gem 'cancan'
 gem 'declarative_authorization'
 gem 'awesome_nested_set'
+gem 'will_paginate', '3.0.pre2'
+gem 'jquery-rails'
 
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'

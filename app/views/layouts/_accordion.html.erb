@@ -1,16 +1,17 @@
 <div class="browser"> 
+<script type="text/javascript">
+function handleSelection(id) {
+	alert('ID selected : ' + id);
+}
+</script>
+<%=raw jqgrid("My Topics", "topic_groups", "/topic_groups", 
+[ 
+   
+  { :field => "id", :label => "id", :width => 25 }, 
+   
+  { :field => "name", :label => "Open Topics", :width => 260 }
 
-<h3 class="title">My Topics</h3>
-	<p class="expand">
-		Topic 1 <br>
-		Topic 2 
-	</p>
-	
-<h3 class="title">Managed Topics</h3>
-	<p class="expand">
-		Topic 3 <br>
-		Topic 4 
-	</p>
-<%= accordion('title', 'expand', :alwaysHide => true) %>
+], { :selection_handler => "handleSelection", :direct_selection => true }
+  ) %>
 
 </div>
