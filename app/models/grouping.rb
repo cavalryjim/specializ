@@ -1,3 +1,18 @@
+# == Schema Information
+#
+# Table name: groupings
+#
+#  id          :integer(4)      not null, primary key
+#  name        :string(255)
+#  description :string(255)
+#  company_id  :integer(4)
+#  parent_id   :integer(4)
+#  created_at  :datetime
+#  updated_at  :datetime
+#  lft         :integer(4)
+#  rgt         :integer(4)
+#
+
 class Grouping < ActiveRecord::Base
   acts_as_nested_set
   belongs_to :company

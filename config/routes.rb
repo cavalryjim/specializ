@@ -1,5 +1,12 @@
 Specializ::Application.routes.draw do
   
+  match '/me', :to => 'pages#me'
+  match '/manager', :to => 'pages#manager'
+  match '/hr', :to => 'pages#hr'
+  match '/admin', :to => 'pages#admin'
+  match '/pnetz', :to => 'pages#pnetz'
+  
+
   resources :elements
 
   resources :iterations
@@ -16,7 +23,7 @@ Specializ::Application.routes.draw do
 
   resources :companies
   
-  root :to => 'topics#index'
+  root :to => 'pages#me'
 
 
   # The priority is based upon order of creation:
