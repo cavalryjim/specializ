@@ -82,6 +82,7 @@ class TopicGroupsController < ApplicationController
     end
   end
 
+
   # GET /topic_groups/1
   # GET /topic_groups/1.xml
   def show

@@ -12,9 +12,7 @@
 <body>
     <div class="container">
       <%= render 'layouts/header' %>
-	  <section class="round">
-	    <%= render 'layouts/browser' %>
-	  </section>
+	  
       <section class="round">
         <% flash.each do |key, value| %>
           <div class="flash <%= key %>"><%= value %></div>
