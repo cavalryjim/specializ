@@ -2,11 +2,13 @@
 <html>
 <head>
   <title><%= title %></title>
-  <%= javascript_include_tag :defaults %>
+  <%= javascript_include_tag :all %>
   <%= csrf_meta_tag %>
   <%= render 'layouts/stylesheets' %>
   <%= jqgrid_stylesheets %>
   <%= jqgrid_javascripts %>
+  <%= javascript_include_tag 'jquery.collapser.js' %>
+  <%= javascript_include_tag 'jquery.collapser.min.js' %>
 
 </head>
 <body>
@@ -14,6 +16,7 @@
       <%= render 'layouts/header' %>
 	  
       <section class="round">
+		
         <% flash.each do |key, value| %>
           <div class="flash <%= key %>"><%= value %></div>
         <% end %>

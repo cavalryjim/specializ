@@ -6,21 +6,11 @@ function handleSelection(id) {
 }
 </script>
 
+
 <section class="round">
 
 
-	<%=raw jqgrid("My Topics", "topic_groups", "/topic_groups", 
-	[ 
-   
-	  { :field => "id", :label => "id", :width => 25 }, 
-	   
-	  { :field => "name", :label => "Open Topics", :width => 260 }
-	
-	], { :selection_handler => "handleSelection", :direct_selection => true }
-	
-	
-	  ) %>
-
+</br>
 
 	<%=raw jqgrid("Elements", "elements", "/elements", 
 	[ 
