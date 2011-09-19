@@ -1,29 +1,64 @@
-<h1>Listing elements</h1>
 
-<table>
-  <tr>
-    <th>Name</th>
-    <th>Current</th>
-    <th>Created by</th>
-    <th>Edited by</th>
-    <th></th>
-    <th></th>
-    <th></th>
-  </tr>
+<script type="text/javascript">
+function handleSelection(id) {
+		
+	alert('ID selected : ' + id);
 
-<% @elements.each do |element| %>
-  <tr>
-    <td><%= element.name %></td>
-    <td><%= element.current %></td>
-    <td><%= element.created_by %></td>
-    <td><%= element.edited_by %></td>
-    <td><%= link_to 'Show', element %></td>
-    <td><%= link_to 'Edit', edit_element_path(element) %></td>
-    <td><%= link_to 'Destroy', element, :confirm => 'Are you sure?', :method => :delete %></td>
-  </tr>
-<% end %>
-</table>
+}
 
-<br />
+//function myelem (value, options) {
+//  var el = document.createElement("input");
+//  el.type="text";
+//  el.value = value;
+//  return el;
+//}
 
-<%= link_to 'New Element', new_element_path %>
+function myelem (value, options) {
+    var val = $(value);
+   	var elem = $('<div id="'+options.id+'"/>');
+ 	setTimeout(function(){
+        elem.raty({
+			path:'http://www.ok-soft-gmbh.com/jquery.raty/1.0.1/img/',
+        	start:(val.length>1? val[1].innerText: value)
+        });
+    }, 100);
+    return elem[0];
+}
+ 
+//function myvalue(elem, operation, value) {
+//    if(operation === 'get') {
+//       return $(elem).find("input").val();
+//    } else if(operation === 'set') {
+//       $('input',elem).val(value);
+//    }
+//}
+
+</script>
+
+
+
+
+<section class="round">
+
+
+</br>
+
+	<%=raw jqgrid("Elements", "elements", "/elements", 
+	[ 
+	   
+	  { :field => "id", :label => "id", :width => 25, :editable => false, :hidden => false }, 
+	   
+	  { :field => "name", :label => "Elements", :width => 400, :editable => false },
+
+	  { :field => "rating", :label => "Ranking", :width => 55, :editable => true, 
+			:edittype => "custom", :editoptions => { :value => [["custom_element", "myelem" ], ["custom_value", "myvalue"]]}
+            
+	  }
+
+	
+	], { :add => true, :edit => true, :inline_edit => true, :edit_url => "/elements/post_data"}
+	
+	  ) %>
+
+ 
+</section>

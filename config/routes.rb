@@ -1,6 +1,6 @@
 Specializ::Application.routes.draw do
   
-  match '/me', :to => 'pages#me'
+  match '/me', :to => 'elements#index'
   match '/manager', :to => 'pages#manager'
   match '/hr', :to => 'pages#hr'
   match '/admin', :to => 'pages#admin'

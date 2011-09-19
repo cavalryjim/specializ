@@ -1,6 +1,9 @@
 class PagesController < ApplicationController
   def me
     @title = "Me"
+    
+    @topic_groups=TopicGroup.all
+    @elements = Element.all
   end
 
   def manager

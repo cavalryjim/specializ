@@ -73,7 +73,10 @@ class ElementsController < ApplicationController
       conditions[:conditions]=filter_by_conditions(index_columns)
     end
     
-    @elements=Element.paginate(conditions)
+    # JDavis: iteration will be selected from a dropdown.
+    # hard coding at the moment.
+    @iteration = Iteration.find_by_id(1)
+    @elements=@iteration.elements.paginate(conditions)
     total_entries=@elements.total_entries
     
     respond_with(@elements) do |format|
