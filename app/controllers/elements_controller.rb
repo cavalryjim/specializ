@@ -22,6 +22,14 @@ class ElementsController < ApplicationController
   #     post "post_data"
   #   end
   # end
+  
+  def myelem
+    
+  end
+  
+  def myvalue
+    
+  end
 
   def post_data
     message=""
@@ -75,6 +83,7 @@ class ElementsController < ApplicationController
     
     # JDavis: iteration will be selected from a dropdown.
     # hard coding at the moment.
+    @topic_group = TopicGroup.find_by_id(2)
     @iteration = Iteration.find_by_id(1)
     @elements=@iteration.elements.paginate(conditions)
     total_entries=@elements.total_entries

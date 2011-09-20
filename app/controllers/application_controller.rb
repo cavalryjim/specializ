@@ -10,4 +10,9 @@ class ApplicationController < ActionController::Base
     # JDavis: Hardcoding the current user as the first user during development.
     User.first
   end
+  
+  def current_user_open_topics
+    # JDavis: creating an array of open topics for the current user
+    TopicGroup.all
+  end
 end

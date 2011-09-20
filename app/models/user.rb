@@ -21,7 +21,7 @@ class User < ActiveRecord::Base
   has_many :user_lists, :dependent => :destroy
   has_many :elements, :through => :user_lists
   
-  attr_assessible :first_name, :last_name, :email, :active
+  attr_accessible :first_name, :last_name, :email, :active
   
   def name
     first_name.to_str + " " + last_name.to_str

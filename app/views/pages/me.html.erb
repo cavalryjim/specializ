@@ -15,19 +15,7 @@ function handleSelection(id) {
 
 <section class="round">
 
-
-</br>
-
-	<%=raw jqgrid("Elements", "elements", "/elements", 
-	[ 
-	   
-	  { :field => "id", :label => "id", :width => 25 }, 
-	   
-	  { :field => "name", :label => "Elements", :width => 260 }
-	
-	], { :selection_handler => "handleSelection", :direct_selection => true }
-	
-	  ) %>
+<%= render 'elements/index' %>
 
  
 </section>
