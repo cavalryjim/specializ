@@ -3,7 +3,8 @@ class PagesController < ApplicationController
     @title = "Me"
     
     @topic_groups=TopicGroup.all
-    @elements = Element.all
+    #@elements = Element.all
+    @elements = nil
   end
 
   def manager
