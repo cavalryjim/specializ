@@ -15,6 +15,8 @@ class TopicGroupsController < ApplicationController
   # GET /topic_groups/1.xml
   def show
     @topic_group = TopicGroup.find(params[:id])
+    @iterations = @topic_group.iterations
+    @elements = @iterations.last.elements
 
     respond_to do |format|
       format.html # show.html.erb

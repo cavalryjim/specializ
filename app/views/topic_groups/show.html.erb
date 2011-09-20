@@ -9,30 +9,22 @@
   The goal of this topic is to reach <%= @topic_group.goal %>% consensus.
 </p>
 
-<p>
-  <b>Active:</b>
-  <%= @topic_group.active %>
-</p>
+<table>
+  <tr>
+    <th>Name</th>
+    <th>Current</th>
+    <th></th>
+    <th></th>
+  </tr>
 
-<p>
-  <b>Update frequency:</b>
-  <%= @topic_group.update_frequency %>
-</p>
+<% @elements.each do |element| %>
+  <tr>
+    <td><%= element.name %></td>
+    <td><%= link_to 'Edit', edit_element_path(element) %></td>
+    <td><%= link_to 'Delete', element, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
 
-<p>
-  <b>Topic:</b>
-  <%= @topic_group.topic_id %>
-</p>
-
-<p>
-  <b>Grouping:</b>
-  <%= @topic_group.grouping_id %>
-</p>
-
-<p>
-  <b>Users:</b>
-  <%= @topic_group.users.collect { |u| [u.name, u.id] }  %>
-</p>
-
-<%= link_to 'Edit', edit_topic_group_path(@topic_group) %> |
-<%= link_to 'Back', topic_groups_path %>
+<%= link_to 'Back', me_path %>  
+<%= link_to 'Add New Element', new_element_path %>

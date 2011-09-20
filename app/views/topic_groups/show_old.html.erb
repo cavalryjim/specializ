@@ -1,0 +1,38 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <%= @topic_group.name %>
+</p>
+
+<p>
+  <b>Goal:</b>
+  The goal of this topic is to reach <%= @topic_group.goal %>% consensus.
+</p>
+
+<p>
+  <b>Active:</b>
+  <%= @topic_group.active %>
+</p>
+
+<p>
+  <b>Update frequency:</b>
+  <%= @topic_group.update_frequency %>
+</p>
+
+<p>
+  <b>Topic:</b>
+  <%= @topic_group.topic_id %>
+</p>
+
+<p>
+  <b>Grouping:</b>
+  <%= @topic_group.grouping_id %>
+</p>
+
+<p>
+  <b>Users:</b>
+  <%= @topic_group.users.collect { |u| [u.name, u.id] }  %>
+</p>
+
+<%= link_to 'Edit', edit_topic_group_path(@topic_group) %> |
+<%= link_to 'Back', topic_groups_path %>
