@@ -20,4 +20,9 @@ class TopicGroup < ActiveRecord::Base
   has_many :users, :through => :assignments
   has_many :iterations, :dependent => :destroy
   
+  validates :name, :presence => true
+  validates :goal, :presence => true
+  validates :active, :presence => true
+  validates :topic_id, :presence => true
+  validates :grouping_id, :presence => true
 end

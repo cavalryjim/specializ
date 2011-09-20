@@ -19,5 +19,6 @@ class Topic < ActiveRecord::Base
   has_many :topic_groups, :dependent => :destroy
   has_many :groupings, :through => :topic_groups
   
-  
+  validates :name, :presence => true
+  validates :company_id, :presence => true
 end

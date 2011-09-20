@@ -30,5 +30,6 @@ class Grouping < ActiveRecord::Base
 #    :association_foreign_key => "grouping_b_id")
 
 
-  
+  validates :name, :presence => true
+  validates :company_id, :presence => true
 end

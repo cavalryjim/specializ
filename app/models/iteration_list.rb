@@ -14,4 +14,6 @@ class IterationList < ActiveRecord::Base
   belongs_to :iteration
   belongs_to :element
   
+  validates :iteration_id, :presence => true
+  validates :element_id, :presence => true
 end

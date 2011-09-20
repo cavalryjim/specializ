@@ -17,4 +17,7 @@ class Iteration < ActiveRecord::Base
   has_many :elements, :through => :iteration_lists
   has_many :user_lists, :dependent => :destroy
   
+  validates :num, :presence => true
+  validates :active, :presence => true
+  validates :topic_group_id, :presence => true
 end
