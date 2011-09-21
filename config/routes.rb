@@ -1,10 +1,15 @@
 Specializ::Application.routes.draw do
 
+  ActiveAdmin.routes(self)
+
+  devise_for :admin_users, ActiveAdmin::Devise.config
+
   match '/me', :to => 'me#home'
   match '/manager', :to => 'pages#manager'
   match '/hr', :to => 'pages#hr'
   match '/admin', :to => 'pages#admin'
   match '/pnetz', :to => 'pages#pnetz'
+  match '/company_admin', :to => 'pages#admin'
   
   resources :me
   
