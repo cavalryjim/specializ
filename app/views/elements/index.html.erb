@@ -1,66 +1,19 @@
 
-<script type="text/javascript">
-function handleSelection(id) {
-		
-	alert('ID selected : ' + id);
 
-}
+<h1><%= @selected_topic.name %></h1>
 
-function myelem (value, options) {
-	alert("hello");
-  var el = document.createElement("input");
-  el.type="text";
-  el.value = value;
-  return el;
-}
+<table>
+  <tr>
+    <th>Name</th>
+  </tr>
 
-//function myelem (value, options) {
-//    var val = $(value);
-//   	var elem = $('<div id="'+options.id+'"/>');
-// 	setTimeout(function(){
-//        elem.raty({
-//			path:'http://www.ok-soft-gmbh.com/jquery.raty/1.0.1/img/',
-//        	start:(val.length>1? val[1].innerText: value)
-//        });
-//    }, 100);
-//    return elem[0];
-//}
- 
-function myvalue(elem, operation, value) {
-	alert("hello2");
-    if(operation === 'get') {
-       return $(elem).find("input").val();
-    } else if(operation === 'set') {
-       $('input',elem).val(value);
-    }
-}
+<% @elements.each do |element| %>
+  <tr>
+    <td><%= element.name %></td>
+  </tr>
+<% end %>
+</table>
 
-</script>
+<br />
 
-
-
-
-<section class="round">
-
-
-</br>
-
-	<%=raw jqgrid("Elements", "elements", "/elements", 
-	[ 
-	   
-	  { :field => "id", :label => "id", :width => 25, :editable => false, :hidden => false }, 
-	   
-	  { :field => "name", :label => "Elements", :width => 400, :editable => false },
-
-	  { :field => "rating", :label => "Ranking", :width => 55, :editable => true, 
-			:edittype => "select", :editoptions => { :value => [[1, 1], [2, 2], [3, 3], [4, 4], [5, 5]]}
-            
-	  }
-
-	
-	], { :add => true, :edit => true, :inline_edit => true, :edit_url => "/elements/post_data"}
-	
-	  ) %>
-
- 
-</section>
+<%= link_to 'New Element', new_element_path %>

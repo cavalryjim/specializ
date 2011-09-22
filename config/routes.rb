@@ -11,6 +11,7 @@ Specializ::Application.routes.draw do
   match '/pnetz', :to => 'pages#pnetz'
   match '/company_admin', :to => 'pages#admin'
   match '/pages/me', :to => 'pages#me'
+  match 'elements/post_data', :to => 'elements#post_data'
   
   resources :me
   

@@ -52,20 +52,20 @@ function myval(elem){
 
 <section class="round">
 
-	<%=raw jqgrid("Elements", "elements", "/elements", 
+	<%= raw jqgrid("Elements", "elements", "/elements", 
 	[ 
 	   
 	  { :field => "id", :label => "id", :width => 25,  :hidden => false }, 
 	   
-	  { :field => "name", :label => "Elements", :width => 400, :editable => true,},
+	  { :field => "name", :label => "Elements", :width => 400, :editable => false,},
 
 	  { :field => "rating", :label => "Ranking", :width => 55, :editable => true, 
-			:edittype => "select", :editoptions => { :value => [[1,1], [2,2]] }
+			:edittype => "select", :editoptions => { :value => [[1,1], [2,2], [3,3], [4,4], [5,5]] }
             
 	  }
 
 	
-	], { :add => true, :edit => true, :inline_edit => true, :edit_url => "/elements/post_data"}
+	], { :add => false, :edit => true, :inline_edit => true, :edit_url => "/elements/post_data"}
 	
 	) %>
 

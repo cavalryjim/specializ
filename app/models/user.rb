@@ -21,7 +21,7 @@ class User < ActiveRecord::Base
   has_many :user_lists, :dependent => :destroy
   has_many :elements, :through => :user_lists
   
-  attr_accessible :first_name, :last_name, :email, :active
+  attr_accessible :first_name, :last_name, :email, :active, :company_id
   
   email_regex = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
 

@@ -2,16 +2,16 @@
 
 <table>
   <tr>
-    <th>First name</th>
-    <th>Last name</th>
-	<th>Email</th>
+    <th><%= sortable "first_name" %></th>
+    <th><%= sortable "last_name" %></th>
+	<th><%= sortable "email" %></th>
 	<th>Active</th>
     <th></th>
     <th></th>
     <th></th>
   </tr>
 
-<% @users.each do |user| %>
+<% for user in @users %>
   <tr>
     <td><%= user.first_name %></td>
     <td><%= user.last_name %></td>
@@ -23,7 +23,7 @@
   </tr>
 <% end %>
 </table>
-
+<%= will_paginate @products %>
 <br />
 
 <%= link_to 'New User', new_user_path %>

@@ -23,13 +23,7 @@ class ElementsController < ApplicationController
   #   end
   # end
   
-  def myelem
-    
-  end
-  
-  def myvalue
-    
-  end
+ 
 
   def post_data
     message=""
@@ -42,9 +36,19 @@ class ElementsController < ApplicationController
       end
       
     when 'edit'
-      element = Element.find(params[:id])
-      message << ('update ok') if element.update_attributes(element_params)
+      # JDavis todo: need to add logic such that only a manager or element author can edit an element name.
+      element = Element.find_by_id(1)
+      # JDavis todo: need to add logic such that a user
+      @user_list = UserList.new
+      @user_list.user_id = 1
+      @user_list.element_id = 1
+      @user_list.score = params[:rating]
+      @user_list.iteration_id = 1 #JDavis todo: need to 
+      
+      message << ('update ok') if element.update_attributes(element_params) && @user_list.save
+      
     when 'del'
+      # JDavis: need to add logic such that only a manager or element author can delete.
       Element.destroy_all(:id => params[:id].split(","))
       message <<  ('del ok')
     when 'sort'
@@ -124,6 +128,9 @@ class ElementsController < ApplicationController
   # POST /elements.xml
   def create
     @element = Element.new(params[:element])
+    #JDavis todo: New elements should only be current if the manager approves them
+    @element.current = true 
+    @element.created_by = current_user.id
 
     respond_to do |format|
       if @element.save
@@ -140,6 +147,8 @@ class ElementsController < ApplicationController
   # PUT /elements/1.xml
   def update
     @element = Element.find(params[:id])
+    #JDavis: identifying the last user to edit this element
+    @element.edited_by = current_user.id
 
     respond_to do |format|
       if @element.update_attributes(params[:element])
