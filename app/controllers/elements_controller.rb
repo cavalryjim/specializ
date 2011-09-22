@@ -90,6 +90,7 @@ class ElementsController < ApplicationController
     @topic_group = TopicGroup.find_by_id(2)
     @iteration = Iteration.find_by_id(1)
     @elements=@iteration.elements.paginate(conditions)
+    
     total_entries=@elements.total_entries
     
     respond_with(@elements) do |format|
