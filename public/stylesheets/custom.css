@@ -323,3 +323,18 @@ form.new_micropost textarea {
   text-align: center;
   margin-bottom: 10px;
 }
+
+/** Star Ratings **/
+.rating {list-style:none;padding:0;margin:0;width:100px;height:20px;background:url(http://tw.yimg.com/i/tw/cs/yimg/rating_star_null.gif) left top repeat-x;position:relative;}
+.rating li {position:absolute;}
+.rating li a {width:20px;height:20px;display:block;font-size:0;text-indent:-500px;}
+.rating li a:hover {background:url(http://tw.yimg.com/i/tw/cs/yimg/rating_star_m.gif) left top repeat-x;}
+.rating li.r1 {z-index:5;}
+.rating li.r2 {z-index:4;}
+.rating li.r3 {z-index:3;}
+.rating li.r4 {z-index:2;}
+.rating li.r5 {z-index:1;}
+.rating li.r2 a{width:40px;}
+.rating li.r3 a{width:60px;}
+.rating li.r4 a{width:80px;}
+.rating li.r5 a{width:100px;}

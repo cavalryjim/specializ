@@ -6,42 +6,18 @@ function handleSelection(id) {
 
 }
 
-//function myelem (value, options) {
-//  var el = document.createElement("input");
-//  el.type="text";
-//  el.value = value;
-//  return el;
-//}
-
-//function myelem (value, options) {
-//    var val = $(value);
-//   	var elem = $('<div id="'+options.id+'"/>');
-// 	setTimeout(function(){
-//        elem.raty({
-//			path:'http://www.ok-soft-gmbh.com/jquery.raty/1.0.1/img/',
-//        	start:(val.length>1? val[1].innerText: value)
-//        });
-//    }, 100);
-//    return elem[0];
-//}
- 
-//function myvalue(elem, operation, value) {
-//    if(operation === 'get') {
-//       return $(elem).find("input").val();
-//    } else if(operation === 'set') {
-//       $('input',elem).val(value);
-//    }
-
-function myelem(value,options){
-    return $('<input type="text" value="'+value+'" disabled="disabled"/>');
-}
-
-function myval(elem){
-    return elem.val();
-}
+  var dataSource = new YAHOO.util.XHRDataSource("/elements/elements.json");
+  dataSource.responseType = YAHOO.util.XHRDataSource.TYPE_JSON;
+  dataSource.responseSchema = {
+   resultsList: "Resources.data",
+   fields: [
+      {key:"element.id"},
+      {key:"element.name"}
+      ]
+  }
 
 
-}
+
 
 </script>
 

@@ -1,5 +1,6 @@
 module ApplicationHelper
-  
+  include Datatables::Helpers
+
   # Return a title on a per-page basis.
   def title
     base_title = "Specializ"

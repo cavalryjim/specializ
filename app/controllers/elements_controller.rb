@@ -11,7 +11,7 @@ class ElementsController < ApplicationController
   #end
   
   require 'will_paginate'
-  respond_to :html,:json
+  respond_to :html,:json,:xml
   
   protect_from_forgery :except => [:post_data]
   
@@ -74,28 +74,44 @@ class ElementsController < ApplicationController
   
   
   def index
-    index_columns ||= [:id,:name]
-    current_page = params[:page] ? params[:page].to_i : 1
-    rows_per_page = params[:rows] ? params[:rows].to_i : 10
+    #index_columns ||= [:id,:name]
+    #current_page = params[:page] ? params[:page].to_i : 1
+    #rows_per_page = params[:rows] ? params[:rows].to_i : 10
 
-    conditions={:page => current_page, :per_page => rows_per_page}
-    conditions[:order] = params["sidx"] + " " + params["sord"] unless (params[:sidx].blank? || params[:sord].blank?)
+    #conditions={:page => current_page, :per_page => rows_per_page}
+    #conditions[:order] = params["sidx"] + " " + params["sord"] unless (params[:sidx].blank? || params[:sord].blank?)
     
-    if params[:_search] == "true"
-      conditions[:conditions]=filter_by_conditions(index_columns)
-    end
+    #if params[:_search] == "true"
+    #  conditions[:conditions]=filter_by_conditions(index_columns)
+    #end
     
     # JDavis: iteration will be selected from a dropdown.
     # hard coding at the moment.
-    @topic_group = TopicGroup.find_by_id(2)
-    @iteration = Iteration.find_by_id(1)
-    @elements=@iteration.elements.paginate(conditions)
+    #@topic_group = TopicGroup.find_by_id(2)
+    #@iteration = Iteration.find_by_id(1)
+    #@elements=@iteration.elements.paginate(conditions)
     
-    total_entries=@elements.total_entries
+    #total_entries=@elements.total_entries
     
-    respond_with(@elements) do |format|
-      format.json { render :json => @elements.to_jqgrid_json(index_columns, current_page, rows_per_page, total_entries)}  
+    #respond_with(@elements) do |format|
+    #  format.json { render :json => @elements.to_jqgrid_json(index_columns, current_page, rows_per_page, total_entries)}  
+    #end
+      
+
+    #@elements = Element.all
+    #@topic_group = TopicGroup.find_by_id(2)
+    #@selected_topic = TopicGroup.find_by_id(2)
+    #@topic_groups = TopicGroup.all
+    #@iteration = Iteration.find_by_id(1)
+    @elements= Element.all
+    
+
+
+    respond_to do |format|
+      format.html # index.html.erb
+      format.xml  { render :xml => @elements }
     end
+
   end
 
   # GET /elements/1

@@ -1,19 +1,9 @@
 
+<%= datatable('element', { 	:name => { :type => 'string', 
+                                      :label => 'Name',
+                                      :width => '20%' }
+                           
+                         }) %>
 
-<h1><%= @selected_topic.name %></h1>
-
-<table>
-  <tr>
-    <th>Name</th>
-  </tr>
-
-<% @elements.each do |element| %>
-  <tr>
-    <td><%= element.name %></td>
-  </tr>
-<% end %>
-</table>
-
-<br />
 
 <%= link_to 'New Element', new_element_path %>

@@ -1,3 +1,4 @@
+
 <p id="notice"><%= notice %></p>
 
 <p>
@@ -19,6 +20,30 @@
 <% @elements.each do |element| %>
   <tr>
     <td><%= element.name %></td>
+	<td> 
+		<span>
+			<input id="element_1_1" name="element_1" class="element radio" type="radio" value="1"  />
+			<label class="choice" for="element_1_1">1</label>
+			<input id="element_1_2" name="element_1" class="element radio" type="radio" value="2"  />
+			<label class="choice" for="element_1_2">2</label>
+			<input id="element_1_3" name="element_1" class="element radio" type="radio" value="3"  />
+			<label class="choice" for="element_1_3">3</label>
+			<input id="element_1_4" name="element_1" class="element radio" type="radio" value="4"  />
+			<label class="choice" for="element_1_4">4</label>
+			<input id="element_1_5" name="element_1" class="element radio" type="radio" value="5"  />
+			<label class="choice" for="element_1_5">5</label>
+		</span>
+
+	</td>
+	<td>
+		<ul class="rating">
+			<li class="r1"><a href="#" title="1">1</a></li>
+			<li class="r2"><a href="#" title="2">2</a></li>
+			<li class="r3"><a href="#" title="3">3</a></li>
+			<li class="r4"><a href="#" title="4">4</a></li>
+			<li class="r5"><a href="#" title="5">5</a></li>
+		</ul>
+	</td>
     <td><%= link_to 'Edit', edit_element_path(element) %></td>
     <td><%= link_to 'Delete', element, :confirm => 'Are you sure?', :method => :delete %></td>
   </tr>
