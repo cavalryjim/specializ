@@ -105,12 +105,28 @@ class ElementsController < ApplicationController
     #@iteration = Iteration.find_by_id(1)
     @elements= Element.all
     
-
-
+    #respond_to do |format|
+    #  format.html # index.html.erb
+    #  format.xml  { render :xml => @elements }
+    #  format.json { render :json => @elements }
+    #end
+    
     respond_to do |format|
       format.html # index.html.erb
-      format.xml  { render :xml => @elements }
+      #format.json  { render :json => @elements }
+      format.json {
+        elements = []
+        @elements.each do |element|
+          element_container = {}
+          element_container['id'] = element.id
+          element_container['name'] = element.name
+          elements << element_container
+        end
+        data = { "elements" => elements }
+        render :json => data.to_json
+      }
     end
+
 
   end
 

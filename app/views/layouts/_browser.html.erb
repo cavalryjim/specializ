@@ -1,16 +1,40 @@
-<h3>My Topics</h3>
-
-<table>
-  
-
-<% @topic_groups.each do |topic_group| %>
-  <tr>
-    <td><%=link_to topic_group.name, topic_group %></td>
-    
-    
-  </tr>
-<% end %>
-</table>
+<link type="text/css" href="stylesheets/jquery-ui-1.8.16.custom.css" rel="Stylesheet" />	
+<script type="text/javascript" src="javascripts/jquery-ui-1.8.16.custom.min.js"></script>
 
 
+<script>
+	$(function() {
+		$( "#accordion" ).accordion();
+	});
+</script>
 
+
+<h2>My Topics</h2>
+
+<div id="accordion">
+    <h3><a href="#">Open Topics</a></h3>
+    <div>
+		<table>
+		<% @topic_groups.each do |topic_group| %>
+		  <tr>
+		    <td><%=link_to topic_group.name, topic_group %></td>
+		    
+		    
+		  </tr>
+		<% end %>
+		</table>
+
+	</div>
+    <h3><a href="#">Managed Topics</a></h3>
+    <div>
+		<table>
+		<% @topic_groups.each do |topic_group| %>
+		  <tr>
+		    <td><%=link_to topic_group.name, topic_group %></td>
+		    
+		    
+		  </tr>
+		<% end %>
+		</table>
+	</div>
+</div> 
