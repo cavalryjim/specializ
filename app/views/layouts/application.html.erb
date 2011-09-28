@@ -2,12 +2,14 @@
 <html>
 <head>
   <title><%= title %></title>
-  <%= javascript_include_tag :all %>
+  <%= javascript_include_tag :defaults %>
   <%= csrf_meta_tag %>
   <%= render 'layouts/stylesheets' %>
   <%= stylesheet_link_tag 'datatable_page' %> 
   <%= stylesheet_link_tag 'datatable_table' %>
   <%= javascript_include_tag 'jquery.dataTables.min' %>
+  <%= javascript_include_tag 'jquery.rating' %>
+
   
 </head>
 <body>
