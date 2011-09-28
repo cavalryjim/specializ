@@ -1,93 +1,4 @@
-<!--CSS file (default YUI Sam Skin) -->
-<link type="text/css" rel="stylesheet" href="http://yui.yahooapis.com/2.9.0/build/datatable/assets/skins/sam/datatable.css">
- 
-<!-- Dependencies -->
-<script src="http://yui.yahooapis.com/2.9.0/build/yahoo-dom-event/yahoo-dom-event.js"></script>
-<script src="http://yui.yahooapis.com/2.9.0/build/element/element-min.js"></script>
-<script src="http://yui.yahooapis.com/2.9.0/build/datasource/datasource-min.js"></script>
- 
-<!-- OPTIONAL: JSON Utility (for DataSource) -->
-<script src="http://yui.yahooapis.com/2.9.0/build/json/json-min.js"></script>
- 
-<!-- OPTIONAL: Connection Manager (enables XHR for DataSource) -->
-<script src="http://yui.yahooapis.com/2.9.0/build/connection/connection-min.js"></script>
- 
-<!-- OPTIONAL: Get Utility (enables dynamic script nodes for DataSource) -->
-<script src="http://yui.yahooapis.com/2.9.0/build/get/get-min.js"></script>
- 
-<!-- OPTIONAL: Drag Drop (enables resizeable or reorderable columns) -->
-<script src="http://yui.yahooapis.com/2.9.0/build/dragdrop/dragdrop-min.js"></script>
- 
-<!-- OPTIONAL: Calendar (enables calendar editors) -->
-<script src="http://yui.yahooapis.com/2.9.0/build/calendar/calendar-min.js"></script>
- 
-<!-- Source files -->
-<script src="http://yui.yahooapis.com/2.9.0/build/datatable/datatable-min.js"></script>
 
-<script type="text/javascript">
-
-YAHOO.util.Event.addListener(window, "load", function() {
-    YAHOO.example.CustomFormatting = new function() {
-        this.myRatingFormatter = function(elLiner, oRecord, oColumn, oData) {
-			// Create a ButtonGroup 
-	        oButtonGrp = new YAHOO.widget.ButtonGroup({  
-	                     id: "buttongrp"
-	        }); 
-
-	        oButtonGrp.addButtons([ 
-	              { name:"1", value: "1", type:"radio" }, 
-                  { name:"2", value: "2", type:"radio" } 
-	        ]); 
-        };
-        
-        // Add the custom formatter to the shortcuts
-        YAHOO.widget.DataTable.Formatter.myRating = this.myRatingFormatter;
-
-        // Override the built-in formatter
-        // Be sure to HTML-escape any untrustworthy data
-        YAHOO.widget.DataTable.formatEmail = function(elLiner, oRecord, oColumn, oData) {
-            var user = YAHOO.lang.escapeHTML(oData);
-            elLiner.innerHTML = "<a href=\"mailto:" + user + "@mycompany.com\">" + user + "</a>";
-        };
-
-
-
-		var myColumnDefs = [
-			  {key:"id", sortable:true, hidden:true},
-			  {key:"name", label:"Name", sortable:true},
-			  {key:"rating", label:"Rating", sortable:false, selectable:true, 
-				formatter:"dropdown", dropdownOptions:["1","2","3", "4", "5"]}
-			];
-
-
-        //this.myDataSource = new YAHOO.util.DataSource(YAHOO.example.Data.multitypes);
-		this.myDataSource = new YAHOO.util.XHRDataSource("/elements.json");
-        this.myDataSource.responseType = YAHOO.util.DataSource.TYPE_JSON;
-		this.myDataSource.responseSchema = {
-		   resultsList: "elements",
-		   fields: [
-		      {key:"id", parser:"number"},
-		      {key:"name"}
-		      ]
-		 };
-
-        this.myDataTable = new YAHOO.widget.DataTable("elementsTable", myColumnDefs, this.myDataSource);
-
-    };
-});
-
-
-</script>
-
-<style>
-.yui-skin-sam .yui-dt td.up {
-    background-color: #efe;
-}
-.yui-skin-sam .yui-dt td.down {
-    background-color: #fee;
-}
-
-</style>
 
 <p id="notice"><%= notice %></p>
 
@@ -100,22 +11,30 @@ YAHOO.util.Event.addListener(window, "load", function() {
   The goal of this topic is to reach <%= @topic_group.goal %>% consensus.
 </p>
 
+<table>
+  <tr>
+    <th>Name</th>
+    <th>Rating</th>
 
-<form class="modform">
-    <input id="newElement" type="text" value=" " class="new" size="50">
-   
-    <span id="Add Element" class="yui-button yui-push-button">
-        <span class="first-child">
-            <button type="button">Add Element</button>
-        </span>
-    </span>
+  </tr>
 
-</form>
-
-
-
-
-<div id="elementsTable"></div> 
+<% @elements.each do |element| %>
+  <tr>
+    <td><%= element.name %></td>
+	<td>
+		
+		<input name="star<%=element.id%>" type="radio" class="star"/>
+		<input name="star<%=element.id%>" type="radio" class="star"/>
+		<input name="star<%=element.id%>" type="radio" class="star"/>
+		<input name="star<%=element.id%>" type="radio" class="star"/>
+		<input name="star<%=element.id%>" type="radio" class="star"/>
+		
+	</td>
+    <td><%= link_to 'Edit', edit_element_path(element) %></td>
+    <td><%= link_to 'Destroy', element, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
 
 
 

@@ -91,8 +91,9 @@ nav ul li a:hover {
 }
 
 /* Browser */
-.browser {
-  
+browser {
+  width: 100px;
+  float: left;	
 }
 
 /* Main */
