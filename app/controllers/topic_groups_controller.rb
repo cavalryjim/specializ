@@ -16,8 +16,10 @@ class TopicGroupsController < ApplicationController
   def show
     @topic_group = TopicGroup.find(params[:id])
     @iterations = @topic_group.iterations
-    #@elements = @iterations.last.elements
-    @elements = Element.all
+    @elements = @iterations.last.elements
+    #@elements = Element.all
+    
+    #render 'iterations'
 
     respond_to do |format|
       format.html # show.html.erb

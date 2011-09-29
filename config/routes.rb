@@ -11,25 +11,15 @@ Specializ::Application.routes.draw do
   match '/pnetz', :to => 'pages#pnetz'
   match '/company_admin', :to => 'pages#admin'
   match '/pages/me', :to => 'pages#me'
-  match 'elements/post_data', :to => 'elements#post_data'
+  #match 'elements/post_data', :to => 'elements#post_data'
   
-  resources :me
+  resources :topic_groups do
+    resources :iterations do
+      resources :elements 
+    end
+  end
   
-  resources :elements
-
-  resources :iterations
-
-  resources :assignments
-
-  resources :topic_groups
-
-  resources :topics
-
-  resources :users
-
-  resources :groupings
-
-  resources :companies
+  resources :me, :elements, :iterations, :assignments, :topic_groups, :topics, :users, :groupings, :companies, :elements
   
   root :to => 'me#home'
 

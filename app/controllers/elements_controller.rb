@@ -166,12 +166,20 @@ class ElementsController < ApplicationController
     @element.created_by = current_user.id
 
     respond_to do |format|
-      if @element.save
-        format.html { redirect_to(@element, :notice => 'Element was successfully created.') }
-        format.xml  { render :xml => @element, :status => :created, :location => @element }
+      @iteration_list_element = IterationList.new
+      @iteration_list_element.element_id = @element.id
+      @iteration_list_element.iteration_id = params[:iteration_id]
+      if @iteration_list_element.save
+        if @element.save  #JDavis: redirecting to root for testing
+          format.html { redirect_to  root_path,  :notice => 'Element was successfully created.' }
+          format.xml  { render :xml => @element, :status => :created, :location => @element }
+        else
+          format.html { render :action => "new", :notice => 'Element was not successfully created.'}
+          format.xml  { render :xml => @element.errors, :status => :unprocessable_entity }
+        end
       else
-        format.html { render :action => "new" }
-        format.xml  { render :xml => @element.errors, :status => :unprocessable_entity }
+        format.html { render :action => "new", :notice => 'Iteration List was not successfully created.'}
+        format.xml  { render :xml => @iteration_list_element.errors, :status => :unprocessable_entity }
       end
     end
   end

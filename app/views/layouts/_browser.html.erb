@@ -18,7 +18,7 @@
 		<table>
 		<% @topic_groups.each do |topic_group| %>
 		  <tr>
-		    <td><%=link_to topic_group.name, topic_group %></td>
+		    <td><%=link_to topic_group.name, url_for([topic_group, topic_group.iterations.last]) %> </td>
 		    
 		    
 		  </tr>
@@ -31,7 +31,7 @@
 		<table>
 		<% @topic_groups.each do |topic_group| %>
 		  <tr>
-		    <td><%=link_to topic_group.name, topic_group %></td>
+		    <td><%=link_to topic_group.name, url_for([topic_group, topic_group.iterations.last]) %></td>
 		    
 		    
 		  </tr>

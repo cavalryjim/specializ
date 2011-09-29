@@ -14,6 +14,10 @@ class IterationsController < ApplicationController
   # GET /iterations/1.xml
   def show
     @iteration = Iteration.find(params[:id])
+    @topic_group = TopicGroup.find(@iteration.topic_group_id)
+    @iterations = @topic_group.iterations
+    @topic = Topic.find(@topic_group.topic_id)
+    @elements = @iteration.elements
 
     respond_to do |format|
       format.html # show.html.erb

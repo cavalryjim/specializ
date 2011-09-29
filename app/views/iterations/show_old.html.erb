@@ -1,0 +1,25 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Num:</b>
+  <%= @iteration.num %>
+</p>
+
+<p>
+  <b>Consensus:</b>
+  <%= @iteration.consensus %>
+</p>
+
+<p>
+  <b>Active:</b>
+  <%= @iteration.active %>
+</p>
+
+<p>
+  <b>Topic group:</b>
+  <%= @iteration.topic_group_id %>
+</p>
+
+
+<%= link_to 'Edit', edit_iteration_path(@iteration) %> |
+<%= link_to 'Back', iterations_path %>

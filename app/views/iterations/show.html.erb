@@ -1,25 +1,36 @@
 <p id="notice"><%= notice %></p>
 
 <p>
-  <b>Num:</b>
-  <%= @iteration.num %>
-</p>
+  <%= @topic_group.name %> <br/>
+  <%= @topic.description %> <br/>
 
-<p>
-  <b>Consensus:</b>
-  <%= @iteration.consensus %>
-</p>
-
-<p>
-  <b>Active:</b>
-  <%= @iteration.active %>
-</p>
-
-<p>
-  <b>Topic group:</b>
-  <%= @iteration.topic_group_id %>
 </p>
 
 
-<%= link_to 'Edit', edit_iteration_path(@iteration) %> |
-<%= link_to 'Back', iterations_path %>
+
+
+<table>
+  <tr>
+    <th>Name</th>
+    <th>Rating</th>
+
+  </tr>
+
+<% @elements.each do |element| %>
+  <tr>
+    <td><%= element.name %></td>
+	<td>
+		
+		<input name="star<%=element.id%>" type="radio" class="star"/>
+		<input name="star<%=element.id%>" type="radio" class="star"/>
+		<input name="star<%=element.id%>" type="radio" class="star"/>
+		<input name="star<%=element.id%>" type="radio" class="star"/>
+		<input name="star<%=element.id%>" type="radio" class="star"/>
+		
+	</td>
+    <td><%= link_to 'Delete', element, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<%= link_to 'New Item', url_for([@topic_group, @topic_group.iterations.last, Element.new])+"/new" %>
