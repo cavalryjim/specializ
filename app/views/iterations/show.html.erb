@@ -1,4 +1,3 @@
-<p id="notice"><%= notice %></p>
 
 <p>
   <%= @topic_group.name %> <br/>
@@ -21,16 +20,22 @@
     <td><%= element.name %></td>
 	<td>
 		
-		<input name="star<%=element.id%>" type="radio" class="star"/>
-		<input name="star<%=element.id%>" type="radio" class="star"/>
-		<input name="star<%=element.id%>" type="radio" class="star"/>
-		<input name="star<%=element.id%>" type="radio" class="star"/>
-		<input name="star<%=element.id%>" type="radio" class="star"/>
+		<input name="star<%=element.id%>" type="radio" class="star" value="1" <%= "disabled='disabled'" if !(@iteration.active?)  %>/>
+		<input name="star<%=element.id%>" type="radio" class="star" value="2" <%= "disabled='disabled'" if !(@iteration.active?)  %>/>
+		<input name="star<%=element.id%>" type="radio" class="star" value="3" <%= "disabled='disabled'" if !(@iteration.active?)  %>/>
+		<input name="star<%=element.id%>" type="radio" class="star" value="4" <%= "disabled='disabled'" if !(@iteration.active?)  %>/>
+		<input name="star<%=element.id%>" type="radio" class="star" value="5" <%= "disabled='disabled'" if !(@iteration.active?)  %>/>
 		
 	</td>
+
+	
+
     <td><%= link_to 'Delete', element, :confirm => 'Are you sure?', :method => :delete %></td>
+
+	
+
   </tr>
 <% end %>
 </table>
 
-<%= link_to 'New Item', url_for([@topic_group, @topic_group.iterations.last, Element.new])+"/new" %>
+<%= link_to 'New Item', new_topic_group_iteration_element_path(@topic_group, @topic_group.iterations.last ) %>
