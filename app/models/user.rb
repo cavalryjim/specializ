@@ -33,7 +33,7 @@ class User < ActiveRecord::Base
   validates :email, :presence       => true,
                     :format         => { :with => email_regex },
                     :uniqueness     => { :case_sensitive => false }
-  validates :active, :presence      => true
+  validates :active, :inclusion     => {:in => [true, false]}
   validates :company_id, :presence  => true
   
   def name
