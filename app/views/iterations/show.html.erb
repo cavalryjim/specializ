@@ -5,9 +5,6 @@
 
 </p>
 
-
-
-
 <table>
   <tr>
     <th>Name</th>
@@ -19,20 +16,19 @@
   <tr>
     <td><%= element.name %></td>
 	<td>
-		
+		<!---
 		<input name="star<%=element.id%>" type="radio" class="star" value="1" <%= "disabled='disabled'" if !(@iteration.active?)  %>/>
 		<input name="star<%=element.id%>" type="radio" class="star" value="2" <%= "disabled='disabled'" if !(@iteration.active?)  %>/>
 		<input name="star<%=element.id%>" type="radio" class="star" value="3" <%= "disabled='disabled'" if !(@iteration.active?)  %>/>
 		<input name="star<%=element.id%>" type="radio" class="star" value="4" <%= "disabled='disabled'" if !(@iteration.active?)  %>/>
 		<input name="star<%=element.id%>" type="radio" class="star" value="5" <%= "disabled='disabled'" if !(@iteration.active?)  %>/>
+		--->
 		
+
+
 	</td>
 
-	
-
     <td><%= link_to 'Delete', element, :confirm => 'Are you sure?', :method => :delete %></td>
-
-	
 
   </tr>
 <% end %>
