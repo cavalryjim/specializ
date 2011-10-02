@@ -50,6 +50,11 @@ class TopicGroupsController < ApplicationController
     @topic_group.name = Topic.find(@topic_group.topic_id).name + ": " + Grouping.find(@topic_group.grouping_id).fullname
     respond_to do |format|
       if @topic_group.save
+        @iteration = Iteration.new
+        @iteration.topic_group_id = @topic_group.id
+        @iteration.num = 1
+        @iteration.active = true
+        @iteration.save
         format.html { redirect_to(@topic_group, :notice => 'Topic group was successfully created.') }
         format.xml  { render :xml => @topic_group, :status => :created, :location => @topic_group }
       else

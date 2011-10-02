@@ -22,7 +22,7 @@ class TopicGroup < ActiveRecord::Base
   
   validates :name, :presence => true
   validates :goal, :presence => true
-  validates :active, :presence => true
+  validates :active, :inclusion => {:in => [true, false]}
   validates :topic_id, :presence => true
   validates :grouping_id, :presence => true
 end

@@ -18,6 +18,6 @@ class Assignment < ActiveRecord::Base
   
   validates :user_id, :presence => true
   validates :topic_group_id, :presence => true
-  validates :manager, :presence => true
-  validates :participating, :presence => true
+  validates :manager, :inclusion => {:in => [true, false]}
+  validates :participating, :inclusion => {:in => [true, false]}
 end
