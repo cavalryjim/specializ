@@ -16,14 +16,21 @@
   <tr>
     <td><%= element.name %></td>
 	<td>
-		
+		<!---
 		<input name="star<%=element.id%>" type="radio" class="star" value="1" <%= "disabled='disabled'" if !(@iteration.active?)  %>/>
 		<input name="star<%=element.id%>" type="radio" class="star" value="2" <%= "disabled='disabled'" if !(@iteration.active?)  %>/>
 		<input name="star<%=element.id%>" type="radio" class="star" value="3" <%= "disabled='disabled'" if !(@iteration.active?)  %>/>
 		<input name="star<%=element.id%>" type="radio" class="star" value="4" <%= "disabled='disabled'" if !(@iteration.active?)  %>/>
 		<input name="star<%=element.id%>" type="radio" class="star" value="5" <%= "disabled='disabled'" if !(@iteration.active?)  %>/>
+		--->
 		
-
+		
+		<%= radio_button_tag element.id, 1, false, :class => "star", :disabled => !(@iteration.active?) %>
+		<%= radio_button_tag element.id, 2, false, :class => "star", :disabled => !(@iteration.active?) %>
+		<%= radio_button_tag element.id, 3, false, :class => "star", :disabled => !(@iteration.active?) %>
+		<%= radio_button_tag element.id, 4, false, :class => "star", :disabled => !(@iteration.active?) %>
+		<%= radio_button_tag element.id, 5, false, :class => "star", :disabled => !(@iteration.active?) %>
+		
 
 	</td>
 
