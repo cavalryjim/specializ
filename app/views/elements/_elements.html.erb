@@ -1,0 +1,37 @@
+<table>
+  <tr>
+    <th>Name</th>
+	<th>Rating</th>
+    <th>Current</th>
+    <th>Created by</th>
+    <th>Edited by</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @elements.each do |element| %>
+  <tr>
+    <td><%= element.name %></td>
+	<td>
+			
+		<%= radio_button_tag element.id, 1, false, :class => "star"  %>
+		<%= radio_button_tag element.id, 2, false, :class => "star" %>
+		<%= radio_button_tag element.id, 3, false, :class => "star" %>
+		<%= radio_button_tag element.id, 4, false, :class => "star" %>
+		<%= radio_button_tag element.id, 5, false, :class => "star" %>
+		
+
+	</td>
+
+
+    <td><%= element.current %></td>
+    <td><%= element.created_by %></td>
+    <td><%= element.edited_by %></td>
+    <td><%= link_to 'Show', element %></td>
+    <td><%= link_to 'Edit', edit_element_path(element) %></td>
+    <td><%= link_to 'Destroy', element, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+<%= will_paginate @elements %>

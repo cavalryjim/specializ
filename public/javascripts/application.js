@@ -1,8 +1,10 @@
-// Place your application-specific JavaScript functions and classes here
-// This file is automatically included by javascript_include_tag :defaults
+
 $(function() {
-  $("#iterations th a, #iterations .pagination a").live("click", function() {
-    $.getScript(this.href);
-    return false;
-  });
+  //$("#elements th a, #elements .pagination a").live("click", function() {
+	//alert( this.href );
+    //$.getScript(this.href);
+    //return false;
+  //});
+  
+  
 });
