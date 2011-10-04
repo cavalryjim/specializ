@@ -1,4 +1,6 @@
 class IterationsController < ApplicationController
+  helper_method :sort_column, :sort_direction
+  
   # GET /iterations
   # GET /iterations.xml
   def index
@@ -17,7 +19,7 @@ class IterationsController < ApplicationController
     @topic_group = TopicGroup.find(@iteration.topic_group_id)
     @iterations = @topic_group.iterations
     @topic = Topic.find(@topic_group.topic_id)
-    @elements = @iteration.elements
+    @elements = @iteration.elements.order(sort_column + ' ' + sort_direction).paginate(:per_page => 5, :page => params[:page]) 
 
     respond_to do |format|
       format.html # show.html.erb
@@ -93,6 +95,16 @@ class IterationsController < ApplicationController
     @rating.iteration_id = 
     @rating.score = 
     @rating.save
+  end
+  
+  private
+  
+  def sort_column
+    Element.column_names.include?(params[:sort]) ? params[:sort] : "name"
+  end
+  
+  def sort_direction
+    %w[asc desc].include?(params[:direction]) ? params[:direction] : "asc"
   end
   
 end
