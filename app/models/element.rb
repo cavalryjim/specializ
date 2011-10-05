@@ -17,8 +17,14 @@ class Element < ActiveRecord::Base
   has_many :user_lists, :dependent => :destroy
   has_many :users, :through => :user_lists
   
-  accepts_nested_attributes_for :user_lists
-  
   validates :name, :presence => true
   validates :created_by, :presence => true
+  
+  def score(user_id, iteration_id)
+    user_score = UserList.find_by_element_id_and_user_id_and_iteration_id(self.id, user_id, iteration_id)
+    return user_score.score if !user_score.nil?
+    return 0
+  end
+  
+  
 end

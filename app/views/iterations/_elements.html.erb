@@ -1,26 +1,31 @@
-<table>
-  <tr>
-	<th><%= sortable "name" %></th>
-    <th>Rating</th>
+<%= form_for @iteration do |f| %>
 
-  </tr>
-
-<% @elements.each do |element| %>
-  <tr>
-    <td><%= element.name %></td>
+	<table>
+	  <tr>
+		<th><%= sortable "name" %></th>
+	    <th>Rating</th>
 	
-	<td id="score">	
-		<%= radio_button_tag element.id, 1, false, :class => "star", :disabled => !(@iteration.active?) %>
-		<%= radio_button_tag element.id, 2, false, :class => "star", :disabled => !(@iteration.active?) %>
-		<%= radio_button_tag element.id, 3, false, :class => "star", :disabled => !(@iteration.active?) %>
-		<%= radio_button_tag element.id, 4, false, :class => "star", :disabled => !(@iteration.active?) %>
-		<%= radio_button_tag element.id, 5, false, :class => "star", :disabled => !(@iteration.active?) %>
-	</td>
-
-    <td><%= link_to 'Delete', element, :confirm => 'Are you sure?', :method => :delete %></td>
-
-  </tr>
+	  </tr>
+	
+	<% @elements.each do |element| %>
+	  <tr>
+	    <td><%= element.name %></td>
+		<% score = element.score(@current_user.id ,@iteration.id) %>
+	
+		<td id="rating">	
+			<%= radio_button_tag element.id, 1, score == 1, options = {:class => "star", :disabled => !(@iteration.active?)} %>
+			<%= radio_button_tag element.id, 2, score == 2, :class => "star", :disabled => !(@iteration.active?) %>
+			<%= radio_button_tag element.id, 3, score == 3, :class => "star", :disabled => !(@iteration.active?) %>
+			<%= radio_button_tag element.id, 4, score == 4, :class => "star", :disabled => !(@iteration.active?) %>
+			<%= radio_button_tag element.id, 5, score == 5, :class => "star", :disabled => !(@iteration.active?) %>
+		</td>
+	
+	    <td><%= link_to 'Delete', element, :confirm => 'Are you sure?', :method => :delete %></td>
+	
+	  </tr>
+	<% end %>
+	</table>
+	<%= #will_paginate @elements 
+	%>
+	<%= f.submit %>
 <% end %>
-</table>
-<%= #will_paginate @elements 
-%>
