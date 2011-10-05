@@ -19,7 +19,9 @@ class IterationsController < ApplicationController
     @topic_group = TopicGroup.find(@iteration.topic_group_id)
     @iterations = @topic_group.iterations
     @topic = Topic.find(@topic_group.topic_id)
-    @elements = @iteration.elements.order(sort_column + ' ' + sort_direction).paginate(:per_page => 5, :page => params[:page]) 
+    #@elements = @iteration.elements.order(sort_column + ' ' + sort_direction).paginate(:per_page => 5, :page => params[:page]) 
+    # JDavis: note - look at virtual attributes.
+    @elements = @iteration.elements
 
     respond_to do |format|
       format.html # show.html.erb

@@ -8,7 +8,8 @@
 <% @elements.each do |element| %>
   <tr>
     <td><%= element.name %></td>
-	<td>	
+	
+	<td id="score">	
 		<%= radio_button_tag element.id, 1, false, :class => "star", :disabled => !(@iteration.active?) %>
 		<%= radio_button_tag element.id, 2, false, :class => "star", :disabled => !(@iteration.active?) %>
 		<%= radio_button_tag element.id, 3, false, :class => "star", :disabled => !(@iteration.active?) %>
