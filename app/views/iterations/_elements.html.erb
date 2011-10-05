@@ -8,15 +8,12 @@
 <% @elements.each do |element| %>
   <tr>
     <td><%= element.name %></td>
-	<td>
-			
+	<td>	
 		<%= radio_button_tag element.id, 1, false, :class => "star", :disabled => !(@iteration.active?) %>
 		<%= radio_button_tag element.id, 2, false, :class => "star", :disabled => !(@iteration.active?) %>
 		<%= radio_button_tag element.id, 3, false, :class => "star", :disabled => !(@iteration.active?) %>
 		<%= radio_button_tag element.id, 4, false, :class => "star", :disabled => !(@iteration.active?) %>
 		<%= radio_button_tag element.id, 5, false, :class => "star", :disabled => !(@iteration.active?) %>
-		
-
 	</td>
 
     <td><%= link_to 'Delete', element, :confirm => 'Are you sure?', :method => :delete %></td>
@@ -24,4 +21,5 @@
   </tr>
 <% end %>
 </table>
-<%= will_paginate @elements %>
+<%= #will_paginate @elements 
+%>

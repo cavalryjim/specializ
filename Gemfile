@@ -10,6 +10,7 @@ gem 'jquery-rails'
 gem 'activeadmin'
 gem 'datatables', :git => 'git://github.com/cajun-code/datatables.git'
 gem 'devise', '1.4.7'
+gem 'jeditable-rails', '~> 0.1.1'
 
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
