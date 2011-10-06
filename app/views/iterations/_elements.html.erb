@@ -1,4 +1,4 @@
-<%= form_for @iteration do |f| %>
+<%= form_for ([@topic_group, @iteration]) do |f| %>
 
 	<table>
 	  <tr>
@@ -27,5 +27,5 @@
 	</table>
 	<%= #will_paginate @elements 
 	%>
-	<%= f.submit %>
+	<%= f.submit "Submit List", :confirm => 'Submit your list?' %>
 <% end %>

@@ -90,13 +90,8 @@ class IterationsController < ApplicationController
   end
   
   # JDavis: this method captures the user's rating
-  def rate_element
-    @rating = UserList.new
-    @rating.element_id = 
-    @rating.user_id = 
-    @rating.iteration_id = 
-    @rating.score = 
-    @rating.save
+  def rate_elements
+    
   end
   
   private
