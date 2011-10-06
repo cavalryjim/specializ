@@ -96,4 +96,29 @@ class ElementsController < ApplicationController
       format.xml  { head :ok }
     end
   end
+  
+  def rate_elements
+    @iteration = Iteration.find(params[:iteration_id])
+    @topic_group = TopicGroup.find(@iteration.topic_group_id)
+    @current_user = User.first
+    
+    params[:rating].each do |key, score|
+      user_element_rating = UserList.new
+      user_element_rating.user_id = @current_user.id
+      user_element_rating.element_id = key
+      user_element_rating.score = score
+      user_element_rating.iteration_id = @iteration.id
+      user_element_rating.save
+    end
+    
+    respond_to do |format|
+      if true
+        format.html { redirect_to topic_group_iteration_url(@topic_group, @iteration), :notice => 'Your list was successfully submitted.' }
+        #format.xml  { render :xml => @iteration, :status => :created, :location => @iteration }
+      else
+        #format.html { render :action => "new" }
+        #format.xml  { render :xml => @iteration.errors, :status => :unprocessable_entity }
+      end
+    end
+ end
 end

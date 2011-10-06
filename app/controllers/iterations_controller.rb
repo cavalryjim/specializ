@@ -22,6 +22,10 @@ class IterationsController < ApplicationController
     @topic = Topic.find(@topic_group.topic_id)
     #@elements = @iteration.elements.order(sort_column + ' ' + sort_direction).paginate(:per_page => 5, :page => params[:page]) 
     @elements = @iteration.elements
+    @active = @iteration.active
+    if UserList.find_by_user_id_and_iteration_id(@current_user.id, @iteration.id)
+      @active = false
+    end
 
     respond_to do |format|
       format.html # show.html.erb
@@ -65,10 +69,11 @@ class IterationsController < ApplicationController
   # PUT /iterations/1.xml
   def update
     @iteration = Iteration.find(params[:id])
+    @topic_group = TopicGroup.find(params[:topic_group_id])
 
     respond_to do |format|
       if @iteration.update_attributes(params[:iteration])
-        format.html { redirect_to(@iteration, :notice => 'Iteration was successfully updated.') }
+        format.html { redirect_to topic_group_iteration_url(@topic_group, @iteration), :notice => 'Iteration was successfully updated.' }
         format.xml  { head :ok }
       else
         format.html { render :action => "edit" }

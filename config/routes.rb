@@ -12,6 +12,7 @@ Specializ::Application.routes.draw do
   match '/company_admin', :to => 'pages#admin'
   match '/pages/me', :to => 'pages#me'
   #match 'elements/post_data', :to => 'elements#post_data'
+  match '/elements/rate_elements', :to => 'elements#rate_elements'
   
   resources :topic_groups do
     resources :iterations do

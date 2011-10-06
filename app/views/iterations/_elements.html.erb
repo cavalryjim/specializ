@@ -1,4 +1,4 @@
-<%= form_for ([@topic_group, @iteration]) do |f| %>
+<%= form_tag(:controller => "elements", :action => "rate_elements", :method => "post") do %>
 
 	<table>
 	  <tr>
@@ -11,21 +11,26 @@
 	  <tr>
 	    <td><%= element.name %></td>
 		<% score = element.score(@current_user.id ,@iteration.id) %>
+		<% name = 'rating['+element.id.to_s+']' %>
 	
 		<td id="rating">	
-			<%= radio_button_tag element.id, 1, score == 1, options = {:class => "star", :disabled => !(@iteration.active?)} %>
-			<%= radio_button_tag element.id, 2, score == 2, :class => "star", :disabled => !(@iteration.active?) %>
-			<%= radio_button_tag element.id, 3, score == 3, :class => "star", :disabled => !(@iteration.active?) %>
-			<%= radio_button_tag element.id, 4, score == 4, :class => "star", :disabled => !(@iteration.active?) %>
-			<%= radio_button_tag element.id, 5, score == 5, :class => "star", :disabled => !(@iteration.active?) %>
+			<%= radio_button_tag name, 1, score == 1, options = { :class => "star", :disabled => !@active } %>
+			<%= radio_button_tag name, 2, score == 2, options = { :class => "star", :disabled => !@active } %>
+			<%= radio_button_tag name, 3, score == 3, options = { :class => "star", :disabled => !@active } %>
+			<%= radio_button_tag name, 4, score == 4, options = { :class => "star", :disabled => !@active } %>
+			<%= radio_button_tag name, 5, score == 5, options = { :class => "star", :disabled => !@active } %>
 		</td>
-	
-	    <td><%= link_to 'Delete', element, :confirm => 'Are you sure?', :method => :delete %></td>
+
+		<% if @active %>
+	    <td><%= link_to 'Delete', element, :confirm => 'Are you sure?', :method => :delete%></td>
+		<% end %>
 	
 	  </tr>
 	<% end %>
 	</table>
+	
 	<%= #will_paginate @elements 
 	%>
-	<%= f.submit "Submit List", :confirm => 'Submit your list?' %>
+	<%= hidden_field_tag(:iteration_id, @iteration.id) %>
+	<%= submit_tag("Submit List", :confirm => 'Submit your list?', :disabled => !@active) %>
 <% end %>
