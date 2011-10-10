@@ -3,9 +3,6 @@ class MeController < ApplicationController
     @current_user = User.first
     @topic_groups = @current_user.topic_groups
     
-    
-   
-    
   end
 
   def profile

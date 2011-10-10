@@ -14,6 +14,7 @@ class TopicsController < ApplicationController
   # GET /topics/1
   # GET /topics/1.xml
   def show
+    @topics = Topic.where(:company_id => current_user.company_id)
     @topic = Topic.find(params[:id])
 
     respond_to do |format|
@@ -25,6 +26,7 @@ class TopicsController < ApplicationController
   # GET /topics/new
   # GET /topics/new.xml
   def new
+    @topics = Topic.where(:company_id => current_user.company_id)
     @topic = Topic.new
 
     respond_to do |format|

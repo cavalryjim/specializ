@@ -6,5 +6,8 @@ $(function() {
     //return false;
   //});
   
+	$( "#accordion" ).accordion();
+	$( "#manager_tabs" ).tabs();
+	$( "#hr_tabs" ).tabs();
   
 });

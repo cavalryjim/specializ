@@ -1,11 +1,13 @@
 Specializ::Application.routes.draw do
 
+
   ActiveAdmin.routes(self)
 
   devise_for :admin_users, ActiveAdmin::Devise.config
 
   match '/me', :to => 'me#home'
-  match '/manager', :to => 'pages#manager'
+  #match '/manager', :to => 'manager#manage'
+  match '/manager', :to => 'topics#new'
   match '/hr', :to => 'pages#hr'
   match '/admin', :to => 'pages#admin'
   match '/pnetz', :to => 'pages#pnetz'
@@ -13,6 +15,11 @@ Specializ::Application.routes.draw do
   match '/pages/me', :to => 'pages#me'
   #match 'elements/post_data', :to => 'elements#post_data'
   match '/elements/rate_elements', :to => 'elements#rate_elements'
+  
+  #get "manager/manage"
+  #get "manager/setup"
+  #get "manager/staff"
+  #get "manager/grouping"
   
   resources :topic_groups do
     resources :iterations do
