@@ -38,6 +38,7 @@ class TopicsController < ApplicationController
   # GET /topics/1/edit
   def edit
     @topic = Topic.find(params[:id])
+    @topics = Topic.where(:company_id => current_user.company_id)
   end
 
   # POST /topics

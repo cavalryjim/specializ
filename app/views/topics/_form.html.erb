@@ -17,22 +17,22 @@
   </div>
   <div class="field">
     <%= f.label :description %><br />
-    <%= f.text_field :description %>
+    <%= f.text_area :description, :id => "description_area", :cols => 10, :rows => 5 %>
   </div>
   <div class="field">
-    <%= f.label :status %><br />
-    <%= f.text_field :status %>
+    <%= f.label :status %>
+    <%= f.select(:status, [['Open', 1], ['Closed', 2], ['Archived', 3]])%>
   </div>
   <div class="field">
-    <%= f.label :update_frequency %><br />
-    <%= f.text_field :update_frequency %>
+    <%= f.label :update_frequency %>
+    <%= f.text_field :update_frequency, :size => 5 %> days
   </div>
   <div class="field">
-    <%= f.label :due_days %><br />
-    <%= f.text_field :due_days %>
+    <%= f.label :due_days %>
+    <%= f.text_field :due_days, :size => 5 %> days
   </div>
   <div class="field">
-    <%= f.label :opt_out %><br />
+    <%= f.label :opt_out %>
     <%= f.check_box :opt_out %>
   </div>
   
