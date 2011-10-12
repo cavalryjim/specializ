@@ -1,5 +1,5 @@
 <%= select_tag(:topic, options_from_collection_for_select(@topics, :id, :name ), 
-	{ :onchange => "window.location.href = 'topics/'+(this.value)+'/edit'", 
+	{ :onchange => "window.location.pathname = 'topics/'+(this.value)+'/edit'", 
 	:include_blank => 'New Topic'  }) %>
 
 
