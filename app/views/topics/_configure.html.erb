@@ -1,0 +1,15 @@
+<%= form_tag(:controller => "topic_groups", :action => "assign_topic", :method => "post") do %>
+
+        <%= #select_tag(:topic, options_from_collection_for_select(@topics, :id, :name, @topic.id ), { :multiple => true }) 
+%>
+		<%= #select_tag(:grouping, nested_set_options(Grouping, grouping) {|i| "#{'-' * i.level} #{i.name}" }, { :multiple => true }) 
+%>
+
+		<%= select_tag(:grouping, options_for_select(nested_set_options(Grouping) {|i| "#{' -' * i.level} #{i.name}" }), { :multiple => true } ) 
+%>
+    	
+	<%= #hidden_field_tag(:iteration_id, @iteration.id)   #JDavis: Just in case we need some hidden fields
+	%>
+	<%= submit_tag("Assign Groups", :confirm => 'Assign topic to these groups?') %>
+<% end %>
+

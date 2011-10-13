@@ -80,4 +80,8 @@ class AssignmentsController < ApplicationController
       format.xml  { head :ok }
     end
   end
+  
+  def assign_topic
+    
+  end
 end

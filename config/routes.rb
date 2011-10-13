@@ -15,6 +15,8 @@ Specializ::Application.routes.draw do
   match '/pages/me', :to => 'pages#me'
   #match 'elements/post_data', :to => 'elements#post_data'
   match '/elements/rate_elements', :to => 'elements#rate_elements'
+  #match '/assignments/assign_topic', :to => 'assignments#assign_topic'
+  match '/topic_groups/assign_topic', :to => 'topic_groups#assign_topic'
   
   #get "manager/manage"
   #get "manager/setup"
