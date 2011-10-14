@@ -28,7 +28,8 @@ class TopicsController < ApplicationController
   def new
     @topics = Topic.where(:company_id => current_user.company_id)
     @topic = Topic.new
-    @groupings = 
+    #@groupings =
+    @assignments = []
 
     respond_to do |format|
       format.html # new.html.erb
@@ -40,6 +41,7 @@ class TopicsController < ApplicationController
   def edit
     @topic = Topic.find(params[:id])
     @topics = Topic.where(:company_id => current_user.company_id)
+    @assignments = Assignment.where(:topic_group_id => TopicGroup.where(:topic_id => @topic.id))
   end
 
   # POST /topics
