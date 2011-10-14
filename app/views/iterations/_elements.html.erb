@@ -1,32 +1,35 @@
 <%= form_tag(:controller => "elements", :action => "rate_elements", :method => "post") do %>
 
-	<table>
+	<table id="rating_table" >
+	 <thead>
 	  <tr>
-		<th><%= sortable "name" %></th>
+		<th>Name</th>
 	    <th>Rating</th>
-	
+		<th></th>
 	  </tr>
+	 </thead>
 	
-	<% @elements.each do |element| %>
-	  <tr>
-	    <td><%= element.name %></td>
-		<% score = element.score(@current_user.id ,@iteration.id) %>
-		<% name = 'rating['+element.id.to_s+']' %>
+	 <tbody>
+		<% @elements.each do |element| %>
+		  <tr>
+		    <td><%= element.name %></td>
+			<% score = element.score(@current_user.id ,@iteration.id) %>
+			<% name = 'rating['+element.id.to_s+']' %>
+		
+			<td id="rating">	
+				<%= radio_button_tag name, 1, score == 1, options = { :class => "star", :disabled => !@active } %>
+				<%= radio_button_tag name, 2, score == 2, options = { :class => "star", :disabled => !@active } %>
+				<%= radio_button_tag name, 3, score == 3, options = { :class => "star", :disabled => !@active } %>
+				<%= radio_button_tag name, 4, score == 4, options = { :class => "star", :disabled => !@active } %>
+				<%= radio_button_tag name, 5, score == 5, options = { :class => "star", :disabled => !@active } %>
+			</td>
 	
-		<td id="rating">	
-			<%= radio_button_tag name, 1, score == 1, options = { :class => "star", :disabled => !@active } %>
-			<%= radio_button_tag name, 2, score == 2, options = { :class => "star", :disabled => !@active } %>
-			<%= radio_button_tag name, 3, score == 3, options = { :class => "star", :disabled => !@active } %>
-			<%= radio_button_tag name, 4, score == 4, options = { :class => "star", :disabled => !@active } %>
-			<%= radio_button_tag name, 5, score == 5, options = { :class => "star", :disabled => !@active } %>
-		</td>
-
-		<% if @active %>
-	    <td><%= link_to 'Delete', element, :confirm => 'Are you sure?', :method => :delete%></td>
+			<% if @active %>
+		    <td><%= link_to 'Delete', element, :confirm => 'Are you sure?', :method => :delete%></td>
+			<% end %>
+		  </tr>
 		<% end %>
-	
-	  </tr>
-	<% end %>
+	 </tbody>
 	</table>
 	
 	<%= #will_paginate @elements 

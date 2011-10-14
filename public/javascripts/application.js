@@ -9,8 +9,9 @@ $(function() {
 	$( "#accordion" ).accordion(); // accordion on the _browser partial
 	$( "#manager_tabs" ).tabs(); // tabs used in the manager module
 	$( "#hr_tabs" ).tabs(); // tabs used in the HR module
-	$( "#staffing" ).dataTable(); // datatable using in the manager module's staffing tab
+	$( "#staffing" ).dataTable(); // datatable in the manager module's staffing tab
 	$( "#grouping" ).multiselect({header: false}); // select widget in the manager module's configuration tab
+	$( "#rating_table" ).dataTable(); // datatable where users rate the elements
 	
 	// JDavis: this function responds to the dropdown selection on the manager page and navigates to the select topic.
 	$('#topic').change(function() {
