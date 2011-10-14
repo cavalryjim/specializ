@@ -1,27 +1,22 @@
-<h1>Listing assignments</h1>
+<section class="round">
 
-<table>
-  <tr>
-    <th>User</th>
-    <th>Topic group</th>
-    <th>Manager</th>
-    <th></th>
-    <th></th>
-    <th></th>
-  </tr>
 
-<% @assignments.each do |assignment| %>
-  <tr>
-    <td><%= User.find(assignment.user_id).name %></td>
-    <td><%= TopicGroup.find(assignment.topic_group_id).name %></td>
-    <td><%= assignment.manager %></td>
-    <td><%= link_to 'Show', assignment %></td>
-    <td><%= link_to 'Edit', edit_assignment_path(assignment) %></td>
-    <td><%= link_to 'Destroy', assignment, :confirm => 'Are you sure?', :method => :delete %></td>
-  </tr>
-<% end %>
-</table>
+</br>
 
-<br />
+	<%=raw jqgrid("Assignments", "assignments", "/assignments", 
+	[ 
+	   
+	  { :field => "id", :label => "id", :width => 25, :editable => false, :hidden => false }, 
+	   
+	  { :field => "name", :label => "User", :width => 400, :editable => false },
 
+	  { :field => "group", :label => "Topic Group", :width => 55, :editable => false }
+
+	
+	], { :add => true, :edit => true, :inline_edit => true, :edit_url => "/assignments/post_data"}
+	
+	  ) %>
+
+ 
+</section>
 <%= link_to 'New Assignment', new_assignment_path %>
