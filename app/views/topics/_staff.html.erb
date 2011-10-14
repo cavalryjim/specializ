@@ -1,25 +1,24 @@
-<h1>Listing assignments</h1>
+<h2>Listing assignments</h2>
 
-<table>
+<table id="staffing">
+ <thead>
   <tr>
     <th>User</th>
     <th>Topic group</th>
     <th>Manager</th>
-    <th></th>
-    <th></th>
-    <th></th>
+    <th>Remove</th>
   </tr>
-
-<% @assignments.each do |assignment| %>
-  <tr>
-    <td><%= User.find(assignment.user_id).name %></td>
-    <td><%= TopicGroup.find(assignment.topic_group_id).name %></td>
-    <td><%= assignment.manager %></td>
-    <td><%= link_to 'Show', assignment %></td>
-    <td><%= link_to 'Edit', edit_assignment_path(assignment) %></td>
-    <td><%= link_to 'Destroy', assignment, :confirm => 'Are you sure?', :method => :delete %></td>
-  </tr>
-<% end %>
+ </thead>
+ <tbody>
+	<% @assignments.each do |assignment| %>
+	  <tr>
+	    <td><%= User.find(assignment.user_id).name %></td>
+	    <td><%= TopicGroup.find(assignment.topic_group_id).name %></td>
+	    <td><%= assignment.manager %></td>
+	    <td><%= link_to 'Remove?', assignment, :confirm => 'Are you sure?', :method => :delete %></td>
+	  </tr>
+	<% end %>
+ </tbody>
 </table>
 
 <br />

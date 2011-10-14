@@ -6,21 +6,22 @@ $(function() {
     //return false;
   //});
   
-	$( "#accordion" ).accordion();
-	$( "#manager_tabs" ).tabs();
-	$( "#hr_tabs" ).tabs();
+	$( "#accordion" ).accordion(); // accordion on the _browser partial
+	$( "#manager_tabs" ).tabs(); // tabs used in the manager module
+	$( "#hr_tabs" ).tabs(); // tabs used in the HR module
+	$( "#staffing" ).dataTable(); // datatable using in the manager module's staffing tab
+	$( "#grouping" ).multiselect({header: false}); // select widget in the manager module's configuration tab
 	
+	// JDavis: this function responds to the dropdown selection on the manager page and navigates to the select topic.
 	$('#topic').change(function() {
 		//alert($(this).attr('value'));
 		if ($(this).attr('value') > 0)
-			window.location.pathname = 'topics/'+$(this).attr('value')+'/edit';
+			window.location.pathname = '/topics/'+$(this).attr('value')+'/edit';
 		else
-			window.location.pathname = 'topics/new';
+			window.location.pathname = '/topics/new';
 			
 	});
 	
-	//$( "#grouping" ).multiselect();
-	$( "#grouping" ).multiselect({header: false});
 	   
 	
 });
