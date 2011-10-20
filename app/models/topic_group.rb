@@ -25,4 +25,9 @@ class TopicGroup < ActiveRecord::Base
   validates :active, :inclusion => {:in => [true, false]}
   validates :topic_id, :presence => true
   validates :grouping_id, :presence => true
+  
+  #def selected(topic_id, grouping_id)
+  #  return ["2", "5"]
+  #end
+  
 end

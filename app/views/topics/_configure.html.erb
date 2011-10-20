@@ -4,9 +4,10 @@
 %>
 		<%= #select_tag(:grouping, nested_set_options(Grouping, grouping) {|i| "#{'-' * i.level} #{i.name}" }, { :multiple => true }) 
 %>
-
-		<%= select_tag(:grouping, options_for_select(nested_set_options(Grouping) {|i| "#{' -' * i.level} #{i.name}" }), { :multiple => true } ) 
-%>
+		<% # JDavis: using Grouping in the next line.  Need to change such that it only displays Groupings for that company
+			%>	
+		<%= select_tag(:grouping, options_for_select(nested_set_options(Grouping) {|i| "#{' -' * i.level} #{i.name}" }, 
+			:selected => @topic_groups.grouping_id ), { :multiple => true } ) %>
     	
 	<%= #hidden_field_tag(:iteration_id, @iteration.id)   #JDavis: Just in case we need some hidden fields
 	%>
