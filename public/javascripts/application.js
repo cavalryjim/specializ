@@ -23,6 +23,12 @@ $(function() {
 			
 	});
 	
+	// JDavis: this function responds to the dropdown selection on the iteration page and navigates to the selected iteration.
+	$('#iteration_select').change(function() {
+		var temp = new Array();
+		temp = window.location.pathname.split('/');
+		window.location.pathname = '/'+temp[1]+'/'+temp[2]+'/'+temp[3]+'/'+$(this).attr('value');
+	});
 	   
 	
 });

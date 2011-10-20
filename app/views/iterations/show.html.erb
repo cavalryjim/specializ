@@ -5,6 +5,11 @@
 
 </p>
 
+<p>
+  Iteration: 
+  <%= select_tag(:iteration_select, options_from_collection_for_select(@iterations, :id, :num, @iteration.id )) %>
+</p>
+
 <% if @active %>
 	<%= link_to 'New Item', new_topic_group_iteration_element_path(@topic_group, @topic_group.iterations.last ) %>
 <% end %>
