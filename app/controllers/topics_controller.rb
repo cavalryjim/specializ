@@ -30,6 +30,7 @@ class TopicsController < ApplicationController
     @topic = Topic.new
     #@groupings =
     @assignments = []
+    @selected_groups = []
 
     respond_to do |format|
       format.html # new.html.erb
@@ -42,13 +43,14 @@ class TopicsController < ApplicationController
     @topic = Topic.find(params[:id])
     @topics = Topic.where(:company_id => current_user.company_id)
     @assignments = Assignment.where(:topic_group_id => TopicGroup.where(:topic_id => @topic.id))
+    @selected_groups = Grouping.where(:id => TopicGroup.where(:topic_id => @topic.id)).map(&:id)
   end
 
   # POST /topics
   # POST /topics.xml
   def create
     @topic = Topic.new(params[:topic])
-    @topic.company_id = 1 #JDavis: this is hardcoded until I create a session variable to handle.
+    @topic.company_id = current_user.company_id 
 
     respond_to do |format|
       if @topic.save

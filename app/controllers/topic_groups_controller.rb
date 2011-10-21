@@ -92,4 +92,30 @@ class TopicGroupsController < ApplicationController
     end
   end
   
+  def assign_topic
+    
+      #validates :name, :presence => true
+      #validates :goal, :presence => true
+      #validates :active, :inclusion => {:in => [true, false]}
+      #validates :topic_id, :presence => true
+      #validates :grouping_id, :presence => true
+   
+    
+    params[:grouping].each do |name|
+      
+    end
+    
+    #respond_to do |format|
+    #  if true
+    #    format.html { redirect_to topic_group_iteration_url(@topic_group, @iteration), :notice => 'Your list was successfully submitted.' }
+        #format.xml  { render :xml => @iteration, :status => :created, :location => @iteration }
+    #  else
+        #format.html { render :action => "new" }
+        #format.xml  { render :xml => @iteration.errors, :status => :unprocessable_entity }
+    #  end
+    #end
+    
+    redirect_to manager_path
+  end
+  
 end
