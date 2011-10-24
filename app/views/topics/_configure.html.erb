@@ -9,8 +9,7 @@
 		<%= select_tag(:grouping, options_for_select(nested_set_options(Grouping) {|i| "#{' -' * i.level} #{i.name}" }, 
 			:selected => @selected_groups ), { :multiple => true } ) %>
     	
-	<%= #hidden_field_tag(:iteration_id, @iteration.id)   #JDavis: Just in case we need some hidden fields
-	%>
+	<%= hidden_field_tag(:topic_id, @topic.id)  %>
 	<%= submit_tag("Assign Groups", :confirm => 'Assign topic to these groups?') %>
 <% end %>
 

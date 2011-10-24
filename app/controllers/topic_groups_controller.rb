@@ -92,6 +92,7 @@ class TopicGroupsController < ApplicationController
     end
   end
   
+  # JDavis: need to add topic_groups that do not exist and remove any that were 'unchecked' in _configure.html.erb
   def assign_topic
     
       #validates :name, :presence => true
@@ -101,8 +102,13 @@ class TopicGroupsController < ApplicationController
       #validates :grouping_id, :presence => true
    
     
-    params[:grouping].each do |name|
-      
+    params[:grouping].each do |key|
+      assignment = TopicGroup.find_or_initialize_by_topic_id_and_grouping_id(params[:topic_id], key)
+      assignment.update_attributes({
+        :name => Grouping.find(key).fullname,
+        :goal => 90,  #JDavis: hardcoding this for the moment.  Testing.
+        :active => true
+      })
     end
     
     #respond_to do |format|
