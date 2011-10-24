@@ -100,6 +100,7 @@ class ElementsController < ApplicationController
   def rate_elements
     @iteration = Iteration.find(params[:iteration_id])
     @topic_group = TopicGroup.find(@iteration.topic_group_id)
+    #JDavis: need to fix the user lookup. JDtest.
     @current_user = User.first
     
     params[:rating].each do |key, score|

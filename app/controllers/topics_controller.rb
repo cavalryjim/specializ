@@ -43,7 +43,7 @@ class TopicsController < ApplicationController
     @topic = Topic.find(params[:id])
     @topics = Topic.where(:company_id => current_user.company_id)
     @assignments = Assignment.where(:topic_group_id => TopicGroup.where(:topic_id => @topic.id))
-    @selected_groups = Grouping.where(:id => TopicGroup.where(:topic_id => @topic.id)).map(&:id)
+    @selected_groups = TopicGroup.where(:topic_id => @topic.id).map(&:grouping_id)
   end
 
   # POST /topics
@@ -54,7 +54,7 @@ class TopicsController < ApplicationController
 
     respond_to do |format|
       if @topic.save
-        format.html { redirect_to(@topic, :notice => 'Topic was successfully created.') }
+        format.html { redirect_to edit_topic_path(@topic, :notice => 'Topic was successfully created.') }
         format.xml  { render :xml => @topic, :status => :created, :location => @topic }
       else
         format.html { render :action => "new" }
@@ -70,7 +70,7 @@ class TopicsController < ApplicationController
 
     respond_to do |format|
       if @topic.update_attributes(params[:topic])
-        format.html { redirect_to(@topic, :notice => 'Topic was successfully updated.') }
+        format.html { redirect_to edit_topic_path(@topic), {:notice => 'Topic was successfully created.'}}
         format.xml  { head :ok }
       else
         format.html { render :action => "edit" }
@@ -86,7 +86,7 @@ class TopicsController < ApplicationController
     @topic.destroy
 
     respond_to do |format|
-      format.html { redirect_to(topics_url) }
+      format.html { redirect_to(manager_path) }
       format.xml  { head :ok }
     end
   end

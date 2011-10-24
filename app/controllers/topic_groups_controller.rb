@@ -94,34 +94,41 @@ class TopicGroupsController < ApplicationController
   
   # JDavis: need to add topic_groups that do not exist and remove any that were 'unchecked' in _configure.html.erb
   def assign_topic
-    
-      #validates :name, :presence => true
-      #validates :goal, :presence => true
-      #validates :active, :inclusion => {:in => [true, false]}
-      #validates :topic_id, :presence => true
-      #validates :grouping_id, :presence => true
-   
+    @topic = Topic.find(params[:topic_id])
+    new_notice = 'Topic successfully configured!'
     
     params[:grouping].each do |key|
-      assignment = TopicGroup.find_or_initialize_by_topic_id_and_grouping_id(params[:topic_id], key)
-      assignment.update_attributes({
-        :name => Grouping.find(key).fullname,
-        :goal => 90,  #JDavis: hardcoding this for the moment.  Testing.
-        :active => true
-      })
+      tg = TopicGroup.find_by_topic_id_and_grouping_id(params[:topic_id], key) || TopicGroup.new(:topic_id => params[:topic_id], :grouping_id => key)
+      tg.name = @topic.name + ": " + Grouping.find(key).fullname
+      tg.goal = 90 #JDavis: hardcoding for testing.  JDtest.
+      tg.active = true  
+      if !tg.save
+        new_notice = "There was a problem configuring this topic."
+      end
     end
     
-    #respond_to do |format|
-    #  if true
-    #    format.html { redirect_to topic_group_iteration_url(@topic_group, @iteration), :notice => 'Your list was successfully submitted.' }
-        #format.xml  { render :xml => @iteration, :status => :created, :location => @iteration }
-    #  else
-        #format.html { render :action => "new" }
-        #format.xml  { render :xml => @iteration.errors, :status => :unprocessable_entity }
-    #  end
-    #end
+    groups_to_remove = TopicGroup.where(:topic_id => @topic.id).map(&:grouping_id) - params[:grouping].map(&:to_i)
     
-    redirect_to manager_path
+    groups_to_remove.each do |g|
+      tg = TopicGroup.find_by_topic_id_and_grouping_id(params[:topic_id], g)
+      if !tg.delete
+        new_notice = "There was a problem configuring this topic."
+      end
+    #  new_notice = new_notice + " | " + tg.name
+    end
+    
+    redirect_to edit_topic_path(@topic)+"#tabs-2", {:notice => new_notice}
+  end
+  
+  #JDavis: Randomly select between 0 - 100% of the users in a group and staff to a topic_group.
+  def staff_topic
+    @topic = Topic.find(params[:topic_id])
+    new_notice = 'Topic successfully staffed!'
+    percentage = params[:percentage].to_i
+    
+    
+    
+    redirect_to edit_topic_path(@topic)+"#tabs-3", {:notice => new_notice}
   end
   
 end

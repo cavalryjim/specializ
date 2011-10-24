@@ -14,6 +14,8 @@
 #
 
 class TopicGroup < ActiveRecord::Base
+  attr_accessible :name, :goal, :active, :topic_id, :grouping_id
+  
   belongs_to :topic
   belongs_to :grouping
   has_many :assignments, :dependent => :destroy
