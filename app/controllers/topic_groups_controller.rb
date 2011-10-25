@@ -139,7 +139,6 @@ class TopicGroupsController < ApplicationController
         if !a.save
           new_notice = 'There was a problem staffing this topic.'
         end
-        new_notice = users.name
       end
     end
     
