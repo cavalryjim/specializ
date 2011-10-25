@@ -21,4 +21,8 @@ class Topic < ActiveRecord::Base
   
   validates :name, :presence => true
   validates :company_id, :presence => true
+  
+  #JDavis: hardcoding for development.  JDtest
+  #before_save self.company_id = User.first.company_id
+  #JDavis: need a before_save that ensures the company_id is set.
 end

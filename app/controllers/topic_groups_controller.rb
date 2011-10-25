@@ -17,9 +17,9 @@ class TopicGroupsController < ApplicationController
     @topic_group = TopicGroup.find(params[:id])
     @iterations = @topic_group.iterations
     @elements = @iterations.last.elements
-    #@elements = Element.all
     
-    #render 'iterations'
+    
+    
 
     respond_to do |format|
       format.html # show.html.erb
@@ -50,11 +50,6 @@ class TopicGroupsController < ApplicationController
     @topic_group.name = Topic.find(@topic_group.topic_id).name + ": " + Grouping.find(@topic_group.grouping_id).fullname
     respond_to do |format|
       if @topic_group.save
-        @iteration = Iteration.new
-        @iteration.topic_group_id = @topic_group.id
-        @iteration.num = 1
-        @iteration.active = true
-        @iteration.save
         format.html { redirect_to(@topic_group, :notice => 'Topic group was successfully created.') }
         format.xml  { render :xml => @topic_group, :status => :created, :location => @topic_group }
       else
@@ -123,20 +118,20 @@ class TopicGroupsController < ApplicationController
   #JDavis: Randomly select between 0 - 100% of the users in a group and staff to a topic_group.
   def staff_topic
     @topic = Topic.find(params[:topic_id])
-    @topic_groups = TopicGroup.where(:topic_id => @topic.id)
+    @topic_groups = @topic.topic_groups
     new_notice = 'Topic successfully staffed!'
-    percentage = params[:percentage].to_i
+    percentage = (params[:percentage]).to_f/100
+    #new_notice = percentage
   
     @topic_groups.each do |topic_group|
-     
       group = Grouping.find(topic_group.grouping_id)
-      users = group.users.random(group.users.count*(percentage/100).ceil)
+      users = group.users.order("RAND()").limit((group.users.count*percentage).ceil)
       
       users.each do |user|
-        a = Assignment.find_by_topic_group_id_and_user_id(topic_group.id, user.id) || Assignment.new(:topic_group_id => topic_group.id, :user_id => user.id)
-        a.manager = true
-        a.participating = true
-        if !a.save
+        assignment = Assignment.find_by_topic_group_id_and_user_id(topic_group.id, user.id) || Assignment.new(:topic_group_id => topic_group.id, :user_id => user.id)
+        assignment.manager = assignment.manager || false
+        assignment.participating = true
+        if !assignment.save
           new_notice = 'There was a problem staffing this topic.'
         end
       end

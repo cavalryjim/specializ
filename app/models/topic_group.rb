@@ -28,8 +28,20 @@ class TopicGroup < ActiveRecord::Base
   validates :topic_id, :presence => true
   validates :grouping_id, :presence => true
   
+  after_create :create_first_iteration
+  
   #def selected(topic_id, grouping_id)
   #  return ["2", "5"]
   #end
+  
+  private
+    
+    def create_first_iteration
+      first_iteration = Iteration.new
+      first_iteration.topic_group_id = self.id
+      first_iteration.num = 1
+      first_iteration.active = true
+      first_iteration.save
+    end
   
 end

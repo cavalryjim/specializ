@@ -21,13 +21,12 @@
 	  <tr>
 	    <td><%= User.find(assignment.user_id).name %></td>
 	    <td><%= TopicGroup.find(assignment.topic_group_id).name %></td>
-	    <td><%= assignment.manager %></td>
+	    <td><%= check_box_tag assignment.id, 1, assignment.manager %></td>
 	    <td><%= link_to 'Remove?', assignment, :confirm => 'Are you sure?', :method => :delete %></td>
 	  </tr>
 	<% end %>
  </tbody>
 </table>
-
 <br />
 
 <%= link_to 'New Assignment', new_assignment_path %>

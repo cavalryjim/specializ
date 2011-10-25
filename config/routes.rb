@@ -10,7 +10,7 @@ Specializ::Application.routes.draw do
   match '/manager', :to => 'topics#new'
   match '/hr', :to => 'pages#hr'
   match '/admin', :to => 'pages#admin'
-  match '/pnetz', :to => 'pages#pnetz'
+  #match '/pnetz', :to => 'pages#pnetz'
   match '/company_admin', :to => 'pages#admin'
   match '/pages/me', :to => 'pages#me'
   #match 'elements/post_data', :to => 'elements#post_data'
@@ -18,7 +18,8 @@ Specializ::Application.routes.draw do
   #match '/assignments/assign_topic', :to => 'assignments#assign_topic'
   match '/topic_groups/assign_topic', :to => 'topic_groups#assign_topic'
   match '/topic_groups/staff_topic', :to => 'topic_groups#staff_topic'
-  match '/topics', :to => 'topic#edit'
+  post '/topics', :to => 'topics#create'
+  match '/topics', :to => 'topics#edit'
   
   #get "manager/manage"
   #get "manager/setup"
