@@ -1,8 +1,6 @@
 <h2>Listing assignments</h2>
 
 <%= form_tag(:controller => "topic_groups", :action => "staff_topic", :method => "post") do %>
-
-
 	Select particpation rate: <input name="percentage" size="5">%
 	<br/>
 	<%= hidden_field_tag(:topic_id, @topic.id)  %>
