@@ -24,6 +24,8 @@ class AssignmentsController < ApplicationController
   # GET /assignments/new
   # GET /assignments/new.xml
   def new
+    @topic = Topic.find(params[:topic_id])
+    @topic_groups = @topic.topic_groups
     @assignment = Assignment.new
 
     respond_to do |format|
@@ -34,6 +36,8 @@ class AssignmentsController < ApplicationController
 
   # GET /assignments/1/edit
   def edit
+    @topic = Topic.find(params[:topic_id])
+    @topic_groups = @topic.topic_groups
     @assignment = Assignment.find(params[:id])
   end
 
@@ -60,7 +64,7 @@ class AssignmentsController < ApplicationController
 
     respond_to do |format|
       if @assignment.update_attributes(params[:assignment])
-        format.html { redirect_to(@assignment, :notice => 'Assignment was successfully updated.') }
+        format.html { redirect_to edit_topic_path(@topic)+"#tabs-3", :notice => 'Assignment was successfully updated.' }
         format.xml  { head :ok }
       else
         format.html { render :action => "edit" }

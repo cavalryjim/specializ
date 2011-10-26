@@ -32,6 +32,10 @@ Specializ::Application.routes.draw do
     end
   end
   
+  resources :topics do
+    resources :assignments
+  end
+  
   resources :me, :elements, :iterations, :assignments, :topic_groups, :topics, :users, :groupings, :companies, :elements
   
   root :to => 'me#home'

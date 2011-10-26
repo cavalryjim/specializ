@@ -2,7 +2,6 @@
 
 <%= form_tag(:controller => "topic_groups", :action => "staff_topic", :method => "post") do %>
 	Select particpation rate: <input name="percentage" size="5">%
-	<br/>
 	<%= hidden_field_tag(:topic_id, @topic.id)  %>
 	<%= submit_tag("Staff Topic", :confirm => 'Staff the topic?') %>
 <% end %>
@@ -19,14 +18,15 @@
  <tbody>
 	<% @assignments.each do |assignment| %>
 	  <tr>
-	    <td><%= User.find(assignment.user_id).name %></td>
+	    <td><%= link_to User.find(assignment.user_id).name, edit_topic_assignment_path(@topic) %></td>
 	    <td><%= TopicGroup.find(assignment.topic_group_id).name %></td>
-	    <td><%= check_box_tag assignment.id, 1, assignment.manager %></td>
+	    <td><%= check_box_tag assignment.id, 1, assignment.manager, { :disabled => true } %></td>
 	    <td><%= link_to 'Remove?', assignment, :confirm => 'Are you sure?', :method => :delete %></td>
 	  </tr>
 	<% end %>
  </tbody>
 </table>
 <br />
-
-<%= link_to 'New Assignment', new_assignment_path %>
+<% if @topic.id != nil %>
+	<%= link_to 'New Assignment', new_topic_assignment_path(@topic)  %> 
+<% end %>

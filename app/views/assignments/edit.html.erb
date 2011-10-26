@@ -1,6 +1,6 @@
-<h1>Editing assignment</h1>
+<h1>Editing assignment for <%= User.find(params[:id]).name %></h1>
 
 <%= render 'form' %>
 
-<%= link_to 'Show', @assignment %> |
-<%= link_to 'Back', assignments_path %>
+
+<%= link_to 'Back', edit_topic_path(@topic)+"#tabs-3" %>

@@ -12,12 +12,14 @@
   <% end %>
 
   <div class="field">
-    <%= f.label :user_id %><br />
-    <%= f.text_field :user_id %>
+    <%= f.label :user_id%>
+	<%= f.text_field :user_id %>
   </div>
   <div class="field">
     <%= f.label :topic_group_id %><br />
-    <%= f.text_field :topic_group_id %>
+    <%= #f.select :topic_group_id, @topic_groups.collect {|tg| [ tg.name, tg.id ]} 
+	%>
+	<%= f.select :topic_group_id, options_from_collection_for_select(@topic_groups, :id, :name, @assignment.topic_group_id ) %>
   </div>
   <div class="field">
     <%= f.label :manager %><br />
