@@ -1,4 +1,7 @@
 class AssignmentsController < ApplicationController
+  
+  autocomplete :user, :last_name, :extra_data => [:id, :first_name], :display_value => :name
+  
   # GET /assignments
   # GET /assignments.xml
   def index
@@ -44,11 +47,14 @@ class AssignmentsController < ApplicationController
   # POST /assignments
   # POST /assignments.xml
   def create
+    @topic = Topic.find(params[:topic_id])
     @assignment = Assignment.new(params[:assignment])
-
+    #@assignment.user_id = 4 #JDavis: very temporary for testing
+    new_notice = (params[:assignment])
     respond_to do |format|
       if @assignment.save
-        format.html { redirect_to(@assignment, :notice => 'Assignment was successfully created.') }
+        #format.html { redirect_to edit_topic_path(@topic)+"#tabs-3", :notice => 'Assignment was successfully created.' }
+        format.html { redirect_to edit_topic_path(@topic)+"#tabs-3", :notice => new_notice }
         format.xml  { render :xml => @assignment, :status => :created, :location => @assignment }
       else
         format.html { render :action => "new" }

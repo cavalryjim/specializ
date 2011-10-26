@@ -26,6 +26,11 @@ Specializ::Application.routes.draw do
   #get "manager/staff"
   #get "manager/grouping"
   
+  #resources :assignments do
+  #  get :autocomplete_user_last_name, :on => :collection
+  #end
+
+  
   resources :topic_groups do
     resources :iterations do
       resources :elements 
@@ -33,8 +38,12 @@ Specializ::Application.routes.draw do
   end
   
   resources :topics do
-    resources :assignments
+    resources :assignments do
+      get :autocomplete_user_last_name, :on => :collection
+    end
   end
+  
+  
   
   resources :me, :elements, :iterations, :assignments, :topic_groups, :topics, :users, :groupings, :companies, :elements
   

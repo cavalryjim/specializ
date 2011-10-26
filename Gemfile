@@ -12,6 +12,7 @@ gem 'datatables', :git => 'git://github.com/cajun-code/datatables.git'
 gem 'devise', '1.4.7'
 gem 'jeditable-rails', '~> 0.1.1'
 gem 'randumb', '~> 0.1.3'
+gem 'rails3-jquery-autocomplete', '~> 1.0.4'
 
 
 # Bundle edge Rails instead:

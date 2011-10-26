@@ -1,4 +1,4 @@
-<%= form_for(@assignment) do |f| %>
+<%= form_for([@topic, @assignment]) do |f| %>
   <% if @assignment.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@assignment.errors.count, "error") %> prohibited this assignment from being saved:</h2>
@@ -10,11 +10,13 @@
       </ul>
     </div>
   <% end %>
-
-  <div class="field">
-    <%= f.label :user_id%><br />
-	<%= f.text_field :user_id %>
-  </div>
+  <% if @assignment.user_id == nil %>
+	  <div class="field">
+	    <%= f.label 'User Lookup' %><br />
+		<%= f.autocomplete_field :user_name, autocomplete_user_last_name_topic_assignments_path, :id_element => '#user_id' %> Start typing the user's last name
+	  </div>
+  <% end%>
+  
   <div class="field">
     <%= f.label :topic_group_id %><br />
     <%= #f.select :topic_group_id, @topic_groups.collect {|tg| [ tg.name, tg.id ]} 
@@ -30,6 +32,7 @@
     <%= f.check_box :participating %>
   </div>
   <div class="actions">
+	<%= f.hidden_field :user_id %>
     <%= f.submit %>
   </div>
 <% end %>
