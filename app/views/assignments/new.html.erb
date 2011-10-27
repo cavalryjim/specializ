@@ -1,5 +1,7 @@
 <h1>New assignment</h1>
 
+<%= autocomplete_field_tag 'user', '', autocomplete_user_last_name_topic_assignments_path, :id_element => '#assignment_user_id' %> Start typing the user's last name
+
 <%= render 'form' %>
 
 <%= link_to 'Back', edit_topic_path(@topic)+"#tabs-3" %>

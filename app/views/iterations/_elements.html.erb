@@ -25,7 +25,7 @@
 			</td>
 	
 			<% if @active %>
-		    <td><%= link_to 'Delete', element, :confirm => 'Are you sure?', :method => :delete%></td>
+		    <td><%= link_to 'Delete', topic_group_iteration_element_path(@topic_group, @iteration, element), :confirm => 'Are you sure?', :method => :delete%></td>
 			<% end %>
 		  </tr>
 		<% end %>

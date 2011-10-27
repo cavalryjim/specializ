@@ -49,12 +49,10 @@ class AssignmentsController < ApplicationController
   def create
     @topic = Topic.find(params[:topic_id])
     @assignment = Assignment.new(params[:assignment])
-    #@assignment.user_id = 4 #JDavis: very temporary for testing
-    new_notice = (params[:assignment])
+   
     respond_to do |format|
       if @assignment.save
-        #format.html { redirect_to edit_topic_path(@topic)+"#tabs-3", :notice => 'Assignment was successfully created.' }
-        format.html { redirect_to edit_topic_path(@topic)+"#tabs-3", :notice => new_notice }
+        format.html { redirect_to edit_topic_path(@topic)+"#tabs-3", :notice => 'Assignment was successfully created.' }
         format.xml  { render :xml => @assignment, :status => :created, :location => @assignment }
       else
         format.html { render :action => "new" }
@@ -66,6 +64,7 @@ class AssignmentsController < ApplicationController
   # PUT /assignments/1
   # PUT /assignments/1.xml
   def update
+    @topic = Topic.find(params[:topic_id])
     @assignment = Assignment.find(params[:id])
 
     respond_to do |format|
@@ -82,11 +81,12 @@ class AssignmentsController < ApplicationController
   # DELETE /assignments/1
   # DELETE /assignments/1.xml
   def destroy
+    @topic = Topic.find(params[:topic_id])
     @assignment = Assignment.find(params[:id])
     @assignment.destroy
 
     respond_to do |format|
-      format.html { redirect_to(assignments_url) }
+      format.html { redirect_to edit_topic_path(@topic)+"#tabs-3", :notice => 'User was successfully removed.' }
       format.xml  { head :ok }
     end
   end

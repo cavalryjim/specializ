@@ -10,12 +10,6 @@
       </ul>
     </div>
   <% end %>
-  <% if @assignment.user_id == nil %>
-	  <div class="field">
-	    <%= f.label 'User Lookup' %><br />
-		<%= f.autocomplete_field :user_name, autocomplete_user_last_name_topic_assignments_path, :id_element => '#user_id' %> Start typing the user's last name
-	  </div>
-  <% end%>
   
   <div class="field">
     <%= f.label :topic_group_id %><br />

@@ -88,11 +88,13 @@ class ElementsController < ApplicationController
   # DELETE /elements/1
   # DELETE /elements/1.xml
   def destroy
+    @iteration = Iteration.find(params[:iteration_id])
+    @topic_group = TopicGroup.find(@iteration.topic_group_id)
     @element = Element.find(params[:id])
     @element.destroy
 
     respond_to do |format|
-      format.html { redirect_to(elements_url) }
+      format.html { redirect_to topic_group_iteration_url(@topic_group, @iteration), :notice => 'Item was successfully removed.' }
       format.xml  { head :ok }
     end
   end
