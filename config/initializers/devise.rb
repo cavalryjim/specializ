@@ -69,15 +69,14 @@ Devise.setup do |config|
   config.stretches = Rails.env.test? ? 1 : 10
 
   # Setup a pepper to generate the encrypted password.
-  # config.pepper = "530067001d688469094e8b0142cd4595cfe94a09ef5b76d4b3eff369676de1b514b507f019d5575dd0bacc801a69b19d93d592d62a13a95b9a18fa5107c79439"
+  # config.pepper = "4653409069abc90a7ad2c182cece0dd2eb31b2aa05d0cf7a77b1c6435400e5a0219de6db40b5c293178c621e72d42a1133d5ed3993731d3c2968ab89d625c9ef"
 
   # ==> Configuration for :confirmable
-  # The time you want to give your user to confirm his account. During this time
-  # he will be able to access your application without confirming. Default is 0.days
-  # When confirm_within is zero, the user won't be able to sign in without confirming.
-  # You can use this to let your user access some features of your application
-  # without confirming the account, but blocking it after a certain period
-  # (ie 2 days).
+  # A period that the user is allowed to access the website even without
+  # confirming his account. For instance, if set to 2.days, the user will be
+  # able to access the website for two days without confirming his account,
+  # access will be blocked just in the third day. Default is 0.days, meaning
+  # the user cannot access the website without confirming his account.
   # config.confirm_within = 2.days
 
   # Defines which key will be used when confirming an account
@@ -146,7 +145,7 @@ Devise.setup do |config|
   # Time interval you can reset your password with a reset password key.
   # Don't put a too small interval or your users won't have the time to
   # change their passwords.
-  config.reset_password_within = 2.hours
+  config.reset_password_within = 12.hours
 
   # ==> Configuration for :encryptable
   # Allow you to use another encryption algorithm besides bcrypt (default). You can use

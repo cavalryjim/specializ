@@ -5,7 +5,7 @@
 #  id               :integer(4)      not null, primary key
 #  name             :string(255)
 #  description      :string(255)
-#  status           :integer(4)  #JDavis: 1 = open, 2 = closed, 3 = archived
+#  status           :integer(4)
 #  update_frequency :integer(4)
 #  due_days         :integer(4)
 #  opt_out          :boolean(1)
