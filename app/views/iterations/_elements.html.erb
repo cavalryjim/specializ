@@ -1,3 +1,5 @@
+<%= javascript_include_tag 'jquery.rating' %>
+
 <%= form_tag(:controller => "elements", :action => "rate_elements", :method => "post") do %>
 
 	<table id="rating_table" >
@@ -17,11 +19,11 @@
 			<% name = 'rating['+element.id.to_s+']' %>
 		
 			<td id="rating">	
-				<%= radio_button_tag name, 1, score == 1, options = { :class => "star", :disabled => !@active } %>
-				<%= radio_button_tag name, 2, score == 2, options = { :class => "star", :disabled => !@active } %>
-				<%= radio_button_tag name, 3, score == 3, options = { :class => "star", :disabled => !@active } %>
-				<%= radio_button_tag name, 4, score == 4, options = { :class => "star", :disabled => !@active } %>
-				<%= radio_button_tag name, 5, score == 5, options = { :class => "star", :disabled => !@active } %>
+				<%= radio_button_tag name, 1, score == 1, options = { :class => "jdstar", :disabled => !@active } %>
+				<%= radio_button_tag name, 2, score == 2, options = { :class => "jdstar", :disabled => !@active } %>
+				<%= radio_button_tag name, 3, score == 3, options = { :class => "jdstar", :disabled => !@active } %>
+				<%= radio_button_tag name, 4, score == 4, options = { :class => "jdstar", :disabled => !@active } %>
+				<%= radio_button_tag name, 5, score == 5, options = { :class => "jdstar", :disabled => !@active } %>
 			</td>
 	
 			<% if @active %>

@@ -9,12 +9,13 @@ $(function() {
 	$( "#accordion" ).accordion(); // accordion on the _browser partial
 	$( "#manager_tabs" ).tabs(); // tabs used in the manager module
 	$( "#hr_tabs" ).tabs(); // tabs used in the HR module
-	$( "#staffing" ).dataTable(); // datatable in the manager module's staffing tab
+	$( 'input.jdstar' ).rating(); // JDavis: this line must come before staffing_table dataTable()
+	$( "#staffing_table" ).dataTable(); // datatable in the manager module's staffing tab
 	$( "#grouping" ).multiselect({header: false}); // select widget in the manager module's configuration tab
 	$( "#rating_table" ).dataTable(); // datatable where users rate the elements
 	
 	// JDavis: this function responds to the dropdown selection on the manager page and navigates to the select topic.
-	$('#topic').change(function() {
+	$('#topic_select').change(function() {
 		//alert($(this).attr('value'));
 		if ($(this).attr('value') > 0)
 			window.location.pathname = '/topics/'+$(this).attr('value')+'/edit';
