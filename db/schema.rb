@@ -161,7 +161,6 @@ ActiveRecord::Schema.define(:version => 20111028215930) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "company_id"
-    t.string   "encrypted_password"
     t.string   "password_salt"
     t.string   "reset_password_token"
     t.datetime "reset_password_sent_at"

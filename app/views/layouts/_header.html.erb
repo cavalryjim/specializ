@@ -4,12 +4,17 @@
 
   <nav class="round">
     <ul>
+	 <% if user_signed_in? %>
 	  <li><%= link_to "Me", me_path %></li>
 	  <li><%= link_to "Manager", manager_path %></li>
 	  <li><%= link_to "HR", hr_path %></li>
 	  <li><%= link_to "Admin", company_admin_path %></li>
 	  <li><%= link_to "Pnetz", admin_path %></li>
-	  <li><%= link_to "Sign out", '#' %></li>
+	  <li><%= link_to "Sign out", destroy_user_session_path %></li>
+	  <li> Signed in as <%= @current_user.email %></li>
+	 <% else %>
+	  <li><%= link_to "Sign up", new_user_registration_path %> or <%= link_to "sign in", new_user_session_path %> </li>
+	 <% end %>
     </ul>
 
 
