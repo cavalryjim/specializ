@@ -1,7 +1,9 @@
 class MeController < ApplicationController
+  before_filter :authenticate_user!
+  
   def home
-    @current_user = User.first
-    @topic_groups = @current_user.topic_groups
+    
+    @topic_groups = current_user.topic_groups
     
   end
 
@@ -10,9 +12,9 @@ class MeController < ApplicationController
 
   
   
-  def current_user
+  #def current_user
     # JDavis: Hardcoding the current user as the first user during development.
-    User.first
-  end
+  #  User.first
+  #end
 
 end

@@ -1,4 +1,5 @@
 class IterationsController < ApplicationController
+  before_filter :authenticate_user!
   helper_method :sort_column, :sort_direction
   
   # GET /iterations
@@ -15,7 +16,7 @@ class IterationsController < ApplicationController
   # GET /iterations/1
   # GET /iterations/1.xml
   def show
-    @current_user = User.first # JDavis: harcoding the current_user for development.
+    #@current_user = User.first # JDavis: harcoding the current_user for development.
     @iteration = Iteration.find(params[:id])
     @topic_group = TopicGroup.find(@iteration.topic_group_id)
     @iterations = @topic_group.iterations
@@ -23,7 +24,7 @@ class IterationsController < ApplicationController
     #@elements = @iteration.elements.order(sort_column + ' ' + sort_direction).paginate(:per_page => 5, :page => params[:page]) 
     @elements = @iteration.elements
     @active = @iteration.active
-    if UserList.find_by_user_id_and_iteration_id(@current_user.id, @iteration.id)
+    if UserList.find_by_user_id_and_iteration_id(current_user.id, @iteration.id)
       @active = false
     end
 

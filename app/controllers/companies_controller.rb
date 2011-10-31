@@ -1,4 +1,6 @@
 class CompaniesController < ApplicationController
+  #before_filter :authentiate_user
+  
   # GET /companies
   # GET /companies.xml
   def index

@@ -1,4 +1,6 @@
 class TopicGroupsController < ApplicationController
+  before_filter :authenticate_user!
+  
   
   # GET /topic_groups
   # GET /topic_groups.xml

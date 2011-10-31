@@ -1,10 +1,10 @@
 Specializ::Application.routes.draw do
 
-
   ActiveAdmin.routes(self)
 
   devise_for :admin_users, ActiveAdmin::Devise.config
   devise_for :users
+ 
 
   match '/me', :to => 'me#home'
   #match '/manager', :to => 'manager#manage'
@@ -31,7 +31,6 @@ Specializ::Application.routes.draw do
   #  get :autocomplete_user_last_name, :on => :collection
   #end
 
-  
   resources :topic_groups do
     resources :iterations do
       resources :elements 
@@ -44,7 +43,9 @@ Specializ::Application.routes.draw do
     end
   end
   
-  
+  resources :users do
+    get :autocomplete_company_name, :on => :collection
+  end
   
   resources :me, :elements, :iterations, :assignments, :topic_groups, :topics, :users, :groupings, :companies, :elements
   

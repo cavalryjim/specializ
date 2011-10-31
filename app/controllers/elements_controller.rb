@@ -103,11 +103,11 @@ class ElementsController < ApplicationController
     @iteration = Iteration.find(params[:iteration_id])
     @topic_group = TopicGroup.find(@iteration.topic_group_id)
     #JDavis: need to fix the user lookup. JDtest.
-    @current_user = User.first
+    #@current_user = User.first
     
     params[:rating].each do |key, score|
       user_element_rating = UserList.new
-      user_element_rating.user_id = @current_user.id
+      user_element_rating.user_id = current_user.id
       user_element_rating.element_id = key
       user_element_rating.score = score
       user_element_rating.iteration_id = @iteration.id

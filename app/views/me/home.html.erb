@@ -1,13 +1,15 @@
 
-<div id="browser">
-<%= render 'layouts/browser' %>
-</div>
+<% if user_signed_in? %>
+	<div id="browser">
+	<%= render 'layouts/browser' %>
+	</div>
+	
+	<div id="home">
+	<h2> Welcome <%= current_user.name %> </h2>
+	
+	You are assigned to <%= @topic_groups.count %> active topic groups. <br>
+	Please select a topic to participate.
+	
+	</div>
 
-<div id="home">
-<h2> Welcome <%= @current_user.name %> </h2>
-
-You are assigned to <%= @topic_groups.count %> active topic groups. <br>
-Please select a topic to participate.
-
-
-</div>
+<% end %>

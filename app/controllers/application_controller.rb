@@ -6,10 +6,10 @@ class ApplicationController < ActionController::Base
     redirect_to root_url
   end
   
-  def current_user
+  #def current_user
     # JDavis: Hardcoding the current user as the first user during development.
-    User.first
-  end
+  #  User.first
+  #end
   
   def current_user_open_topics
     # JDavis: creating an array of open topics for the current user
