@@ -4,33 +4,19 @@ Specializ::Application.routes.draw do
 
   devise_for :admin_users, ActiveAdmin::Devise.config
   devise_for :users, :path_names => { :sign_up => 'register' }
- 
 
   match '/me', :to => 'me#home'
-  #match '/manager', :to => 'manager#manage'
   match '/manager', :to => 'topics#new'
   match '/hr', :to => 'pages#hr'
   match '/admin', :to => 'pages#admin'
-  #match '/pnetz', :to => 'pages#pnetz'
   match '/company_admin', :to => 'pages#admin'
   match '/pages/me', :to => 'pages#me'
-  #match 'elements/post_data', :to => 'elements#post_data'
   match '/elements/rate_elements', :to => 'elements#rate_elements'
-  #match '/assignments/assign_topic', :to => 'assignments#assign_topic'
   match '/topic_groups/assign_topic', :to => 'topic_groups#assign_topic'
   match '/topic_groups/staff_topic', :to => 'topic_groups#staff_topic'
   post '/topics', :to => 'topics#create'
   match '/topics', :to => 'topics#edit'
-  
-  #get "manager/manage"
-  #get "manager/setup"
-  #get "manager/staff"
-  #get "manager/grouping"
-  
-  #resources :assignments do
-  #  get :autocomplete_user_last_name, :on => :collection
-  #end
-
+   
   resources :topic_groups do
     resources :iterations do
       resources :elements 
