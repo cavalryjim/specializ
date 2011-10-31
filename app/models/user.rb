@@ -28,8 +28,6 @@ class User < ActiveRecord::Base
   devise :database_authenticatable, :registerable, 
          :recoverable, :rememberable, :trackable, :validatable
 
-  # Setup accessible (or protected) attributes for your model
-  attr_accessible :email, :password, :password_confirmation, :remember_me
   has_and_belongs_to_many :roles, :uniq => true
   has_and_belongs_to_many :groupings, :uniq => true
   belongs_to :company
@@ -38,15 +36,16 @@ class User < ActiveRecord::Base
   has_many :user_lists, :dependent => :destroy
   has_many :elements, :through => :user_lists
   
-  attr_accessible :first_name, :last_name, :email, :active, :company_id, :password_confirmation
+  # Setup accessible (or protected) attributes for your model
+  attr_accessible :first_name, :last_name, :email, :active, :company_id, :password, :password_confirmation, :remember_me
   
   email_regex = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
 
   
-  validates :first_name, :length    => { :maximum => 50 }
-  # =>               :presence  => true                 
-  validates :last_name, :length     => { :maximum => 50 } 
-  #                 :presence   => true
+  validates :first_name, :length    => { :maximum => 50 },
+                    :presence  => true                 
+  validates :last_name, :length     => { :maximum => 50 }, 
+                    :presence   => true
   validates :email, :presence       => true,
                     :format         => { :with => email_regex },
                     :uniqueness     => { :case_sensitive => false }
@@ -58,7 +57,8 @@ class User < ActiveRecord::Base
   end
   
   def role?(role)
-    roles.include? role.to_string
+    roles.any? { |r| r.name.to_sym == role }
+    
   end
   
 end

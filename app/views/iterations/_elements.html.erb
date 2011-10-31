@@ -7,14 +7,22 @@
 	  <tr>
 		<th>Name</th>
 	    <th>Rating</th>
-		<th></th>
+		<% if @active && (can? :delete, Element) %>
+			<th></th>  
+		<% end %>
 	  </tr>
 	 </thead>
 	
 	 <tbody>
 		<% @elements.each do |element| %>
 		  <tr>
-		    <td><%= element.name %></td>
+		    <td>
+			  <% if can? :update, element %>
+				<%= link_to element.name, edit_topic_group_iteration_element_path(@topic_group, @iteration, element) %>
+			  <% else %> 
+				<%= element.name %>
+			  <% end %>				
+			</td>
 			<% score = element.score(@current_user.id ,@iteration.id) %>
 			<% name = 'rating['+element.id.to_s+']' %>
 		
@@ -26,7 +34,7 @@
 				<%= radio_button_tag name, 5, score == 5, options = { :class => "jdstar", :disabled => !@active } %>
 			</td>
 	
-			<% if @active %>
+			<% if @active && (can? :delete, element) %>
 		    <td><%= link_to 'Delete', topic_group_iteration_element_path(@topic_group, @iteration, element), :confirm => 'Are you sure?', :method => :delete%></td>
 			<% end %>
 		  </tr>

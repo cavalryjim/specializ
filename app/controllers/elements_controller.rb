@@ -29,12 +29,14 @@ class ElementsController < ApplicationController
     @iteration = Iteration.find_by_id(params[:iteration_id])
     @element = Element.new
 
-    respond_with(@element, @topic_group, @iteration)
+    #respond_with(@element, @topic_group, @iteration, @element)
     
   end
 
   # GET /elements/1/edit
   def edit
+    @topic_group = TopicGroup.find_by_id(params[:topic_group_id])
+    @iteration = Iteration.find_by_id(params[:iteration_id])
     @element = Element.find(params[:id])
   end
 
