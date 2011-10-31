@@ -4,7 +4,6 @@ class TopicsController < ApplicationController
   # GET /topics
   # GET /topics.xml
   def index
-    #@topics = Topic.all 
     @topics = Topic.where(:company_id => current_user.company_id)
 
     respond_to do |format|
@@ -33,9 +32,10 @@ class TopicsController < ApplicationController
     #@groupings =
     @assignments = []
     @selected_groups = []
+    
 
     respond_to do |format|
-      format.html # new.html.erb
+      format.html # new.html.erb {:notice => 'Topic was successfully created.'}
       format.xml  { render :xml => @topic }
     end
   end

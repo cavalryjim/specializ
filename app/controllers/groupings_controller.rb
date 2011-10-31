@@ -1,4 +1,6 @@
 class GroupingsController < ApplicationController
+  before_filter :authenticate_user!
+  
   # GET /groupings
   # GET /groupings.xml
   def index

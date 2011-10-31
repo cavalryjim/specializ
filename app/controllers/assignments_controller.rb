@@ -1,5 +1,5 @@
 class AssignmentsController < ApplicationController
-  
+  before_filter :authenticate_user!
   autocomplete :user, :last_name, :extra_data => [:id, :first_name], :display_value => :name
   
   # GET /assignments
