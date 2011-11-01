@@ -30,13 +30,13 @@ class AddDeviseToUsers < ActiveRecord::Migration
     # model already existed. Please edit below which fields you would like to remove in this migration.
     #raise ActiveRecord::IrreversibleMigration 
     #remove_column :users, :database_authenticatable
-    remove_column :users, :recoverable
-    remove_column :users, :rememberable
-    remove_column :users, :trackable
+    
     remove_column :users, :encrypted_password
     remove_column :users, :password_salt
     remove_index :users, :reset_password_token 
+    t.remove :recoverable
+    t.remove :rememberable
+    t.remove :trackable
     
-     
   end
 end
