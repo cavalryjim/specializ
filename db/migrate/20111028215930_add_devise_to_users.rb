@@ -2,6 +2,7 @@ class AddDeviseToUsers < ActiveRecord::Migration
   def self.up
     change_table(:users) do |t|
       #t.database_authenticatable :null => false
+      t.string :encrypted_password
       t.string :password_salt
       t.recoverable
       t.rememberable
@@ -28,10 +29,11 @@ class AddDeviseToUsers < ActiveRecord::Migration
     # By default, we don't want to make any assumption about how to roll back a migration when your
     # model already existed. Please edit below which fields you would like to remove in this migration.
     #raise ActiveRecord::IrreversibleMigration 
-    remove_column :users, :database_authenticatable
+    #remove_column :users, :database_authenticatable
     remove_column :users, :recoverable
     remove_column :users, :rememberable
     remove_column :users, :trackable
+    remove_column :users, :encrypted_password
     remove_column :users, :password_salt
     remove_index :users, :reset_password_token 
     
