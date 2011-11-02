@@ -25,8 +25,8 @@
 class User < ActiveRecord::Base
   # Include default devise modules. Others available are:
   # :token_authenticatable,:encryptable, :confirmable, :lockable, :timeoutable and :omniauthable
-  devise :database_authenticatable, :registerable, :rpx_connectable,
-         :recoverable, :rememberable, :trackable, :validatable
+  devise :database_authenticatable, :registerable, 
+         :recoverable, :rememberable, :trackable, :validatable, :rpx_connectable
 
   has_and_belongs_to_many :roles, :uniq => true
   has_and_belongs_to_many :groupings, :uniq => true
@@ -58,7 +58,15 @@ class User < ActiveRecord::Base
   
   def role?(role)
     roles.any? { |r| r.name.to_sym == role }
-    
   end
+  
+  def before_rpx_success(rpx_user)
+    # Do something with rpx_user...
+  end
+  
+  def before_rpx_auto_create(rpx_user)
+    # Do something with rpx_user
+  end
+
   
 end

@@ -38,5 +38,8 @@ module Specializ
 
     # Configure sensitive parameters which will be filtered from the log file.
     config.filter_parameters += [:password]
+    
+    # JDavis: this is part of the Janrain authentication service
+    RPXNow.api_key = "d96ebcb53031a1ae673f307b91c29d62a06a42ba"
   end
 end
