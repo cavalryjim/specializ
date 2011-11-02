@@ -207,4 +207,6 @@ Devise.setup do |config|
   #   manager.intercept_401 = false
   #   manager.default_strategies(:scope => :user).unshift :some_external_strategy
   # end
+  config.rpx_application_name = "specializ"
+  RPXNow.api_key = "d96ebcb53031a1ae673f307b91c29d62a06a42ba"
 end

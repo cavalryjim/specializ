@@ -13,6 +13,8 @@ gem 'devise', '1.4.7'
 gem 'jeditable-rails', '~> 0.1.1'
 gem 'randumb', '~> 0.1.3'
 gem 'rails3-jquery-autocomplete', '~> 1.0.4'
+#gem 'oa-oauth', :require => 'omniauth/oauth'
+gem 'devise_rpx_connectable'
 
 
 # Bundle edge Rails instead:
