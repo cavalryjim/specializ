@@ -1,0 +1,18 @@
+<!--# JDavis: at the moment, this is returning all the groupings...should only return groupings for the user's company -->
+<%= select_tag 'grouping_select', options_for_select(nested_set_options(Grouping) {|i| "#{'-' * i.level} #{i.name}" }, @grouping.id ) , { :include_blank => 'New Group ' }  %>
+
+<%= #select_tag(:grouping_select2 , options_from_collection_for_select(@groupings.sort_by{|g| g[:fullname]}, :id, :fullname, @grouping.id ), { :include_blank => 'New Group ' } ) 
+%>
+
+<div id="hr_tabs">
+	<ul>
+		<li><a href="#tabs-1">Setup</a></li>
+		<li><a href="#tabs-2">Staff</a></li>
+	</ul>
+	<div id="tabs-1">
+		<%= render 'form' %>
+	</div>
+	<div id="tabs-2">
+		<%= render 'staff' %>
+	</div>
+</div>

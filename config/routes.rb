@@ -7,7 +7,8 @@ Specializ::Application.routes.draw do
 
   match '/me', :to => 'me#home'
   match '/manager', :to => 'topics#new'
-  match '/hr', :to => 'pages#hr'
+  #match '/hr', :to => 'pages#hr'
+  match '/hr', :to => 'groupings#new'
   match '/admin', :to => 'pages#admin'
   match '/company_admin', :to => 'pages#admin'
   match '/pages/me', :to => 'pages#me'
@@ -16,6 +17,9 @@ Specializ::Application.routes.draw do
   match '/topic_groups/staff_topic', :to => 'topic_groups#staff_topic'
   post '/topics', :to => 'topics#create'
   match '/topics', :to => 'topics#edit'
+  post '/groupings', :to => 'groupings#create'
+  match '/groupings', :to => 'groupings#edit'
+  match '/groupings/:grouping_id/users/:id/remove_user', :to => 'groupings#remove_user'
    
   resources :topic_groups do
     resources :iterations do
@@ -29,9 +33,15 @@ Specializ::Application.routes.draw do
     end
   end
   
-  resources :users do
-    get :autocomplete_company_name, :on => :collection
+  resources :groupings do
+    resources :users do
+      get :autocomplete_user_last_name, :on => :collection
+    end
   end
+  
+  #resources :users do
+  #  get :autocomplete_company_name, :on => :collection
+  #end
   
   resources :me, :elements, :iterations, :assignments, :topic_groups, :topics, :users, :groupings, :companies, :elements
   

@@ -16,6 +16,15 @@ $(function() {
 			window.location.pathname = '/topics/new';
 			
 	});
+	
+	// JDavis: this function responds to the dropdown selection on the grouping page and navigates to the select grouping.
+	$('#grouping_select').change(function() {
+		if ($(this).attr('value') > 0)
+			window.location.pathname = '/groupings/'+$(this).attr('value')+'/edit';
+		else
+			window.location.pathname = '/groupings/new';
+			
+	});
 	   
 	// JDavis: this function responds to the dropdown selection on the iteration page and navigates to the selected iteration.
 	$('#iteration_select').change(function() {

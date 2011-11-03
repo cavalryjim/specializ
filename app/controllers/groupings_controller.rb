@@ -26,10 +26,13 @@ class GroupingsController < ApplicationController
   # GET /groupings/new
   # GET /groupings/new.xml
   def new
+    @groupings = Grouping.where(:company_id => current_user.company_id).sort_by{|g| g[:full_name]}
+    #puts @groupings
     @grouping = Grouping.new
+    @users = []
 
     respond_to do |format|
-      format.html # new.html.erb
+      format.html # new.html.erb 
       format.xml  { render :xml => @grouping }
     end
   end
@@ -37,16 +40,18 @@ class GroupingsController < ApplicationController
   # GET /groupings/1/edit
   def edit
     @grouping = Grouping.find(params[:id])
+    @users = @grouping.users
   end
 
   # POST /groupings
   # POST /groupings.xml
   def create
     @grouping = Grouping.new(params[:grouping])
+    @grouping.company_id = current_user.company_id
 
     respond_to do |format|
       if @grouping.save
-        format.html { redirect_to(@grouping, :notice => 'Grouping was successfully created.') }
+        format.html { redirect_to edit_grouping_path(@grouping), :notice => 'Grouping was successfully created.' }
         format.xml  { render :xml => @grouping, :status => :created, :location => @grouping }
       else
         format.html { render :action => "new" }
@@ -62,7 +67,7 @@ class GroupingsController < ApplicationController
 
     respond_to do |format|
       if @grouping.update_attributes(params[:grouping])
-        format.html { redirect_to(@grouping, :notice => 'Grouping was successfully updated.') }
+        format.html { redirect_to edit_grouping_path(@grouping), :notice => 'Grouping was successfully updated.' }
         format.xml  { head :ok }
       else
         format.html { render :action => "edit" }
@@ -81,5 +86,11 @@ class GroupingsController < ApplicationController
       format.html { redirect_to(groupings_url) }
       format.xml  { head :ok }
     end
+  end
+  
+  def remove_user
+    @grouping = Grouping.find(params[:grouping_id])
+    
+    redirect_to edit_grouping_path(@grouping)+'#tabs-2', :notice => 'User successfully removed from group.'
   end
 end
