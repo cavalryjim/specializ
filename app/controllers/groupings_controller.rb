@@ -97,8 +97,13 @@ class GroupingsController < ApplicationController
   
   def new_user
     @grouping = Grouping.find(params[:id])
-    
-    
     #redirect_to edit_grouping_path(@grouping)+'#tabs-2', :notice => 'User successfully added to group.'
+  end
+  
+  def add_user
+    @grouping = Grouping.find(params[:id])
+    @grouping.users << User.find(params[:grouping_user_id])
+    @grouping.save
+    redirect_to edit_grouping_path(@grouping)+'#tabs-2', :notice => 'User successfully added to group.'
   end
 end

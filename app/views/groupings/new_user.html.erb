@@ -1,6 +1,9 @@
-<h1>New group assignment</h1>
-
-<%= autocomplete_field_tag 'user', '', autocomplete_user_last_name_groupings_path, :id_element => '#grouping_user_id' %> Start typing the user's last name
+<h1> <%= @grouping.fullname %></h1>
+<%= form_tag grouping_path(@grouping)+'/add_user' %>
+	<%= autocomplete_field_tag 'user', '', autocomplete_user_last_name_groupings_path, :id_element => '#grouping_user_id' %> Start typing the user's last name
+	<br/>
+	<%= hidden_field_tag 'grouping_user_id' %>
+	<%= submit_tag 'Add user' %>
 
 <br/>
 
