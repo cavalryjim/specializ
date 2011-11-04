@@ -1,0 +1,7 @@
+<h1>New group assignment</h1>
+
+<%= autocomplete_field_tag 'user', '', autocomplete_user_last_name_groupings_path, :id_element => '#grouping_user_id' %> Start typing the user's last name
+
+<br/>
+
+<%= link_to 'Back', edit_grouping_path(@grouping)+"#tabs-2" %>

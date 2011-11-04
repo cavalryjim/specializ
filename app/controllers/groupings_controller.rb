@@ -1,5 +1,6 @@
 class GroupingsController < ApplicationController
   before_filter :authenticate_user!
+  autocomplete :user, :last_name, :extra_data => [:id, :first_name], :display_value => :name
   
   # GET /groupings
   # GET /groupings.xml
@@ -92,5 +93,12 @@ class GroupingsController < ApplicationController
     @grouping = Grouping.find(params[:grouping_id])
     
     redirect_to edit_grouping_path(@grouping)+'#tabs-2', :notice => 'User successfully removed from group.'
+  end
+  
+  def new_user
+    @grouping = Grouping.find(params[:id])
+    
+    
+    #redirect_to edit_grouping_path(@grouping)+'#tabs-2', :notice => 'User successfully added to group.'
   end
 end

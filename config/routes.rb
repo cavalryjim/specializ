@@ -20,6 +20,7 @@ Specializ::Application.routes.draw do
   post '/groupings', :to => 'groupings#create'
   match '/groupings', :to => 'groupings#edit'
   match '/groupings/:grouping_id/users/:id/remove_user', :to => 'groupings#remove_user'
+  match '/groupings/:id/new_user', :to => 'groupings#new_user'
    
   resources :topic_groups do
     resources :iterations do
@@ -34,14 +35,14 @@ Specializ::Application.routes.draw do
   end
   
   resources :groupings do
-    resources :users do
-      get :autocomplete_user_last_name, :on => :collection
-    end
+    #get :autocomplete_user_last_name, :on => :collection
+    #resources :users do
+    #end
   end
   
-  #resources :users do
-  #  get :autocomplete_company_name, :on => :collection
-  #end
+  resources :users do
+    #get :autocomplete_company_name, :on => :collection
+  end
   
   resources :me, :elements, :iterations, :assignments, :topic_groups, :topics, :users, :groupings, :companies, :elements
   
