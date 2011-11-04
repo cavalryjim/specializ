@@ -1,12 +1,12 @@
 class UsersController < ApplicationController
   before_filter :authenticate_user!
-  helper_method :sort_column, :sort_direction
+  #helper_method :sort_column, :sort_direction
   autocomplete :company, :name, :full => true
   
   # GET /users
   # GET /users.xml
   def index
-    @users = User.order(sort_column + " " + sort_direction).paginate(:per_page => 5, :page => params[:page])
+    @users = User.where(:company_id => current_user.company_id)
     respond_to do |format|
       format.html # index.html.erb
       format.xml  { render :xml => @users }
@@ -45,6 +45,7 @@ class UsersController < ApplicationController
   def create
     @user = User.new(params[:user])
     @user.role_ids = params[:user][:role_ids]
+    @user.company_id = current_user.company_id
     
     respond_to do |format|
       if @user.save

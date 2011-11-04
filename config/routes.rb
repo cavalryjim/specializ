@@ -10,7 +10,7 @@ Specializ::Application.routes.draw do
   #match '/hr', :to => 'pages#hr'
   match '/hr', :to => 'groupings#new'
   match '/admin', :to => 'pages#admin'
-  match '/company_admin', :to => 'pages#admin'
+  match '/company_admin', :to => 'users#index'
   match '/pages/me', :to => 'pages#me'
   match '/elements/rate_elements', :to => 'elements#rate_elements'
   match '/topic_groups/assign_topic', :to => 'topic_groups#assign_topic'

@@ -1,29 +1,28 @@
 <h1>Listing users</h1>
 
-<table>
+<table id="user_table">
+ <thead>
   <tr>
-    <th><%= sortable "first_name" %></th>
-    <th><%= sortable "last_name" %></th>
-	<th><%= sortable "email" %></th>
+    <th>First Name</th>
+    <th>Last Name</th>
+	<th>email</th>
 	<th>Active</th>
     <th></th>
-    <th></th>
-    <th></th>
   </tr>
-
-<% for user in @users %>
+ </thead>
+ <tbody>
+ <% for user in @users %>
   <tr>
-    <td><%= user.first_name %></td>
-    <td><%= user.last_name %></td>
-	<td><%= user.email %></td>
-	<td><%= user.active %></td>
-    <td><%= link_to 'Show', user %></td>
-    <td><%= link_to 'Edit', edit_user_path(user) %></td>
-    <td><%= link_to 'Destroy', user, :confirm => 'Are you sure?', :method => :delete %></td>
+    <td><%= link_to user.first_name, edit_user_path(user) %></td>
+    <td><%= link_to user.last_name, edit_user_path(user) %></td>
+	<td><%= link_to user.email, edit_user_path(user) %></td>
+	<td><%= check_box_tag user.id, 1, user.active, { :disabled => true } %></td>
+    <td><%= link_to 'Delete', user, :confirm => 'Are you sure?', :method => :delete %></td>
   </tr>
-<% end %>
+ <% end %>
+ </tbody>
 </table>
-<%= will_paginate @products %>
+
 <br />
 
 <%= link_to 'New User', new_user_path %>

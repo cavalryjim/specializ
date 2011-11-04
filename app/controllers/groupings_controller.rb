@@ -1,6 +1,6 @@
 class GroupingsController < ApplicationController
   before_filter :authenticate_user!
-  autocomplete :user, :last_name, :extra_data => [:id, :first_name], :display_value => :name
+  autocomplete :user, :last_name, :extra_data => [:id, :first_name], :display_value => :name, :scope => [:belongs_company]
   
   # GET /groupings
   # GET /groupings.xml
@@ -91,7 +91,8 @@ class GroupingsController < ApplicationController
   
   def remove_user
     @grouping = Grouping.find(params[:grouping_id])
-    
+    @grouping.users.delete(User.find(params[:id]))
+    @grouping.save
     redirect_to edit_grouping_path(@grouping)+'#tabs-2', :notice => 'User successfully removed from group.'
   end
   

@@ -52,6 +52,8 @@ class User < ActiveRecord::Base
   validates :active, :inclusion     => {:in => [true, false]}
   validates :company_id, :presence  => true
   
+  #scope :belongs_company, where(:company_id => 2)
+  
   def name
     first_name.to_str + " " + last_name.to_str
   end
