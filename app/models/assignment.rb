@@ -12,6 +12,8 @@
 #
 
 class Assignment < ActiveRecord::Base
+  attr_accessible :manager
+  
   belongs_to :user
   belongs_to :topic_group
   

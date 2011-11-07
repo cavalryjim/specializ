@@ -4,6 +4,7 @@ class MeController < ApplicationController
   def home
     
     @topic_groups = current_user.topic_groups
+    @managed_topic_groups = current_user.managed_topic_groups
     
   end
 
@@ -11,10 +12,5 @@ class MeController < ApplicationController
   end
 
   
-  
-  #def current_user
-    # JDavis: Hardcoding the current user as the first user during development.
-  #  User.first
-  #end
 
 end

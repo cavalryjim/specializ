@@ -35,6 +35,10 @@ class User < ActiveRecord::Base
   has_many :topic_groups, :through => :assignments
   has_many :user_lists, :dependent => :destroy
   has_many :elements, :through => :user_lists
+  has_many  :managed_topic_groups, :through => :assignments,
+            :class_name => "TopicGroup",
+            :source => :topic_group,
+            :conditions => ['assignments.manager = ?', true]
   
   # Setup accessible (or protected) attributes for your model
   attr_accessible :first_name, :last_name, :email, :active, :company_id, :password, :password_confirmation, :remember_me

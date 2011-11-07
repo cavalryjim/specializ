@@ -10,8 +10,26 @@
   <%= select_tag(:iteration_select, options_from_collection_for_select(@iterations, :id, :num, @iteration.id )) %>
 </p>
 
-<% if @active %>
-	<%= link_to 'New Item', new_topic_group_iteration_element_path(@topic_group, @topic_group.iterations.last ) %>
-<% end %>
+<div id="me_tabs">
+	<ul>
+		<li><a href="#tabs-1">Topic Info</a></li>
+		<li><a href="#tabs-2">Participate</a></li>
+		<li><a href="#tabs-3">Manage</a></li>
+	</ul>
+	<div id="tabs-1">
+		
+	</div>
+	<div id="tabs-2">
+		<% if @active %>
+			<%= link_to 'New Item', new_topic_group_iteration_element_path(@topic_group, @topic_group.iterations.last ) %>
+		<% end %>
+		
+		<div id = "elements">
+			<%= render 'elements' %>
+		</div>
+	</div>
+	<div id="tabs-3">
+		
+	</div>
+</div>
 
-<div id = "elements"><%= render 'elements' %></div>

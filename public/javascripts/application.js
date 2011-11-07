@@ -4,6 +4,7 @@ $(function() {
 	$( "#accordion" ).accordion(); // accordion on the _browser partial
 	$( "#manager_tabs" ).tabs(); // tabs used in the manager module
 	$( "#hr_tabs" ).tabs(); // tabs used in the HR module
+	$( "#me_tabs" ).tabs(); // tabs used in the Me module
 	$( "#grouping" ).multiselect({header: false}); // select widget in the manager module's configuration tab
 	$( "#staffing_table" ).dataTable(); // datatable in the manager module's staffing tab
 	$( "#user_table" ).dataTable(); // datatable in the admin module
