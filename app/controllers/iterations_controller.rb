@@ -1,4 +1,6 @@
 class IterationsController < ApplicationController
+  require 'gchart'
+  
   before_filter :authenticate_user!
   helper_method :sort_column, :sort_direction
   
@@ -27,6 +29,7 @@ class IterationsController < ApplicationController
     if UserList.find_by_user_id_and_iteration_id(current_user.id, @iteration.id)
       @active = false
     end
+    @bar_chart = Gchart.bar(:data => [60, 70, 100], :bar_colors => ['FF0000', '00FF00'])
 
     respond_to do |format|
       format.html # show.html.erb

@@ -6,9 +6,9 @@ class ElementsController < ApplicationController
   
   
   def index  
-    @elements= Element.all.paginate(:per_page => 5, :page => params[:page]) 
+    #@elements= Element.all.paginate(:per_page => 5, :page => params[:page]) 
     #responds_with (@elements)
-
+    
   end
 
   # GET /elements/1

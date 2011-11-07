@@ -15,6 +15,7 @@ gem 'randumb', '~> 0.1.3'
 gem 'rails3-jquery-autocomplete', '~> 1.0.4'
 #gem 'oa-oauth', :require => 'omniauth/oauth'
 gem 'devise_rpx_connectable'
+gem 'googlecharts'
 
 
 # Bundle edge Rails instead:

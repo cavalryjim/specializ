@@ -68,6 +68,7 @@ GEM
       actionpack (>= 2.3.7)
       activesupport (>= 2.3.7)
       i18n (~> 0.4)
+    googlecharts (1.6.8)
     has_scope (0.5.1)
     i18n (0.5.0)
     inherited_resources (1.2.2)
@@ -161,6 +162,7 @@ DEPENDENCIES
   declarative_authorization
   devise (= 1.4.7)
   devise_rpx_connectable
+  googlecharts
   jeditable-rails (~> 0.1.1)
   jquery-rails
   mysql2 (= 0.2.7)
