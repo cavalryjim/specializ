@@ -48,6 +48,7 @@ class AssignmentsController < ApplicationController
   # POST /assignments.xml
   def create
     @topic = Topic.find(params[:topic_id])
+    @topic_groups = @topic.topic_groups
     @assignment = Assignment.new(params[:assignment])
    
     respond_to do |format|
