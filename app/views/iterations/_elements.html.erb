@@ -1,5 +1,18 @@
 <%= javascript_include_tag 'jquery.rating' %>
 
+<div>
+  <div align=left>
+  Iteration: 
+  <%= select_tag(:iteration_select, options_from_collection_for_select(@iterations, :id, :num, @iteration.id )) %>
+  </div>
+  
+  <div align=right>
+  <% if @active %>
+	<%= link_to 'New Item', new_topic_group_iteration_element_path(@topic_group, @topic_group.iterations.last ) %>
+  <% end %>
+  </div>     
+</div>
+
 <%= form_tag(:controller => "elements", :action => "rate_elements", :method => "post") do %>
 
 	<table id="rating_table" >

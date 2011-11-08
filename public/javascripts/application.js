@@ -32,7 +32,7 @@ $(function() {
 	$('#iteration_select').change(function() {
 		var temp = new Array();
 		temp = window.location.pathname.split('/');
-		window.location.pathname = '/'+temp[1]+'/'+temp[2]+'/'+temp[3]+'/'+$(this).attr('value');
+		window.location.pathname = '/'+temp[1]+'/'+temp[2]+'/'+temp[3]+'/'+$(this).attr('value')+'#tabs-2';
 		//alert(window.location.pathname);
 	});
 	

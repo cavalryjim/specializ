@@ -29,7 +29,21 @@ class IterationsController < ApplicationController
     if UserList.find_by_user_id_and_iteration_id(current_user.id, @iteration.id)
       @active = false
     end
-    @bar_chart = Gchart.bar(:data => [60, 70, 100], :bar_colors => ['FF0000', '00FF00'])
+    consensus_data = @iterations.map { |i| i.consensus }
+    axis_labels = @iterations.map { |a| a.num.to_s }
+    @bar_chart = Gchart.bar(:title => "Consensus Levels",
+                            :title_alignment => :left,
+                            :title_size => 15,
+                            :data => consensus_data, 
+                            :bg => 'efefef',
+                            :bar_colors => ['FF0000', '00FF00'],
+                            :bar_width_and_spacing => '25,6',
+                            :axis_with_labels => ['x', 'y'],
+                            :axis_labels => [axis_labels, [0, 10, 20, 30, 40, 50, 60, 70, 80, 90, 100]],
+                            :legend => ["Consensus not reached", "Consensus goal reached"],
+                            :width => 500,
+                            :height => 240, 
+                            :max_value => 100)
 
     respond_to do |format|
       format.html # show.html.erb

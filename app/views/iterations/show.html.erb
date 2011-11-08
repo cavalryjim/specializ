@@ -4,10 +4,7 @@
 
 </p>
 
-<p>
-  Iteration: 
-  <%= select_tag(:iteration_select, options_from_collection_for_select(@iterations, :id, :num, @iteration.id )) %>
-</p>
+
 
 <div id="me_tabs">
 	<ul>
@@ -19,16 +16,13 @@
 		<%= render 'information' %>
 	</div>
 	<div id="tabs-2">
-		<% if @active %>
-			<%= link_to 'New Item', new_topic_group_iteration_element_path(@topic_group, @topic_group.iterations.last ) %>
-		<% end %>
 		
 		<div id = "elements">
 			<%= render 'elements' %>
 		</div>
 	</div>
 	<div id="tabs-3">
-		
+		<%= render 'manage' %>
 	</div>
 </div>
 

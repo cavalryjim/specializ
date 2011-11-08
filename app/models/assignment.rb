@@ -12,7 +12,7 @@
 #
 
 class Assignment < ActiveRecord::Base
-  attr_accessible :manager
+  attr_accessible :user_id, :topic_group_id, :manager, :participating
   
   belongs_to :user
   belongs_to :topic_group

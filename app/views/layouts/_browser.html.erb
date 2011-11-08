@@ -2,15 +2,14 @@
 
 <h2>My Topics</h2>
 
-<div id="accordion">
+<div id="accordion" style="width:400px; float:left">
     <h3><a href="#">Open Topics</a></h3>
     <div>
 		<table>
 		<% @topic_groups.each do |topic_group| %>
 		  <tr>
 		    <td><%=link_to topic_group.name, url_for([topic_group, topic_group.iterations.last]) %> </td>
-		    
-		    
+		
 		  </tr>
 		<% end %>
 		</table>
@@ -21,8 +20,7 @@
 		<table>
 		<% @managed_topic_groups.each do |managed_topic_group| %>
 		  <tr>
-		    <td><%=link_to managed_topic_group.name, url_for([managed_topic_group, managed_topic_group.iterations.last]) + '/manager' %></td>
-		    
+		    <td><%=link_to managed_topic_group.name, url_for([managed_topic_group, managed_topic_group.iterations.last]) + '/manager' %></td> 
 		    
 		  </tr>
 		<% end %>

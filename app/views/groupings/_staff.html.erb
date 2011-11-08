@@ -1,25 +1,27 @@
 <h2>Listing group assignments</h2>
 
-<table id="staffing_table">
- <thead>
-  <tr>
-    <th>Name</th>
-	<th>Email</th>
-    <th>Remove</th>
-    
-  </tr>
- </thead>
- <tbody>
-	<% @users.each do |user| %>
+<div>
+	<table id="staffing_table">
+	 <thead>
 	  <tr>
-	    <td><%= user.name %></td>
-	    <td><%= user.email %></td>
-	    <td><%= link_to 'Remove?', grouping_user_path(@grouping, user)+'/remove_user' , :confirm => 'Are you sure?' %></td>
+	    <th>Name</th>
+		<th>Email</th>
+	    <th>Remove</th>
+	    
 	  </tr>
-	<% end %>
- </tbody>
-</table>
-<br />
+	 </thead>
+	 <tbody>
+		<% @users.each do |user| %>
+		  <tr>
+		    <td><%= user.name %></td>
+		    <td><%= user.email %></td>
+		    <td><%= link_to 'Remove?', grouping_user_path(@grouping, user)+'/remove_user' , :confirm => 'Are you sure?' %></td>
+		  </tr>
+		<% end %>
+	 </tbody>
+	</table>
+</div>
+
 <% if @grouping.id != nil %>
 	<%= link_to 'Add user', grouping_path(@grouping)+'/new_user'  %>
 <% end %>

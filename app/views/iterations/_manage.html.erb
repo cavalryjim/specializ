@@ -1,0 +1,19 @@
+<p>
+	Users assigned to this topic group: <%= @topic_group.users.count %>  <br/>
+	User that have submitted input: 
+
+</p>
+
+<p>
+	<%= link_to 'Close iteration', '#', :confirm => 'Close the current iteration?' %> <br />
+	<%= link_to 'Start new iteration', '#', :confirm => 'Start a new iteration?' %> <br />
+	
+</p>
+
+<p>
+	Upload elements: <%= file_field_tag 'file'%>
+</p>
+
+<p>
+	<%= link_to 'Close topic group', '#', :confirm => 'This will close the topic group.  Are you sure?' %> <br />
+</p>

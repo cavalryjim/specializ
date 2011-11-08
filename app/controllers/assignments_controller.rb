@@ -48,9 +48,8 @@ class AssignmentsController < ApplicationController
   # POST /assignments.xml
   def create
     @topic = Topic.find(params[:topic_id])
-    @topic_groups = @topic.topic_groups
     @assignment = Assignment.new(params[:assignment])
-   
+    
     respond_to do |format|
       if @assignment.save
         format.html { redirect_to edit_topic_path(@topic)+"#tabs-3", :notice => 'Assignment was successfully created.' }
