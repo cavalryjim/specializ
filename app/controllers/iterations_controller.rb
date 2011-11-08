@@ -21,7 +21,7 @@ class IterationsController < ApplicationController
     #@current_user = User.first # JDavis: harcoding the current_user for development.
     @iteration = Iteration.find(params[:id])
     @topic_group = TopicGroup.find(@iteration.topic_group_id)
-    @iterations = @topic_group.iterations
+    @iterations = @topic_group.iterations.sort_by{ |iteration| iteration.num }
     @topic = Topic.find(@topic_group.topic_id)
     #@elements = @iteration.elements.order(sort_column + ' ' + sort_direction).paginate(:per_page => 5, :page => params[:page]) 
     @elements = @iteration.elements
