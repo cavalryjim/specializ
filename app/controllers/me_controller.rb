@@ -3,7 +3,7 @@ class MeController < ApplicationController
   
   def home
     
-    @topic_groups = current_user.topic_groups
+    @my_topic_groups = current_user.my_topic_groups
     @managed_topic_groups = current_user.managed_topic_groups
     
   end

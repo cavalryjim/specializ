@@ -6,7 +6,7 @@
     <h3><a href="#">Open Topics</a></h3>
     <div>
 		<table>
-		<% @topic_groups.each do |topic_group| %>
+		<% @my_topic_groups.each do |topic_group| %>
 		  <tr>
 		    <td><%=link_to topic_group.name, url_for([topic_group, topic_group.iterations.last]) %> </td>
 		
