@@ -1,5 +1,6 @@
 class IterationsController < ApplicationController
   require 'gchart'
+  require 'spreadsheet'
   
   before_filter :authenticate_user!
   helper_method :sort_column, :sort_direction
@@ -112,11 +113,7 @@ class IterationsController < ApplicationController
       format.xml  { head :ok }
     end
   end
-  
-  # JDavis: this method captures the user's rating
-  def rate_elements
-    
-  end
+ 
   
   private
   

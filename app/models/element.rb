@@ -19,11 +19,19 @@ class Element < ActiveRecord::Base
   
   validates :name, :presence => true
   validates :created_by, :presence => true
+  validates :current, :inclusion => {:in => [true, false]}
   
   def score(user_id, iteration_id)
     user_score = UserList.find_by_element_id_and_user_id_and_iteration_id(self.id, user_id, iteration_id)
     return user_score.score if !user_score.nil?
     return 0
+  end
+  
+  def add_to_iteration(iteration_id)
+    iteration_list_element = IterationList.new
+    iteration_list_element.element_id = self.id
+    iteration_list_element.iteration_id = iteration_id
+    return iteration_list_element.save
   end
   
   

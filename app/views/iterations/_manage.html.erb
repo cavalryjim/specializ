@@ -10,9 +10,15 @@
 	
 </p>
 
-<p>
-	Upload elements: <%= file_field_tag 'file'%>
-</p>
+<%= form_tag(:controller => "elements", :action => "import_elements", :multipart => true, :method => "put") do %>
+
+	Upload elements: <%= file_field_tag 'elements_spreadsheet' %>
+
+	<%= hidden_field_tag(:iteration_id, @iteration.id) %>
+	<%= submit_tag("Submit List", :confirm => 'Upload list from spreadsheet?', :disabled => !@active) %>
+<% end %>
+
+
 
 <p>
 	<%= link_to 'Close topic group', '#', :confirm => 'This will close the topic group.  Are you sure?' %> <br />

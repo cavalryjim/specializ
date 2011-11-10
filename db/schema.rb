@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111102034659) do
+ActiveRecord::Schema.define(:version => 20111109223356) do
 
   create_table "active_admin_comments", :force => true do |t|
     t.integer  "resource_id",   :null => false
@@ -130,6 +130,7 @@ ActiveRecord::Schema.define(:version => 20111102034659) do
     t.integer  "grouping_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "elements_spreadsheet"
   end
 
   create_table "topics", :force => true do |t|

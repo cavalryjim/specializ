@@ -7,12 +7,12 @@ Specializ::Application.routes.draw do
 
   match '/me', :to => 'me#home'
   match '/manager', :to => 'topics#new'
-  #match '/hr', :to => 'pages#hr'
   match '/hr', :to => 'groupings#new'
   match '/admin', :to => 'pages#admin'
   match '/company_admin', :to => 'users#index'
   match '/pages/me', :to => 'pages#me'
   match '/elements/rate_elements', :to => 'elements#rate_elements'
+  match '/elements/import_elements', :to => 'elements#import_elements'
   match '/topic_groups/assign_topic', :to => 'topic_groups#assign_topic'
   match '/topic_groups/staff_topic', :to => 'topic_groups#staff_topic'
   post '/topics', :to => 'topics#create'
