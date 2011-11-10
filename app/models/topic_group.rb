@@ -14,7 +14,10 @@
 #
 
 class TopicGroup < ActiveRecord::Base
-  attr_accessible :name, :goal, :active, :topic_id, :grouping_id, :elements_spreadsheet
+  attr_accessible :name, :goal, :active, :update_frequency, 
+                  :topic_id, :grouping_id, :elements_spreadsheet
+                  
+  mount_uploader :elements_spreadsheet, ElementsSpreadsheetUploader
   
   belongs_to :topic
   belongs_to :grouping
@@ -24,9 +27,7 @@ class TopicGroup < ActiveRecord::Base
   has_many  :participating_users, :through => :assignments,
             :class_name => "User",
             :source => :user,
-            :conditions => ['assignments.participating = ?', true]
-            
-  mount_uploader :elements_spreadsheet, ElementsSpreadsheetUploader
+            :conditions => ['assignments.participating = ?', true]   
   
   validates :name, :presence => true
   validates :goal, :presence => true

@@ -27,7 +27,9 @@ class GroupingsController < ApplicationController
   # GET /groupings/new
   # GET /groupings/new.xml
   def new
-    @groupings = Grouping.where(:company_id => current_user.company_id).sort_by{|g| g[:full_name]}
+    #@groupings = Grouping.where(:company_id => current_user.company_id).sort_by{|g| g[:full_name]}
+    @groupings = Company.find(current_user.company_id).groupings
+    #@groupings.sort_by{ |g| g[:full_name] }
     #puts @groupings
     @grouping = Grouping.new
     @users = []

@@ -1,40 +1,8 @@
 
 
-<p id="notice"><%= notice %></p>
+<%= render 'form' %>
 
-<p>
-  <%= @topic_group.name %>
-</p>
 
-<p>
-  <b>Goal:</b>
-  The goal of this topic is to reach <%= @topic_group.goal %>% consensus.
-</p>
-
-<table>
-  <tr>
-    <th>Name</th>
-    <th>Rating</th>
-
-  </tr>
-
-<% @elements.each do |element| %>
-  <tr>
-    <td><%= element.name %></td>
-	<td>
-		
-		<input name="star<%=element.id%>" type="radio" class="star"/>
-		<input name="star<%=element.id%>" type="radio" class="star"/>
-		<input name="star<%=element.id%>" type="radio" class="star"/>
-		<input name="star<%=element.id%>" type="radio" class="star"/>
-		<input name="star<%=element.id%>" type="radio" class="star"/>
-		
-	</td>
-    <td><%= link_to 'Edit', edit_element_path(element) %></td>
-    <td><%= link_to 'Delete', element, :confirm => 'Are you sure?', :method => :delete %></td>
-  </tr>
-<% end %>
-</table>
 
 
 

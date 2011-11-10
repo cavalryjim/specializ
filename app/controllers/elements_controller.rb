@@ -132,7 +132,8 @@ class ElementsController < ApplicationController
   def import_elements
     @iteration = Iteration.find(params[:iteration_id])
     @topic_group = TopicGroup.find(@iteration.topic_group_id)
-    if @topic_group.update_attributes(params[:elements_spreadsheet])
+    @topic_group.elements_spreadsheet = params[:file]
+    if @topic_group.save
       Spreadsheet.client_encoding = 'UTF-8'
       book = Spreadsheet.open @topic_group.elements_spreadsheet_url.to_s
       sheet1 = book.worksheet 0
