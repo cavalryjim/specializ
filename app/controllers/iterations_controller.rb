@@ -19,7 +19,6 @@ class IterationsController < ApplicationController
   # GET /iterations/1
   # GET /iterations/1.xml
   def show
-    #@current_user = User.first # JDavis: harcoding the current_user for development.
     @iteration = Iteration.find(params[:id])
     @topic_group = TopicGroup.find(@iteration.topic_group_id)
     @iterations = @topic_group.iterations.sort_by{ |iteration| iteration.num }
@@ -32,7 +31,8 @@ class IterationsController < ApplicationController
       @active = false
     end
     consensus_data = @iterations.map { |i| i.consensus }
-    axis_labels = @iterations.map { |a| a.num.to_s }
+    x_axis = @iterations.map { |a| a.num.to_s }
+    y_axis = [0, 10, 20, 30, 40, 50, 60, 70, 80, 90, 100]
     @bar_chart = Gchart.bar(:title => "Consensus Levels",
                             :title_alignment => :left,
                             :title_size => 15,
@@ -41,7 +41,7 @@ class IterationsController < ApplicationController
                             :bar_colors => ['FF0000', '00FF00'],
                             :bar_width_and_spacing => '25,6',
                             :axis_with_labels => ['x', 'y'],
-                            :axis_labels => [axis_labels, [0, 10, 20, 30, 40, 50, 60, 70, 80, 90, 100]],
+                            :axis_labels => [x_axis, y_axis],
                             :legend => ["Consensus not reached", "Consensus goal reached"],
                             :width => 500,
                             :height => 240, 

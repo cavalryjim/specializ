@@ -20,7 +20,7 @@
 		<table>
 		<% @managed_topic_groups.each do |managed_topic_group| %>
 		  <tr>
-		    <td><%=link_to managed_topic_group.name, url_for([managed_topic_group, managed_topic_group.iterations.last]) + '/manager' %></td> 
+		    <td><%=link_to managed_topic_group.name, url_for([managed_topic_group, managed_topic_group.iterations.last]) %></td> 
 		    
 		  </tr>
 		<% end %>

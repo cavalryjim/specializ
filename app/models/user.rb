@@ -45,7 +45,8 @@ class User < ActiveRecord::Base
             :conditions => ['assignments.participating = ?', true]
   
   # Setup accessible (or protected) attributes for your model
-  attr_accessible :first_name, :last_name, :email, :active, :company_id, :password, :password_confirmation, :remember_me
+  attr_accessible :first_name, :last_name, :email, :active, :company_id, 
+                  :password, :password_confirmation, :remember_me, :avatar
   
   email_regex = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
 
@@ -60,6 +61,8 @@ class User < ActiveRecord::Base
   validates :active, :inclusion     => {:in => [true, false]}
   validates :company_id, :presence  => true
   
+  mount_uploader :avatar, AvatarUploader
+  
   #scope :belongs_company, where(:company_id => 2)
   
   def name
@@ -68,6 +71,15 @@ class User < ActiveRecord::Base
   
   def role?(role)
     roles.any? { |r| r.name.to_sym == role }
+  end
+  
+  # JDavis: only peoplenetz administrators can grant the pnetz_admin role.
+  def available_roles
+    if self.role?(:pnetz_admin)
+      Role.all
+    else
+      Role.find(:all, :conditions => ["name!=?", "pnetz_admin"])
+    end
   end
   
   def before_rpx_success(rpx_user)

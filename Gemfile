@@ -17,7 +17,7 @@ gem 'rails3-jquery-autocomplete', '~> 1.0.4'
 gem 'devise_rpx_connectable'
 gem 'googlecharts'
 gem 'spreadsheet'
-gem 'carrierwave', '0.5.4'
+gem 'carrierwave', '~> 0.5.7'
 
 
 # Bundle edge Rails instead:
