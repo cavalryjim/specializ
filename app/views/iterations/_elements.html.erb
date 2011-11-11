@@ -36,7 +36,7 @@
 				<%= element.name %>
 			  <% end %>				
 			</td>
-			<% score = element.score(@current_user.id ,@iteration.id) %>
+			<% score = element.score(current_user.id ,@iteration.id) %>
 			<% name = 'rating['+element.id.to_s+']' %>
 		
 			<td id="rating">	

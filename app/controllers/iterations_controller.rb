@@ -25,12 +25,10 @@ class IterationsController < ApplicationController
     @topic = Topic.find(@topic_group.topic_id)
     #@elements = @iteration.elements.order(sort_column + ' ' + sort_direction).paginate(:per_page => 5, :page => params[:page]) 
     @elements = @iteration.elements
-    @active = @iteration.active
+    @active = @iteration.active?
+    @active = current_user.submitted_list?(@iteration.id)
     @manager = current_user.manager?(@topic_group.id)
     @participating_users = @topic_group.participating_users
-    if UserList.find_by_user_id_and_iteration_id(current_user.id, @iteration.id)
-      @active = false
-    end
     consensus_data = @iterations.map { |i| i.consensus }
     x_axis = @iterations.map { |a| a.num.to_s }
     y_axis = [0, 10, 20, 30, 40, 50, 60, 70, 80, 90, 100]

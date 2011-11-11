@@ -87,6 +87,14 @@ class User < ActiveRecord::Base
     Assignment.find_by_user_id_and_topic_group_id(self.id, topic_group_id).manager
   end
   
+  def submitted_list?(iteration_id)
+    if UserList.find_by_user_id_and_iteration_id(self.id, iteration_id)
+      false
+    else
+      true
+    end
+  end
+  
   def before_rpx_success(rpx_user)
     # Do something with rpx_user...
   end
