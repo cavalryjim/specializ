@@ -25,8 +25,8 @@ class IterationsController < ApplicationController
     @topic = Topic.find(@topic_group.topic_id)
     #@elements = @iteration.elements.order(sort_column + ' ' + sort_direction).paginate(:per_page => 5, :page => params[:page]) 
     @elements = @iteration.elements
-    @active = @iteration.active?
-    @active = current_user.submitted_list?(@iteration.id)
+    # JDavis: if the iteration is active, check to see it the user has submitted.
+    @active = @iteration.active ? current_user.submitted_list?(@iteration.id) : false
     @manager = current_user.manager?(@topic_group.id)
     @participating_users = @topic_group.participating_users
     consensus_data = @iterations.map { |i| i.consensus }
