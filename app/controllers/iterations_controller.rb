@@ -26,6 +26,7 @@ class IterationsController < ApplicationController
     #@elements = @iteration.elements.order(sort_column + ' ' + sort_direction).paginate(:per_page => 5, :page => params[:page]) 
     @elements = @iteration.elements
     @active = @iteration.active
+    @manager = current_user.manager?(@topic_group.id)
     @participating_users = @topic_group.participating_users
     if UserList.find_by_user_id_and_iteration_id(current_user.id, @iteration.id)
       @active = false

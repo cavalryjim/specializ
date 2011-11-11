@@ -82,6 +82,11 @@ class User < ActiveRecord::Base
     end
   end
   
+  # JDavis: this returns true if the user is designated as the manager of a topic_group.
+  def manager?(topic_group_id)
+    Assignment.find_by_user_id_and_topic_group_id(self.id, topic_group_id).manager
+  end
+  
   def before_rpx_success(rpx_user)
     # Do something with rpx_user...
   end

@@ -4,7 +4,9 @@
 	  <tr>
 	    <th>Name</th>
 		<th>Email</th>
-	    <th>Remove</th>
+		<% if @manager %>
+	    	<th>Remove</th>
+		<% end %>
 	    
 	  </tr>
 	 </thead>
@@ -13,7 +15,9 @@
 		  <tr>
 		    <td><%= user.name %></td>
 		    <td><%= user.email %></td>
-		    <td><%= link_to 'Remove?', '#' , :confirm => 'Are you sure?' %></td>
+			<% if @manager %>
+		    	<td><%= link_to 'Remove?', '#' , :confirm => 'Are you sure?' %></td>
+			<% end %>
 		  </tr>
 		<% end %>
 	 </tbody>
