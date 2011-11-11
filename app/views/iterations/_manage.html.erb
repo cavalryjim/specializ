@@ -11,7 +11,7 @@
 </p>
 
 
-<%= form_tag(:controller => "elements", :action => "import_elements", :multipart => true, :method => "put") do %>
+<%= form_tag({ :controller => "topic_groups", :action => "import_elements"}, {:multipart => true} ) do %>
 
 	Upload elements: <%= file_field_tag 'file' %>
 
