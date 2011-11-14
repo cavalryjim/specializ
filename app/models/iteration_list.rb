@@ -8,6 +8,8 @@
 #  avg_score    :float
 #  created_at   :datetime
 #  updated_at   :datetime
+#  include      :boolean(1)
+#  new_element  :boolean(1)
 #
 
 class IterationList < ActiveRecord::Base
@@ -16,4 +18,5 @@ class IterationList < ActiveRecord::Base
   
   validates :iteration_id, :presence => true
   validates :element_id, :presence => true
+  
 end

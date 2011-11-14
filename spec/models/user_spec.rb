@@ -20,6 +20,10 @@
 #  last_sign_in_at        :datetime
 #  current_sign_in_ip     :string(255)
 #  last_sign_in_ip        :string(255)
+#  encryptor              :string(255)
+#  pepper                 :string(255)
+#  rpx_identifier         :string(255)
+#  avatar                 :string(255)
 #
 
 require 'spec_helper'

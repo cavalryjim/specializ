@@ -112,6 +112,39 @@ class IterationsController < ApplicationController
       format.xml  { head :ok }
     end
   end
+  
+  # JDavis this method closes the current iteration and computes
+  def close
+    @iteration = Iteration.find(params[:id])
+    @topic_group = TopicGroup.find(params[:topic_group_id])
+    
+    respond_to do |format|
+      if @iteration.close
+        format.html { redirect_to topic_group_iteration_url(@topic_group, @iteration)+'#tabs-4', :notice => 'Iteration was successfully closed.' }
+        format.xml  { head :ok }
+      else
+        format.html { render :action => "show" }
+        format.xml  { render :xml => @iteration.errors, :status => :unprocessable_entity }
+      end
+    end
+  end
+  
+  def start
+    @iteration = Iteration.find(params[:id])
+    @topic_group = TopicGroup.find(params[:topic_group_id])
+    
+    
+    
+    respond_to do |format|
+      if @iteration.start
+        format.html { redirect_to topic_group_iteration_url(@topic_group, @iteration)+'#tabs-4', :notice => 'New iteration was successfully started.' }
+        format.xml  { head :ok }
+      else
+        format.html { render :action => "show" }
+        format.xml  { render :xml => @iteration.errors, :status => :unprocessable_entity }
+      end
+    end
+  end
  
   
   private

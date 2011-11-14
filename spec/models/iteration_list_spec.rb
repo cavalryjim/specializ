@@ -8,6 +8,8 @@
 #  avg_score    :float
 #  created_at   :datetime
 #  updated_at   :datetime
+#  include      :boolean(1)
+#  new_element  :boolean(1)
 #
 
 require 'spec_helper'

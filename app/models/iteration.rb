@@ -20,4 +20,19 @@ class Iteration < ActiveRecord::Base
   validates :num, :presence => true
   validates :active, :inclusion => {:in => [true, false]}
   validates :topic_group_id, :presence => true
+  
+  def close
+    self.active = false
+    self.elements.where('active = true').each do |element|
+      element.avg_score(self.id)
+    end
+    
+    self.consensus = self.iteration_lists.average('avg_score')
+    return self.save
+  end
+  
+  def start
+    true
+  end
+  
 end

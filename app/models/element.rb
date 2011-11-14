@@ -23,8 +23,7 @@ class Element < ActiveRecord::Base
   
   def score(user_id, iteration_id)
     user_score = UserList.find_by_element_id_and_user_id_and_iteration_id(self.id, user_id, iteration_id)
-    return user_score.score if !user_score.nil?
-    return 0
+    return !user_score.nil? ? user_score.score : 0
   end
   
   def add_to_iteration(iteration_id)
@@ -34,5 +33,10 @@ class Element < ActiveRecord::Base
     return iteration_list_element.save
   end
   
+  def avg_score(iteration_id)
+    iteration_list = IterationList.find_by_element_id_and_iteration_id(self.id, iteration_id)
+    iteration_list.avg_score = [self.user_lists.average('score')*20, 1 - self.user_lists.average('score')*20].max
+    return iteration_list.save
+  end
   
 end

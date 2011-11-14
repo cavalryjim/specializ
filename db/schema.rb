@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111110160943) do
+ActiveRecord::Schema.define(:version => 20111114233158) do
 
   create_table "active_admin_comments", :force => true do |t|
     t.integer  "resource_id",   :null => false
@@ -96,6 +96,8 @@ ActiveRecord::Schema.define(:version => 20111110160943) do
     t.float    "avg_score"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.boolean  "include"
+    t.boolean  "new_element"
   end
 
   create_table "iterations", :force => true do |t|
