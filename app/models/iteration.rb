@@ -37,7 +37,8 @@ class Iteration < ActiveRecord::Base
     new_iteration.active = true
     new_iteration.topic_group_id = self.id
     new_iteration.save
-    new_iteration.elements = self.elements.where('current = true')
+    #new_iteration = self.iteration_lists << elements.clone
+    new_iteration.elements = self.elements.where('current = true').clone
     return new_iteration.id
   end
   

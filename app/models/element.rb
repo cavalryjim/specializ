@@ -52,7 +52,7 @@ class Element < ActiveRecord::Base
     #total_submissions = UserList.find_by_element_id_and_iteration_id(self.id, iteration_id).count
     total_submissions = self.user_lists.count(:conditions => { :iteration_id => iteration_id })
     #total_scored = UserList.find_by_element_id_and_iteration_id(self.id, iteration_id).where('score > 0').count
-    total_scored = self.user_lists.count(:conditions => {:iteration_id => iteration_id && ['score > ?', 0] } )
+    total_scored = self.user_lists.count(:conditions => {:iteration_id => iteration_id } && ['score > 0'] )
     if total_submissions > 0
       return (total_scored / total_submissions) >= 0.5 ? true : false
     else
