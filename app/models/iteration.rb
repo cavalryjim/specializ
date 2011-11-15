@@ -23,7 +23,7 @@ class Iteration < ActiveRecord::Base
   
   def close
     self.elements.where('current = true').each do |element|
-      element.avg_score(self.id)
+      element.compute_agreement(self.id)
     end
     self.active = false
     
@@ -31,8 +31,14 @@ class Iteration < ActiveRecord::Base
     return self.save
   end
   
-  def start
-    true
+  def start_new_iteration
+    new_iteration = Iteration.new
+    new_iteration.num = self.num + 1
+    new_iteration.active = true
+    new_iteration.topic_group_id = self.id
+    new_iteration.save
+    new_iteration.elements = self.elements.where('current = true')
+    return new_iteration.id
   end
   
 end

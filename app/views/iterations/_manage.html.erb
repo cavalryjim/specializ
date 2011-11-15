@@ -8,7 +8,7 @@
   <% if @iteration.active %>
 	<%= button_to 'Close current iteration', topic_group_iteration_close_path(@topic_group, @topic_group.iterations.last ), :confirm => 'Close the current iteration?' %> <br />
   <% elsif @iteration == @topic_group.iterations.last %>
-	<%= button_to 'Start new iteration', '#', :confirm => 'Start a new iteration?' %> <br />
+	<%= button_to 'Start new iteration', topic_group_iteration_start_path(@topic_group, @topic_group.iterations.last ), :confirm => 'Start a new iteration?' %> <br />
   <% end %>
 	
 </p>

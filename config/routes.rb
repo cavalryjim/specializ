@@ -16,6 +16,7 @@ Specializ::Application.routes.draw do
   match '/topic_groups/assign_topic', :to => 'topic_groups#assign_topic'
   match '/topic_groups/staff_topic', :to => 'topic_groups#staff_topic'
   match '/topic_groups/:topic_group_id/iterations/:id/close', :to => 'iterations#close'
+  match '/topic_groups/:topic_group_id/iterations/:id/start', :to => 'iterations#start'
   post '/topics', :to => 'topics#create'
   match '/topics', :to => 'topics#edit'
   post '/groupings', :to => 'groupings#create'
@@ -27,6 +28,7 @@ Specializ::Application.routes.draw do
   resources :topic_groups do
     resources :iterations do
       post 'close'
+      post 'start'
       resources :elements 
     end
   end

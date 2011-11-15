@@ -130,19 +130,17 @@ class IterationsController < ApplicationController
   end
   
   def start
-    @iteration = Iteration.find(params[:id])
+    old_iteration = Iteration.find(params[:id])
     @topic_group = TopicGroup.find(params[:topic_group_id])
-    
-    
+    @iteration = Iteration.find(old_iteration.start_new_iteration)
+    #@iteration = Iteration.new
+    #@iteration.num = old_iteration.num + 1
+    #@iteration.active = true
+    #@iteration.topic_group_id = @topic_group.id
     
     respond_to do |format|
-      if @iteration.start
-        format.html { redirect_to topic_group_iteration_url(@topic_group, @iteration)+'#tabs-4', :notice => 'New iteration was successfully started.' }
-        format.xml  { head :ok }
-      else
-        format.html { render :action => "show" }
-        format.xml  { render :xml => @iteration.errors, :status => :unprocessable_entity }
-      end
+      format.html { redirect_to topic_group_iteration_url(@topic_group, @iteration)+'#tabs-4', :notice => 'New iteration was successfully started.' }
+      format.xml  { head :ok }
     end
   end
  
