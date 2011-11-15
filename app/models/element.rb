@@ -34,9 +34,16 @@ class Element < ActiveRecord::Base
   end
   
   def avg_score(iteration_id)
-    iteration_list = IterationList.find_by_element_id_and_iteration_id(self.id, iteration_id)
+    iteration_list = IterationList.find_or_create_by_element_id_and_iteration_id(self.id, iteration_id)
     iteration_list.avg_score = [self.user_lists.average('score')*20, 1 - self.user_lists.average('score')*20].max
+    iteration_list.include = self.include?
     return iteration_list.save
+  end
+  
+  def include?(iteration_id)
+    total_submissions = UserList.find_by_element_id_and_iteration_id(self.id, iteration_id).count
+    total_scored = UserList.find_by_element_id_and_iteration_id(self.id, iteration_id).where('score > 0').count
+    return (total_scored / total_submissions) >= 0.5 ? true : false
   end
   
 end

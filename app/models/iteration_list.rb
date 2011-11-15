@@ -18,5 +18,7 @@ class IterationList < ActiveRecord::Base
   
   validates :iteration_id, :presence => true
   validates :element_id, :presence => true
+  validates :include, :inclusion => {:in => [true, false]}
+  validates :new_element, :inclusion => {:in => [true, false]}
   
 end
