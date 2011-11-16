@@ -44,6 +44,7 @@ class TopicsController < ApplicationController
   def edit
     @topic = Topic.find(params[:id])
     @topics = Topic.where(:company_id => current_user.company_id)
+    @current_user = current_user
     @assignments = Assignment.where(:topic_group_id => TopicGroup.where(:topic_id => @topic.id))
     @selected_groups = TopicGroup.where(:topic_id => @topic.id).map(&:grouping_id)
   end
@@ -52,7 +53,11 @@ class TopicsController < ApplicationController
   # POST /topics.xml
   def create
     @topic = Topic.new(params[:topic])
-    @topic.company_id = current_user.company_id 
+    @topics = Topic.where(:company_id => current_user.company_id)
+    @topic.company_id = current_user.company_id
+    #@current_user = current_user
+    @assignments = []
+    #@selected_groups = []
     
     respond_to do |format|
       if @topic.save

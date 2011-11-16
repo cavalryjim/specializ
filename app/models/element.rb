@@ -27,9 +27,11 @@ class Element < ActiveRecord::Base
   end
   
   def add_to_iteration(iteration_id)
-    iteration_list_element = IterationList.new
-    iteration_list_element.element_id = self.id
-    iteration_list_element.iteration_id = iteration_id
+    iteration_list_element = IterationList.find_or_initialize_by_element_id_and_iteration_id(self.id, iteration_id)
+    #iteration_list_element.element_id = self.id
+    #iteration_list_element.iteration_id = iteration_id
+    iteration_list_element.include = true
+    iteration_list_element.new_element = false
     return iteration_list_element.save
   end
   
@@ -37,7 +39,9 @@ class Element < ActiveRecord::Base
     iteration_list = IterationList.find_or_create_by_element_id_and_iteration_id(self.id, iteration_id)
     user_lists = self.user_lists(:conditions => { :iteration_id => iteration_id })
     if user_lists.size > 0
-      iteration_list.avg_score = [user_lists.average('score')*20, 1 - user_lists.average('score')*20].max
+      #iteration_list.avg_score = [user_lists.average('score')*20, 1 - user_lists.average('score')*20].max
+      total_submissions = self.user_lists.count(:conditions => { :iteration_id => iteration_id })
+      sum = user_lists.average('score')
     else
       iteration_list.avg_score = 0
     end

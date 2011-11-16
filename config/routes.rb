@@ -4,12 +4,12 @@ Specializ::Application.routes.draw do
 
   devise_for :admin_users, ActiveAdmin::Devise.config
   #post '/users', :to => 'users#create'
-  #devise_for :users, :path_names => { :sign_up => 'register' }
-  devise_for :users, :controllers => {:registrations => 'registrations'}, :path_names => { :sign_up => 'register' }
-  devise_scope :user do
-    get '/login' => 'devise/sessions#new'
-    get '/logout' => 'devise/sessions#destroy'
-  end
+  devise_for :users, :path_names => { :sign_up => 'register' }
+  #devise_for :users, :controllers => {:registrations => 'registrations'}, :path_names => { :sign_up => 'register' }
+  #devise_scope :user do
+  #  get '/login' => 'devise/sessions#new'
+  #  get '/logout' => 'devise/sessions#destroy'
+  #end
 
   match '/me', :to => 'me#home'
   match '/manager', :to => 'topics#new'

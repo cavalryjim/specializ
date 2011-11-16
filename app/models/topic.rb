@@ -23,11 +23,11 @@ class Topic < ActiveRecord::Base
   validates :company_id, :presence => true
   
   #JDavis: need to ensure the company_id is set.
-  before_create :set_company
+  #before_create :set_company
   
   private
     
     def set_company
-      self.company_id = current_user.company_id
+      self.company_id = @current_user.company_id
     end
 end
