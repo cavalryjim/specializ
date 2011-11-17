@@ -28,9 +28,9 @@
 
 class User < ActiveRecord::Base
   # Include default devise modules. Others available are:
-  # :token_authenticatable,:encryptable, :confirmable, :lockable, :timeoutable and :omniauthable
+  # :token_authenticatable,:encryptable, :confirmable, :lockable, :timeoutable and :omniauthable,  :rpx_connectable
   devise :database_authenticatable, :registerable, 
-         :recoverable, :rememberable, :trackable, :validatable, :rpx_connectable
+         :recoverable, :rememberable, :trackable, :validatable
 
   has_and_belongs_to_many :roles, :uniq => true
   has_and_belongs_to_many :groupings, :uniq => true
@@ -99,13 +99,13 @@ class User < ActiveRecord::Base
     end
   end
   
-  def before_rpx_success(rpx_user)
+  #def before_rpx_success(rpx_user)
     # Do something with rpx_user...
-  end
+  #end
   
-  def before_rpx_auto_create(rpx_user)
+  #def before_rpx_auto_create(rpx_user)
     # Do something with rpx_user
-  end
+  #end
 
   
 end

@@ -208,9 +208,9 @@ Devise.setup do |config|
   #   manager.default_strategies(:scope => :user).unshift :some_external_strategy
   # end
   
-  # ==> Janrain / rpx
-  config.rpx_application_name = "specializ"
-  config.rpx_auto_create_account = true # false if you don't want to create users automaticaly. True by default.
-  config.rpx_additional_user_data = [:verifiedEmail, :url, :providerName,:photo] # default [], get some extra profile info from RPXnow, default only a few fields are available in the rpx_user object (https://rpxnow.com/docs#profile_data)
+  # ==> Janrain / rpx  # JDavis: tried using this but needed something a bit more robust.
+  #config.rpx_application_name = "specializ"
+  #config.rpx_auto_create_account = true # false if you don't want to create users automaticaly. True by default.
+  #config.rpx_additional_user_data = [:verifiedEmail, :url, :providerName,:photo] # default [], get some extra profile info from RPXnow, default only a few fields are available in the rpx_user object (https://rpxnow.com/docs#profile_data)
 
 end
