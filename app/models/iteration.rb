@@ -27,7 +27,10 @@ class Iteration < ActiveRecord::Base
     end
     self.active = false
     
-    self.consensus = self.iteration_lists.average('agreement')
+    sum = self.iteration_lists.sum('agreement')
+    included_elements = self.iteration_lists.count(:conditions => { :include => true })
+    total_elements = self.iteration_lists.count
+    self.consensus = (sum - (total_elements - included_elements) * 100 ) / included_elements
     return self.save
   end
   

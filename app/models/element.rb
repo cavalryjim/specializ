@@ -45,7 +45,7 @@ class Element < ActiveRecord::Base
       sum = user_lists.sum('score')
       agreement = (sum * 20)  / total_submissions
       iteration_list.agreement = [ agreement, 100 - agreement].max
-      iteration_list.include = self.include?(iteration_id)
+      iteration_list.include = self.include?(iteration_id, total_submissions)
     else
       iteration_list.agreement = 100
       iteration_list.include = false
@@ -56,16 +56,16 @@ class Element < ActiveRecord::Base
     return iteration_list.save
   end
   
-  def include?(iteration_id)
-    #total_submissions = UserList.find_by_element_id_and_iteration_id(self.id, iteration_id).count
-    total_submissions = self.user_lists.count(:conditions => { :iteration_id => iteration_id })
-    #total_scored = UserList.find_by_element_id_and_iteration_id(self.id, iteration_id).where('score > 0').count
+  def include?(iteration_id, total_submissions)
     total_scored = self.user_lists.count(:conditions => {:iteration_id => iteration_id } && ['score > 0'] )
-    if total_submissions > 0
-      return (total_scored / total_submissions) >= 0.5 ? true : false
-    else
-      return false 
-    end
+ 
+    return ((total_scored.to_f / total_submissions.to_f) >= 0.5) ? true : false
+    #if (total_scored.to_f / total_submissions.to_f) >= 0.5
+    #  return true
+    #else
+    #  return false
+    #end
+  
   end
   
 end
