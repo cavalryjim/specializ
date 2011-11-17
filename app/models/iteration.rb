@@ -27,7 +27,7 @@ class Iteration < ActiveRecord::Base
     end
     self.active = false
     
-    self.consensus = self.iteration_lists.average('avg_score')
+    self.consensus = self.iteration_lists.average('agreement')
     return self.save
   end
   
@@ -48,6 +48,10 @@ class Iteration < ActiveRecord::Base
       new_iteration_list.save
     end
     return new_iteration.id
+  end
+  
+  def num_submitted_lists
+    self.user_lists.count(:user_id, :distinct => true)
   end
   
 end
