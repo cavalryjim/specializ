@@ -3,7 +3,7 @@
 <%= form_tag(:controller => "topic_groups", :action => "staff_topic", :method => "post") do %>
 	Select particpation rate: <input name="percentage" size="5">%
 	<%= hidden_field_tag(:topic_id, @topic.id)  %>
-	<%= submit_tag("Staff Topic", :confirm => 'Staff the topic?') %>
+	<%= submit_tag("Staff Topic", :confirm => 'Staff the topic?', :disabled => @topic.topic_groups.size < 1 ) %>
 <% end %>
 
 <div>
@@ -30,5 +30,5 @@
 </div>
 
 <% if @topic.id != nil %>
-	<%= link_to 'New Assignment', new_topic_assignment_path(@topic)  %> 
+	<%= button_to 'New Assignment', new_topic_assignment_path(@topic), :disabled => @topic.topic_groups.size < 1  %> 
 <% end %>

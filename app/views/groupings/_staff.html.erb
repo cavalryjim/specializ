@@ -23,5 +23,5 @@
 </div>
 
 <% if @grouping.id != nil %>
-	<%= link_to 'Add user', grouping_path(@grouping)+'/new_user'  %>
+	<%= button_to 'Add user', grouping_path(@grouping)+'/new_user'  %>
 <% end %>
