@@ -43,6 +43,7 @@ class GroupingsController < ApplicationController
   # GET /groupings/1/edit
   def edit
     @grouping = Grouping.find(params[:id])
+    @groupings = Company.find(current_user.company_id).groupings
     @users = @grouping.users
   end
 

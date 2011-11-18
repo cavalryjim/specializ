@@ -19,6 +19,9 @@ class Grouping < ActiveRecord::Base
   has_and_belongs_to_many :users, :uniq => true
   has_many :topics, :through => :topic_groups
   has_many :topic_groups, :dependent => :destroy
+  
+  attr_accessible :name, :description, :company_id, :parent_id
+  #attr_protected :lft, :rgt
  
   validates :name, :presence => true
   validates :company_id, :presence => true
