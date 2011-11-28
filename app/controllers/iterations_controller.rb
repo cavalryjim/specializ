@@ -113,7 +113,7 @@ class IterationsController < ApplicationController
     end
   end
   
-  # JDavis this method closes the current iteration and computes
+  # JDavis: this method closes the current iteration.
   def close
     @iteration = Iteration.find(params[:id])
     @topic_group = TopicGroup.find(params[:topic_group_id])
@@ -129,6 +129,7 @@ class IterationsController < ApplicationController
     end
   end
   
+  # JDavis: this method starts a new iteration.
   def start
     old_iteration = Iteration.find(params[:id])
     @topic_group = TopicGroup.find(params[:topic_group_id])

@@ -26,5 +26,7 @@
 
 
 <p>
-	<%= link_to 'Close topic group', '#', :confirm => 'This will close the topic group.  Are you sure?' %> <br />
+  <% if !@topic_group.iterations.last.active? %>
+	<%= button_to 'Close topic group', '#', :confirm => 'This will close the topic group.  Are you sure?' %> <br />
+  <% end %>
 </p>

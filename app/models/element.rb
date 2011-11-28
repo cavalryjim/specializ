@@ -39,7 +39,7 @@ class Element < ActiveRecord::Base
     iteration = Iteration.find(iteration_id)
     iteration_list = IterationList.find_or_create_by_element_id_and_iteration_id(self.id, iteration_id)
     user_lists = self.user_lists(:conditions => { :iteration_id => iteration_id })
-    if user_lists.size > 0
+    if user_lists.size > 0 && iteration.num_submitted_lists > 0
       total_submissions = iteration.num_submitted_lists
       sum = user_lists.sum('score')
       agreement = (sum * 20)  / total_submissions
