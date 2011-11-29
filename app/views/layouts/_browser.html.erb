@@ -15,6 +15,18 @@
 		</table>
 
 	</div>
+	<h3><a href="#">Closed Topics</a></h3>
+    <div>
+		<table>
+		<% @closed_topic_groups.each do |closed_topic_group| %>
+		  <tr>
+		    <td><%=link_to closed_topic_group.name, url_for([closed_topic_group, closed_topic_group.iterations.last]) %> </td>
+		
+		  </tr>
+		<% end %>
+		</table>
+
+	</div>
     <h3><a href="#">Managed Topics</a></h3>
     <div>
 		<table>

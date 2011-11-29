@@ -21,6 +21,7 @@ Specializ::Application.routes.draw do
   match '/topic_groups/import_elements', :to => 'topic_groups#import_elements'
   match '/topic_groups/assign_topic', :to => 'topic_groups#assign_topic'
   match '/topic_groups/staff_topic', :to => 'topic_groups#staff_topic'
+  #match '/topic_groups/:id/close', :to => 'topic_groups#close'
   match '/topic_groups/:topic_group_id/iterations/:id/close', :to => 'iterations#close'
   match '/topic_groups/:topic_group_id/iterations/:id/start', :to => 'iterations#start'
   post '/topics', :to => 'topics#create'
@@ -32,6 +33,7 @@ Specializ::Application.routes.draw do
   match '/groupings/:id/add_user', :to => 'groupings#add_user'
    
   resources :topic_groups do
+    post 'close'
     resources :iterations do
       post 'close'
       post 'start'
@@ -55,7 +57,7 @@ Specializ::Application.routes.draw do
     #get :autocomplete_company_name, :on => :collection
   end
   
-  resources :me, :elements, :iterations, :assignments, :topic_groups, :topics, :users, :groupings, :companies, :elements
+  #resources :me, :elements, :iterations, :assignments, :topic_groups, :topics, :users, :groupings, :companies, :elements
   
   root :to => 'me#home'
 

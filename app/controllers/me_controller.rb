@@ -4,6 +4,7 @@ class MeController < ApplicationController
   def home
     
     @my_topic_groups = current_user.my_topic_groups
+    @closed_topic_groups = current_user.closed_topic_groups
     @managed_topic_groups = current_user.managed_topic_groups
     
   end

@@ -91,6 +91,21 @@ class TopicGroupsController < ApplicationController
     end
   end
   
+  # POST /topic_groups/1/close
+  def close
+    @topic_group = TopicGroup.find(params[:topic_group_id])
+    
+    respond_to do |format|
+      if @topic_group.close
+        format.html { redirect_to topic_group_iteration_url(@topic_group, @topic_group.iterations.last), :notice => 'Topic group was successfully closed.' }
+        format.xml  { head :ok }
+      else
+        format.html { render :action => "edit" }
+        format.xml  { render :xml => @topic_group.errors, :status => :unprocessable_entity }
+      end
+    end
+  end
+  
   # JDavis: need to add topic_groups that do not exist and remove any that were 'unchecked' in _configure.html.erb
   def assign_topic
     @topic = Topic.find(params[:topic_id])
@@ -173,7 +188,6 @@ class TopicGroupsController < ApplicationController
       format.html { redirect_to topic_group_iteration_url(@topic_group, @iteration), :notice => 'List was successfully imported.' }
       format.xml  { head :ok }
     end
-    
   end
   
 end

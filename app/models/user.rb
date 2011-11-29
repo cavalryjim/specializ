@@ -46,7 +46,11 @@ class User < ActiveRecord::Base
   has_many  :my_topic_groups, :through => :assignments,
             :class_name => "TopicGroup",
             :source => :topic_group,
-            :conditions => ['assignments.participating = ?', true]
+            :conditions => {'assignments.participating' => true, 'active' => true}
+  has_many  :closed_topic_groups, :through => :assignments,
+            :class_name => "TopicGroup",
+            :source => :topic_group,
+            :conditions => {'assignments.participating' => true, 'active' => false}
   
   # Setup accessible (or protected) attributes for your model
   attr_accessible :first_name, :last_name, :email, :active, :company_id, 

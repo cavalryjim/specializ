@@ -38,9 +38,14 @@ class TopicGroup < ActiveRecord::Base
   
   after_create :create_first_iteration
   
-  #def selected(topic_id, grouping_id)
-  #  return ["2", "5"]
-  #end
+  def close
+    self.iterations.where('active = true').each do |iteration|
+      iteration.close
+    end
+    
+    self.active = false
+    return self.save
+  end
   
   private
     

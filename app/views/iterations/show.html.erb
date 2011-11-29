@@ -1,6 +1,6 @@
 
 <p>
-  <%= @topic_group.name %> <br/>
+  <%= @topic_group.active? ? @topic_group.name : @topic_group.name + ' (closed)' %> <br/>
 </p>
 
 

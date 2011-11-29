@@ -1,32 +1,44 @@
-<p>
-	Users assigned to this topic group: <%= @topic_group.users.count %>  <br/>
-	User that have submitted input: <%= @iteration.num_submitted_lists %>
+<% if @topic_group.active %>
+	<p>
+		Users assigned to this topic group: <%= @topic_group.users.count %>  <br/>
+		User that have submitted input: <%= @iteration.num_submitted_lists %>
+	</p>
 
-</p>
-
-<p>
-  <% if @iteration.active %>
-	<%= button_to 'Close current iteration', topic_group_iteration_close_path(@topic_group, @topic_group.iterations.last ), :confirm => 'Close the current iteration?' %> <br />
-  <% elsif @iteration == @topic_group.iterations.last %>
-	<%= button_to 'Start new iteration', topic_group_iteration_start_path(@topic_group, @topic_group.iterations.last ), :confirm => 'Start a new iteration?' %> <br />
-  <% end %>
+	<p>
+	  <% if @iteration.active %>
+		<%= button_to 'Close current iteration', topic_group_iteration_close_path(@topic_group, @topic_group.iterations.last ), :confirm => 'Close the current iteration?' %> <br />
+	  <% elsif @iteration == @topic_group.iterations.last %>
+		<%= button_to 'Start new iteration', topic_group_iteration_start_path(@topic_group, @topic_group.iterations.last ), :confirm => 'Start a new iteration?' %> <br />
+	  <% end %>
+		
+	</p>
 	
-</p>
+	
+	<%= form_tag({ :controller => "topic_groups", :action => "import_elements"}, {:multipart => true} ) do %>
+	
+		Upload elements: <%= file_field_tag 'file' %>
+	
+		<%= hidden_field_tag(:iteration_id, @iteration.id) %>
+		<%= submit_tag("Submit List", :confirm => 'Upload list from spreadsheet?', :disabled => !@active) %>
+	<% end %>
+	
+	
+	
+	
+	<p>
+	  <% if !@topic_group.iterations.last.active? %>
+		<%= button_to 'Close topic group', topic_group_close_path(@topic_group), :confirm => 'This will close the topic group.  Are you sure?' %> <br />
+	  <% end %>
+	</p>
+<% else %>
+	
+	<p>
+		This topic group is closed. The consensus goal for this group was <%= @topic_group.goal %>. The highest consensus reached was <%= @topic_group.iterations.maximum('consensus') %>.  
+		
+	</p>
+	<p>
+		<%= button_to 'Download final list', '#' %>
+	</p>
 
-
-<%= form_tag({ :controller => "topic_groups", :action => "import_elements"}, {:multipart => true} ) do %>
-
-	Upload elements: <%= file_field_tag 'file' %>
-
-	<%= hidden_field_tag(:iteration_id, @iteration.id) %>
-	<%= submit_tag("Submit List", :confirm => 'Upload list from spreadsheet?', :disabled => !@active) %>
 <% end %>
 
-
-
-
-<p>
-  <% if !@topic_group.iterations.last.active? %>
-	<%= button_to 'Close topic group', '#', :confirm => 'This will close the topic group.  Are you sure?' %> <br />
-  <% end %>
-</p>
