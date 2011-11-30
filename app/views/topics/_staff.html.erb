@@ -30,5 +30,5 @@
 </div>
 
 <% if @topic.id != nil %>
-	<%= button_to 'New Assignment', new_topic_assignment_path(@topic), :disabled => @topic.topic_groups.size < 1  %> 
+	<%= button_to 'New Assignment', new_topic_assignment_path(@topic), :method => :get, :disabled => @topic.topic_groups.size < 1  %> 
 <% end %>

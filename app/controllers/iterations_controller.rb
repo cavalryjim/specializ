@@ -66,15 +66,8 @@ class IterationsController < ApplicationController
   def create
     @iteration = Iteration.new(params[:iteration])
 
-    respond_to do |format|
-      if @iteration.save
-        format.html { redirect_to(@iteration, :notice => 'Iteration was successfully created.') }
-        format.xml  { render :xml => @iteration, :status => :created, :location => @iteration }
-      else
-        format.html { render :action => "new" }
-        format.xml  { render :xml => @iteration.errors, :status => :unprocessable_entity }
-      end
-    end
+    flash[:notice] = 'Iteration was successfully created.' if @iteration.save
+    respond_with(@iteration)
   end
 
   # PUT /iterations/1
@@ -83,15 +76,12 @@ class IterationsController < ApplicationController
     @iteration = Iteration.find(params[:id])
     @topic_group = TopicGroup.find(params[:topic_group_id])
 
-    respond_to do |format|
-      if @iteration.update_attributes(params[:iteration])
-        format.html { redirect_to topic_group_iteration_url(@topic_group, @iteration), :notice => 'Iteration was successfully updated.' }
-        format.xml  { head :ok }
-      else
-        format.html { render :action => "edit" }
-        format.xml  { render :xml => @iteration.errors, :status => :unprocessable_entity }
-      end
+    flash[:notice] = 'Iteration was successfully updated.' if @iteration.update_attributes(params[:iteration])
+    respond_with(@iteration) do |format|
+      format.html { redirect_to topic_group_iteration_url(@topic_group, @iteration) }
     end
+    
+    
   end
 
   # DELETE /iterations/1
@@ -108,14 +98,9 @@ class IterationsController < ApplicationController
     @iteration = Iteration.find(params[:id])
     @topic_group = TopicGroup.find(params[:topic_group_id])
     
-    respond_to do |format|
-      if @iteration.close
-        format.html { redirect_to topic_group_iteration_url(@topic_group, @iteration)+'#tabs-4', :notice => 'Iteration was successfully closed.' }
-        format.xml  { head :ok }
-      else
-        format.html { render :action => "show" }
-        format.xml  { render :xml => @iteration.errors, :status => :unprocessable_entity }
-      end
+    flash[:notice] = 'Iteration was successfully closed.' if @iteration.close
+    respond_with(@iteration) do |format|
+      format.html { redirect_to topic_group_iteration_url(@topic_group, @iteration)+'#tabs-4' }
     end
   end
   
@@ -124,14 +109,11 @@ class IterationsController < ApplicationController
     old_iteration = Iteration.find(params[:id])
     @topic_group = TopicGroup.find(params[:topic_group_id])
     @iteration = Iteration.find(old_iteration.start_new_iteration)
-    #@iteration = Iteration.new
-    #@iteration.num = old_iteration.num + 1
-    #@iteration.active = true
-    #@iteration.topic_group_id = @topic_group.id
+    
+    flash[:notice] = 'Iteration was successfully started.' if @iteration
     
     respond_to do |format|
-      format.html { redirect_to topic_group_iteration_url(@topic_group, @iteration)+'#tabs-4', :notice => 'New iteration was successfully started.' }
-      format.xml  { head :ok }
+      format.html { redirect_to topic_group_iteration_url(@topic_group, @iteration)+'#tabs-4' }
     end
   end
  

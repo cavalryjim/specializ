@@ -21,14 +21,13 @@ Specializ::Application.routes.draw do
   match '/topic_groups/import_elements', :to => 'topic_groups#import_elements'
   match '/topic_groups/assign_topic', :to => 'topic_groups#assign_topic'
   match '/topic_groups/staff_topic', :to => 'topic_groups#staff_topic'
-  #match '/topic_groups/:id/close', :to => 'topic_groups#close'
   match '/topic_groups/:topic_group_id/iterations/:id/close', :to => 'iterations#close'
   match '/topic_groups/:topic_group_id/iterations/:id/start', :to => 'iterations#start'
   post '/topics', :to => 'topics#create'
   match '/topics', :to => 'topics#edit'
   post '/groupings', :to => 'groupings#create'
   match '/groupings', :to => 'groupings#edit'
-  match '/groupings/:grouping_id/users/:id/remove_user', :to => 'groupings#remove_user'
+  #match '/groupings/:grouping_id/users/:id/remove_user', :to => 'groupings#remove_user'
   match '/groupings/:id/new_user', :to => 'groupings#new_user'
   match '/groupings/:id/add_user', :to => 'groupings#add_user'
    
@@ -49,7 +48,9 @@ Specializ::Application.routes.draw do
   
   resources :groupings do
     get :autocomplete_user_last_name, :on => :collection
-    resources :users 
+    resources :users do
+      post 'remove_user'
+    end
     
   end
   

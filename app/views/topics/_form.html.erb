@@ -32,7 +32,7 @@
     <%= f.text_field :due_days, :size => 5 %> days
   </div>
   <div class="field">
-    <%= f.label :opt_out %>
+    <%= f.label 'Allow participants to opt out?' %>
     <%= f.check_box :opt_out %>
   </div>
   
@@ -40,3 +40,5 @@
     <%= f.submit %>
   </div>
 <% end %>
+
+<%= button_to 'Close Topic', '#', %>
