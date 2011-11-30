@@ -5,15 +5,14 @@ class IterationsController < ApplicationController
   before_filter :authenticate_user!
   helper_method :sort_column, :sort_direction
   
+  respond_to :html, :xml, :json
+  
   # GET /iterations
   # GET /iterations.xml
   def index
     @iterations = Iteration.all
 
-    respond_to do |format|
-      format.html # index.html.erb
-      format.xml  { render :xml => @iterations }
-    end
+    respond_with(@iterations)
   end
 
   # GET /iterations/1
@@ -46,10 +45,7 @@ class IterationsController < ApplicationController
                             :height => 240, 
                             :max_value => 100)
 
-    respond_to do |format|
-      format.html # show.html.erb
-      format.xml  { render :xml => @iteration.elements }
-    end
+    respond_with(@iteration)
   end
 
   # GET /iterations/new
@@ -57,10 +53,7 @@ class IterationsController < ApplicationController
   def new
     @iteration = Iteration.new
 
-    respond_to do |format|
-      format.html # new.html.erb
-      format.xml  { render :xml => @iteration }
-    end
+    respond_with(@iteration)
   end
 
   # GET /iterations/1/edit
@@ -107,10 +100,7 @@ class IterationsController < ApplicationController
     @iteration = Iteration.find(params[:id])
     @iteration.destroy
 
-    respond_to do |format|
-      format.html { redirect_to(iterations_url) }
-      format.xml  { head :ok }
-    end
+    respond_with(@iteration)
   end
   
   # JDavis: this method closes the current iteration.
