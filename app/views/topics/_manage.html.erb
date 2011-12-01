@@ -1,0 +1,23 @@
+<div>
+	<table id="topic_groups_table">
+	 <thead>
+	  <tr>
+	    <th>Topic Groups</th>
+		<th>Goal</th>
+		<th>Num of Iterations</th>
+		<th>Current Consensus</th>
+	    
+	  </tr>
+	 </thead>
+	 <tbody>
+		<% @topic.topic_groups.each do |topic_group| %>
+		  <tr>
+		    <td><%= topic_group.name %></td>
+		    <td><%= topic_group.goal %></td>
+			<td><%= topic_group.iterations.count %></td>
+			<td><%= topic_group.iterations.last.consensus %></td>
+		  </tr>
+		<% end %>
+	 </tbody>
+	</table>
+</div>
