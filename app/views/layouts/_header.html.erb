@@ -2,7 +2,7 @@
   
   <%= link_to logo, root_path %>
 
-  <nav class="round">
+  <nav>
     <ul>
 	 <% if user_signed_in? %>
 	  	<li><%= link_to "Me", me_path %></li>
@@ -18,13 +18,16 @@
 		<% if can? :manage, :all && current_user.email.split('@').last == 'peoplenetz.com' %>
 		  <li><%= link_to "Peoplenetz", admin_path %></li>
 		<% end %>
-		  <li><%= link_to "Sign out", destroy_user_session_path, :method => :delete %></li>
-		  <li> Signed in as <%= current_user.email %></li>
 	 <% else %>
 	  	<li><%= link_to "Sign up", new_user_registration_path %> or <%= link_to "sign in", new_user_session_path %> </li>
 	 <% end %>
     </ul>
-
-
+	<% if user_signed_in? %>
+	  <div id='email'>
+		<%= link_to "Sign out", destroy_user_session_path, :method => :delete %>
+		Signed in as <%= current_user.email %>
+	  </div>
+	<% end %>
   </nav>
+
 </header>
