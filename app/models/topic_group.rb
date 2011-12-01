@@ -37,6 +37,7 @@ class TopicGroup < ActiveRecord::Base
   validates :grouping_id, :presence => true
   
   after_create :create_first_iteration
+  accepts_nested_attributes_for :iterations
   
   def close
     self.iterations.where('active = true').each do |iteration|
@@ -45,6 +46,25 @@ class TopicGroup < ActiveRecord::Base
     
     self.active = false
     return self.save
+  end
+  
+  def bar_chart
+    consensus_data = self.iterations.map { |i| i.consensus }
+    x_axis = self.iterations.map { |a| a.num.to_s }
+    y_axis = [0, 10, 20, 30, 40, 50, 60, 70, 80, 90, 100]
+    bar_chart = Gchart.bar(:title => "Consensus Levels",
+                            :title_alignment => :left,
+                            :title_size => 15,
+                            :data => consensus_data, 
+                            :bg => 'efefef',
+                            :bar_colors => ['FF0000', '00FF00'],
+                            :bar_width_and_spacing => '25,6',
+                            :axis_with_labels => ['x', 'y'],
+                            :axis_labels => [x_axis, y_axis],
+                            :legend => ["Consensus not reached", "Consensus goal reached"],
+                            :width => 500,
+                            :height => 240, 
+                            :max_value => 100)
   end
   
   private

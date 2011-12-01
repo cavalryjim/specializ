@@ -41,5 +41,9 @@ module Specializ
     
     # JDavis: this is part of the Janrain authentication service
     #RPXNow.api_key = "d96ebcb53031a1ae673f307b91c29d62a06a42ba"
+    
+    # JDavis: adding presenters to simplify & declutter...or not.
+    config.autoload_paths += [config.root.join("app/presenters")]
+
   end
 end

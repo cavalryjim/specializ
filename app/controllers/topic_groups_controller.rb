@@ -1,6 +1,7 @@
 class TopicGroupsController < ApplicationController
   before_filter :authenticate_user!
   
+  respond_to :html
   
   # GET /topic_groups
   # GET /topic_groups.xml
@@ -68,14 +69,9 @@ class TopicGroupsController < ApplicationController
   def update
     @topic_group = TopicGroup.find(params[:id])
 
-    respond_to do |format|
-      if @topic_group.update_attributes(params[:topic_group])
-        format.html { redirect_to(@topic_group, :notice => 'Topic group was successfully updated.') }
-        format.xml  { head :ok }
-      else
-        format.html { render :action => "edit" }
-        format.xml  { render :xml => @topic_group.errors, :status => :unprocessable_entity }
-      end
+    flash[:notice] = 'Topic Group was successfully updated.' if @topic_group.update_attributes(params[:topic_group])
+    respond_with(@topic_group) do |format|
+      format.html { redirect_to edit_topic_path(@topic_group.topic_id)+'#tabs-4' }
     end
   end
 

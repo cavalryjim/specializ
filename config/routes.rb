@@ -41,6 +41,8 @@ Specializ::Application.routes.draw do
   end
   
   resources :topics do
+    resources :topic_groups
+    
     resources :assignments do
       get :autocomplete_user_last_name, :on => :collection
     end
@@ -50,13 +52,13 @@ Specializ::Application.routes.draw do
     get :autocomplete_user_last_name, :on => :collection
     resources :users do
       post 'remove_user'
-    end
-    
+    end 
   end
   
   resources :users do
     #get :autocomplete_company_name, :on => :collection
   end
+  
   
   #resources :me, :elements, :iterations, :assignments, :topic_groups, :topics, :users, :groupings, :companies, :elements
   

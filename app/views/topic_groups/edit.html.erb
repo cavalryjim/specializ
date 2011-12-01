@@ -1,6 +1,8 @@
-<h1>Editing topic_group</h1>
+<h2>Editing: <%= @topic_group.name %></h2>
+
+<img src= <%= @topic_group.bar_chart %> />
 
 <%= render 'form' %>
 
-<%= link_to 'Show', @topic_group %> |
-<%= link_to 'Back', topic_groups_path %>
+
+<%= link_to 'Back', edit_topic_path(@topic_group.topic_id)+'#tabs-4' %>

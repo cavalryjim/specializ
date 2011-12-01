@@ -12,10 +12,6 @@
   <% end %>
 
   <div class="field">
-    <%= f.label :name %><br />
-    <%= f.text_field :name %>
-  </div>
-  <div class="field">
     <%= f.label :goal %><br />
     <%= f.text_field :goal %>
   </div>
@@ -26,18 +22,6 @@
   <div class="field">
     <%= f.label :update_frequency %><br />
     <%= f.text_field :update_frequency %>
-  </div>
-  <div class="field">
-    <%= f.label :elements_spreadsheet %><br />
- 	<%= f.file_field :elements_spreadsheet %>
-  </div>
-  <div class="field">
-    <%= f.label :topic_id %><br />
-    <%= f.select :topic_id, Topic.select('id, name').collect { |t| [t.name, t.id] }%>
-  </div>
-  <div class="field">
-    <%= f.label :grouping_id %><br />
-    <%= f.select :grouping_id, nested_set_options(Grouping, @grouping) {|i| "#{'-' * i.level} #{i.name}" } %>
   </div>
   <div class="actions">
     <%= f.submit %>

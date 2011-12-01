@@ -1,5 +1,5 @@
 class IterationsController < ApplicationController
-  require 'gchart'
+  #require 'gchart'
   require 'spreadsheet'
   
   before_filter :authenticate_user!
@@ -24,26 +24,11 @@ class IterationsController < ApplicationController
     @topic = Topic.find(@topic_group.topic_id)
     #@elements = @iteration.elements.order(sort_column + ' ' + sort_direction).paginate(:per_page => 5, :page => params[:page]) 
     @elements = @iteration.elements
+    
     # JDavis: if the iteration is active, check to see it the user has submitted.
     @active = @iteration.active ? current_user.submitted_list?(@iteration.id) : false
     @manager = current_user.manager?(@topic_group.id)
     @participating_users = @topic_group.participating_users
-    consensus_data = @iterations.map { |i| i.consensus }
-    x_axis = @iterations.map { |a| a.num.to_s }
-    y_axis = [0, 10, 20, 30, 40, 50, 60, 70, 80, 90, 100]
-    @bar_chart = Gchart.bar(:title => "Consensus Levels",
-                            :title_alignment => :left,
-                            :title_size => 15,
-                            :data => consensus_data, 
-                            :bg => 'efefef',
-                            :bar_colors => ['FF0000', '00FF00'],
-                            :bar_width_and_spacing => '25,6',
-                            :axis_with_labels => ['x', 'y'],
-                            :axis_labels => [x_axis, y_axis],
-                            :legend => ["Consensus not reached", "Consensus goal reached"],
-                            :width => 500,
-                            :height => 240, 
-                            :max_value => 100)
 
     respond_with(@iteration)
   end
