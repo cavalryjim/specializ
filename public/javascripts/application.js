@@ -8,6 +8,7 @@ $(function() {
 	$( "#grouping" ).multiselect({header: false}); // select widget in the manager module's configuration tab
 	$( "#staffing_table" ).dataTable(); // datatable in the manager module's staffing tab
 	$( "#user_table" ).dataTable(); // datatable in the admin module
+	$( "#member_table" ).dataTable(); // datatable listing the other user participating in a topic
 	
 	// JDavis: this function responds to the dropdown selection on the manager page and navigates to the select topic.
 	$('#topic_select').change(function() {
