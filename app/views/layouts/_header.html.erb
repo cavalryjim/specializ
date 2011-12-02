@@ -23,10 +23,10 @@
 	 <% end %>
     </ul>
 	<% if user_signed_in? %>
-	  <div id='email'>
+	  
 		<%= link_to "Sign out", destroy_user_session_path, :method => :delete %>
 		Signed in as <%= current_user.email %>
-	  </div>
+	 
 	<% end %>
   </nav>
 
