@@ -58,12 +58,13 @@ a:visited {
 
 /* Navigation */
 
-nav {
-  float: right;
-}
+
 
 nav {
   background-color: #fa1;
+  
+  float: right;
+  top: 0;
   padding: 0 0.7em;
   white-space: nowrap;
 }

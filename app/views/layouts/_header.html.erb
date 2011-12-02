@@ -1,4 +1,4 @@
-<header>
+<header class="round">
   
   <%= link_to logo, root_path %>
 
@@ -18,16 +18,14 @@
 		<% if can? :manage, :all && current_user.email.split('@').last == 'peoplenetz.com' %>
 		  <li><%= link_to "Peoplenetz", admin_path %></li>
 		<% end %>
+		<li> Signed in as <%= current_user.email %></li>
+		<li><%= link_to "Sign out", destroy_user_session_path, :method => :delete %></li>
 	 <% else %>
 	  	<li><%= link_to "Sign up", new_user_registration_path %> or <%= link_to "sign in", new_user_session_path %> </li>
 	 <% end %>
     </ul>
-	<% if user_signed_in? %>
-	  
-		<%= link_to "Sign out", destroy_user_session_path, :method => :delete %>
-		Signed in as <%= current_user.email %>
 	 
-	<% end %>
   </nav>
+
 
 </header>
