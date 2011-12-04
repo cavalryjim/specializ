@@ -6,9 +6,26 @@ $(function() {
 	$( "#hr_tabs" ).tabs(); // tabs used in the HR module
 	$( "#me_tabs" ).tabs(); // tabs used in the Me module
 	$( "#grouping" ).multiselect({header: false}); // select widget in the manager module's configuration tab
-	$( "#staffing_table" ).dataTable(); // datatable in the manager module's staffing tab
-	$( "#user_table" ).dataTable(); // datatable in the admin module
-	$( "#member_table" ).dataTable(); // datatable listing the other user participating in a topic
+	
+	$( "#staffing_table" ).dataTable({ // datatable in the manager module's staffing tab
+		"bJQueryUI": true,
+        "sPaginationType": "full_numbers"
+	}); 
+	
+	$( "#user_table" ).dataTable({ // datatable in the admin module
+		"bJQueryUI": true,
+        "sPaginationType": "full_numbers"
+	}); 
+	
+	$( "#member_table" ).dataTable({ // datatable listing the other user participating in a topic
+		"bJQueryUI": true,
+        "sPaginationType": "full_numbers"
+	}); 
+	
+	$( "#topic_groups_table" ).dataTable({ // datatable listing the topic_groups belonging to a topic
+		"bJQueryUI": true,
+        "sPaginationType": "full_numbers"
+	}); 
 	
 	// JDavis: this function responds to the dropdown selection on the manager page and navigates to the select topic.
 	$('#topic_select').change(function() {
@@ -39,5 +56,8 @@ $(function() {
 	
 	// JDavis: for some reason, these two lines must come last or else shit breaks.
 	$( "#rating_table input.jdstar" ).rating(); // JDavis: this line must come before staffing_table dataTable()
-	$( "#rating_table" ).dataTable(); // datatable where users rate the elements
+	$( "#rating_table" ).dataTable({ // datatable where users rate the elements
+        "bJQueryUI": true,
+        "sPaginationType": "full_numbers"
+    }); 
 });
