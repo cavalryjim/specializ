@@ -143,10 +143,12 @@ class TopicGroupsController < ApplicationController
       users = group.users.order("RAND()").limit((group.users.count*percentage).ceil)
       
       users.each do |user|
-        assignment = Assignment.find_by_topic_group_id_and_user_id(topic_group.id, user.id) || Assignment.new(:topic_group_id => topic_group.id, :user_id => user.id)
+        assignment = Assignment.find_or_initialize_by_topic_group_id_and_user_id(topic_group.id, user.id)
         assignment.manager = assignment.manager || false
         assignment.participating = true
-        if !assignment.save
+        if assignment.save
+          user.notify_assignment(topic_group)
+        else
           new_notice = 'There was a problem staffing this topic.'
         end
       end

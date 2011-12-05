@@ -9,11 +9,10 @@ class IterationsController < ApplicationController
   
   # GET /iterations
   # GET /iterations.xml
-  def index
-    @iterations = Iteration.all
-
-    respond_with(@iterations)
-  end
+  #def index
+  #  @iterations = Iteration.all
+  #  respond_with(@iterations)
+  #end
 
   # GET /iterations/1
   # GET /iterations/1.xml
@@ -35,11 +34,10 @@ class IterationsController < ApplicationController
 
   # GET /iterations/new
   # GET /iterations/new.xml
-  def new
-    @iteration = Iteration.new
-
-    respond_with(@iteration)
-  end
+  #def new
+  #  @iteration = Iteration.new
+  #  respond_with(@iteration)
+  #end
 
   # GET /iterations/1/edit
   def edit
@@ -48,12 +46,11 @@ class IterationsController < ApplicationController
 
   # POST /iterations
   # POST /iterations.xml
-  def create
-    @iteration = Iteration.new(params[:iteration])
-
-    flash[:notice] = 'Iteration was successfully created.' if @iteration.save
-    respond_with(@iteration)
-  end
+  #def create
+  #  @iteration = Iteration.new(params[:iteration])
+  #  flash[:notice] = 'Iteration was successfully created.' if @iteration.save
+  #  respond_with(@iteration)
+  #end
 
   # PUT /iterations/1
   # PUT /iterations/1.xml

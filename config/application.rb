@@ -44,6 +44,10 @@ module Specializ
     
     # JDavis: adding presenters to simplify & declutter...or not.
     config.autoload_paths += [config.root.join("app/presenters")]
+    
+    # JDavis: setting the default host for links embedded in emails
+    config.action_mailer.default_url_options = { :host => "localhost:3000" }
+
 
   end
 end

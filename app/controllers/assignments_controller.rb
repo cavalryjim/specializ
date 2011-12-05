@@ -48,10 +48,14 @@ class AssignmentsController < ApplicationController
   # POST /assignments.xml
   def create
     @topic = Topic.find(params[:topic_id])
-    @assignment = Assignment.new(params[:assignment])
+    @assignment = Assignment.find_or_initialize_by_topic_group_id_and_user_id(params[:assignment])
+    #@assignment = Assignment.new(params[:assignment])
+    topic_group = TopicGroup.find(@assignment.topic_group_id)
+    user = User.find(@assignment.user_id)
     
     respond_to do |format|
       if @assignment.save
+        user.notify_assignment(topic_group)
         format.html { redirect_to edit_topic_path(@topic)+"#tabs-3", :notice => 'Assignment was successfully created.' }
         format.xml  { render :xml => @assignment, :status => :created, :location => @assignment }
       else

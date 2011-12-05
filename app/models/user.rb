@@ -103,13 +103,8 @@ class User < ActiveRecord::Base
     end
   end
   
-  #def before_rpx_success(rpx_user)
-    # Do something with rpx_user...
-  #end
-  
-  #def before_rpx_auto_create(rpx_user)
-    # Do something with rpx_user
-  #end
+  def notify_assignment(topic_group)
+    UserMailer.new_assignment(self, topic_group).deliver
+  end
 
-  
 end
