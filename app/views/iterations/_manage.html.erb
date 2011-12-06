@@ -12,8 +12,7 @@
 	  <% end %>
 		
 	</p>
-	
-	
+
 	<%= form_tag({ :controller => "topic_groups", :action => "import_elements"}, {:multipart => true} ) do %>
 	
 		Upload elements: <%= file_field_tag 'file' %>
@@ -21,9 +20,6 @@
 		<%= hidden_field_tag(:iteration_id, @iteration.id) %>
 		<%= submit_tag("Submit List", :confirm => 'Upload list from spreadsheet?', :disabled => !@active) %>
 	<% end %>
-	
-	
-	
 	
 	<p>
 	  <% if !@topic_group.iterations.last.active? %>

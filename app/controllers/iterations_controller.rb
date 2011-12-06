@@ -25,7 +25,7 @@ class IterationsController < ApplicationController
     @elements = @iteration.elements
     
     # JDavis: if the iteration is active, check to see it the user has submitted.
-    @active = @iteration.active ? current_user.submitted_list?(@iteration.id) : false
+    @active = @iteration.active ? !current_user.submitted_list?(@iteration.id) : false
     @manager = current_user.manager?(@topic_group.id)
     @participating_users = @topic_group.participating_users
 
