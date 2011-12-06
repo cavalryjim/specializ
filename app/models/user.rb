@@ -106,5 +106,9 @@ class User < ActiveRecord::Base
   def notify_assignment(topic_group)
     UserMailer.new_assignment(self, topic_group).deliver
   end
+  
+  def notify_iteration(topic_group)
+    UserMailer.iteration_start(self, topic_group).deliver
+  end
 
 end

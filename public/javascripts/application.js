@@ -55,7 +55,7 @@ $(function() {
 	});
 	
 	// JDavis: for some reason, these two lines must come last or else shit breaks.
-	$( "#rating_table input.jdstar" ).rating(); // JDavis: this line must come before staffing_table dataTable()
+	$( "#rating_table input.jdstar" ).rating(); // JDavis: this line must come before rating_table dataTable()
 	$( "#rating_table" ).dataTable({ // datatable where users rate the elements
         "bJQueryUI": true,
         "sPaginationType": "full_numbers"

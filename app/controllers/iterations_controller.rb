@@ -3,7 +3,7 @@ class IterationsController < ApplicationController
   require 'spreadsheet'
   
   before_filter :authenticate_user!
-  helper_method :sort_column, :sort_direction
+  #helper_method :sort_column, :sort_direction
   
   respond_to :html, :xml, :json
   
@@ -92,6 +92,10 @@ class IterationsController < ApplicationController
     @topic_group = TopicGroup.find(params[:topic_group_id])
     @iteration = Iteration.find(old_iteration.start_new_iteration)
     
+    @topic_group.users.each do |user|
+      user.notify_iteration(@topic_group)
+    end
+    
     flash[:notice] = 'Iteration was successfully started.' if @iteration
     
     respond_to do |format|
@@ -102,12 +106,12 @@ class IterationsController < ApplicationController
   
   private
   
-  def sort_column
-    Element.column_names.include?(params[:sort]) ? params[:sort] : "name"
-  end
+  #def sort_column
+  #  Element.column_names.include?(params[:sort]) ? params[:sort] : "name"
+  #end
   
-  def sort_direction
-    %w[asc desc].include?(params[:direction]) ? params[:direction] : "asc"
-  end
+  #def sort_direction
+  #  %w[asc desc].include?(params[:direction]) ? params[:direction] : "asc"
+  #end
   
 end
