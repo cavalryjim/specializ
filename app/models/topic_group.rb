@@ -73,7 +73,7 @@ class TopicGroup < ActiveRecord::Base
       first_iteration = Iteration.new
       first_iteration.topic_group_id = self.id
       first_iteration.num = 1
-      first_iteration.active = true
+      first_iteration.active = false
       first_iteration.save
     end
   
