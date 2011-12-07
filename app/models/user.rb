@@ -97,9 +97,9 @@ class User < ActiveRecord::Base
   
   def submitted_list?(iteration_id)
     if UserList.find_by_user_id_and_iteration_id(self.id, iteration_id)
-      false
-    else
       true
+    else
+      false
     end
   end
   
