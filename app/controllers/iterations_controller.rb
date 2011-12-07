@@ -7,12 +7,6 @@ class IterationsController < ApplicationController
   
   respond_to :html, :xml, :json
   
-  # GET /iterations
-  # GET /iterations.xml
-  #def index
-  #  @iterations = Iteration.all
-  #  respond_with(@iterations)
-  #end
 
   # GET /iterations/1
   # GET /iterations/1.xml
@@ -23,34 +17,21 @@ class IterationsController < ApplicationController
     @topic = Topic.find(@topic_group.topic_id)
     #@elements = @iteration.elements.order(sort_column + ' ' + sort_direction).paginate(:per_page => 5, :page => params[:page]) 
     @elements = @iteration.elements
+    @participating_users = @topic_group.participating_users
+    @manager = current_user.manager?(@topic_group.id)
     
     # JDavis: if the iteration is active, check to see it the user has submitted.
     @active = @iteration.active ? !current_user.submitted_list?(@iteration.id) : false
-    @manager = current_user.manager?(@topic_group.id)
-    @participating_users = @topic_group.participating_users
 
     respond_with(@iteration)
   end
 
-  # GET /iterations/new
-  # GET /iterations/new.xml
-  #def new
-  #  @iteration = Iteration.new
-  #  respond_with(@iteration)
-  #end
 
   # GET /iterations/1/edit
-  def edit
-    @iteration = Iteration.find(params[:id])
-  end
-
-  # POST /iterations
-  # POST /iterations.xml
-  #def create
-  #  @iteration = Iteration.new(params[:iteration])
-  #  flash[:notice] = 'Iteration was successfully created.' if @iteration.save
-  #  respond_with(@iteration)
+  #def edit
+  #  @iteration = Iteration.find(params[:id])
   #end
+
 
   # PUT /iterations/1
   # PUT /iterations/1.xml
@@ -86,20 +67,21 @@ class IterationsController < ApplicationController
     end
   end
   
-  # JDavis: this method starts a new iteration.
+  # JDavis: this method starts an iteration by either reopening the last iteration or creating a new iteration.
   def start
-    old_iteration = Iteration.find(params[:id])
-    @topic_group = TopicGroup.find(params[:topic_group_id])
-    @iteration = Iteration.find(old_iteration.start_new_iteration)
+    topic_group = TopicGroup.find(params[:topic_group_id])
+    last_iteration = topic_group.iterations.last
     
-    @topic_group.users.each do |user|
-      user.notify_iteration(@topic_group)
+    new_iteration = last_iteration.user_lists.size > 0 ? last_iteration.start_new_iteration : last_iteration.reopen
+    
+    topic_group.users.each do |user|
+      user.notify_iteration(topic_group)
     end
     
-    flash[:notice] = 'Iteration was successfully started.' if @iteration
+    flash[:notice] = 'Iteration was successfully started.' if new_iteration
     
     respond_to do |format|
-      format.html { redirect_to topic_group_iteration_url(@topic_group, @iteration)+'#tabs-4' }
+      format.html { redirect_to topic_group_iteration_url(topic_group, new_iteration)+'#tabs-4' }
     end
   end
  

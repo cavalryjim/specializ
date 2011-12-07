@@ -1,11 +1,3 @@
-GIT
-  remote: git://github.com/cajun-code/datatables.git
-  revision: 2015141c1ea807a00072b2166c47dba3c5519d88
-  specs:
-    datatables (1.0.0)
-      jquery-rails
-      rails (>= 3.0.3)
-
 GEM
   remote: http://rubygems.org/
   specs:
@@ -223,7 +215,6 @@ DEPENDENCIES
   awesome_nested_set (~> 2.0.2)
   cancan
   carrierwave (~> 0.5.7)
-  datatables!
   devise (= 1.4.7)
   googlecharts
   jquery-rails

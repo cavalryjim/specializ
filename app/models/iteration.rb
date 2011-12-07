@@ -53,7 +53,13 @@ class Iteration < ActiveRecord::Base
       new_iteration_list.new_element = false
       new_iteration_list.save
     end
-    return new_iteration.id
+    return new_iteration
+  end
+  
+  def reopen
+    self.active = true
+    self.save
+    return self
   end
   
   def num_submitted_lists

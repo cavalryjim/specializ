@@ -1,5 +1,5 @@
 module ApplicationHelper
-  include Datatables::Helpers
+  #include Datatables::Helpers
 
   # Return a title on a per-page basis.
   def title

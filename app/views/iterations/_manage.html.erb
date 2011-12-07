@@ -1,11 +1,11 @@
 <% if @topic_group.active %>
 	<p>
 		Users assigned to this topic group: <%= @topic_group.users.count %>  <br/>
-		User that have submitted input: <%= @iteration.num_submitted_lists %>
+		User that have submitted input: <%= @topic_group.iterations.last.num_submitted_lists %>
 	</p>
 
 	<p>
-	  <% if @iteration.active %>
+	  <% if @topic_group.iterations.last.active %>
 		<%= button_to 'Close current iteration', topic_group_iteration_close_path(@topic_group, @topic_group.iterations.last ), :confirm => 'Close the current iteration?' %> <br />
 	  <% elsif @iteration == @topic_group.iterations.last %>
 		<%= button_to 'Start new iteration', topic_group_iteration_start_path(@topic_group, @topic_group.iterations.last ), :confirm => 'Start a new iteration?' %> <br />
