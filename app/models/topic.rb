@@ -27,7 +27,7 @@ class Topic < ActiveRecord::Base
   
   private
     
-    def set_company
-      self.company_id = @current_user.company_id
-    end
+    #def set_company
+    #  self.company_id = @current_user.company_id
+    #end
 end

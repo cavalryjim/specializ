@@ -49,10 +49,10 @@ class TopicGroup < ActiveRecord::Base
   end
   
   def bar_chart
-    below_goal = [] # array to hold iteration.consensus valuse that are below the topic_group.goal
-    above_goal = [] # array to hold iteration.consensus valuse that have reached the topic_group.goal
+    below_goal = [] # array to hold iteration.consensus values that are below the topic_group.goal
+    above_goal = [] # array to hold iteration.consensus values that have reached the topic_group.goal
     self.iterations.each do |iteration|
-      if iteration.consensus.to_f <= self.goal.to_f
+      if iteration.consensus.to_f < self.goal.to_f
         below_goal << iteration.consensus
         above_goal << nil
       else
