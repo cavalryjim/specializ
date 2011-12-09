@@ -5,7 +5,8 @@ $(function() {
 	$( "#manager_tabs" ).tabs(); // tabs used in the manager module
 	$( "#hr_tabs" ).tabs(); // tabs used in the HR module
 	$( "#me_tabs" ).tabs(); // tabs used in the Me module
-	$( "#grouping" ).multiselect({header: false}); // select widget in the manager module's configuration tab
+	//$( "#grouping" ).multiselect({header: false}); // select widget in the manager module's configuration tab
+	$( "#topic_groupings").multiselect({header: "Select groups that will participate"}).multiselectfilter(); // select widget in the manager module's setup tab
 	
 	$( "#staffing_table" ).dataTable({ // datatable in the manager module's staffing tab
 		"bJQueryUI": true,

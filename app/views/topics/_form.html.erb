@@ -19,6 +19,11 @@
     <%= f.label :description %><br />
     <%= f.text_area :description, :id => "description_area", :cols => 10, :rows => 5 %>
   </div>
+  <div class="field"
+	<%= f.label 'Participating Groups: ' %>
+	<%= f.select :groupings, nested_set_options(Grouping, @selected_groupings) {|i| "#{'-' * i.level} #{i.name}" }, { :multiple => true } %>
+
+  </div>
   <div class="field">
     <%= f.label :status %>
     <%= f.select(:status, [['Open', 1], ['Closed', 2], ['Archived', 3]])%>
