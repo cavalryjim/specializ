@@ -22,7 +22,8 @@
   <div class="field"
 	<%= f.label 'Participating Groups: ' %>
 	<%= f.select :groupings, nested_set_options(Grouping, @selected_groupings) {|i| "#{'-' * i.level} #{i.name}" }, { :multiple => true } %>
-
+	<%= select_tag(:groupings, options_for_select(nested_set_options(Grouping) {|i| "#{' -' * i.level} #{i.name}" }, 
+			:selected => @selected_groups ), { :multiple => true } ) %>
   </div>
   <div class="field">
     <%= f.label :status %>

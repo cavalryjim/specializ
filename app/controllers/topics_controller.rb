@@ -31,7 +31,7 @@ class TopicsController < ApplicationController
     @topic = Topic.new
     @assignments = []
     @selected_groups = []
-    
+    #flash[:notice] = @selected_groups
 
     respond_to do |format|
       format.html # new.html.erb {:notice => 'Topic was successfully created.'}
