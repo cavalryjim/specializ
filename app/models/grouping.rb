@@ -29,5 +29,18 @@ class Grouping < ActiveRecord::Base
   def fullname
     return self.self_and_ancestors.map(&:name).join("- ")
   end
+  
+  def add_to_topic(topic)
+    topic_group = TopicGroup.find_or_initialize_by_topic_id_and_grouping_id(topic.id, self.id)
+    topic_group.name = topic.name + ": " + self.fullname
+    topic_group.goal = topic.goal
+    topic_group.active = true
+    return topic_group.save  
+  end
+  
+  def remove_from_topic(topic_id)
+    topic_group = TopicGroup.find_by_topic_id_and_grouping_id(topic_id, self.id)
+    topic_group.destroy
+  end
 
 end

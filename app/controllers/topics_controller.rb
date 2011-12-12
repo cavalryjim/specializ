@@ -1,6 +1,8 @@
 class TopicsController < ApplicationController
   before_filter :authenticate_user!
   
+  respond_to :html, :xml, :json
+  
   # GET /topics
   # GET /topics.xml
   def index
@@ -18,10 +20,7 @@ class TopicsController < ApplicationController
     @topics = Topic.where(:company_id => current_user.company_id)
     @topic = Topic.find(params[:id])
 
-    respond_to do |format|
-      format.html # show.html.erb
-      format.xml  { render :xml => @topic }
-    end
+    respond_with(@topic)
   end
 
   # GET /topics/new
@@ -33,10 +32,7 @@ class TopicsController < ApplicationController
     @selected_groups = []
     #flash[:notice] = @selected_groups
 
-    respond_to do |format|
-      format.html # new.html.erb {:notice => 'Topic was successfully created.'}
-      format.xml  { render :xml => @topic }
-    end
+    respond_with(@topic)
   end
 
   # GET /topics/1/edit
@@ -46,43 +42,42 @@ class TopicsController < ApplicationController
     @current_user = current_user
     @assignments = Assignment.where(:topic_group_id => TopicGroup.where(:topic_id => @topic.id))
     @selected_groups = TopicGroup.where(:topic_id => @topic.id).map(&:grouping_id)
+    
+    respond_with(@topic)
   end
 
   # POST /topics
   # POST /topics.xml
   def create
     @topic = Topic.new(params[:topic])
-    @topics = Topic.where(:company_id => current_user.company_id)
     @topic.company_id = current_user.company_id
+    
+    if @topic.save
+      @topic.update_groupings(params[:groupings])
+      flash[:notice] = 'Topic was successfully created.' 
+    end
+    #@topics = Topic.where(:company_id => current_user.company_id)
     #@current_user = current_user
-    @assignments = []
+    #@assignments = []
     #@selected_groups = []
     
-    respond_to do |format|
-      if @topic.save
-        format.html { redirect_to edit_topic_path(@topic), {:notice => 'Topic was successfully created.'}}
-        format.xml  { render :xml => @topic, :status => :created, :location => @topic }
-      else
-        format.html { render :action => "new" }
-        format.xml  { render :xml => @topic.errors, :status => :unprocessable_entity }
-      end
-    end
+    respond_with(@topic)
   end
 
   # PUT /topics/1
   # PUT /topics/1.xml
   def update
     @topic = Topic.find(params[:id])
-
-    respond_to do |format|
-      if @topic.update_attributes(params[:topic])
-        format.html { redirect_to edit_topic_path(@topic), {:notice => 'Topic was successfully updated.'}}
-        format.xml  { head :ok }
-      else
-        format.html { render :action => "edit" }
-        format.xml  { render :xml => @topic.errors, :status => :unprocessable_entity }
-      end
+    #groupings = []
+    if @topic.update_attributes(params[:topic])
+      @topic.update_groupings(params[:groupings])
+      flash[:notice] = 'Topic was successfully updated.'
+    end  
+    
+    respond_with(@topic) do |format|
+      format.html { redirect_to edit_topic_path(@topic) }
     end
+    
   end
 
   # DELETE /topics/1
