@@ -1,7 +1,8 @@
 <% if @topic_group.active %>
 	<p>
-		Users assigned to this topic group: <%= @topic_group.users.count %>  <br/>
-		User that have submitted input in the most recent iteration: <%= @topic_group.iterations.last.num_submitted_lists %>
+		<img src= <%= @iteration.completion_meter(@topic_group.iterations.last.num_submitted_lists, @topic_group.users.count) %> /> <br/>
+		<b><%= @topic_group.iterations.last.num_submitted_lists %></b> 
+		out of <b><%= @topic_group.users.count %></b> users have submitted input during the last iteration. <br/>
 	</p>
 
 	<p>

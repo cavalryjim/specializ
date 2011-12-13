@@ -27,7 +27,7 @@ Specializ::Application.routes.draw do
   match '/topics', :to => 'topics#edit'
   post '/groupings', :to => 'groupings#create'
   match '/groupings', :to => 'groupings#edit'
-  #match '/groupings/:grouping_id/users/:id/remove_user', :to => 'groupings#remove_user'
+  #match '/groupings/:grouping_id/users/:id/remove', :to => 'groupings#remove'
   match '/groupings/:id/new_user', :to => 'groupings#new_user'
   match '/groupings/:id/add_user', :to => 'groupings#add_user'
    
@@ -51,7 +51,7 @@ Specializ::Application.routes.draw do
   resources :groupings do
     get :autocomplete_user_last_name, :on => :collection
     resources :users do
-      post 'remove_user'
+      post 'remove', :to => 'groupings#remove'
     end 
   end
   

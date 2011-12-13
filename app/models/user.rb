@@ -110,5 +110,13 @@ class User < ActiveRecord::Base
   def notify_iteration(topic_group)
     UserMailer.iteration_start(self, topic_group).deliver
   end
+  
+  def join_topic_group(topic_group)
+    assignment = Assignment.find_or_initialize_by_topic_group_id_and_user_id(topic_group.id, self.id)
+    assignment.manager = assignment.manager || false
+    assignment.participating = true
+    
+    self.notify_assignment(topic_group) if assignment.save
+  end
 
 end

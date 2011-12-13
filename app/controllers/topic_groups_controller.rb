@@ -19,10 +19,10 @@ class TopicGroupsController < ApplicationController
   def show
     @topic_group = TopicGroup.find(params[:id])
     @iterations = @topic_group.iterations
-    if !@iterations.empty?
-      @elements = @iterations.last.elements 
-    else
+    if @iterations.empty?
       @elements = []
+    else
+      @elements = @iterations.last.elements 
     end
      
 
@@ -103,6 +103,7 @@ class TopicGroupsController < ApplicationController
   end
   
   # JDavis: need to add topic_groups that do not exist and remove any that were 'unchecked' in _configure.html.erb
+  # JDavis: this method is no longer used...moved the call to the topic_controller and logic to the model layer.
   def assign_topic
     @topic = Topic.find(params[:topic_id])
     new_notice = 'Topic successfully configured!'
@@ -141,17 +142,18 @@ class TopicGroupsController < ApplicationController
     @topic_groups.each do |topic_group|
       group = Grouping.find(topic_group.grouping_id)
       users = group.users.order("RAND()").limit((group.users.count*percentage).ceil)
+      topic_group.staff(users)
       
-      users.each do |user|
-        assignment = Assignment.find_or_initialize_by_topic_group_id_and_user_id(topic_group.id, user.id)
-        assignment.manager = assignment.manager || false
-        assignment.participating = true
-        if assignment.save
-          user.notify_assignment(topic_group)
-        else
-          new_notice = 'There was a problem staffing this topic.'
-        end
-      end
+      #users.each do |user|
+      #  assignment = Assignment.find_or_initialize_by_topic_group_id_and_user_id(topic_group.id, user.id)
+      #  assignment.manager = assignment.manager || false
+      #  assignment.participating = true
+      #  if assignment.save
+      #    user.notify_assignment(topic_group)
+      #  else
+      #    new_notice = 'There was a problem staffing this topic.'
+      #  end
+      #end
     end
     
     redirect_to edit_topic_path(@topic)+"#tabs-3", {:notice => new_notice}

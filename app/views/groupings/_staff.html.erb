@@ -15,7 +15,7 @@
 		  <tr>
 		    <td><%= user.name %></td>
 		    <td><%= user.email %></td>
-		    <td><%= link_to 'Remove?', grouping_user_path(@grouping, user)+'/remove_user' , :confirm => 'Are you sure?' %></td>
+		    <td><%= link_to 'Remove?', grouping_user_path(@grouping, user)+'/remove' , :confirm => 'Are you sure?', :method => "post" %></td>
 		  </tr>
 		<% end %>
 	 </tbody>
@@ -23,5 +23,11 @@
 </div>
 
 <% if @grouping.id != nil %>
-	<%= button_to 'Add user', grouping_path(@grouping)+'/new_user'  %>
+	<%= form_tag grouping_path(@grouping)+'/add_user' %>
+		<%= submit_tag 'Add user' %>
+		<%= autocomplete_field_tag 'user', '', autocomplete_user_last_name_groupings_path, :id_element => '#grouping_user_id' %> Start typing the user's last name
+		<%= hidden_field_tag 'grouping_user_id' %>
+
+	<%= #button_to 'Add user', grouping_path(@grouping)+'/new_user'  
+	%>
 <% end %>

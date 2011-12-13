@@ -81,6 +81,12 @@ class TopicGroup < ActiveRecord::Base
                             :max_value => 100)
   end
   
+  def staff(users)
+    users.each do |user|
+      user.join_topic_group(self)
+    end
+  end
+  
   private
     
     def create_first_iteration

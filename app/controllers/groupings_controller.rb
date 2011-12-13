@@ -92,10 +92,10 @@ class GroupingsController < ApplicationController
     end
   end
   
-  def remove_user
+  def remove
     @grouping = Grouping.find(params[:grouping_id])
-    @grouping.users.delete(User.find(params[:id]))
-    @grouping.save
+    @grouping.users.delete(User.find(params[:user_id]))
+    #@grouping.save
     redirect_to edit_grouping_path(@grouping)+'#tabs-2', :notice => 'User successfully removed from group.'
   end
   
@@ -106,8 +106,14 @@ class GroupingsController < ApplicationController
   
   def add_user
     @grouping = Grouping.find(params[:id])
-    @grouping.users << User.find(params[:grouping_user_id])
-    @grouping.save
-    redirect_to edit_grouping_path(@grouping)+'#tabs-2', :notice => 'User successfully added to group.'
+    user = User.find(params[:grouping_user_id])
+    if @grouping.users.include?(user)
+      new_notice = 'User is already in this group.'
+    else
+      @grouping.users << user 
+      new_notice =  'User successfully added to group.'
+    end
+    #@grouping.save
+    redirect_to edit_grouping_path(@grouping)+'#tabs-2', :notice => new_notice
   end
 end
