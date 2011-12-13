@@ -14,7 +14,7 @@
 </div>
 
 <%= form_tag(:controller => "elements", :action => "rate_elements", :method => "post") do %>
-
+  <div>
 	<table id="rating_table" class="display" >
 	 <thead>
 	  <tr>
@@ -54,7 +54,7 @@
 		<% end %>
 	 </tbody>
 	</table>
-	
+  </div>	
 	<%= #will_paginate @elements 
 	%>
 	<%= hidden_field_tag(:iteration_id, @iteration.id) %>

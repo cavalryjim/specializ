@@ -19,6 +19,7 @@ gem 'googlecharts'
 gem 'spreadsheet'
 gem 'carrierwave', '~> 0.5.7'
 gem 'omniauth', '~> 0.3.2'
+#gem 'rack-pjax'
 
 
 # Bundle edge Rails instead:
