@@ -64,8 +64,7 @@ $(function() {
         "bJQueryUI": true,
         "sPaginationType": "full_numbers"
     }); 
-	rTable.fnAddDataAndDisplay( [ 1, 2, 3] );
-	rTable.fnAddData( [4, 5, 6] );
+	
 	//rTable.fnDeleteRow( 2 );
 	// JDavis: Ok...this is about the get complicated.  Not only do I want to be able to add elements to the table via js but
 	//    	also need to delete elements.  Not to mention checking for duplicates when adding.

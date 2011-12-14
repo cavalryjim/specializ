@@ -1,3 +1,13 @@
+<script type="text/javascript">
+  $(function(){
+	$("#new_element").click(function() {
+		//var str = $("#element_name").data();
+		var str = $("#element_name").val();
+		//alert(str);
+    	$(rTable.fnAddData( [ str, 2, 3] ));
+    });
+  });
+</script>
 
 <p>
   <%= @topic_group.active? ? @topic_group.name : @topic_group.name + ' (closed)' %> <br/>

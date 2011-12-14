@@ -1,22 +1,17 @@
 <%= javascript_include_tag 'jquery.rating' %>
 
 <div>
+  <div id="elementDiv" align=right>
+  <% if @active %>
+	<input type="text" id="element_name" />
+	<button id="new_element"> Add New Element </button>
+  <% end %>
+  </div>  
+   
   <div align=left>
   Iteration: 
   <%= select_tag(:iteration_select, options_from_collection_for_select(@iterations, :id, :num, @iteration.id ), :disabled => !@topic_group.active) %>
   </div>
-  
-  <div align=right>
-  <% if @active %>
-	<%= form_for([@topic_group, @iteration, Element.new ]) do |f| %>
-	  <div class="field">
-	    <%= f.label :name %>
-	    <%= f.text_field :name %>
-	    <%= f.submit %>
-	  </div>
-	<% end %>
-  <% end %>
-  </div>     
 </div>
 
 <%= form_tag(:controller => "elements", :action => "rate_elements", :method => "post") do %>
