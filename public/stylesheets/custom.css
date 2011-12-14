@@ -1,9 +1,9 @@
 .container {
-  width: 1000px;
+  width: 100%;
 }
 
 body {
-  background: #E5E5E5;
+  background: #000000;
 }
 
 header {
@@ -57,9 +57,6 @@ a:visited {
 }
 
 /* Navigation */
-
-
-
 nav {
   background-color: #fa1;
   
@@ -104,9 +101,7 @@ browser {
   
 }
 
-
 /* Sign up button */
-
 a.signup_button {
   margin-left: auto;
   margin-right: auto;
@@ -121,7 +116,6 @@ a.signup_button {
 }
 
 /* Round corners */
-
 .round {
   -moz-border-radius:    10px;
   -webkit-border-radius: 10px;
@@ -129,7 +123,6 @@ a.signup_button {
 }
 
 /* User show page */
-
 table.profile {
   width: 100%;
   margin-bottom: 0;
