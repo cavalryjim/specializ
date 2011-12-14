@@ -8,7 +8,13 @@
   
   <div align=right>
   <% if @active %>
-	<%= link_to 'New Item', new_topic_group_iteration_element_path(@topic_group, @topic_group.iterations.last ) %>
+	<%= form_for([@topic_group, @iteration, Element.new ]) do |f| %>
+	  <div class="field">
+	    <%= f.label :name %>
+	    <%= f.text_field :name %>
+	    <%= f.submit %>
+	  </div>
+	<% end %>
   <% end %>
   </div>     
 </div>

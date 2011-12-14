@@ -51,12 +51,8 @@ class ElementsController < ApplicationController
 
     respond_to do |format|
       if @element.save  
-        #@iteration_list_element = IterationList.new
-        #@iteration_list_element.element_id = @element.id
-        #@iteration_list_element.iteration_id = @iteration.id
-        #if @iteration_list_element.save
         if @element.add_to_iteration(@iteration.id)
-          format.html { redirect_to topic_group_iteration_url(@topic_group, @iteration), :notice => 'Element was successfully created.' }
+          format.html { redirect_to topic_group_iteration_url(@topic_group, @iteration)+'#tabs-2', :notice => 'Element was successfully created.' }
           format.xml  { render :xml => @element, :status => :created, :location => @element }
         else
           @element.destroy #JDavis: I do not want a rogue element not assigned to an iteration.
