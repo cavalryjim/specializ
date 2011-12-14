@@ -1,14 +1,14 @@
 .container {
-  width: 100%;
+	width: 100%;
 }
 
 body {
-  background: #000000;
+	background: none;
 }
 
 header {
-  padding-top: 0px;
-  background: #848484;
+	padding-top: 0px;
+	background: #848484;
 }
 
 header img {
@@ -18,11 +18,11 @@ header img {
 }
 
 footer {
-  text-align: center;
-  margin-top: 10px;
-  width: 1000px;
-  margin-left: auto;
-  margin-right: auto;
+	text-align: center;
+	margin-top: 10px;
+	width: 100%;
+	margin-left: auto;
+	margin-right: auto;
 }
 
 footer nav {
@@ -43,43 +43,42 @@ section h1 {
 /* Links */
 
 a {
-  color: #09c;
-  text-decoration: none;
+	color: #09c;
+	text-decoration: none;
 }
 
 a:hover {
-  color: #069;
-  text-decoration: underline;
+	color: #069;
+	text-decoration: underline;
 }
 
 a:visited {
-  color: #069;
+	color: #069;
 }
 
 /* Navigation */
 nav {
-  background-color: #fa1;
-  
-  float: right;
-  top: 0;
-  padding: 0 0.7em;
-  white-space: nowrap;
+	background-color: #fa1;
+	float: right;
+	top: 0;
+	padding: 0 0.7em;
+	white-space: nowrap;
 }
 
 nav ul {
-  margin: 0;
-  padding: 0;
+	margin: 0;
+	padding: 0;
 }
 
 nav ul li {
-  list-style-type: none;
-  display: inline-block;
-  padding: 0.2em 0;
+	list-style-type: none;
+	display: inline-block;
+	padding: 0.2em 0;
 }
 
 nav ul li a {
-  padding: 0 5px;
-  font-weight: bold;
+	padding: 0 5px;
+	font-weight: bold;
 }
 
 nav ul li a:visited {
@@ -87,13 +86,13 @@ nav ul li a:visited {
 }
 
 nav ul li a:hover {
-  text-decoration: underline;
+	text-decoration: underline;
 }
 
 /* Browser */
 browser {
-  width: 100px;
-  float: left;	
+	width: 100px;
+	float: left;	
 }
 
 /* Main */
@@ -117,9 +116,9 @@ a.signup_button {
 
 /* Round corners */
 .round {
-  -moz-border-radius:    10px;
-  -webkit-border-radius: 10px;
-  border-radius:         10px;
+	-moz-border-radius: 10px;
+	-webkit-border-radius: 10px;
+	border-radius: 10px;
 }
 
 /* User show page */
@@ -255,14 +254,13 @@ div.field, div.actions {
 }
 
 .auth_provider img {
-  display: block;
+	display: block;
 }
 
 .auth_provider {
-  float: left;
-  text-decoration: none;
+	float: left;
+	text-decoration: none;
   margin-right: 20px;
   text-align: center;
   margin-bottom: 10px;
 }
-

@@ -12,7 +12,7 @@ module ApplicationHelper
   end
   
   def logo
-    image_tag("specializ.png", :alt => "Specializ", :class => "round")
+    image_tag("specializ.png", :alt => "Specializ")
   end
   
   def sortable(column, title = nil)
