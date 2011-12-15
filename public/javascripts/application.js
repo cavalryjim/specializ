@@ -61,13 +61,22 @@ $(function() {
 	// JDavis: for some reason, these two lines must come last or else shit breaks.
 	$( "#rating_table input.jdstar" ).rating(); // JDavis: this line must come before rating_table dataTable()
 	rTable = $( "#rating_table" ).dataTable({ // datatable where users rate the elements
-        "bJQueryUI": true,
+		"aoColumns": [
+		              { "sWidth": "75%" },
+		              { "sWidth": "15%" },
+		              { "bVisible": false },
+		              { "bVisible": false }
+		          ],
+		          
+		"bAutoWidth": false,
+		
+		"bJQueryUI": true,
+		
         "sPaginationType": "full_numbers"
+        
     });
 	
-	$(window).bind('resize', function () {
-        rTable.fnAdjustColumnSizing();
-    } );
+	
 	/* Hide the second column after initialisation*/
     //rTable.fnSetColumnVis( 3, true );
 	

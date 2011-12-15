@@ -4,7 +4,7 @@
   <div id="elementDiv" align=right>
   <% if @active %>
 	<input type="text" id="element_name" />
-	<button id="new_element"> Add New Element </button>
+	<button id="new_element"> Add New Item </button>
   <% end %>
   </div>  
    
@@ -16,7 +16,7 @@
 
 <%= form_tag(:controller => "elements", :action => "rate_elements", :method => "post") do %>
   <div>
-	<table id="rating_table" class="display" >
+	<table id="rating_table"  >
 	 <thead>
 	  <tr>
 		<th>Name</th>
@@ -24,6 +24,7 @@
 		<% if @active && @manager %>
 			<th>Remove</th>  
 		<% end %>
+		<th>hidden</th>
 		
 	  </tr>
 	 </thead>
@@ -53,6 +54,7 @@
 		    	<td><%= link_to 'Delete', topic_group_iteration_element_path(@topic_group, @iteration, element), :confirm => 'Are you sure?', :method => :delete%></td>
 			<% end %>
 
+			<td><%= element.name.upcase %></td>
 			
 		  </tr>
 		<% end %>
