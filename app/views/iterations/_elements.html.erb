@@ -24,6 +24,7 @@
 		<% if @active && @manager %>
 			<th>Remove</th>  
 		<% end %>
+		
 	  </tr>
 	 </thead>
 	
@@ -51,6 +52,8 @@
 			<% if @active && @manager %>
 		    	<td><%= link_to 'Delete', topic_group_iteration_element_path(@topic_group, @iteration, element), :confirm => 'Are you sure?', :method => :delete%></td>
 			<% end %>
+
+			
 		  </tr>
 		<% end %>
 	 </tbody>

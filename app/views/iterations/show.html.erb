@@ -1,10 +1,16 @@
 <script type="text/javascript">
   $(function(){
 	$("#new_element").click(function() {
-		//var str = $("#element_name").data();
 		var str = $("#element_name").val();
-		//alert(str);
-    	$(rTable.fnAddData( [ str, 2, 3] ));
+		a = rTable.fnFindCellRowIndexes( str, 0 );
+		if (a.length == 0) {
+	    	$(rTable.fnAddData( [ str, 'New Item', 'Delete'] ));
+			$("#element_name").val("");
+		}
+		else {
+			alert("That item already exists!");
+			//rTable.fnDisplayRow( rTable.fnGetNodes()a );
+		}
     });
   });
 </script>

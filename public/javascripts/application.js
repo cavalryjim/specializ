@@ -63,7 +63,13 @@ $(function() {
 	rTable = $( "#rating_table" ).dataTable({ // datatable where users rate the elements
         "bJQueryUI": true,
         "sPaginationType": "full_numbers"
-    }); 
+    });
+	
+	$(window).bind('resize', function () {
+        rTable.fnAdjustColumnSizing();
+    } );
+	/* Hide the second column after initialisation*/
+    //rTable.fnSetColumnVis( 3, true );
 	
 	//rTable.fnDeleteRow( 2 );
 	// JDavis: Ok...this is about the get complicated.  Not only do I want to be able to add elements to the table via js but
