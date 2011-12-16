@@ -13,6 +13,7 @@
   <div align=left>
   Iteration: 
   <%= select_tag(:iteration_select, options_from_collection_for_select(@iterations, :id, :num, @iteration.id ), :disabled => !@topic_group.active) %>
+  <button id="item_delete"> Remove Selected Item </button>
   </div>
 </div>
 
