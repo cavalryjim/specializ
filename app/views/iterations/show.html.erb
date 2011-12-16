@@ -1,20 +1,5 @@
 <script type="text/javascript">
-  $(function(){
-	$("#new_element").click(function() {
-		var str = $("#element_name").val();
-		if (str.length < 1) return false;
-
-		a = rTable.fnFindCellRowIndexes( str.toUpperCase(), 3 );
-		if (a.length == 0) {
-	    	$(rTable.fnAddData( [ str, 'New Item', 'Delete', str.toUpperCase()] ));
-		}
-		else {
-			alert("That item already exists!");
-			//rTable.fnDisplayRow( rTable.fnGetNodes()a );
-		}
-		$("#element_name").val("");
-    });
-  });
+  
 </script>
 
 <p>

@@ -2,10 +2,12 @@
 
 <div>
   <div id="elementDiv" align=right>
-  <% if @active %>
+  <%# if @active 
+%>
 	<input type="text" id="element_name" />
 	<button id="new_element"> Add New Item </button>
-  <% end %>
+  <%# end 
+%>
   </div>  
    
   <div align=left>
@@ -21,9 +23,9 @@
 	  <tr>
 		<th>Name</th>
 	    <th>Rating</th>
-		<% if @active && @manager %>
-			<th>Remove</th>  
-		<% end %>
+		
+		<th>Remove</th>  
+		
 		<th>hidden</th>
 		
 	  </tr>
@@ -50,9 +52,11 @@
 				<%= radio_button_tag name, 5, score == 5, options = { :class => "jdstar", :disabled => !@active } %>
 			</td>
 	
-			<% if @active && @manager %>
-		    	<td><%= link_to 'Delete', topic_group_iteration_element_path(@topic_group, @iteration, element), :confirm => 'Are you sure?', :method => :delete%></td>
-			<% end %>
+			<% #if @active && @manager 
+%>
+		    <td><%= link_to 'Delete', topic_group_iteration_element_path(@topic_group, @iteration, element), :confirm => 'Are you sure?', :method => :delete%></td>
+			<% #end 
+%>
 
 			<td><%= element.name.upcase %></td>
 			
