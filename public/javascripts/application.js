@@ -69,6 +69,7 @@ $(function() {
             $(this.nTr).removeClass('row_selected');
         });
         $(event.target.parentNode).addClass('row_selected');
+        //rTable.fnDraw();
     });
      
     /* Add a click handler for the delete row */

@@ -51,7 +51,7 @@ class ElementsController < ApplicationController
 
     respond_to do |format|
       if @element.save  
-        if @element.add_to_iteration(@iteration.id)
+        if @element.add_to_iteration(@iteration.id, true)
           format.html { redirect_to topic_group_iteration_url(@topic_group, @iteration)+'#tabs-2', :notice => 'Element was successfully created.' }
           format.xml  { render :xml => @element, :status => :created, :location => @element }
         else
@@ -100,7 +100,16 @@ class ElementsController < ApplicationController
   def rate_elements
     @iteration = Iteration.find(params[:iteration_id])
     @topic_group = TopicGroup.find(@iteration.topic_group_id)
-    #JDavis: need to fix the user lookup. JDtest.
+    
+    params[:new].each do |name|
+      new_element = Element.new
+      new_element.name = name
+      new_element.current = true
+      new_element.created_by = current_user.id
+      new_element.save
+      # JDavis: stopped here
+      new_element.add_to_iteration(@topic_group.iterations.last.id, true)
+    end
     
     params[:rating].each do |key, score|
       user_element_rating = UserList.new

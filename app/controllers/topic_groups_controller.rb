@@ -163,25 +163,9 @@ class TopicGroupsController < ApplicationController
   def import_elements
     #@iteration = Iteration.find(params[:iteration_id])
     @topic_group = TopicGroup.find(@iteration.topic_group_id)
-    @topic_group.elements_spreadsheet = params[:file]
-    if @topic_group.save
-      Spreadsheet.client_encoding = 'UTF-8'
-      
-      book = Spreadsheet.open @topic_group.elements_spreadsheet_url
-      #book = Spreadsheet.open '../../public/uploads/topic_group/elements_spreadsheet/1/spz_test_upload.xls'
-      sheet1 = book.worksheet 0
-      sheet1.each 1 do |row|  #JDavis: skipping the first row of the sheet.
-        e = Element.new
-        e.name = row[0]
-        e.current = true
-        e.created_by = current_user.id
-        if e.save 
-          if !e.add_to_iteration(@topic_group.iterations.last.id)
-            e.destroy #JDavis: no orphan elements.
-          end
-        end
-      end
-    end
+    @topic_group.import_elements(params[:file])
+    
+   
     
     respond_to do |format|
       format.html { redirect_to topic_group_iteration_url(@topic_group, @topic_group.iterations.last), :notice => 'List was successfully imported.' }
