@@ -1,4 +1,6 @@
 var rTable;
+var giRedraw = false;
+
 $(function() {
   
 	$( "#accordion" ).accordion(); // accordion on the _browser partial
@@ -60,6 +62,23 @@ $(function() {
 	
 	// JDavis: for some reason, these two lines must come last or else shit breaks.
 	$( "#rating_table input.jdstar" ).rating(); // JDavis: this line must come before rating_table dataTable()
+	
+	/* Add a click handler to the rows - this could be used as a callback */
+    $("#rating_table tbody").click(function(event) {
+        $(rTable.fnSettings().aoData).each(function (){
+            $(this.nTr).removeClass('row_selected');
+        });
+        $(event.target.parentNode).addClass('row_selected');
+        //rTable.fnDraw();
+    });
+     
+    /* Add a click handler for the delete row */
+    $('#item_delete').click( function() {
+        var anSelected = fnGetSelected( rTable );
+        rTable.fnDeleteRow( anSelected[0] );
+    } );
+	
+	
 	rTable = $( "#rating_table" ).dataTable({ // datatable where users rate the elements
 		"aoColumns": [
 		              { "sWidth": "75%" },
@@ -75,14 +94,21 @@ $(function() {
         "sPaginationType": "full_numbers"
         
     });
-	
-	
-	/* Hide the second column after initialisation*/
-    //rTable.fnSetColumnVis( 3, true );
-	
-	//rTable.fnDeleteRow( 2 );
-	// JDavis: Ok...this is about the get complicated.  Not only do I want to be able to add elements to the table via js but
-	//    	also need to delete elements.  Not to mention checking for duplicates when adding.
-	//		http://datatables.net/api
-	//		http://datatables.net/plug-ins/api
+
 });
+
+/* Get the rows which are currently selected */
+function fnGetSelected( oTableLocal )
+{
+    var aReturn = new Array();
+    var aTrs = oTableLocal.fnGetNodes();
+     
+    for ( var i=0 ; i<aTrs.length ; i++ )
+    {
+        if ( $(aTrs[i]).hasClass('row_selected') )
+        {
+            aReturn.push( aTrs[i] );
+        }
+    }
+    return aReturn;
+}

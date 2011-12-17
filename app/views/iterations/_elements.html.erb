@@ -18,7 +18,7 @@
 
 <%= form_tag(:controller => "elements", :action => "rate_elements", :method => "post") do %>
   <div>
-	<table id="rating_table"  >
+	<table id="rating_table" class="display"  >
 	 <thead>
 	  <tr>
 		<th>Name</th>
@@ -52,21 +52,18 @@
 				<%= radio_button_tag name, 5, score == 5, options = { :class => "jdstar", :disabled => !@active } %>
 			</td>
 	
-			<% #if @active && @manager 
-%>
 		    <td><%= link_to 'Delete', topic_group_iteration_element_path(@topic_group, @iteration, element), :confirm => 'Are you sure?', :method => :delete%></td>
-			<% #end 
-%>
-
-			<td><%= element.name.upcase %></td>
 			
+			<td><%= element.name.upcase %></td>
 		  </tr>
 		<% end %>
 	 </tbody>
 	</table>
-  </div>	
-	<%= #will_paginate @elements 
-	%>
-	<%= hidden_field_tag(:iteration_id, @iteration.id) %>
-	<%= submit_tag("Submit List", :confirm => 'Submit your list?', :disabled => !@active) %>
+  </div>
+  
+  <%= hidden_field_tag(:iteration_id, @iteration.id) %>
+  <div align='right'> <%= submit_tag("Submit List", :confirm => 'Submit your list?', :disabled => !@active) %> </div>
+ 
 <% end %>
+<div align='left'> <button id="item_delete"> Remove Selected Item </button>	</div>
+

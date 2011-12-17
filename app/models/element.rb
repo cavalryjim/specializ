@@ -26,12 +26,12 @@ class Element < ActiveRecord::Base
     return !user_score.nil? ? user_score.score : 0
   end
   
-  def add_to_iteration(iteration_id)
+  def add_to_iteration(iteration_id, new_element)
     iteration_list = IterationList.find_or_initialize_by_element_id_and_iteration_id(self.id, iteration_id)
     #iteration_list_element.element_id = self.id
     #iteration_list_element.iteration_id = iteration_id
     iteration_list.include = true
-    iteration_list.new_element = false
+    iteration_list.new_element = new_element
     return iteration_list.save
   end
   
