@@ -1,8 +1,8 @@
 <div id="browser">
 
-<h2>My Topics</h2>
+<h3>My Topics - <%= current_user.name %>, you are assigned to <%= @my_topic_groups.count %> active topics</h3>
 
-<div id="accordion" style="width:50%; float:right">
+<div id="accordion" style="width:100%;">
     <h3><a href="#">Open Topics</a></h3>
     <div>
 		<table>
@@ -21,7 +21,6 @@
 		<% @closed_topic_groups.each do |closed_topic_group| %>
 		  <tr>
 		    <td><%=link_to closed_topic_group.name, url_for([closed_topic_group, closed_topic_group.iterations.last]) %> </td>
-		
 		  </tr>
 		<% end %>
 		</table>
@@ -32,8 +31,7 @@
 		<table>
 		<% @managed_topic_groups.each do |managed_topic_group| %>
 		  <tr>
-		    <td><%=link_to managed_topic_group.name, url_for([managed_topic_group, managed_topic_group.iterations.last]) %></td> 
-		    
+		    <td><%=link_to managed_topic_group.name, url_for([managed_topic_group, managed_topic_group.iterations.last]) %></td>
 		  </tr>
 		<% end %>
 		</table>
