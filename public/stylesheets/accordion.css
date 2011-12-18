@@ -7,13 +7,11 @@ table {
 }
 
 /* Site */
-
 body {
 	font-family: "Trebuchet MS", "Helvetica", "Arial",  "Verdana", "sans-serif";
 }
 
 /* Layout */
-
 .layout-grid {
 	width: 460px;
 }
@@ -39,7 +37,6 @@ body {
 }
 
 /* Normal */
-
 .normal h3,
 .normal h4 {
 	margin: 0;
@@ -63,7 +60,6 @@ body {
 }
 
 /* Demos */
-
 .demos-nav,
 .demos-nav dt,
 .demos-nav dd,
@@ -104,7 +100,7 @@ body {
 	padding: 4px 3px 4px 8px;
 	font-size: 90%;
 	text-decoration: none;
-	color: #555 ;
+	color: #555;
 	margin:2px 0;
 	height:13px;
 }
@@ -115,50 +111,127 @@ body {
 .demos-nav dd a:focus {
 	background: #f3f3f3;
 	color:#000;
-	-moz-border-radius: 5px; -webkit-border-radius: 5px;
+	-moz-border-radius: 5px;
+	-webkit-border-radius: 5px;
 }
+
  .demos-nav dd a.selected {
 	background: #555;
 	color:#ffffff;
-	-moz-border-radius: 5px; -webkit-border-radius: 5px;
+	-moz-border-radius: 5px;
+	-webkit-border-radius: 5px;
 }
 
 /* new styles for demo pages, added by Filament 12.29.08
 eventually we should convert the font sizes to ems -- using px for now to minimize style conflicts
 */
 
-.normal h3.demo-header { font-size:32px; padding:0 0 5px; border-bottom:1px solid #eee; text-transform: capitalize; }
-.normal h4.demo-subheader { font-size:10px; text-transform: uppercase; color:#999; padding:8px 0 3px; border:0; margin:0; }
+.normal h3.demo-header {
+	font-size:32px;
+	padding:0 0 5px;
+	border-bottom:1px solid #eee;
+	text-transform: capitalize;
+}
+
+.normal h4.demo-subheader {
+	font-size:10px;
+	text-transform: uppercase;
+	color:#999;
+	padding:8px 0 3px;
+	border:0;
+	margin:0;
+}
+
 .normal a:link,
-.normal a:visited { color:#1b75bb; text-decoration:none; }
+.normal a:visited {
+	color:#1b75bb;
+	text-decoration:none;
+}
+	
 .normal a:hover,
-.normal a:active { color:#0b559b; }
+.normal a:active {
+	color:#0b559b;
+}
 
-#demo-config { padding:20px 0 0; }
+#demo-config {
+	padding:20px 0 0;
+}
 
-#demo-frame { float:left; width:540px; height:380px; border:1px solid #ddd; overflow: auto; position: relative; }
-#demo-frame h3, #demo-frame h4 { padding: 0; font-weight: bold; font-size: 1em; }
+#demo-frame {
+	float:left;
+	width:540px;
+	height:380px;
+	border:1px solid #ddd;
+	overflow: auto;
+	position: relative;
+}
 
-#demo-config-menu { float:right; width:180px;  }
-#demo-config-menu h4 { font-size:13px; color:#666; font-weight:normal; border:0; padding-left:18px; }
+#demo-frame h3,
+#demo-frame h4 {
+	padding: 0;
+	font-weight: bold;
+	font-size: 1em;
+}
 
-#demo-config-menu ul { list-style: none; padding: 0; margin: 0; }
+#demo-config-menu {
+	float:right;
+	width:180px;
+}
 
-#demo-config-menu li { font-size:12px; padding:0 0 0 10px; margin:3px 0; zoom: 1; }
+#demo-config-menu h4 {
+	font-size:13px;
+	color:#666;
+	font-weight:normal;
+	border:0;
+	padding-left:18px;
+}
+
+#demo-config-menu ul {
+	list-style: none;
+	padding: 0;
+	margin: 0;
+}
+
+#demo-config-menu li {
+	font-size:12px;
+	padding:0 0 0 10px;
+	margin:3px 0;
+	zoom: 1;
+}
 
 #demo-config-menu li a:link,
-#demo-config-menu li a:visited { display:block; padding:1px 8px 4px; border-bottom:1px dotted #b3b3b3; }
-* html #demo-config-menu li a:link,
-* html #demo-config-menu li a:visited { padding:1px 8px 2px; }
-#demo-config-menu li a:hover,
-#demo-config-menu li a:active { background-color:#f6f6f6; }
+#demo-config-menu li a:visited {
+	display:block;
+	padding:1px 8px 4px;
+	border-bottom:1px dotted #b3b3b3;
+}
 
-#demo-config-menu li.demo-config-on { background: url(images/demo-config-on-tile.gif) repeat-x left center; }
+* html #demo-config-menu li a:link,
+* html #demo-config-menu li a:visited {
+	padding:1px 8px 2px;
+}
+
+#demo-config-menu li a:hover,
+#demo-config-menu li a:active {
+	background-color:#f6f6f6;
+}
+
+#demo-config-menu li.demo-config-on {
+	background: url(images/demo-config-on-tile.gif) repeat-x left center;
+}
 
 #demo-config-menu li.demo-config-on a:link,
 #demo-config-menu li.demo-config-on a:visited,
 #demo-config-menu li.demo-config-on a:hover,
-#demo-config-menu li.demo-config-on a:active { background: url(images/demo-config-on.gif) no-repeat left; padding-left:18px; color:#fff; border:0; margin-left:-10px; margin-top: 0px; margin-bottom: 0px; }
+#demo-config-menu li.demo-config-on a:active {
+	background: url(images/demo-config-on.gif) no-repeat left;
+	padding-left:18px;
+	color:#fff;
+	border:0;
+	margin-left:-10px;
+	margin-top: 0px;
+	margin-bottom: 0px;
+}
 
 #demo-source, #demo-notes {
 	clear: both;
@@ -166,7 +239,12 @@ eventually we should convert the font sizes to ems -- using px for now to minimi
 	font-size: 1.3em;
 }
 
-#demo-notes { width:520px; color:#333; font-size: 1em; }
+#demo-notes {
+	width:520px;
+	color:#333;
+	font-size: 1em;
+}
+
 #demo-notes p code, .demo-description p code { padding: 0; font-weight: bold; }
 #demo-source pre, #demo-source code { padding: 0; }
 code, pre { padding:8px 0 8px 20px ; font-size: 1.2em; line-height:130%;  }
@@ -174,17 +252,26 @@ code, pre { padding:8px 0 8px 20px ; font-size: 1.2em; line-height:130%;  }
 #demo-source a:link,
 #demo-source a:visited,
 #demo-source a:hover,
-#demo-source a:active { font-size:12px; padding-left:13px; background-position: left center; background-repeat: no-repeat; }
+#demo-source a:active {
+	font-size:12px;
+	padding-left:13px;
+	background-position: left center;
+	background-repeat: no-repeat;
+}
 
 #demo-source a.source-open:link,
 #demo-source a.source-open:visited,
 #demo-source a.source-open:hover,
-#demo-source a.source-open:active { background-image: url(images/demo-spindown-open.gif); }
+#demo-source a.source-open:active {
+	background-image: url(images/demo-spindown-open.gif);
+}
 
 #demo-source a.source-closed:link,
 #demo-source a.source-closed:visited,
 #demo-source a.source-closed:hover,
-#demo-source a.source-closed:active { background-image: url(images/demo-spindown-closed.gif); }
+#demo-source a.source-closed:active {
+	background-image: url(images/demo-spindown-closed.gif);
+}
 
 div.demo {
 	padding:12px;
@@ -209,8 +296,17 @@ div.demo-description {
 	padding-right: 10px;
 }
 
-#demo-link { font-size:11px;  padding-top: 6px; clear: both; overflow: hidden; }
-#demo-link a span.ui-icon { float:left; margin-right:3px; }
+#demo-link {
+	font-size:11px;
+	padding-top: 6px;
+	clear: both;
+	overflow: hidden;
+}
+
+#demo-link a span.ui-icon {
+	float:left;
+	margin-right:3px;
+}
 
 /* Component containers */
 #widget-docs .ui-widget { font-family: Trebuchet MS,Verdana,Arial,sans-serif; font-size: 1em; }
@@ -226,7 +322,11 @@ div.demo-description {
 #widget-docs .ui-state-hover, #widget-docs .ui-widget-content #widget-docs .ui-state-hover, #widget-docs .ui-state-focus, #widget-docs .ui-widget-content #widget-docs .ui-state-focus { border: 1px solid #666666; background: #444444 url(images/444444_40x100_textures_03_highlight_soft_60.png) 50% 50% repeat-x; font-weight: normal; color: #ffffff; outline: none; }
 #widget-docs .ui-state-hover a { color: #ffffff; text-decoration: none; outline: none; }
 #widget-docs .ui-state-active, #widget-docs .ui-widget-content #widget-docs .ui-state-active { border: 1px solid #666666; background: #ffffff url(images/ffffff_40x100_textures_01_flat_65.png) 50% 50% repeat-x; font-weight: normal; color: #F6921E; outline: none; }
-#widget-docs .ui-state-active a { color: #F6921E; outline: none; text-decoration: none; }
+#widget-docs .ui-state-active a {
+	color: #F6921E;
+	outline: none;
+	text-decoration: none;
+}
 
 /* Interaction Cues */
 #widget-docs .ui-state-highlight, #widget-docs .ui-widget-content #widget-docs .ui-state-highlight {border: 1px solid #fcefa1; background: #fbf9ee url(images/fbf9ee_40x100_textures_02_glass_55.png) 50% 50% repeat-x; color: #363636; }
@@ -288,10 +388,29 @@ div.demo-description {
 #widget-docs .docs-list-header h2 { float:left; margin:0; }
 #widget-docs .docs-list-header p { float:right; margin:5px 0; font-size:11px; }
 
-.docs-list { float:left; width:100%; padding:0 0 10px; }
-.docs-list .param-header { float:left; clear:left; width:100%; padding:8px 0; border-top:1px solid #eee; }
-#widget-docs .param-header h3, #widget-docs .param-header p { margin:0; float:left; }
-#widget-docs .param-header h3 { width:50%; }
+.docs-list {
+	float:left;
+	width:100%;
+	padding:0 0 10px;
+}
+
+.docs-list .param-header {
+	float:left;
+	clear:left;
+	width:100%;
+	padding:8px 0;
+	border-top:1px solid #eee;
+}
+
+#widget-docs .param-header h3, #widget-docs .param-header p {
+	margin:0;
+	float:left;
+}
+
+#widget-docs .param-header h3 {
+	width:50%;
+}
+
 #widget-docs .param-header h3 span { background: url(images/demo-spindown-closed.gif) no-repeat left; padding-left:13px; }
 #widget-docs .param-open .param-header h3 span { background: url(images/demo-spindown-open.gif) no-repeat left; }
 #widget-docs .param-header p { width:24%; }
@@ -303,8 +422,13 @@ div.demo-description {
 
 
 /* overrides for ui-tab styles */
-#widget-docs ul.ui-tabs-nav { padding:0 0 0 8px; }
-#widget-docs .ui-tabs-nav li { margin:5px 5px 0 0; }
+#widget-docs ul.ui-tabs-nav {
+	padding:0 0 0 8px;
+}
+
+#widget-docs .ui-tabs-nav li {
+	margin:5px 5px 0 0;
+}
 
 #widget-docs .ui-tabs-nav li a:link,
 #widget-docs .ui-tabs-nav li a:visited,
@@ -314,11 +438,22 @@ div.demo-description {
 #widget-docs .ui-tabs-nav li.ui-tabs-selected a:link,
 #widget-docs .ui-tabs-nav li.ui-tabs-selected a:visited,
 #widget-docs .ui-tabs-nav li.ui-tabs-selected a:hover,
-#widget-docs .ui-tabs-nav li.ui-tabs-selected a:active { color:#e6820E; }
+#widget-docs .ui-tabs-nav li.ui-tabs-selected a:active {
+	color:#e6820E;
+}
 
-#widget-docs .ui-tabs-panel { padding:20px 9px; font-size:12px; line-height:1.4; color:#000; }
+#widget-docs .ui-tabs-panel {
+	padding:20px 9px;
+	font-size:12px;
+	line-height:1.4;
+	color:#000;
+}
 
 #widget-docs .ui-widget-content a:link,
-#widget-docs .ui-widget-content a:visited { color:#1b75bb; text-decoration:none; }
+#widget-docs .ui-widget-content a:visited {
+	color:#1b75bb;
+	text-decoration:none;
+}
+
 #widget-docs .ui-widget-content a:hover,
 #widget-docs .ui-widget-content a:active { color:#0b559b; }
