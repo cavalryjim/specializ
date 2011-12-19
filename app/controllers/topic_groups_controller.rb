@@ -19,12 +19,7 @@ class TopicGroupsController < ApplicationController
   def show
     @topic_group = TopicGroup.find(params[:id])
     @iterations = @topic_group.iterations
-    if @iterations.empty?
-      @elements = []
-    else
-      @elements = @iterations.last.elements 
-    end
-     
+    @elements = [] ? @iterations.empty? : @iterations.last.elements
 
     respond_to do |format|
       format.html # show.html.erb
@@ -102,35 +97,6 @@ class TopicGroupsController < ApplicationController
     end
   end
   
-  # JDavis: need to add topic_groups that do not exist and remove any that were 'unchecked' in _configure.html.erb
-  # JDavis: this method is no longer used...moved the call to the topic_controller and logic to the model layer.
-  def assign_topic
-    @topic = Topic.find(params[:topic_id])
-    new_notice = 'Topic successfully configured!'
-    
-    params[:grouping].each do |key|
-      tg = TopicGroup.find_by_topic_id_and_grouping_id(params[:topic_id], key) || TopicGroup.new(:topic_id => params[:topic_id], :grouping_id => key)
-      tg.name = @topic.name + ": " + Grouping.find(key).fullname
-      tg.goal = 90 #JDavis: hardcoding for testing.  JDtest.
-      tg.active = true  
-      if !tg.save
-        new_notice = "There was a problem configuring this topic."
-      end
-    end
-    
-    groups_to_remove = TopicGroup.where(:topic_id => @topic.id).map(&:grouping_id) - params[:grouping].map(&:to_i)
-    
-    groups_to_remove.each do |g|
-      tg = TopicGroup.find_by_topic_id_and_grouping_id(params[:topic_id], g)
-      if !tg.delete
-        new_notice = "There was a problem configuring this topic."
-      end
-    #  new_notice = new_notice + " | " + tg.name
-    end
-    
-    redirect_to edit_topic_path(@topic)+"#tabs-2", {:notice => new_notice}
-  end
-  
   #JDavis: Randomly select between 0 - 100% of the users in a group and staff to a topic_group.
   def staff_topic
     @topic = Topic.find(params[:topic_id])
@@ -143,17 +109,6 @@ class TopicGroupsController < ApplicationController
       group = Grouping.find(topic_group.grouping_id)
       users = group.users.order("RAND()").limit((group.users.count*percentage).ceil)
       topic_group.staff(users)
-      
-      #users.each do |user|
-      #  assignment = Assignment.find_or_initialize_by_topic_group_id_and_user_id(topic_group.id, user.id)
-      #  assignment.manager = assignment.manager || false
-      #  assignment.participating = true
-      #  if assignment.save
-      #    user.notify_assignment(topic_group)
-      #  else
-      #    new_notice = 'There was a problem staffing this topic.'
-      #  end
-      #end
     end
     
     redirect_to edit_topic_path(@topic)+"#tabs-3", {:notice => new_notice}
@@ -164,9 +119,7 @@ class TopicGroupsController < ApplicationController
     #@iteration = Iteration.find(params[:iteration_id])
     @topic_group = TopicGroup.find(params[:topic_group_id])
     @topic_group.import_elements(params[:file], current_user.id)
-    
-   
-    
+
     respond_to do |format|
       format.html { redirect_to topic_group_iteration_url(@topic_group, @topic_group.iterations.last), :notice => 'List was successfully imported.' }
       format.xml  { head :ok }

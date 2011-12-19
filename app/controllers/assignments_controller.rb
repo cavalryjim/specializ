@@ -95,7 +95,5 @@ class AssignmentsController < ApplicationController
     end
   end
   
-  def assign_topic
-    
-  end
+
 end

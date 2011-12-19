@@ -19,7 +19,7 @@ Specializ::Application.routes.draw do
   match '/pages/me', :to => 'pages#me'
   match '/elements/rate_elements', :to => 'elements#rate_elements'
   match '/topic_groups/import_elements', :to => 'topic_groups#import_elements'
-  match '/topic_groups/assign_topic', :to => 'topic_groups#assign_topic'
+  #match '/topic_groups/assign_topic', :to => 'topic_groups#assign_topic'
   match '/topic_groups/staff_topic', :to => 'topic_groups#staff_topic'
   match '/topic_groups/:topic_group_id/iterations/:id/close', :to => 'iterations#close'
   match '/topic_groups/:topic_group_id/iterations/:id/start', :to => 'iterations#start'
