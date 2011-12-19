@@ -19,6 +19,7 @@
 		Upload elements: <%= file_field_tag 'file' %>
 	
 		<%= hidden_field_tag(:iteration_id, @iteration.id) %>
+		<%= hidden_field_tag(:topic_group_id, @topic_group.id) %>
 		<%= submit_tag("Submit List", :confirm => 'Upload list from spreadsheet?', :disabled => !@active) %>
 	<% end %>
 	

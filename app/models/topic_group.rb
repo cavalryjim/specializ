@@ -87,7 +87,7 @@ class TopicGroup < ActiveRecord::Base
     end
   end
   
-  def import_elements(elements_spreadsheet)
+  def import_elements(elements_spreadsheet, current_user_id)
     self.elements_spreadsheet = elements_spreadsheet
     if self.save
       Spreadsheet.client_encoding = 'UTF-8'
@@ -99,7 +99,7 @@ class TopicGroup < ActiveRecord::Base
         e = Element.new
         e.name = row[0]
         e.current = true
-        e.created_by = current_user.id
+        e.created_by = current_user_id
         if e.save 
           if !e.add_to_iteration(self.iterations.last.id, false)
             e.destroy #JDavis: no orphan elements.

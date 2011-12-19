@@ -162,8 +162,8 @@ class TopicGroupsController < ApplicationController
   # JDavis: this method imports elements from a spreadsheet
   def import_elements
     #@iteration = Iteration.find(params[:iteration_id])
-    @topic_group = TopicGroup.find(@iteration.topic_group_id)
-    @topic_group.import_elements(params[:file])
+    @topic_group = TopicGroup.find(params[:topic_group_id])
+    @topic_group.import_elements(params[:file], current_user.id)
     
    
     
