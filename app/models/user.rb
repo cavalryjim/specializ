@@ -51,6 +51,7 @@ class User < ActiveRecord::Base
             :class_name => "TopicGroup",
             :source => :topic_group,
             :conditions => {'assignments.participating' => true, 'active' => false}
+  has_many  :authentications
   
   # Setup accessible (or protected) attributes for your model
   attr_accessible :first_name, :last_name, :email, :active, :company_id, 

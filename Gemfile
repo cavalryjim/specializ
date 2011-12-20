@@ -9,7 +9,7 @@ gem 'will_paginate', '3.0.pre2'
 gem 'jquery-rails'
 gem 'activeadmin'
 #gem 'datatables', :git => 'git://github.com/cajun-code/datatables.git'
-gem 'devise', '1.4.7'
+gem 'devise', '1.4.2'
 #gem 'jeditable-rails', '~> 0.1.1'
 gem 'randumb', '~> 0.1.3'
 gem 'rails3-jquery-autocomplete', '~> 1.0.4'
@@ -18,8 +18,16 @@ gem 'rails3-jquery-autocomplete', '~> 1.0.4'
 gem 'googlecharts'
 gem 'spreadsheet'
 gem 'carrierwave', '~> 0.5.7'
-gem 'omniauth', '~> 0.3.2'
+gem 'omniauth', '0.2.0' # JDavis: may need to change to version 0.3.2, or 0.2.6.
 #gem 'rack-pjax'
+
+
+#gem 'bcrypt-ruby', '~> 3.0.0'
+#gem 'omniauth-identity', '~> 1.0.0'
+#gem 'omniauth-twitter', '~> 0.0.7'
+#gem 'omniauth-facebook', '~> 1.1.0'
+#gem 'omniauth-google-oauth2', '~> 0.1.8'
+#gem 'omniauth-linkedin', '~> 0.0.6'
 
 
 # Bundle edge Rails instead:
@@ -54,6 +62,7 @@ end
 
 group :test do
   gem 'rspec-rails', '2.6.1'
-  gem 'webrat', '0.7.1'
+  #gem 'webrat', '0.7.1'
 end
 
+gem "mocha", :group => :test

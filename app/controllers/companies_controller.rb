@@ -1,5 +1,5 @@
 class CompaniesController < ApplicationController
-  #before_filter :authentiate_user
+  before_filter :authentiate_user
   
   # GET /companies
   # GET /companies.xml

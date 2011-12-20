@@ -1,6 +1,7 @@
 class ElementsController < ApplicationController
-
-  require 'will_paginate'
+  before_filter :authentiate_user
+  
+  #require 'will_paginate'
   respond_to :html,:json,:xml
   
   
