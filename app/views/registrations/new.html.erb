@@ -12,23 +12,23 @@
   <div><%= f.label :email %><br />
   <%= f.email_field :email %></div>
 
+<% if @user.password_required? %>
   <div><%= f.label :password %><br />
   <%= f.password_field :password %></div>
 
   <div><%= f.label :password_confirmation %><br />
   <%= f.password_field :password_confirmation %></div>
+<% end %>
 
   <div><%= f.label :company_id %><br />
   <%= f.select :company_id, options_from_collection_for_select(Company.all, :id, :name)  %></div>
 
 
   <div>
-	<%= f.hidden_field :active, :value => true %>
+	<%= f.hidden_field :active, :value => false %>
 	<%= f.submit "Sign up" %>
   </div>
 <% end %>
 
-<%= #embed_rpx user_session_url 
-%>
 
 <%= render :partial => "devise/shared/links" %>

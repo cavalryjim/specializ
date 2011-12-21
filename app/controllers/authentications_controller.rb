@@ -4,10 +4,36 @@ class AuthenticationsController < ApplicationController
   end
 
   def create
-    auth = request.env["omniauth.auth"]
-    current_user.authentications.find_or_create_by_provider_and_uid(auth['provider'], auth['uid'])
-    flash[:notice] = "Authentication successfull"
-    redirect_to authentications_url
+    omniauth = request.env["omniauth.auth"]
+    authentication = Authentication.find_by_provider_and_uid(omniauth['provider'], omniauth['uid'])
+    if authentication
+      flash[:notice] = "Signed in successfully."
+      #sign_in_and_redirect(authentication.user)
+      #flash[:notice] = authentication.user
+      sign_in(authentication.user)
+      redirect_to authentications_url
+      #redirect_to root_url
+    elsif current_user
+      current_user.authentications.create!(:provider => omniauth['provider'], :uid => omniauth['uid'])
+      flash[:notice] = "Authentication successful."
+      redirect_to authentications_url
+    else
+      #JDavis: might need to change this such that it only requests an account vs creating one.
+      #JDavis: Also need to create a manner in which the requestor picks a company.
+      #JDavis:  Arrrrgh!
+      user = User.new
+      user.apply_omniauth(omniauth)
+      user.active = false
+      if user.save
+        flash[:notice] = "Thanks for registering. Waiting on administrator approval to active your account."
+        sign_in_and_redirect(:user, user)
+        #redirect_to root_url
+      else
+        flash[:notice] = authentication
+        session[:omniauth] = omniauth.except('extra')
+        redirect_to new_user_registration_url
+      end
+    end
   end
 
   def destroy

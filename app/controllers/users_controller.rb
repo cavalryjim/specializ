@@ -47,6 +47,12 @@ class UsersController < ApplicationController
     @user.role_ids = params[:user][:role_ids]
     @user.company_id = current_user.company_id
     
+    if @user.password.nil?
+      generated_password = Devise.friendly_token.first(6)
+      @user.password = generated_password
+      @user.notify_account(generated_password)
+    end
+    
     respond_to do |format|
       if @user.save
         format.html { redirect_to(users_path, :notice => 'User was successfully created.') }
@@ -64,6 +70,13 @@ class UsersController < ApplicationController
     #params[:user][:role_ids] ||= []
     @user = User.find(params[:id])
     @user.role_ids = params[:user][:role_ids]
+    
+    # JDavis: If do not remove these params, Devise will fail to validate
+    #if params[:user][:password].blank?
+    #  params[:user].delete(:password)
+    #  params[:user].delete(:password_confirmation)
+    #end
+
 
     respond_to do |format|
       if @user.update_attributes(params[:user])
@@ -86,6 +99,10 @@ class UsersController < ApplicationController
       format.html { redirect_to(users_url) }
       format.xml  { head :ok }
     end
+  end
+  
+  def admin_created_user
+    
   end
   
   private

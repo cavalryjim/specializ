@@ -3,11 +3,12 @@ Specializ::Application.routes.draw do
   ActiveAdmin.routes(self)
 
   match '/auth/:provider/callback' => 'authentications#create'
+  #post '/users', :to => 'users#create'
   devise_for :admin_users, ActiveAdmin::Devise.config
-  devise_for :users
+  devise_for :users, :controllers => {:registrations => 'registrations'}, :path_prefix => 'd' 
+      #:path_names => { :sign_up => 'register' }
   resources :authentications
   
-  #devise_for :users, :controllers => {:registrations => 'registrations'}, :path_names => { :sign_up => 'register' }
   #devise_scope :user do
   #  get '/login' => 'devise/sessions#new'
   #  get '/logout' => 'devise/sessions#destroy'
@@ -21,7 +22,7 @@ Specializ::Application.routes.draw do
   match '/pages/me', :to => 'pages#me'
   match '/elements/rate_elements', :to => 'elements#rate_elements'
   match '/topic_groups/import_elements', :to => 'topic_groups#import_elements'
-  #match '/topic_groups/assign_topic', :to => 'topic_groups#assign_topic'
+  match '/topic_groups/assign_topic', :to => 'topic_groups#assign_topic'
   match '/topic_groups/staff_topic', :to => 'topic_groups#staff_topic'
   match '/topic_groups/:topic_group_id/iterations/:id/close', :to => 'iterations#close'
   match '/topic_groups/:topic_group_id/iterations/:id/start', :to => 'iterations#start'
@@ -57,9 +58,9 @@ Specializ::Application.routes.draw do
     end 
   end
   
-  #resources :users do
-    #get :autocomplete_company_name, :on => :collection
-  #end
+  resources :users do
+    get :autocomplete_company_name, :on => :collection
+  end
   
   
   #resources :me, :elements, :iterations, :assignments, :topic_groups, :topics, :users, :groupings, :companies, :elements

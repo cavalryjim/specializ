@@ -112,12 +112,25 @@ class User < ActiveRecord::Base
     UserMailer.iteration_start(self, topic_group).deliver
   end
   
+  def notify_account(password)
+    UserMailer.new_account(self, password).deliver
+  end
+  
   def join_topic_group(topic_group)
     assignment = Assignment.find_or_initialize_by_topic_group_id_and_user_id(topic_group.id, self.id)
     assignment.manager = assignment.manager || false
     assignment.participating = true
     
     self.notify_assignment(topic_group) if assignment.save
+  end
+  
+  def apply_omniauth(omniauth)
+    self.email = omniauth['user_info']['email'] if email.blank?
+    authentications.build(:provider => omniauth['provider'], :uid => omniauth['uid'])
+  end
+  
+  def password_required?
+    (authentications.empty? || !password.blank?) && super
   end
 
 end
