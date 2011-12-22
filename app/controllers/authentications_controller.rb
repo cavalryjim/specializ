@@ -16,6 +16,7 @@ class AuthenticationsController < ApplicationController
     elsif current_user
       current_user.authentications.create!(:provider => omniauth['provider'], :uid => omniauth['uid'])
       flash[:notice] = "Authentication successful."
+      #flash[:notice] = current_user
       redirect_to authentications_url
     else
       #JDavis: might need to change this such that it only requests an account vs creating one.
