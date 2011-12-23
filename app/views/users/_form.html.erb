@@ -27,20 +27,21 @@
     <%= f.label :email %>
     <%= f.text_field :email %>
   </div>
+ <% if (can? :manage, User) && @return_path == users_path %>
   <div class="field">
     <%= f.check_box :active %>
     <%= f.label :active %>
   </div>
-
   <% for role in current_user.available_roles %>
 	<div class="field">
 	<%= check_box_tag "user[role_ids][]", role.id, @user.roles.include?(role) %>
 	<%= role.name %>
   	</div>
   <% end %>
-
+ <% end %>
   <div class="actions">
     <%= f.hidden_field :company_id, :value => current_user.company_id %>
+	<%= hidden_field_tag 'return_path', @return_path %>
     <%= f.submit %>
   </div>
 <% end %>
