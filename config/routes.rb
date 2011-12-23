@@ -33,6 +33,7 @@ Specializ::Application.routes.draw do
   #match '/groupings/:grouping_id/users/:id/remove', :to => 'groupings#remove'
   match '/groupings/:id/new_user', :to => 'groupings#new_user'
   match '/groupings/:id/add_user', :to => 'groupings#add_user'
+  match '/auth/failure', :to => 'authentications#auth_fail'
    
   resources :topic_groups do
     post 'close'

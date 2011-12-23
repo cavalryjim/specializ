@@ -1,7 +1,6 @@
 class RegistrationsController < Devise::RegistrationsController
   def create
     super
-    #@user.company_id = params[:company_id] if 
     session[:omniauth] = nil unless @user.new_record?
   end
   
