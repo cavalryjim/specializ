@@ -12,9 +12,9 @@ header {
 }
 
 header img {
-  padding: 1em;
-  background: none;
-  float: none;
+	padding: 1em;
+	background: none;
+	float: none;
 }
 
 footer {
@@ -202,8 +202,6 @@ div.field, div.actions {
   font-size: 12px;
   list-style: square;
 }
-
-
 
 /* Authentication */ 
 .authentications {
