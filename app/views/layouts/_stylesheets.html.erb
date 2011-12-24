@@ -2,20 +2,19 @@
 <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
 <![endif]-->
 
-<%= stylesheet_link_tag 'blueprint/screen', :media => 'screen' %>
-<!-- <%= stylesheet_link_tag 'blueprint/print',  :media => 'print' %> >
+<%= stylesheet_link_tag 'screen', :media => 'screen' %>
 <!--[if lt IE 8]><%= stylesheet_link_tag 'blueprint/ie' %><![endif]-->
 
-
-<%= stylesheet_link_tag 'custom', :media => 'screen' %> <!--- JDavis: this is the main application css file.  Most changes will be made here. --->
-<%= stylesheet_link_tag 'jquery-ui-1.8.16.custom', :media => 'screen' %>
-<%= stylesheet_link_tag 'jquery_rating', :media => 'screen' %>
-
+<%= stylesheet_link_tag 'custom', :media => 'screen' %>
 <%= stylesheet_link_tag 'base', :media => 'screen' %>
 
-<%= stylesheet_link_tag 'datatable_table', :media => 'screen' %>
-<%= stylesheet_link_tag 'datatable_page', :media => 'screen' %>
-<%= stylesheet_link_tag 'datatable_jui', :media => 'screen' %>
+<%= stylesheet_link_tag 'jscript/jquery-ui-1.8.16.custom', :media => 'screen' %>
+<%= stylesheet_link_tag 'jscript/jquery_rating', :media => 'screen' %>
+<%= stylesheet_link_tag 'jscript/jquery.multiselect', :media => 'screen' %>
+<%= stylesheet_link_tag 'jscript/jquery.multiselect.filter', :media => 'screen' %>
 
-<%= stylesheet_link_tag 'jquery.multiselect', :media => 'screen' %>
-<%= stylesheet_link_tag 'jquery.multiselect.filter', :media => 'screen' %>
+<%= stylesheet_link_tag 'dbase/datatable_table', :media => 'screen' %>
+<%= stylesheet_link_tag 'dbase/datatable_page', :media => 'screen' %>
+<%= stylesheet_link_tag 'dbase/datatable_jui', :media => 'screen' %>
+
+

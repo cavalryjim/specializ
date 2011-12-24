@@ -1,7 +1,4 @@
-
-/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
- * General page setup
- */
+/* General page setup */
 #dt_rdatatable {
 	font: 80%/1.45em "Lucida Grande", Verdana, Arial, Helvetica, sans-serif;
 	margin: 0;
@@ -10,13 +7,11 @@
 	background-color: #fff;
 }
 
-
 #dt_rdatatable #container {
 	width: 800px;
 	margin: 30px auto;
 	padding: 0;
 }
-
 
 #dt_rdatatable #footer {
 	margin: 50px auto 0 auto;

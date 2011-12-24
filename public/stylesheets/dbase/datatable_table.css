@@ -1,34 +1,4 @@
-/*
- *  File:         demo_table.css
- *  CVS:          $Id$
- *  Description:  CSS descriptions for DataTables demo pages
- *  Author:       Allan Jardine
- *  Created:      Tue May 12 06:47:22 BST 2009
- *  Modified:     $Date$ by $Author$
- *  Language:     CSS
- *  Project:      DataTables
- *
- *  Copyright 2009 Allan Jardine. All Rights Reserved.
- *
- * ***************************************************************************
- * DESCRIPTION
- *
- * The styles given here are suitable for the demos that are used with the standard DataTables
- * distribution (see www.datatables.net). You will most likely wish to modify these styles to
- * meet the layout requirements of your site.
- *
- * Common issues:
- *   'full_numbers' pagination - I use an extra selector on the body tag to ensure that there is
- *     no conflict between the two pagination types. If you want to use full_numbers pagination
- *     ensure that you either have "rdatatable_alt_pagination" as a body class name, or better yet,
- *     modify that selector.
- *   Note that the path used for Images is relative. All images are by default located in
- *     ../images/ - relative to this CSS file.
- */
-
-/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
- * DataTables features
- */
+/* DataTables features */
 
 .dataTables_wrapper {
 	position: relative;
@@ -101,11 +71,7 @@
 	background-image: url('../images/datatables/forward_enabled.jpg');
 }
 
-
-
-/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
- * DataTables display
- */
+/* DataTables display */
 table.display {
 	margin: 0 auto;
 	clear: both;
@@ -151,11 +117,7 @@ table.display td.center {
 	text-align: center;
 }
 
-
-
-/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
- * DataTables sorting
- */
+/* DataTables sorting */
 
 .sorting_asc {
 	background: url('../images/datatables/sort_asc.png') no-repeat center right;
@@ -177,13 +139,7 @@ table.display td.center {
 	background: url('../images/datatables/sort_desc_disabled.png') no-repeat center right;
 }
 
-
-
-
-
-/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
- * DataTables row classes
- */
+/* DataTables row classes */
 table.display tr.odd.gradeA {
 	background-color: #ddffdd;
 }
@@ -225,13 +181,7 @@ tr.even {
 	background-color: white;
 }
 
-
-
-
-
-/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
- * Misc
- */
+/* Misc */
 .dataTables_scroll {
 	clear: both;
 }
@@ -291,7 +241,7 @@ td.details {
 }
 
 .paging_full_numbers span.paginate_button,
- 	.paging_full_numbers span.paginate_active {
+.paging_full_numbers span.paginate_active {
 	border: 1px solid #aaa;
 	-webkit-border-radius: 5px;
 	-moz-border-radius: 5px;
@@ -321,10 +271,7 @@ table.display tr.odd.row_selected td {
 	background-color: #9FAFD1;
 }
 
-
-/*
- * Sorting classes for columns
- */
+/* Sorting classes for columns */
 /* For the standard odd/even */
 tr.odd td.sorting_1 {
 	background-color: #D3D6FF;
@@ -350,17 +297,7 @@ tr.even td.sorting_3 {
 	background-color: #F9F9FF;
 }
 
-
 /* For the Conditional-CSS grading rows */
-/*
- 	Colour calculations (based off the main row colours)
-  Level 1:
-		dd > c4
-		ee > d5
-	Level 2:
-	  dd > d1
-	  ee > e2
- */
 tr.odd.gradeA td.sorting_1 {
 	background-color: #c4ffc4;
 }
@@ -457,10 +394,7 @@ tr.even.gradeU td.sorting_3 {
 	background-color: #e2e2e2;
 }
 
-
-/*
- * Row highlighting rdatatable
- */
+/* Row highlighting rdatatable */
 .ex_highlight #rdatatable tbody tr.even:hover, #rdatatable tbody tr.even td.highlighted {
 	background-color: #ECFFB3;
 }
@@ -501,10 +435,7 @@ tr.even.gradeU td.sorting_3 {
 	background-color: #DBFF70;
 }
 
-
-/*
- * KeyTable
- */
+/* KeyTable */
 table.KeyTable td {
 	border: 3px solid transparent;
 }
