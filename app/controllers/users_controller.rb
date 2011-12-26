@@ -38,6 +38,14 @@ class UsersController < ApplicationController
   # GET /users/1/edit
   def edit
     @user = User.find(params[:id])
+    
+    @authentications = current_user.authentications if current_user == @user
+    
+    if params[:return] == 'me'
+      @return_path = me_path
+    else
+      @return_path = users_path
+    end
   end
 
   # POST /users
@@ -69,7 +77,8 @@ class UsersController < ApplicationController
   def update
     #params[:user][:role_ids] ||= []
     @user = User.find(params[:id])
-    @user.role_ids = params[:user][:role_ids]
+    return_path = params[:return_path]
+    @user.role_ids = params[:user][:role_ids] unless return_path == me_path
     
     # JDavis: If do not remove these params, Devise will fail to validate
     #if params[:user][:password].blank?
@@ -77,10 +86,9 @@ class UsersController < ApplicationController
     #  params[:user].delete(:password_confirmation)
     #end
 
-
     respond_to do |format|
       if @user.update_attributes(params[:user])
-        format.html { redirect_to(users_path, :notice => 'User was successfully updated.') }
+        format.html { redirect_to(return_path, :notice => 'User was successfully updated.' ) }
         format.xml  { head :ok }
       else
         format.html { render :action => "edit" }

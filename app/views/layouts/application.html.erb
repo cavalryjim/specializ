@@ -17,10 +17,11 @@
 	  
 	  <!-- Deleted round CSS class from section tag -->
       <section>
-
+		<div id="flash">
         <% flash.each do |key, value| %>
           <div class="flash <%= key %>"><%= value %></div>
         <% end %>
+		</div>
 
         <%= yield %>
 

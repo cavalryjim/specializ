@@ -30,8 +30,7 @@ class TopicsController < ApplicationController
     @topic = Topic.new
     @assignments = []
     @selected_groups = []
-    #flash[:notice] = @selected_groups
-
+    
     respond_with(@topic)
   end
 

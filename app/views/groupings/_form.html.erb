@@ -22,7 +22,7 @@
   
   <div class="field">
     <%= f.label 'Parent Group' %><br />
-	<%= f.select :parent_id, nested_set_options(Grouping.where(:company_id => current_user.company_id), @grouping) {|i| "#{'-' * i.level} #{i.name}" }, {:include_blank => 'None'} %>
+	<%= f.select :parent_id, nested_set_options(Grouping.find(@seed_id).root) {|i| "#{'-' * i.level} #{i.name}" }%>
   </div>
   <div class="actions">
     <%= f.submit %>

@@ -28,10 +28,11 @@ class GroupingsController < ApplicationController
   # GET /groupings/new.xml
   def new
     #@groupings = Grouping.where(:company_id => current_user.company_id).sort_by{|g| g[:full_name]}
-    @groupings = Company.find(current_user.company_id).groupings
+    #@groupings = Company.find(current_user.company_id).groupings
     #@groupings.sort_by{ |g| g[:full_name] }
     #puts @groupings
     @grouping = Grouping.new
+    @seed_id = Grouping.where(:company_id => current_user.company_id).first.id
     @users = []
 
     respond_to do |format|
@@ -43,6 +44,7 @@ class GroupingsController < ApplicationController
   # GET /groupings/1/edit
   def edit
     @grouping = Grouping.find(params[:id])
+    @seed_id = @grouping.id
     @groupings = Company.find(current_user.company_id).groupings
     @users = @grouping.users
   end
