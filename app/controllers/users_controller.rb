@@ -39,12 +39,13 @@ class UsersController < ApplicationController
   def edit
     @user = User.find(params[:id])
     
+    @authentications = current_user.authentications if current_user == @user
+    
     if params[:return] == 'me'
       @return_path = me_path
     else
       @return_path = users_path
     end
-    #flash[:notice] = @return_path
   end
 
   # POST /users

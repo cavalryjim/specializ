@@ -17,7 +17,8 @@ class AuthenticationsController < ApplicationController
       current_user.authentications.create!(:provider => omniauth['provider'], :uid => omniauth['uid'])
       flash[:notice] = "Authentication added."
       #flash[:notice] = current_user
-      redirect_to authentications_url
+      #redirect_to authentications_url
+      redirect_to edit_user_path(current_user) + '?return=me'
     else
       redirect_to new_user_registration_url, :notice => "You must add this authentication to your profile before using it."
       #JDavis: might need to change this such that it only requests an account vs creating one.
