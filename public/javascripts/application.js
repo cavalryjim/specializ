@@ -2,6 +2,11 @@ var rTable;
 var giRedraw = false;
 
 $(function() {
+	
+	$('#flash').delay(500).fadeIn('normal', function() {
+		//$(this).delay(1500).fadeOut('slow');
+		$(this).delay(2500).fadeTo('medium', 0);
+	});
   
 	$( "#accordion" ).accordion(); // accordion on the _browser partial
 	$( "#manager_tabs" ).tabs(); // tabs used in the manager module
@@ -57,7 +62,6 @@ $(function() {
 		window.location.pathname = '/'+temp[1]+'/'+temp[2]+'/'+temp[3]+'/'+$(this).attr('value')+'#tabs-2';
 		//alert(window.location.pathname);
 	});
-	
 	
 	
 	// JDavis: for some reason, these two lines must come last or else shit breaks.
