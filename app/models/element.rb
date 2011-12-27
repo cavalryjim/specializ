@@ -28,8 +28,6 @@ class Element < ActiveRecord::Base
   
   def add_to_iteration(iteration_id, new_element)
     iteration_list = IterationList.find_or_initialize_by_element_id_and_iteration_id(self.id, iteration_id)
-    #iteration_list_element.element_id = self.id
-    #iteration_list_element.iteration_id = iteration_id
     iteration_list.include = true
     iteration_list.new_element = new_element
     return iteration_list.save

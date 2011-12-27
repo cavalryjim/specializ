@@ -16,13 +16,22 @@ class Iteration < ActiveRecord::Base
   has_many :iteration_lists, :dependent => :destroy
   has_many :elements, :through => :iteration_lists
   has_many :user_lists, :dependent => :destroy
+  has_many :new_elements, :through => :iteration_lists,
+           :class_name => "Element",
+           :source => :element,
+           :conditions => ['iteration_lists.new_element = ?', true] 
+  has_many :current_elements, :through => :iteration_lists,
+           :class_name => "Element",
+           :source => :element,
+           :conditions => ['iteration_lists.new_element = false', 'elements.current = true', 'iteration_lists.include = true']
   
   validates :num, :presence => true
   validates :active, :inclusion => {:in => [true, false]}
   validates :topic_group_id, :presence => true
   
   def close
-    self.elements.where('current = true').each do |element|
+    #self.elements.where('current = true').each do |element|
+    self.current_elements.each do |element|
       element.compute_agreement(self.id)
     end
     self.active = false

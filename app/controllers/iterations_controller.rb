@@ -15,15 +15,19 @@ class IterationsController < ApplicationController
     @topic_group = TopicGroup.find(@iteration.topic_group_id)
     @iterations = @topic_group.iterations.sort_by{ |iteration| iteration.num }
     @topic = Topic.find(@topic_group.topic_id)
-    #@elements = @iteration.elements.order(sort_column + ' ' + sort_direction).paginate(:per_page => 5, :page => params[:page]) 
-    @elements = @iteration.elements
+    #@elements = @iteration.elements
+    @elements = @iteration.current_elements
     @participating_users = @topic_group.participating_users
+    @submitted = current_user.submitted_list?(@iteration.id)
     @manager = current_user.manager?(@topic_group.id)
+    
+    if @manager && @topic_group.active
+      @new_elements = @topic_group.iterations.last.new_elements
+    end
     
     # JDavis: if the iteration is active, check to see it the user has submitted.
     #@active = @iteration.active ? !current_user.submitted_list?(@iteration.id) : false
     
-    @submitted = current_user.submitted_list?(@iteration.id)
     #flash[:notice] = '@iteration.active = ' + @iteration.active.to_s + ', submitted_list = ' + current_user.submitted_list?(@iteration.id).to_s + ', @active = ' + @active.to_s
     respond_with(@iteration)
   end
