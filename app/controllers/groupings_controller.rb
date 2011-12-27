@@ -34,6 +34,7 @@ class GroupingsController < ApplicationController
     @grouping = Grouping.new
     @seed_id = Grouping.where(:company_id => current_user.company_id).first.id
     @users = []
+    @root = false
 
     respond_to do |format|
       format.html # new.html.erb 
@@ -44,6 +45,7 @@ class GroupingsController < ApplicationController
   # GET /groupings/1/edit
   def edit
     @grouping = Grouping.find(params[:id])
+    @root = @grouping.root?
     @seed_id = @grouping.id
     @groupings = Company.find(current_user.company_id).groupings
     @users = @grouping.users
@@ -52,8 +54,9 @@ class GroupingsController < ApplicationController
   # POST /groupings
   # POST /groupings.xml
   def create
+    #redirect_to new_grouping_path if params[:grouping][:name] == ''
     @grouping = Grouping.new(params[:grouping])
-    @grouping.company_id = current_user.company_id
+    #@grouping.company_id = current_user.company_id
 
     respond_to do |format|
       if @grouping.save
@@ -61,6 +64,7 @@ class GroupingsController < ApplicationController
         format.xml  { render :xml => @grouping, :status => :created, :location => @grouping }
       else
         format.html { render :action => "new" }
+        #format.html { redirect_to new_grouping_path, :alert => @grouping.errors.full_messages }
         format.xml  { render :xml => @grouping.errors, :status => :unprocessable_entity }
       end
     end
@@ -70,7 +74,8 @@ class GroupingsController < ApplicationController
   # PUT /groupings/1.xml
   def update
     @grouping = Grouping.find(params[:id])
-
+    params[:grouping].delete :parent_id if (@grouping.root? or (params[:grouping][:parent_id].to_i == params[:id].to_i))
+   
     respond_to do |format|
       if @grouping.update_attributes(params[:grouping])
         format.html { redirect_to edit_grouping_path(@grouping), :notice => 'Grouping was successfully updated.' }

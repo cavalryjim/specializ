@@ -1,7 +1,7 @@
 source 'http://rubygems.org'
 
 gem 'rails', '3.0.9'
-gem 'mysql2', '0.2.7'
+gem 'mysql2', '0.2.18' # JDavis: with Rails 3, must use a mysql2 gem version < 0.3.  Moving from 0.2.7 to support windows.
 gem 'cancan'
 #gem 'declarative_authorization'
 gem 'awesome_nested_set', '~> 2.0.2'

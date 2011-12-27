@@ -21,7 +21,7 @@
   </div>
   <div class="field"
 	<%= f.label 'Participating Groups: ' %>
-	<%= select_tag(:groupings, options_for_select(nested_set_options(Grouping) {|i| "#{' -' * i.level} #{i.name}" }, 
+	<%= select_tag(:groupings, options_for_select(nested_set_options(Grouping.find(@seed_id).root) {|i| "#{' -' * i.level} #{i.name}" }, 
 			:selected => @selected_groups ), { :multiple => true } ) %>
   </div>
   <div class="field">
