@@ -45,11 +45,11 @@
 			<% name = 'rating['+element.id.to_s+']' %>
 		
 			<td id="rating">	
-				<%= radio_button_tag name, 1, score == 1, options = { :class => "jdstar", :disabled => !@active } %>
-				<%= radio_button_tag name, 2, score == 2, options = { :class => "jdstar", :disabled => !@active } %>
-				<%= radio_button_tag name, 3, score == 3, options = { :class => "jdstar", :disabled => !@active } %>
-				<%= radio_button_tag name, 4, score == 4, options = { :class => "jdstar", :disabled => !@active } %>
-				<%= radio_button_tag name, 5, score == 5, options = { :class => "jdstar", :disabled => !@active } %>
+				<%= radio_button_tag name, 1, score == 1, options = { :class => "jdstar", :disabled => !@iteration.active } %>
+				<%= radio_button_tag name, 2, score == 2, options = { :class => "jdstar", :disabled => !@iteration.active } %>
+				<%= radio_button_tag name, 3, score == 3, options = { :class => "jdstar", :disabled => !@iteration.active } %>
+				<%= radio_button_tag name, 4, score == 4, options = { :class => "jdstar", :disabled => !@iteration.active } %>
+				<%= radio_button_tag name, 5, score == 5, options = { :class => "jdstar", :disabled => !@iteration.active } %>
 			</td>
 	
 		    <td><%= link_to 'Delete', topic_group_iteration_element_path(@topic_group, @iteration, element), :confirm => 'Are you sure?', :method => :delete%></td>
@@ -62,8 +62,16 @@
   </div>
   
   <%= hidden_field_tag(:iteration_id, @iteration.id) %>
-  <div align='right'> <%= submit_tag("Submit List", :confirm => 'Submit your list?', :disabled => !@active) %> </div>
+  <div align='right'> 
+	<% if @submitted %>
+		<%= submit_tag("Submit List", :confirm => 'Resubmit your list? Previous ratings will be overwritten.', :disabled => !@iteration.active) %> 
+	<% else %>
+		<%= submit_tag("Submit List", :confirm => 'Submit your list?', :disabled => !@iteration.active) %> 
+	<% end %>
+  </div>
  
 <% end %>
-<div align='left'> <button id="item_delete"> Remove Selected Item </button>	</div>
+<% if @iteration.active %>
+	<div align='left'> <button id="item_delete"> Remove Selected Item </button>	</div>
+<% end %>
 

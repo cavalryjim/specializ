@@ -21,7 +21,9 @@ class IterationsController < ApplicationController
     @manager = current_user.manager?(@topic_group.id)
     
     # JDavis: if the iteration is active, check to see it the user has submitted.
-    @active = @iteration.active ? !current_user.submitted_list?(@iteration.id) : false
+    #@active = @iteration.active ? !current_user.submitted_list?(@iteration.id) : false
+    
+    @submitted = current_user.submitted_list?(@iteration.id)
     #flash[:notice] = '@iteration.active = ' + @iteration.active.to_s + ', submitted_list = ' + current_user.submitted_list?(@iteration.id).to_s + ', @active = ' + @active.to_s
     respond_with(@iteration)
   end
