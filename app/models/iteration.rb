@@ -37,8 +37,8 @@ class Iteration < ActiveRecord::Base
     self.active = false
     
     sum = self.iteration_lists.sum('agreement')
-    included_elements = self.iteration_lists.count(:conditions => { :include => true })
-    total_elements = self.iteration_lists.count
+    included_elements = self.iteration_lists.count(:conditions => { :include => true, :new_element => false })
+    total_elements = self.iteration_lists.count(:conditions => {:new_element => false })
     consensus = (sum - (total_elements - included_elements) * 100 ) / included_elements
     self.consensus = !consensus.nan? ? consensus : 0
   

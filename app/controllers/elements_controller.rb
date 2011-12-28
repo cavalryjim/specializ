@@ -46,7 +46,7 @@ class ElementsController < ApplicationController
 
     respond_to do |format|
       if @element.save  
-        if @element.add_to_iteration(@iteration.id, true)
+        if @element.add_to_iteration(@iteration.id, true, true)
           format.html { redirect_to topic_group_iteration_url(@topic_group, @iteration)+'#tabs-2', :notice => 'Element was successfully created.' }
           format.xml  { render :xml => @element, :status => :created, :location => @element }
         else
@@ -64,12 +64,15 @@ class ElementsController < ApplicationController
   # PUT /elements/1.xml
   def update
     @element = Element.find(params[:id])
+    iteration = Iteration.find(params[:iteration_id])
+    topic_group = TopicGroup.find(iteration.topic_group_id)
     #JDavis: identifying the last user to edit this element
     @element.edited_by = current_user.id
 
-    respond_to do |format|
+    respond_with do |format|
       if @element.update_attributes(params[:element])
-        format.html { redirect_to(@element, :notice => 'Element was successfully updated.') }
+        #format.html { redirect_to(@element, :notice => 'Element was successfully updated.') }
+        format.html { redirect_to topic_group_iteration_url(topic_group, iteration)+'#tabs-2', :notice => 'Element was successfully updated.' }
         format.xml  { head :ok }
       else
         format.html { render :action => "edit" }
@@ -102,7 +105,7 @@ class ElementsController < ApplicationController
       new_element.current = true
       new_element.created_by = current_user.id
       new_element.save
-      new_element.destroy if !new_element.add_to_iteration(@topic_group.iterations.last.id, true)
+      new_element.destroy if !new_element.add_to_iteration(@topic_group.iterations.last.id, true, false)
     end
     
     params[:rating].each do |key, score|

@@ -1,0 +1,30 @@
+Basic documentation for creating and approving newly submitted elements.
+
+Here are the fields we have to work with:
+element.current
+iteration_list.include
+iteration_list.new_element
+
+
+User submits a new element.
+iteration_list.include = false
+iteration_list.new_element = true
+element.current = false
+
+Manager approves element (change include and current to true).
+iteration_list.include = true
+iteration_list.new_element = true
+element.current = true
+
+Manager disapproves element (leave include as false).
+iteration_list.include = false
+iteration_list.new_element = true
+element.current = false
+
+Start new iteration (change new_element to false if include = true...else delete element).
+iteration_list.include = true
+iteration_list.new_element = false
+element.current = true
+
+
+

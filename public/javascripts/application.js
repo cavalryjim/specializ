@@ -5,7 +5,7 @@ $(function() {
 	
 	$('#flash').delay(500).fadeIn('normal', function() {
 		//$(this).delay(1500).fadeOut('slow');
-		$(this).delay(2500).fadeTo('medium', 0);
+		$(this).delay(2500).fadeTo('slow', 0);
 	});
   
 	$( "#accordion" ).accordion(); // accordion on the _browser partial

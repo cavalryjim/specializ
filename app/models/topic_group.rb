@@ -101,7 +101,7 @@ class TopicGroup < ActiveRecord::Base
         e.current = true
         e.created_by = current_user_id
         if e.save 
-          if !e.add_to_iteration(self.iterations.last.id, false)
+          if !e.add_to_iteration(self.iterations.last.id, false, true)
             e.destroy #JDavis: no orphan elements.
           end
         end
