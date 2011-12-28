@@ -36,6 +36,17 @@ $(function() {
         "sPaginationType": "full_numbers"
 	}); 
 	
+	$( "#new_elements_table" ).dataTable({ // datatable listing newly suggested elements needing manager approval
+		"aoColumns": [
+		              { "sWidth": "5%" },
+		              { "sWidth": "90%" }
+		          ],
+		"bAutoWidth": false,
+		"bJQueryUI": true,
+        "sPaginationType": "full_numbers"
+	}); 
+	
+	
 	// JDavis: this function responds to the dropdown selection on the manager page and navigates to the select topic.
 	$('#topic_select').change(function() {
 		//alert($(this).attr('value'));

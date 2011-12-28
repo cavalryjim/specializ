@@ -1,8 +1,5 @@
-<!--# JDavis: at the moment, this is returning all the groupings...should only return groupings for the user's company -->
-<%= select_tag 'grouping_select', options_for_select(nested_set_options(Grouping.find(@seed_id).root) {|i| "#{'-' * i.level} #{i.name}" }, @grouping.id ) , { :include_blank => 'New Group ' }  %>
 
-<%= # select_tag(:grouping_select2 , options_from_collection_for_select(@groupings.sort_by{|g| g[:fullname]}, :id, :fullname, @grouping.id ), { :include_blank => 'New Group ' } ) 
-%>
+<%= select_tag 'grouping_select', options_for_select(nested_set_options(Grouping.find(@seed_id).root) {|i| "#{'-' * i.level} #{i.name}" }, @grouping.id ) , { :include_blank => 'New Group ' }  %>
 
 <div id="hr_tabs">
 	<ul>

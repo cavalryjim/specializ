@@ -1,15 +1,9 @@
 class ElementsController < ApplicationController
-  before_filter :authentiate_user
+  before_filter :authenticate_user!
   
   #require 'will_paginate'
   respond_to :html,:json,:xml
   
-  
-  def index  
-    #@elements= Element.all.paginate(:per_page => 5, :page => params[:page]) 
-    #responds_with (@elements)
-    
-  end
 
   # GET /elements/1
   # GET /elements/1.xml
@@ -127,6 +121,16 @@ class ElementsController < ApplicationController
         #format.xml  { render :xml => @iteration.errors, :status => :unprocessable_entity }
       end
     end
+ end
+ 
+ def approve_new_elements
+   topic_group = TopicGroup.find(params[:topic_group_id])
+   new_notice = []
+   params[:approve].each do |key, value|
+     new_notice << key
+   end
+   
+   redirect_to topic_group_iteration_url(topic_group, topic_group.iterations.last)+'#tabs-4', :notice => new_notice
  end
   
 end
