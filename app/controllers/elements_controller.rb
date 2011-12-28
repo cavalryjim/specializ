@@ -127,13 +127,18 @@ class ElementsController < ApplicationController
  end
  
  def approve_new_elements
-   topic_group = TopicGroup.find(params[:topic_group_id])
-   new_notice = []
-   params[:approve].each do |key, value|
-     new_notice << key
+   iteration = Iteration.find(params[:iteration_id])
+   topic_group = TopicGroup.find(iteration.topic_group_id)
+   iteration.iteration_lists.where(:new_element => true).update_all(:include => false)
+   if params[:approve]  
+     params[:approve].each do |key, value|
+       iteration_list = IterationList.find_or_initialize_by_element_id_and_iteration_id(key, iteration.id)
+       iteration_list.include = true
+       iteration_list.save
+     end
    end
    
-   redirect_to topic_group_iteration_url(topic_group, topic_group.iterations.last)+'#tabs-4', :notice => new_notice
+   redirect_to topic_group_iteration_url(topic_group, iteration)+'#tabs-4', :notice => 'New elements approved and will be included in the next iteration.'
  end
   
 end

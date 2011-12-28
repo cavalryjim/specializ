@@ -23,7 +23,7 @@ class Element < ActiveRecord::Base
   
   def score(user_id, iteration_id)
     user_score = UserList.find_by_element_id_and_user_id_and_iteration_id(self.id, user_id, iteration_id)
-    return !user_score.nil? ? user_score.score : 0
+    return user_score.nil? ? 0 : user_score.score
   end
   
   def add_to_iteration(iteration_id, new_element, include)
@@ -57,6 +57,10 @@ class Element < ActiveRecord::Base
     total_scored = self.user_lists.count(:conditions => {:iteration_id => iteration_id } && ['score > 0'] )
  
     return ((total_scored.to_f / total_submissions.to_f) >= 0.5) ? true : false
+  end
+  
+  def approved?(iteration_id)
+    IterationList.find_by_element_id_and_iteration_id(self.id, iteration_id).include
   end
   
 end

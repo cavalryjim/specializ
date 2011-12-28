@@ -42,6 +42,7 @@ class TopicGroup < ActiveRecord::Base
   def close
     self.iterations.where('active = true').each do |iteration|
       iteration.close
+      iteration.save
     end
     
     self.active = false

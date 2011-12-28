@@ -28,13 +28,13 @@
 				<% @new_elements.each do |new_element| %>
 				  <tr>
 					<% name = 'approve['+new_element.id.to_s+']' %>
-				    <td> <%= check_box_tag name, 1, false %> </td>
+				    <td> <%= check_box_tag name, 1, new_element.approved?(@iterations.last.id) %> </td>
 				    <td><%= new_element.name %></td>
 				  </tr>
 				<% end %>
 			 </tbody>
 			</table>
-			<%= hidden_field_tag(:topic_group_id, @topic_group.id) %>
+			<%= hidden_field_tag(:iteration_id, @iterations.last.id) %>
 			<%= submit_tag("Submit Approvals", :confirm => 'Approve these elements?') %>
 	 	<% end %>
 	  </div>

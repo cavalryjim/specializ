@@ -124,6 +124,12 @@ class User < ActiveRecord::Base
     self.notify_assignment(topic_group) if assignment.save
   end
   
+  def suggested_elements(iteration_id)
+    Iteration.find(iteration_id).elements(:conditions => ['iteration_lists.new_element = true']).where(:created_by => self.id)
+    #JDavis:  left off jdhere.....
+    #@assignments = Assignment.where(:topic_group_id => TopicGroup.where(:topic_id => @topic.id))
+  end
+  
   def apply_omniauth(omniauth)
     self.email = omniauth['user_info']['email'] if email.blank?
     authentications.build(:provider => omniauth['provider'], :uid => omniauth['uid'])

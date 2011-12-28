@@ -17,9 +17,11 @@ class IterationsController < ApplicationController
     @topic = Topic.find(@topic_group.topic_id)
     #@elements = @iteration.elements
     @elements = @iteration.current_elements
+    @suggested_elements = current_user.suggested_elements(@iteration.id)
     @participating_users = @topic_group.participating_users
     @submitted = current_user.submitted_list?(@iteration.id)
     @manager = current_user.manager?(@topic_group.id)
+    flash[:notice] = @suggested_elements.size
     
     if @manager && @topic_group.active
       @new_elements = @topic_group.iterations.last.new_elements
