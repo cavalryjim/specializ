@@ -23,7 +23,7 @@ class Iteration < ActiveRecord::Base
   has_many :current_elements, :through => :iteration_lists,
            :class_name => "Element",
            :source => :element,
-           :conditions => ['iteration_lists.new_element = false', 'iteration_lists.include = true']
+           :conditions => ['iteration_lists.new_element = false', 'iteration_lists.include = true', 'current = true']
   
   validates :num, :presence => true
   validates :active, :inclusion => {:in => [true, false]}

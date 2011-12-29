@@ -32,6 +32,22 @@
 	 </thead>
 	
 	 <tbody>
+		<% @suggested_elements.each do |element| %>
+	      <tr>
+			<td>
+				<%= link_to element.name, edit_topic_group_iteration_element_path(@topic_group, @iteration, element) %>
+			</td>
+
+			<td>
+				Waiting approval
+			</td>
+
+			<td><%= link_to 'Delete', topic_group_iteration_element_path(@topic_group, @iteration, element), :confirm => 'Are you sure?', :method => :delete%></td>
+
+			<td><%= element.name.upcase %></td>
+		  </tr>
+		<% end %>
+		
 		<% @elements.each do |element| %>
 		  <tr>
 		    <td>
