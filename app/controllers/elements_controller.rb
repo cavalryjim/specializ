@@ -98,20 +98,26 @@ class ElementsController < ApplicationController
   def rate_elements
     @iteration = Iteration.find(params[:iteration_id])
     @topic_group = TopicGroup.find(@iteration.topic_group_id)
-    
-    params[:new].each do |key, name|
-      new_element = Element.new
-      new_element.name = name
-      new_element.current = true
-      new_element.created_by = current_user.id
-      new_element.save
-      new_element.destroy if !new_element.add_to_iteration(@topic_group.iterations.last.id, true, false)
+    resubmit = params[:resubmit]
+    #iteration.iteration_lists.where(:new_element => true).update_all(:include => false)
+    current_user.user_lists.where(:iteration_id => @iteration.id).update_all(:score => 0) if resubmit
+    if params[:new]  
+      params[:new].each do |key, name|
+        new_element = Element.new
+        new_element.name = name
+        new_element.current = true
+        new_element.created_by = current_user.id
+        new_element.save
+        new_element.destroy if !new_element.add_to_iteration(@topic_group.iterations.last.id, true, false)
+      end
     end
     
-    params[:rating].each do |key, score|
-      user_element_rating = UserList.find_or_initialize_by_user_id_and_element_id_and_iteration_id(current_user.id, key, @iteration.id)
-      user_element_rating.score = score
-      user_element_rating.save
+    if params[:rating]
+      params[:rating].each do |key, score|
+        user_element_rating = UserList.find_or_initialize_by_user_id_and_element_id_and_iteration_id(current_user.id, key, @iteration.id)
+        user_element_rating.score = score
+        user_element_rating.save
+      end
     end
     
     respond_to do |format|

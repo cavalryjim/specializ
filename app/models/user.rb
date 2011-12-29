@@ -125,11 +125,7 @@ class User < ActiveRecord::Base
   end
   
   def suggested_elements(iteration_id)
-    #Iteration.find(iteration_id).elements(:conditions => ['iteration_lists.new_element = true']).where(:created_by => self.id)
-    #Iteration.find(iteration_id).elements.where(:iteration_lists.new_element => true, :created_by => self.id)
     Iteration.find(iteration_id).new_elements.where(:created_by => self.id)
-    #JDavis:  left off jdhere.....
-    #@assignments = Assignment.where(:topic_group_id => TopicGroup.where(:topic_id => @topic.id))
   end
   
   def apply_omniauth(omniauth)
