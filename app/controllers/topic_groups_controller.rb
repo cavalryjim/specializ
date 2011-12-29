@@ -6,12 +6,14 @@ class TopicGroupsController < ApplicationController
   # GET /topic_groups
   # GET /topic_groups.xml
   def index
-    @topic_groups = TopicGroup.all
+    #@topic_groups = TopicGroup.all
+    redirect_to me_path
+    
 
-    respond_to do |format|
-      format.html # index.html.erb
-      format.xml  { render :xml => @topic_groups }
-    end
+    #respond_to do |format|
+    #  format.html # index.html.erb
+    #  format.xml  { render :xml => @topic_groups }
+    #end
   end
 
   # GET /topic_groups/1
