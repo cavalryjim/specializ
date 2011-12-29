@@ -72,8 +72,6 @@ class User < ActiveRecord::Base
   
   mount_uploader :avatar, AvatarUploader
   
-  #scope :belongs_company, where(:company_id => 2)
-  
   def name
     first_name.to_str + " " + last_name.to_str
   end

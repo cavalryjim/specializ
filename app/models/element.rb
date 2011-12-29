@@ -47,9 +47,9 @@ class Element < ActiveRecord::Base
       iteration_list.agreement = 100
       iteration_list.include = false
     end
-    if iteration_list.new_element == nil
-      iteration_list.new_element = false
-    end
+    
+    iteration_list.new_element = false if iteration_list.new_element == nil
+    
     return iteration_list.save
   end
   

@@ -30,7 +30,6 @@ class Iteration < ActiveRecord::Base
   validates :topic_group_id, :presence => true
   
   def close
-    #self.elements.where('current = true').each do |element|
     self.current_elements.each do |element|
       element.compute_agreement(self.id)
     end

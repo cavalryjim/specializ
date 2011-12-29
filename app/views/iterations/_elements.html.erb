@@ -2,12 +2,10 @@
 
 <div>
   <div id="elementDiv" align=right>
-  <%# if @active 
-%>
-	<input type="text" id="element_name" />
-	<button id="new_element"> Add New Item </button>
-  <%# end 
-%>
+    <% if @iteration.active %>
+	  <input type="text" id="element_name" />
+	  <button id="new_element"> Add New Item </button>
+    <% end %>
   </div>  
    
   <div align=left>
@@ -35,12 +33,20 @@
 		<% @suggested_elements.each do |element| %>
 	      <tr>
 			<td>
+			  <% if @iteration.id == @topic_group.iterations.last.id %>
 				<%= link_to element.name, edit_topic_group_iteration_element_path(@topic_group, @iteration, element) %>
 				<%= link_to '(delete)', topic_group_iteration_element_path(@topic_group, @iteration, element), :confirm => 'Are you sure you want to delete this item?', :method => :delete %>
+			  <% else %>
+				<%= element.name %>
+			  <% end %>
 			</td>
 
 			<td>
-				Waiting approval
+			  <% if @iteration.id == @topic_group.iterations.last.id %>
+				  Waiting approval
+			  <% else %>
+				  Suggested
+			  <% end %>
 			</td>
 
 			<td><%= link_to 'Delete', topic_group_iteration_element_path(@topic_group, @iteration, element), :confirm => 'Are you sure?', :method => :delete%></td>
@@ -52,7 +58,7 @@
 		<% @elements.each do |element| %>
 		  <tr>
 		    <td>
-			  <% if @manager %>
+			  <% if @manager && @iteration.id == @topic_group.iterations.last.id  %>
 				<%= link_to element.name, edit_topic_group_iteration_element_path(@topic_group, @iteration, element) %>
 			  <% else %> 
 				<%= element.name %>
