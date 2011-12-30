@@ -29,6 +29,10 @@ class TopicGroup < ActiveRecord::Base
             :class_name => "User",
             :source => :user,
             :conditions => ['assignments.participating = ?', true]   
+  has_many  :managers, :through => :assignments,
+            :class_name => "User",
+            :source => :user,
+            :conditions => ['assignments.manager = ?', true]   
   
   validates :name, :presence => true
   validates :goal, :presence => true
@@ -42,7 +46,6 @@ class TopicGroup < ActiveRecord::Base
   def close
     self.iterations.where('active = true').each do |iteration|
       iteration.close
-      iteration.save
     end
     
     self.active = false
@@ -108,6 +111,12 @@ class TopicGroup < ActiveRecord::Base
         end
       end
       
+    end
+  end
+  
+  def notify_users_new_iteration
+    self.participating_users.each do |user|
+      user.notify_iteration_start(self)
     end
   end
   

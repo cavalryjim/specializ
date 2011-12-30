@@ -18,4 +18,10 @@ class UserMailer < ActionMailer::Base
     @password = generated_password
     mail(:to => "#{user.name} <#{user.email}>", :subject => 'New Account')
   end
+  
+  def iteration_close(manager, iteration_id)
+    @manager = manager
+    @topic_group = TopicGroup.find(Iteration.find(iteration_id).topic_group_id)
+    mail(:to => "#{manager.name} <#{manager.email}>", :subject => 'Iteration Closed')
+  end
 end

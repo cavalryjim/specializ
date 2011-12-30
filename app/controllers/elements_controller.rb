@@ -98,9 +98,12 @@ class ElementsController < ApplicationController
   def rate_elements
     @iteration = Iteration.find(params[:iteration_id])
     @topic_group = TopicGroup.find(@iteration.topic_group_id)
+   
     resubmit = params[:resubmit]
     #iteration.iteration_lists.where(:new_element => true).update_all(:include => false)
     current_user.user_lists.where(:iteration_id => @iteration.id).update_all(:score => 0) if resubmit
+    
+    #JDavis: todo - this needs to move to the model layer!
     if params[:new]  
       params[:new].each do |key, name|
         new_element = Element.new
@@ -112,6 +115,7 @@ class ElementsController < ApplicationController
       end
     end
     
+    #JDavis: todo - this needs to move to the model layer!
     if params[:rating]
       params[:rating].each do |key, score|
         user_element_rating = UserList.find_or_initialize_by_user_id_and_element_id_and_iteration_id(current_user.id, key, @iteration.id)
@@ -119,6 +123,8 @@ class ElementsController < ApplicationController
         user_element_rating.save
       end
     end
+    
+    @iteration.close(true) if (@iteration.num_submitted_lists.to_f / @topic_group.users.count.to_f) == 1
     
     respond_to do |format|
       if true
@@ -136,6 +142,8 @@ class ElementsController < ApplicationController
    iteration = Iteration.find(params[:iteration_id])
    topic_group = TopicGroup.find(iteration.topic_group_id)
    iteration.iteration_lists.where(:new_element => true).update_all(:include => false)
+   
+   #JDavis: todo - this needs to move to the model layer!
    if params[:approve]  
      params[:approve].each do |key, value|
        iteration_list = IterationList.find_or_initialize_by_element_id_and_iteration_id(key, iteration.id)

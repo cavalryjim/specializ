@@ -95,23 +95,23 @@ class User < ActiveRecord::Base
   end
   
   def submitted_list?(iteration_id)
-    if UserList.find_by_user_id_and_iteration_id(self.id, iteration_id)
-      true
-    else
-      false
-    end
+    UserList.find_by_user_id_and_iteration_id(self.id, iteration_id) ? true : false
   end
   
   def notify_assignment(topic_group)
     UserMailer.new_assignment(self, topic_group).deliver
   end
   
-  def notify_iteration(topic_group)
+  def notify_iteration_start(topic_group)
     UserMailer.iteration_start(self, topic_group).deliver
   end
   
   def notify_account(password)
     UserMailer.new_account(self, password).deliver
+  end
+  
+  def notify_iteration_close(iteration_id)
+    UserMailer.iteration_close(self, iteration_id).deliver
   end
   
   def join_topic_group(topic_group)

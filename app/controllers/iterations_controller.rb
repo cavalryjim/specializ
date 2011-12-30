@@ -81,10 +81,7 @@ class IterationsController < ApplicationController
     last_iteration = topic_group.iterations.last
     
     new_iteration = last_iteration.user_lists.size > 0 ? last_iteration.start_new_iteration : last_iteration.reopen
-    
-    topic_group.users.each do |user|
-      user.notify_iteration(topic_group)
-    end
+    topic_group.notify_users_new_iteration
     
     flash[:notice] = 'Iteration was successfully started.' if new_iteration
     

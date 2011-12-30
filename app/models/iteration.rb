@@ -29,18 +29,24 @@ class Iteration < ActiveRecord::Base
   validates :active, :inclusion => {:in => [true, false]}
   validates :topic_group_id, :presence => true
   
-  def close
+  def close(alert_manager = false)
     self.current_elements.each do |element|
       element.compute_agreement(self.id)
     end
-    self.active = false
     
     sum = self.iteration_lists.sum('agreement')
     included_elements = self.iteration_lists.count(:conditions => { :include => true, :new_element => false })
     total_elements = self.iteration_lists.count(:conditions => {:new_element => false })
     consensus = (sum - (total_elements - included_elements) * 100 ) / included_elements
     self.consensus = consensus.nan? ? 0 : consensus
+    
+    if alert_manager
+      topic_group.managers.each do |manager|
+        manager.notify_iteration_close(self.id)
+      end
+    end
   
+    self.active = false
     return self.save
   end
   
