@@ -1,13 +1,19 @@
 var rTable;
 var giRedraw = false;
 
+
 $(function() {
 	
 	$('#flash').delay(500).fadeIn('normal', function() {
 		//$(this).delay(1500).fadeOut('slow');
 		$(this).delay(2500).fadeTo('slow', 0);
 	});
-  
+	
+	$(document).ready(function() {
+		  /* Activating Best In Place */
+		  jQuery(".best_in_place").best_in_place()
+		});
+
 	$( "#accordion" ).accordion(); // accordion on the _browser partial
 	$( "#manager_tabs" ).tabs(); // tabs used in the manager module
 	$( "#hr_tabs" ).tabs(); // tabs used in the HR module

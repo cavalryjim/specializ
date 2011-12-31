@@ -58,11 +58,7 @@
 		<% @elements.each do |element| %>
 		  <tr>
 		    <td>
-			  <% if @manager && @iteration.id == @topic_group.iterations.last.id  %>
-				<%= link_to element.name, edit_topic_group_iteration_element_path(@topic_group, @iteration, element) %>
-			  <% else %> 
-				<%= element.name %>
-			  <% end %>				
+			  <%= best_in_place element, :name, :type => :input %>				
 			</td>
 			<% score = element.score(current_user.id ,@iteration.id) %>
 			<% name = 'rating['+element.id.to_s+']' %>
