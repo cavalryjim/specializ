@@ -272,7 +272,17 @@ div.field, div.actions {
   margin-bottom: 10px;
 }
 
-
+/* JDavis: styling for the 'best_in_place' usage. */
+.purr {
+	position: fixed;
+	top: 30px;
+	right: 100px;
+	width: 250px;
+	padding: 20px;
+  	background-color: #FCC;
+  	border: solid 2px #C66;
+  	&:first-letter { text-transform: uppercase; }
+}
 
 
 #home { background: #fff url(/images/bg-home-top.gif) no-repeat 0 0; }

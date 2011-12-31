@@ -2,7 +2,7 @@ class ElementsController < ApplicationController
   before_filter :authenticate_user!
   
   #require 'will_paginate'
-  respond_to :html,:json,:xml
+  respond_to :html,:json
   
 
   # GET /elements/1
@@ -64,21 +64,23 @@ class ElementsController < ApplicationController
   # PUT /elements/1.xml
   def update
     @element = Element.find(params[:id])
-    iteration = Iteration.find(params[:iteration_id])
-    topic_group = TopicGroup.find(iteration.topic_group_id)
+    #iteration = Iteration.find(params[:iteration_id])
+    #topic_group = TopicGroup.find(iteration.topic_group_id)
     #JDavis: identifying the last user to edit this element
-    @element.edited_by = current_user.id
+    params[:element][:edited_by] = current_user.id
+    @element.update_attributes(params[:element])
 
-    respond_with do |format|
-      if @element.update_attributes(params[:element])
+    respond_with(@element)
+    #respond_with do |format|
+    #  if @element.update_attributes(params[:element])
         #format.html { redirect_to(@element, :notice => 'Element was successfully updated.') }
-        format.html { redirect_to topic_group_iteration_url(topic_group, iteration)+'#tabs-2', :notice => 'Element was successfully updated.' }
-        format.xml  { head :ok }
-      else
-        format.html { render :action => "edit" }
-        format.xml  { render :xml => @element.errors, :status => :unprocessable_entity }
-      end
-    end
+    #    format.html { redirect_to topic_group_iteration_url(topic_group, iteration)+'#tabs-2', :notice => 'Element was successfully updated.' }
+    #    format.xml  { head :ok }
+    #  else
+    #    format.html { render :action => "edit" }
+    #    format.xml  { render :xml => @element.errors, :status => :unprocessable_entity }
+    #  end
+    #end
   end
 
   # DELETE /elements/1

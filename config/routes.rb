@@ -64,7 +64,7 @@ Specializ::Application.routes.draw do
     get :autocomplete_company_name, :on => :collection
   end
   
-  #resources :elements
+  resources :elements
   #resources :me, :elements, :iterations, :assignments, :topic_groups, :topics, :users, :groupings, :companies, :elements
   
   root :to => 'me#home'
