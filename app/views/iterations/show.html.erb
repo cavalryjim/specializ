@@ -32,7 +32,7 @@
 		<li><a href="#tabs-1">Topic Info</a></li>
 		<li><a href="#tabs-2">Participate</a></li>
 		<li><a href="#tabs-3">Members</a></li>
-		<% if @manager %>
+		<% if can? :manage, @topic_group %>
 			<li><a href="#tabs-4">Manage</a></li>
 		<% end %>
 	</ul>
@@ -48,7 +48,7 @@
 	<div id="tabs-3">
 		<%= render 'members' %>
 	</div>
-	<% if @manager %>
+	<% if can? :manage, @topic_group %>
 		<div id="tabs-4">
 			<%= render 'manage' %>
 		</div>

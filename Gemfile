@@ -2,24 +2,19 @@ source 'http://rubygems.org'
 
 gem 'rails', '3.0.9'
 gem 'mysql2', '0.2.18' # JDavis: with Rails 3, must use a mysql2 gem version < 0.3.  Moving from 0.2.7 to support windows.
-gem 'cancan'
-#gem 'declarative_authorization'
+gem 'cancan', '~> 1.6.7'
 gem 'awesome_nested_set', '~> 2.0.2'
 gem 'will_paginate', '3.0.pre2'
 gem 'jquery-rails'
 gem 'activeadmin'
 #gem 'datatables', :git => 'git://github.com/cajun-code/datatables.git'
 gem 'devise', '1.4.2'
-#gem 'jeditable-rails', '~> 0.1.1'
 gem 'randumb', '~> 0.1.3'
 gem 'rails3-jquery-autocomplete', '~> 1.0.4'
-#gem 'oa-oauth', :require => 'omniauth/oauth'
-#gem 'devise_rpx_connectable'
 gem 'googlecharts'
 gem 'spreadsheet'
 gem 'carrierwave', '~> 0.5.7'
 gem 'omniauth', '0.2.0' # JDavis: may need to change to version 0.3.2, or 0.2.6.
-#gem 'rack-pjax'
 gem 'best_in_place', '~> 0.2.2'
 
 

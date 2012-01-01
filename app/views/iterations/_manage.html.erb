@@ -14,7 +14,7 @@
 		
 	</p>
 
-	<% if @manager %>
+	<% if can? :manage, @topic_group %>
 	  <div>
 	  	<%= form_tag(:controller => "elements", :action => "approve_new_elements", :method => "post") do %>
 			<table id="new_elements_table">

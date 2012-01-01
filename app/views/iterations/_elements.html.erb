@@ -31,14 +31,14 @@
 		<% @suggested_elements.each do |element| %>
 	      <tr>
 			<td>
-			  <%= best_in_place_if (@iteration.id == @topic_group.iterations.last.id), element, :name, :type => :input %>
-			  <% if @iteration.id == @topic_group.iterations.last.id %>
+			  <%= best_in_place_if (@iteration.active), element, :name, :type => :input %>
+			  <% if @iteration.active %>
 				<%= link_to '(delete?)', topic_group_iteration_element_path(@topic_group, @iteration, element), :confirm => 'Are you sure?', :method => :delete%>
 			  <% end %>
 			</td>
 
 			<td>
-			  <% if @iteration.id == @topic_group.iterations.last.id %>
+			  <% if @iteration.active %>
 				  Waiting approval
 			  <% else %>
 				  My suggestion
@@ -54,7 +54,7 @@
 		<% @elements.each do |element| %>
 		  <tr>
 		    <td>
-			  <%= best_in_place_if (@manager && @iteration.active), element, :name, :type => :input %>				
+			  <%= best_in_place_if ((can? :manage, @topic_group) && @iteration.active), element, :name, :type => :input %>				
 			</td>
 			<% score = element.score(current_user.id ,@iteration.id) %>
 			<% name = 'rating['+element.id.to_s+']' %>

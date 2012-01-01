@@ -4,7 +4,7 @@
 	  <tr>
 	    <th>Name</th>
 		<th>Email</th>
-		<% if @manager %>
+		<% if can? :manage, @topic_group %>
 	    	<th>Remove</th>
 		<% end %>
 	    
@@ -15,7 +15,7 @@
 		  <tr>
 		    <td><%= user.name %></td>
 		    <td><%= user.email %></td>
-			<% if @manager %>
+			<% if can? :manage, @topic_group %>
 		    	<td><%= link_to 'Remove?', '#' , :confirm => 'Are you sure?' %></td>
 			<% end %>
 		  </tr>

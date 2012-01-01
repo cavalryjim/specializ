@@ -1,9 +1,9 @@
 class IterationsController < ApplicationController
-  #require 'gchart'
   require 'spreadsheet'
   
   before_filter :authenticate_user!
-  #helper_method :sort_column, :sort_direction
+  load_and_authorize_resource
+  load_and_authorize_resource :through => :topic_group
   
   respond_to :html, :xml, :json, :js
   
@@ -11,7 +11,7 @@ class IterationsController < ApplicationController
   # GET /iterations/1
   # GET /iterations/1.xml
   def show
-    @iteration = Iteration.find(params[:id])
+    #@iteration = Iteration.find(params[:id])
     @topic_group = TopicGroup.find(@iteration.topic_group_id)
     @iterations = @topic_group.iterations.sort_by{ |iteration| iteration.num }
     @topic = Topic.find(@topic_group.topic_id)
@@ -20,10 +20,10 @@ class IterationsController < ApplicationController
     @suggested_elements = current_user.suggested_elements(@iteration.id)
     @participating_users = @topic_group.participating_users
     @submitted = current_user.submitted_list?(@iteration.id)
-    @manager = current_user.manager?(@topic_group.id)
+    #@manager = current_user.manager?(@topic_group.id)
     #flash[:notice] = @suggested_elements.size
     
-    if @manager && @topic_group.active
+    if (can? :manage, @topic_group) && @topic_group.active
       @new_elements = @topic_group.iterations.last.new_elements
     end
     
@@ -44,7 +44,7 @@ class IterationsController < ApplicationController
   # PUT /iterations/1
   # PUT /iterations/1.xml
   def update
-    @iteration = Iteration.find(params[:id])
+    #@iteration = Iteration.find(params[:id])
     @topic_group = TopicGroup.find(params[:topic_group_id])
 
     flash[:notice] = 'Iteration was successfully updated.' if @iteration.update_attributes(params[:iteration])
@@ -58,7 +58,7 @@ class IterationsController < ApplicationController
   # DELETE /iterations/1
   # DELETE /iterations/1.xml
   def destroy
-    @iteration = Iteration.find(params[:id])
+    #@iteration = Iteration.find(params[:id])
     @iteration.destroy
 
     respond_with(@iteration)
@@ -66,7 +66,7 @@ class IterationsController < ApplicationController
   
   # JDavis: this method closes the current iteration.
   def close
-    @iteration = Iteration.find(params[:id])
+    #@iteration = Iteration.find(params[:id])
     @topic_group = TopicGroup.find(params[:topic_group_id])
     
     flash[:notice] = 'Iteration was successfully closed.' if @iteration.close
