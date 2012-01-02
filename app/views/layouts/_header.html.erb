@@ -6,16 +6,16 @@
     <ul>
 	 <% if user_signed_in? %>
 	  	<li><%= link_to "Me", me_path %></li>
-		<% if can? :manage, Topic %>
+		<% if current_user.role? :manager %>
 		  <li><%= link_to "Manager", manager_path %></li>
 		<% end %>
-		<% if can? :manage, Grouping %>
+		<% if current_user.role? :hr %>
 		  <li><%= link_to "HR", hr_path %></li>
 		<% end %>
-		<% if can? :manage, User %>
+		<% if current_user.role? :admin %>
 		  <li><%= link_to "Admin", company_admin_path %></li>
 		<% end %>
-		<% if can? :manage, :all && current_user.email.split('@').last == 'peoplenetz.com' %>
+		<% if (current_user.role? :pnetz_admin) && (current_user.email.split('@').last == 'peoplenetz.com') %>
 		  <li><%= link_to "Peoplenetz", admin_path %></li>
 		<% end %>
 		<li> Signed in as <%= current_user.email %></li>

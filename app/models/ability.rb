@@ -3,7 +3,7 @@ class Ability
   
   def initialize(user)
     
-    if user.role? :employee
+    if (user.role? :employee) && user.active
       can :read, Company do |company|
         company.id == user.company_id
       end
@@ -38,7 +38,7 @@ class Ability
       end
     end
     
-    if user.role? :manager
+    if (user.role? :manager) && user.active
       #can :manage, Element
       can :manage, Assignment do |assignment|
         User.find(assignment.user_id).company_id == user.company_id
@@ -56,7 +56,7 @@ class Ability
       
     end
     
-    if user.role? :hr
+    if (user.role? :hr) && user.active
       can :create, Grouping
       can :manage, Grouping do |grouping|
         grouping.company_id == user.company_id
@@ -64,19 +64,16 @@ class Ability
       can :read, User do |company_user|
         company_user.company_id == user.company_id
       end
-      can :read, Company do |company|
-        company.id == user.company_id
-      end
     end
     
-    if user.role? :admin
+    if (user.role? :admin) && user.active
       can :create, User
       can :manage, User do |company_user|
         company_user.company_id == user.company_id
       end
     end
     
-    if user.role? :pnetz_admin
+    if (user.role? :pnetz_admin) && user.active
       can :manage, :all
     end
   end

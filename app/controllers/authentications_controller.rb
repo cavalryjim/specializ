@@ -7,18 +7,11 @@ class AuthenticationsController < ApplicationController
     omniauth = request.env["omniauth.auth"]
     authentication = Authentication.find_by_provider_and_uid(omniauth['provider'], omniauth['uid'])
     if authentication
-      flash[:notice] = "Signed in successfully."
-      #sign_in_and_redirect(authentication.user)
-      #flash[:notice] = authentication.user
       sign_in(authentication.user)
-      #redirect_to authentications_url
-      redirect_to root_url
+      redirect_to root_url, :notice => "Signed in successfully."
     elsif current_user
       current_user.authentications.create!(:provider => omniauth['provider'], :uid => omniauth['uid'])
-      flash[:notice] = "Authentication added."
-      #flash[:notice] = current_user
-      #redirect_to authentications_url
-      redirect_to edit_user_path(current_user) + '?return=me'
+      redirect_to edit_user_path(current_user) + '?return=me', :notice => "Authentication added."
     else
       redirect_to new_user_registration_url, :notice => "You must add this authentication to your profile before using it."
       #JDavis: might need to change this such that it only requests an account vs creating one.
