@@ -2,10 +2,16 @@
   
   <%= link_to logo, root_path %>
 
-  <nav>
+<nav>
+  <div id="navigation_horiz">
     <ul>
 	 <% if user_signed_in? %>
-	  	<li><%= link_to "Me", me_path %></li>
+	  	<li><%= link_to "Me", me_path %>
+			<div class="dropdown" id="dropdown_one">
+				<p><%= link_to "Edit profile",  edit_user_path(current_user) + '?return=me'%></p>
+				<p><%= link_to "Change password",  edit_user_registration_path %></p>
+			</div>
+		</li>
 		<% if current_user.role? :manager %>
 		  <li><%= link_to "Manager", manager_path %></li>
 		<% end %>
@@ -25,6 +31,7 @@
 	 <% end %>
     </ul>
 	 
-  </nav>
+  </div>
+</nav>
 
 </header>

@@ -9,10 +9,11 @@ $(function() {
 		$(this).delay(2500).fadeTo('slow', 0);
 	});
 	
-	$(document).ready(function() {
-		  /* Activating Best In Place */
-		  jQuery(".best_in_place").best_in_place()
-		});
+	$(".best_in_place").best_in_place();
+	
+	$('#navigation_horiz').naviDropDown({
+		dropDownWidth: '150px'
+	});
 
 	$( "#accordion" ).accordion(); // accordion on the _browser partial
 	$( "#manager_tabs" ).tabs(); // tabs used in the manager module
@@ -107,11 +108,8 @@ $(function() {
 		              { "bVisible": false },
 		              { "bVisible": false }
 		          ],
-		          
 		"bAutoWidth": false,
-		
 		"bJQueryUI": true,
-		
         "sPaginationType": "full_numbers"
         
     });
