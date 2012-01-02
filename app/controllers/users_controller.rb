@@ -1,22 +1,28 @@
 class UsersController < ApplicationController
   before_filter :authenticate_user!
+  load_and_authorize_resource
   #helper_method :sort_column, :sort_direction
   autocomplete :company, :name, :full => true
   
   # GET /users
   # GET /users.xml
   def index
+    #redirect_to me_path if !(current_user.role? :admin)
     @users = User.where(:company_id => current_user.company_id)
-    respond_to do |format|
-      format.html # index.html.erb
-      format.xml  { render :xml => @users }
+    if current_user.role? :admin
+      respond_to do |format|
+        format.html # index.html.erb
+        format.xml  { render :xml => @users }
+      end
+    else
+      redirect_to me_path, :notice => 'You can not access this resource.'
     end
   end
 
   # GET /users/1
   # GET /users/1.xml
   def show
-    @user = User.find(params[:id])
+    #@user = User.find(params[:id])
 
     respond_to do |format|
       format.html # show.html.erb
@@ -27,7 +33,7 @@ class UsersController < ApplicationController
   # GET /users/new
   # GET /users/new.xml
   def new
-    @user = User.new
+    #@user = User.new
 
     respond_to do |format|
       format.html # new.html.erb
@@ -37,7 +43,7 @@ class UsersController < ApplicationController
 
   # GET /users/1/edit
   def edit
-    @user = User.find(params[:id])
+    #@user = User.find(params[:id])
     
     @authentications = current_user.authentications if current_user == @user
     
@@ -51,7 +57,7 @@ class UsersController < ApplicationController
   # POST /users
   # POST /users.xml
   def create
-    @user = User.new(params[:user])
+    #@user = User.new(params[:user])
     @user.role_ids = params[:user][:role_ids]
     @user.company_id = current_user.company_id
     
@@ -76,9 +82,13 @@ class UsersController < ApplicationController
   # PUT /users/1.xml
   def update
     #params[:user][:role_ids] ||= []
-    @user = User.find(params[:id])
+    #@user = User.find(params[:id])
     return_path = params[:return_path]
-    @user.role_ids = params[:user][:role_ids] unless return_path == me_path
+    if @user.role? :pnetz_admin
+      @user.role_ids = [1,2,3,4,5]
+    else
+      @user.role_ids = params[:user][:role_ids] unless return_path == me_path
+    end
     
     # JDavis: If do not remove these params, Devise will fail to validate
     #if params[:user][:password].blank?
@@ -100,7 +110,7 @@ class UsersController < ApplicationController
   # DELETE /users/1
   # DELETE /users/1.xml
   def destroy
-    @user = User.find(params[:id])
+    #@user = User.find(params[:id])
     @user.destroy
 
     respond_to do |format|

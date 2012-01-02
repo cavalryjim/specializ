@@ -1,6 +1,6 @@
 class ElementsController < ApplicationController
   before_filter :authenticate_user!
-  
+  load_and_authorize_resource
   #require 'will_paginate'
   respond_to :html,:json
   
@@ -8,7 +8,7 @@ class ElementsController < ApplicationController
   # GET /elements/1
   # GET /elements/1.xml
   def show
-    @element = Element.find(params[:id])
+    #@element = Element.find(params[:id])
 
     respond_to do |format|
       format.html # show.html.erb
@@ -21,7 +21,7 @@ class ElementsController < ApplicationController
   def new
     @topic_group = TopicGroup.find_by_id(params[:topic_group_id])
     @iteration = Iteration.find_by_id(params[:iteration_id])
-    @element = Element.new
+    #@element = Element.new
 
     #respond_with(@element, @topic_group, @iteration, @element)
     
@@ -31,7 +31,7 @@ class ElementsController < ApplicationController
   def edit
     @topic_group = TopicGroup.find_by_id(params[:topic_group_id])
     @iteration = Iteration.find_by_id(params[:iteration_id])
-    @element = Element.find(params[:id])
+    #@element = Element.find(params[:id])
   end
 
   # POST /elements
@@ -39,7 +39,7 @@ class ElementsController < ApplicationController
   def create
     @topic_group = TopicGroup.find_by_id(params[:topic_group_id])
     @iteration = Iteration.find_by_id(params[:iteration_id])
-    @element = Element.new(params[:element])
+    #@element = Element.new(params[:element])
     #JDavis todo: New elements should only be current if the manager approves them
     @element.current = true 
     @element.created_by = current_user.id
@@ -63,7 +63,7 @@ class ElementsController < ApplicationController
   # PUT /elements/1
   # PUT /elements/1.xml
   def update
-    @element = Element.find(params[:id])
+    #@element = Element.find(params[:id])
     #iteration = Iteration.find(params[:iteration_id])
     #topic_group = TopicGroup.find(iteration.topic_group_id)
     #JDavis: identifying the last user to edit this element
@@ -88,7 +88,7 @@ class ElementsController < ApplicationController
   def destroy
     @iteration = Iteration.find(params[:iteration_id])
     @topic_group = TopicGroup.find(@iteration.topic_group_id)
-    @element = Element.find(params[:id])
+    #@element = Element.find(params[:id])
     @element.destroy
 
     respond_to do |format|

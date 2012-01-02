@@ -1,11 +1,12 @@
 class GroupingsController < ApplicationController
   before_filter :authenticate_user!
+  load_and_authorize_resource
   autocomplete :user, :last_name, :extra_data => [:id, :first_name], :display_value => :name, :scope => [:belongs_company]
   
   # GET /groupings
   # GET /groupings.xml
   def index
-    @groupings = Grouping.all
+    #@groupings = Grouping.all
 
     respond_to do |format|
       format.html # index.html.erb
@@ -16,7 +17,7 @@ class GroupingsController < ApplicationController
   # GET /groupings/1
   # GET /groupings/1.xml
   def show
-    @grouping = Grouping.find(params[:id])
+    #@grouping = Grouping.find(params[:id])
 
     respond_to do |format|
       format.html # show.html.erb
@@ -31,7 +32,7 @@ class GroupingsController < ApplicationController
     #@groupings = Company.find(current_user.company_id).groupings
     #@groupings.sort_by{ |g| g[:full_name] }
     #puts @groupings
-    @grouping = Grouping.new
+    #@grouping = Grouping.new
     @seed_id = Grouping.where(:company_id => current_user.company_id).first.id
     @users = []
     @root = false
@@ -44,7 +45,7 @@ class GroupingsController < ApplicationController
 
   # GET /groupings/1/edit
   def edit
-    @grouping = Grouping.find(params[:id])
+    #@grouping = Grouping.find(params[:id])
     @root = @grouping.root?
     @seed_id = @grouping.id
     @groupings = Company.find(current_user.company_id).groupings
@@ -55,7 +56,7 @@ class GroupingsController < ApplicationController
   # POST /groupings.xml
   def create
     #redirect_to new_grouping_path if params[:grouping][:name] == ''
-    @grouping = Grouping.new(params[:grouping])
+    #@grouping = Grouping.new(params[:grouping])
     #@grouping.company_id = current_user.company_id
 
     respond_to do |format|
@@ -73,7 +74,7 @@ class GroupingsController < ApplicationController
   # PUT /groupings/1
   # PUT /groupings/1.xml
   def update
-    @grouping = Grouping.find(params[:id])
+    #@grouping = Grouping.find(params[:id])
     params[:grouping].delete :parent_id if (@grouping.root? or (params[:grouping][:parent_id].to_i == params[:id].to_i))
    
     respond_to do |format|
@@ -90,7 +91,7 @@ class GroupingsController < ApplicationController
   # DELETE /groupings/1
   # DELETE /groupings/1.xml
   def destroy
-    @grouping = Grouping.find(params[:id])
+    #@grouping = Grouping.find(params[:id])
     @grouping.destroy
 
     respond_to do |format|
