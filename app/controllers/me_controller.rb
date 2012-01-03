@@ -11,9 +11,4 @@ class MeController < ApplicationController
     end
   end
 
-  def profile
-  end
-
-  
-
 end

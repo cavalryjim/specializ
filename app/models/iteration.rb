@@ -85,4 +85,8 @@ class Iteration < ActiveRecord::Base
     self.user_lists.count(:user_id, :distinct => true)
   end
   
+  def last?
+    self == self.topic_group.iterations.last
+  end
+  
 end

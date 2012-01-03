@@ -8,6 +8,7 @@
 	 <% if user_signed_in? %>
 	  	<li><%= link_to "Me", me_path %>
 			<div class="dropdown" id="dropdown_one">
+				<p><%= link_to "Home", me_path %></p>
 				<p><%= link_to "Edit profile",  edit_user_path(current_user) + '?return=me'%></p>
 				<p><%= link_to "Change password",  edit_user_registration_path %></p>
 			</div>
