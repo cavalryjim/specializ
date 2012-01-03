@@ -42,7 +42,7 @@ class User < ActiveRecord::Base
   has_many  :managed_topic_groups, :through => :assignments,
             :class_name => "TopicGroup",
             :source => :topic_group,
-            :conditions => ['assignments.manager = ?', true]
+            :conditions => {'assignments.manager' => true, 'active' => true}
   has_many  :my_topic_groups, :through => :assignments,
             :class_name => "TopicGroup",
             :source => :topic_group,
@@ -50,7 +50,7 @@ class User < ActiveRecord::Base
   has_many  :closed_topic_groups, :through => :assignments,
             :class_name => "TopicGroup",
             :source => :topic_group,
-            :conditions => {'assignments.participating' => true, 'active' => false}
+            :conditions => {'assignments.participating' || 'assignments.manager' => true, 'active' => false}
   has_many  :authentications
   
   # Setup accessible (or protected) attributes for your model
@@ -61,9 +61,9 @@ class User < ActiveRecord::Base
 
   
   validates :first_name, :length    => { :maximum => 50 },
-                    :presence  => true                 
+                    :presence       => true                 
   validates :last_name, :length     => { :maximum => 50 }, 
-                    :presence   => true
+                    :presence       => true
   validates :email, :presence       => true,
                     :format         => { :with => email_regex },
                     :uniqueness     => { :case_sensitive => false }
