@@ -34,6 +34,7 @@ class UsersController < ApplicationController
   # GET /users/new.xml
   def new
     #@user = User.new
+    @user.active = true
 
     respond_to do |format|
       format.html # new.html.erb
@@ -58,7 +59,11 @@ class UsersController < ApplicationController
   # POST /users.xml
   def create
     #@user = User.new(params[:user])
-    @user.role_ids = params[:user][:role_ids]
+    if params[:user][:role_ids]
+      @user.update_roles(params[:user][:role_ids])  
+    else 
+      @user.add_employee_role
+    end
     @user.company_id = current_user.company_id
     
     if @user.password.nil?
@@ -81,14 +86,9 @@ class UsersController < ApplicationController
   # PUT /users/1
   # PUT /users/1.xml
   def update
-    #params[:user][:role_ids] ||= []
     #@user = User.find(params[:id])
     return_path = params[:return_path]
-    if @user.role? :pnetz_admin
-      @user.role_ids = [1,2,3,4,5]
-    else
-      @user.role_ids = params[:user][:role_ids] unless return_path == me_path
-    end
+    @user.update_roles(params[:user][:role_ids]) if params[:user][:role_ids]
     
     # JDavis: If do not remove these params, Devise will fail to validate
     #if params[:user][:password].blank?

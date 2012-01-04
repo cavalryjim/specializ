@@ -70,6 +70,7 @@ class User < ActiveRecord::Base
   validates :active, :inclusion     => {:in => [true, false]}
   validates :company_id, :presence  => true
   
+  #after_create :add_employee_role
   mount_uploader :avatar, AvatarUploader
   
   def name
@@ -80,12 +81,22 @@ class User < ActiveRecord::Base
     roles.any? { |r| r.name.to_sym == role }
   end
   
+  def add_employee_role
+    self.role_ids = [1]
+  end
+  
+  def update_roles(selected_roles)
+    employee_role = [1] # JDavis: everyone gets the employee role
+    self.role_ids = employee_role + selected_roles
+  end
+  
   # JDavis: only peoplenetz administrators can grant the pnetz_admin role.
   def available_roles
     if self.role?(:pnetz_admin)
       Role.all
     else
-      Role.find(:all, :conditions => ["name!=?", "pnetz_admin"])
+      #Role.find(:all, :conditions => { :name => ["manager", "hr", "admin"] })
+      Role.find_all_by_name(["manager", "hr", "admin"])
     end
   end
   
@@ -136,8 +147,6 @@ class User < ActiveRecord::Base
   end
   
   def active_for_authentication?
-    # Comment out the below debug statement to view the properties of the returned self model values.
-    # logger.debug self.to_yaml
     super && self.active?
   end
   

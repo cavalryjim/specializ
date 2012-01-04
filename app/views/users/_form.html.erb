@@ -27,7 +27,7 @@
     <%= f.label :email %>
     <%= f.text_field :email %>
   </div>
- <% if (can? :manage, User) && @return_path == users_path %>
+ <% if (can? :manage, User) && @return_path != me_path %>
   <div class="field">
     <%= f.check_box :active %>
     <%= f.label :active %>
@@ -39,6 +39,7 @@
   	</div>
   <% end %>
  <% end %>
+
   <div class="actions">
     <%= f.hidden_field :company_id, :value => current_user.company_id %>
 	<%= hidden_field_tag 'return_path', @return_path %>
