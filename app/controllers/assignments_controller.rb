@@ -1,11 +1,12 @@
 class AssignmentsController < ApplicationController
   before_filter :authenticate_user!
+  load_and_authorize_resource
   autocomplete :user, :last_name, :extra_data => [:id, :first_name], :display_value => :name
   
   # GET /assignments
   # GET /assignments.xml
   def index
-    @assignments = Assignment.all
+    #@assignments = Assignment.all
 
     respond_to do |format|
       format.html # index.html.erb
@@ -16,7 +17,7 @@ class AssignmentsController < ApplicationController
   # GET /assignments/1
   # GET /assignments/1.xml
   def show
-    @assignment = Assignment.find(params[:id])
+    #@assignment = Assignment.find(params[:id])
 
     respond_to do |format|
       format.html # show.html.erb
@@ -29,7 +30,7 @@ class AssignmentsController < ApplicationController
   def new
     @topic = Topic.find(params[:topic_id])
     @topic_groups = @topic.topic_groups
-    @assignment = Assignment.new
+    #@assignment = Assignment.new
 
     respond_to do |format|
       format.html # new.html.erb
@@ -41,7 +42,7 @@ class AssignmentsController < ApplicationController
   def edit
     @topic = Topic.find(params[:topic_id])
     @topic_groups = @topic.topic_groups
-    @assignment = Assignment.find(params[:id])
+    #@assignment = Assignment.find(params[:id])
   end
 
   # POST /assignments
@@ -69,7 +70,7 @@ class AssignmentsController < ApplicationController
   # PUT /assignments/1.xml
   def update
     @topic = Topic.find(params[:topic_id])
-    @assignment = Assignment.find(params[:id])
+    #@assignment = Assignment.find(params[:id])
 
     respond_to do |format|
       if @assignment.update_attributes(params[:assignment])
@@ -86,7 +87,7 @@ class AssignmentsController < ApplicationController
   # DELETE /assignments/1.xml
   def destroy
     @topic = Topic.find(params[:topic_id])
-    @assignment = Assignment.find(params[:id])
+    #@assignment = Assignment.find(params[:id])
     @assignment.destroy
 
     respond_to do |format|

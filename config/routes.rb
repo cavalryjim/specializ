@@ -3,10 +3,8 @@ Specializ::Application.routes.draw do
   ActiveAdmin.routes(self)
 
   match '/auth/:provider/callback' => 'authentications#create'
-  #post '/users', :to => 'users#create'
   devise_for :admin_users, ActiveAdmin::Devise.config
   devise_for :users, :controllers => {:registrations => 'registrations'}, :path_prefix => 'd' 
-      #:path_names => { :sign_up => 'register' }
   resources :authentications
   
   #devise_scope :user do
@@ -65,6 +63,11 @@ Specializ::Application.routes.draw do
   end
   
   resources :elements
+  
+  resources :ajax do
+    get :autocomplete_company_name, :on => :collection, :full => true
+  end
+
   #resources :me, :elements, :iterations, :assignments, :topic_groups, :topics, :users, :groupings, :companies, :elements
   
   root :to => 'me#home'

@@ -16,9 +16,15 @@ class Ability
       can :manage, TopicGroup do |topic_group|
         topic_group.managers.include?(user)
       end
+      can :manage, Assignment do |assignment|
+        TopicGroup.find(assignment.topic_group_id).managers.include?(user)
+      end
+      can [:read, :update, :delete], Assignment do |assignment|
+        assignment.user_id == user.id
+      end
       can :manage, Iteration do |iteration|
-        TopicGroup.find(iteration.topic_group.id).participating_users.include?(user) or
-        TopicGroup.find(iteration.topic_group.id).managers.include?(user)
+        TopicGroup.find(iteration.topic_group_id).participating_users.include?(user) or
+        TopicGroup.find(iteration.topic_group_id).managers.include?(user)
       end
       can [:create, :read], Element
       can :manage, Element do |element|

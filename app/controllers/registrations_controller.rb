@@ -1,4 +1,5 @@
 class RegistrationsController < Devise::RegistrationsController
+  
   def create
     super
     @user.active = false 

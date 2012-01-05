@@ -1,7 +1,12 @@
+
+
+
 <h2>Request Account</h2>
+<%= devise_error_messages! %>
+
+<%= autocomplete_field_tag 'company', '', autocomplete_company_name_ajax_index_path, :id_element => '#user_company_id' %> (start typing the company name)
 
 <%= form_for(resource, :as => resource_name, :url => registration_path(resource_name)) do |f| %>
-  <%= devise_error_messages! %>
 
   <div><%= f.label :first_name %><br />
   <%= f.text_field :first_name %></div>
@@ -20,15 +25,11 @@
   <%= f.password_field :password_confirmation %></div>
 <% end %>
 
-  <div><%= f.label :company_id %><br />
-  <%= f.select :company_id, options_from_collection_for_select(Company.all, :id, :name)  %></div>
-
-
   <div>
 	<%= f.hidden_field :active, :value => false %>
+	<%= f.hidden_field :company_id %>
 	<%= f.submit "Sign up" %>
   </div>
 <% end %>
-
 
 <%= render :partial => "devise/shared/links" %>
