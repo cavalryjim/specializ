@@ -99,23 +99,6 @@ class TopicGroupsController < ApplicationController
     end
   end
   
-  #JDavis: Randomly select between 0 - 100% of the users in a group and staff to a topic_group.
-  def staff_topic
-    @topic = Topic.find(params[:topic_id])
-    @topic_groups = @topic.topic_groups
-    new_notice = 'Topic successfully staffed!'
-    percentage = (params[:percentage]).to_f/100
-    #new_notice = percentage
-  
-    @topic_groups.each do |topic_group|
-      group = Grouping.find(topic_group.grouping_id)
-      users = group.users.order("RAND()").limit((group.users.count*percentage).ceil)
-      topic_group.staff(users)
-    end
-    
-    redirect_to edit_topic_path(@topic)+"#tabs-3", {:notice => new_notice}
-  end
-  
   # JDavis: this method imports elements from a spreadsheet
   def import_elements
     #@iteration = Iteration.find(params[:iteration_id])

@@ -19,7 +19,7 @@ class TopicsController < ApplicationController
   def show
     @topics = Topic.where(:company_id => current_user.company_id)
     @topic = Topic.find(params[:id])
-
+   
     respond_with(@topic)
   end
 
@@ -87,6 +87,23 @@ class TopicsController < ApplicationController
       format.html { redirect_to(manager_path) }
       format.xml  { head :ok }
     end
+  end
+  
+  #JDavis: Randomly select between 0 - 100% of the users in a group and staff to a topic_group.
+  def staff_topic
+    @topic = Topic.find(params[:topic_id])
+    @topic_groups = @topic.topic_groups
+    new_notice = 'Topic successfully staffed!'
+    percentage = (params[:percentage]).to_f/100
+    users = []
+    
+    @topic_groups.each do |topic_group|
+      group = Grouping.find(topic_group.grouping_id)
+      users = group.user_list(percentage)
+      topic_group.staff(users) if users.size > 0
+    end
+    
+    redirect_to edit_topic_path(@topic)+"#tabs-3", {:notice => new_notice}
   end
   
 end

@@ -30,7 +30,7 @@ class AssignmentsController < ApplicationController
   def new
     @topic = Topic.find(params[:topic_id])
     @topic_groups = @topic.topic_groups
-    #@assignment = Assignment.new
+    @assignment = Assignment.new
 
     respond_to do |format|
       format.html # new.html.erb

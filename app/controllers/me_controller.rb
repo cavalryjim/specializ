@@ -3,7 +3,7 @@ class MeController < ApplicationController
   
   def home
     if user_signed_in?
-      @my_topic_groups = current_user.my_topic_groups
+      @open_topic_groups = current_user.open_topic_groups
       @closed_topic_groups = current_user.closed_topic_groups
       @managed_topic_groups = current_user.managed_topic_groups
     else

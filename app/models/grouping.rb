@@ -42,5 +42,15 @@ class Grouping < ActiveRecord::Base
     topic_group = TopicGroup.find_by_topic_id_and_grouping_id(topic_id, self.id)
     topic_group.destroy
   end
+  
+  def user_list(percentage)
+    user_list = []
+    self.self_and_descendants.each do |sub_group|
+      if sub_group.users.size > 0
+        user_list = user_list + sub_group.users.order("RAND()").limit((sub_group.users.count*percentage).ceil)
+      end
+    end
+    return user_list
+  end
 
 end

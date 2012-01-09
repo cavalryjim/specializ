@@ -1,12 +1,12 @@
 <div id="browser">
 
-<h3>My Topics - <%= current_user.name %>, you are assigned to <%= @my_topic_groups.count %> active topics</h3>
+<h3>My Topics - <%= current_user.name %>, you are assigned to <%= @open_topic_groups.count %> active topics</h3>
 
 <div id="accordion" style="width:100%;">
     <h3><a href="#">Open Topics</a></h3>
     <div>
 		<table>
-		<% @my_topic_groups.each do |topic_group| %>
+		<% @open_topic_groups.each do |topic_group| %>
 		  <tr>
 		    <td><%=link_to topic_group.name, topic_group_iteration_path(topic_group, topic_group.iterations.last) %> </td>
 		

@@ -43,7 +43,7 @@ class User < ActiveRecord::Base
             :class_name => "TopicGroup",
             :source => :topic_group,
             :conditions => {'assignments.manager' => true, 'active' => true}
-  has_many  :my_topic_groups, :through => :assignments,
+  has_many  :open_topic_groups, :through => :assignments,
             :class_name => "TopicGroup",
             :source => :topic_group,
             :conditions => {'assignments.participating' => true, 'active' => true}
@@ -129,8 +129,8 @@ class User < ActiveRecord::Base
     assignment = Assignment.find_or_initialize_by_topic_group_id_and_user_id(topic_group.id, self.id)
     assignment.manager = assignment.manager || false
     assignment.participating = true
-    
-    self.notify_assignment(topic_group) if assignment.save
+    assignment.save
+    #self.notify_assignment(topic_group) if assignment.save
   end
   
   def suggested_elements(iteration_id)
