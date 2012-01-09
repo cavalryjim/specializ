@@ -53,10 +53,11 @@ class TopicsController < ApplicationController
     @topic = Topic.new(params[:topic])
     @topic.company_id = current_user.company_id
     
-    if @topic.save
+    if params.has_key?(:groupings) && @topic.save 
       @topic.update_groupings(params[:groupings])
       flash[:notice] = 'Topic was successfully created.' 
     else
+      @topic.errors[:base] << "You must select one or more participating groups." unless params.has_key?(:groupings)
       @topics = Topic.where(:company_id => current_user.company_id)
       @assignments = []
       @selected_groups = []
@@ -71,14 +72,21 @@ class TopicsController < ApplicationController
   def update
     @topic = Topic.find(params[:id])
     #groupings = []
-    if @topic.update_attributes(params[:topic])
+    if params.has_key?(:groupings) && @topic.update_attributes(params[:topic])  
       @topic.update_groupings(params[:groupings])
       flash[:notice] = 'Topic was successfully updated.'
+    else
+      @topic.errors[:base] << "You must select one or more participating groups." unless params.has_key?(:groupings)
+      @topics = Topic.where(:company_id => current_user.company_id)
+      @assignments = []
+      @selected_groups = []
+      @seed_id = Grouping.where(:company_id => current_user.company_id).first.id
     end  
     
-    respond_with(@topic) do |format|
-      format.html { redirect_to edit_topic_path(@topic) }
-    end
+    respond_with(@topic)
+    #respond_with(@topic) do |format|
+    #  format.html { redirect_to edit_topic_path(@topic) }
+    #end
     
   end
 

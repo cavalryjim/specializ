@@ -24,11 +24,15 @@ class Topic < ActiveRecord::Base
   
   validates :name, :presence => true
   validates :company_id, :presence => true
+  validates :goal, :inclusion => { :in => 1..100 }
+  validates_uniqueness_of :name, :scope => [ :company_id ]    # Unique for [name, company]
+
   
   #JDavis: need to ensure the company_id is set.
   #before_create :set_company
   
   def update_groupings(grouping_ids)
+    
     grouping_ids.each do |grouping_id|
       grouping = Grouping.find(grouping_id)
       grouping.add_to_topic(self)

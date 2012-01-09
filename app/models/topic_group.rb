@@ -35,7 +35,7 @@ class TopicGroup < ActiveRecord::Base
             :conditions => ['assignments.manager = ?', true]   
   
   validates :name, :presence => true
-  validates :goal, :presence => true
+  validates :goal, :inclusion => { :in => 1..100 }
   validates :active, :inclusion => {:in => [true, false]}
   validates :topic_id, :presence => true
   validates :grouping_id, :presence => true

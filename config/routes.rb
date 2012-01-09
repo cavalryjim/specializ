@@ -26,6 +26,7 @@ Specializ::Application.routes.draw do
   match '/topic_groups/:topic_group_id/iterations/:id/start', :to => 'iterations#start'
   match '/topics/staff_topic', :to => 'topics#staff_topic'
   post '/topics', :to => 'topics#create'
+  match '/topics/new', :to => 'topics#new'
   match '/topics', :to => 'topics#edit'
   get '/topics/:id', :to => 'topics#edit'
   post '/groupings', :to => 'groupings#create'
@@ -46,7 +47,6 @@ Specializ::Application.routes.draw do
   
   resources :topics do
     resources :topic_groups
-    
     resources :assignments do
       get :autocomplete_user_last_name, :on => :collection
     end

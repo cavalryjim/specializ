@@ -3,6 +3,7 @@ class UsersController < ApplicationController
   load_and_authorize_resource
   #helper_method :sort_column, :sort_direction
   #autocomplete :company, :name, :full => true
+  respond_to :html, :json
   
   # GET /users
   # GET /users.xml
@@ -66,21 +67,15 @@ class UsersController < ApplicationController
     end
     @user.company_id = current_user.company_id
     
-    if @user.password.nil?
-      generated_password = Devise.friendly_token.first(6)
-      @user.password = generated_password
-      @user.notify_account(generated_password)
-    end
+    #if @user.save
+    #  if @user.password.nil?
+    #    generated_password = Devise.friendly_token.first(6)
+    #    @user.password = generated_password
+    #    @user.notify_account(generated_password)
+    #  end
+    #end
     
-    respond_to do |format|
-      if @user.save
-        format.html { redirect_to(users_path, :notice => 'User was successfully created.') }
-        format.xml  { render :xml => @user, :status => :created, :location => @user }
-      else
-        format.html { render :action => "new" }
-        format.xml  { render :xml => @user.errors, :status => :unprocessable_entity }
-      end
-    end
+    respond_with(@user)
   end
 
   # PUT /users/1
