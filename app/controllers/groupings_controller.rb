@@ -2,6 +2,7 @@ class GroupingsController < ApplicationController
   before_filter :authenticate_user!
   load_and_authorize_resource
   autocomplete :user, :last_name, :extra_data => [:id, :first_name], :display_value => :name, :scope => [:belongs_company]
+  respond_to :html, :json
   
   # GET /groupings
   # GET /groupings.xml
@@ -19,10 +20,7 @@ class GroupingsController < ApplicationController
   def show
     #@grouping = Grouping.find(params[:id])
 
-    respond_to do |format|
-      format.html # show.html.erb
-      format.xml  { render :xml => @grouping }
-    end
+    respond_with(@grouping)
   end
 
   # GET /groupings/new
@@ -37,10 +35,7 @@ class GroupingsController < ApplicationController
     @users = []
     @root = false
 
-    respond_to do |format|
-      format.html # new.html.erb 
-      format.xml  { render :xml => @grouping }
-    end
+    respond_with(@grouping)
   end
 
   # GET /groupings/1/edit
@@ -50,6 +45,8 @@ class GroupingsController < ApplicationController
     @seed_id = @grouping.id
     @groupings = Company.find(current_user.company_id).groupings
     @users = @grouping.users
+    
+    respond_with(@grouping)
   end
 
   # POST /groupings
@@ -59,16 +56,15 @@ class GroupingsController < ApplicationController
     #@grouping = Grouping.new(params[:grouping])
     #@grouping.company_id = current_user.company_id
 
-    respond_to do |format|
-      if @grouping.save
-        format.html { redirect_to edit_grouping_path(@grouping), :notice => 'Grouping was successfully created.' }
-        format.xml  { render :xml => @grouping, :status => :created, :location => @grouping }
-      else
-        format.html { render :action => "new" }
-        #format.html { redirect_to new_grouping_path, :alert => @grouping.errors.full_messages }
-        format.xml  { render :xml => @grouping.errors, :status => :unprocessable_entity }
-      end
+    if @grouping.save
+      flash[:notice] = 'Grouping was successfully created.' 
+    else
+      @seed_id = Grouping.where(:company_id => current_user.company_id).first.id
+      @users = []
+      @root = false
     end
+    
+    respond_with(@grouping)
   end
 
   # PUT /groupings/1

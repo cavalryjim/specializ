@@ -56,6 +56,11 @@ class TopicsController < ApplicationController
     if @topic.save
       @topic.update_groupings(params[:groupings])
       flash[:notice] = 'Topic was successfully created.' 
+    else
+      @topics = Topic.where(:company_id => current_user.company_id)
+      @assignments = []
+      @selected_groups = []
+      @seed_id = Grouping.where(:company_id => current_user.company_id).first.id
     end
     
     respond_with(@topic)
