@@ -1,13 +1,13 @@
 class AddDeviseToUsers < ActiveRecord::Migration
   def self.up
     change_table(:users) do |t|
-      t.database_authenticatable :null => false
+      #t.database_authenticatable :null => false
+      t.string :encrypted_password
+      t.string :password_salt
       t.recoverable
       t.rememberable
       t.trackable
-      t.registerable
-      t.validatable
-      
+    
       # t.encryptable
       # t.confirmable
       # t.lockable :lock_strategy => :failed_attempts, :unlock_strategy => :both
