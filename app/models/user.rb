@@ -137,7 +137,30 @@ class User < ActiveRecord::Base
     Iteration.find(iteration_id).new_elements.where(:created_by => self.id)
   end
   
-  def import_users
+  def import_users(users_spreadsheet)
+    error_list = []
+    Spreadsheet.client_encoding = 'UTF-8'
+      
+    book = Spreadsheet.open users_spreadsheet.path
+    sheet1 = book.worksheet 0
+    sheet1.each 1 do |row|  #JDavis: skipping the first row of the sheet.
+      u = User.new
+      u.first_name = row[0]
+      u.last_name = row[1]
+      u.email = row[2]
+      u.active = true
+      u.company_id = self.company_id
+      if u.save 
+        u.add_to_group
+      else
+        #error_list << u.errors
+        error_list << u.errors
+      end
+    end
+    return error_list
+  end
+  
+  def add_to_group
     true
   end
   

@@ -119,9 +119,9 @@ class UsersController < ApplicationController
   end
   
   def import_users
-    current_user.import_users
+    errors = current_user.import_users(params[:file])
     
-    redirect_to users_path
+    redirect_to users_path, :notice => errors
   end
   
   
