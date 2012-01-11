@@ -55,7 +55,7 @@ class User < ActiveRecord::Base
   
   # Setup accessible (or protected) attributes for your model
   attr_accessible :first_name, :last_name, :email, :active, :company_id, 
-                  :password, :password_confirmation, :remember_me, :avatar
+                  :password, :password_confirmation, :remember_me, :avatar, :role_ids
   
   email_regex = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
 

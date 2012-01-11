@@ -24,6 +24,7 @@ class Ability
         assignment.user_id == user.id
       end
       can :manage, Iteration do |iteration|
+        iteration.new_record? or
         TopicGroup.find(iteration.topic_group_id).participating_users.include?(user) or
         TopicGroup.find(iteration.topic_group_id).managers.include?(user)
       end

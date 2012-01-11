@@ -22,15 +22,17 @@ Specializ::Application.routes.draw do
   match '/elements/approve_new_elements', :to => 'elements#approve_new_elements'
   match '/topic_groups/import_elements', :to => 'topic_groups#import_elements'
   match '/topic_groups/assign_topic', :to => 'topic_groups#assign_topic'
-  match '/topic_groups/:topic_group_id/iterations/:id/close', :to => 'iterations#close'
-  match '/topic_groups/:topic_group_id/iterations/:id/start', :to => 'iterations#start'
+  #match '/topic_groups/:topic_group_id/iterations/:id/close', :to => 'iterations#close'
+  #match '/topic_groups/:topic_group_id/iterations/:id/start', :to => 'iterations#start'
   match '/topics/staff_topic', :to => 'topics#staff_topic'
   post '/topics', :to => 'topics#create'
   match '/topics/new', :to => 'topics#new'
   match '/topics', :to => 'topics#edit'
   get '/topics/:id', :to => 'topics#edit'
   post '/groupings', :to => 'groupings#create'
+  match '/groupings/new', :to => 'groupings#new'
   match '/groupings', :to => 'groupings#edit'
+  #get '/groupings/:id', :to => 'groupings#edit'
   #match '/groupings/:grouping_id/users/:id/remove', :to => 'groupings#remove'
   match '/groupings/:id/new_user', :to => 'groupings#new_user'
   match '/groupings/:id/add_user', :to => 'groupings#add_user'
@@ -39,8 +41,8 @@ Specializ::Application.routes.draw do
   resources :topic_groups do
     post 'close'
     resources :iterations do
-      post 'close'
-      post 'start'
+      post 'close', :to => 'iterations#close'
+      post 'start', :to => 'iterations#start'
       resources :elements 
     end
   end

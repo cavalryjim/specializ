@@ -3,7 +3,7 @@ class IterationsController < ApplicationController
   
   before_filter :authenticate_user!
   load_and_authorize_resource
-  load_and_authorize_resource :through => :topic_group
+  #load_and_authorize_resource :through => :topic_group
   
   respond_to :html, :xml, :json, :js
   

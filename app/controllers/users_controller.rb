@@ -10,25 +10,27 @@ class UsersController < ApplicationController
   def index
     #redirect_to me_path if !(current_user.role? :admin)
     @users = User.where(:company_id => current_user.company_id)
-    if current_user.role? :admin
-      respond_to do |format|
-        format.html # index.html.erb
-        format.xml  { render :xml => @users }
-      end
-    else
-      redirect_to me_path, :notice => 'You can not access this resource.'
-    end
+    #if current_user.role? :admin
+    #  respond_to do |format|
+    #    format.html # index.html.erb
+    #    format.xml  { render :xml => @users }
+    #  end
+    #else
+    #  redirect_to me_path, :notice => 'You can not access this resource.'
+    #end
+    respond_with @users
   end
 
   # GET /users/1
   # GET /users/1.xml
   def show
+    redirect_to users_path
     #@user = User.find(params[:id])
 
-    respond_to do |format|
-      format.html # show.html.erb
-      format.xml  { render :xml => @user }
-    end
+    #respond_to do |format|
+    #  format.html # show.html.erb
+    #  format.xml  { render :xml => @user }
+    #end
   end
 
   # GET /users/new
@@ -67,13 +69,15 @@ class UsersController < ApplicationController
     end
     @user.company_id = current_user.company_id
     
-    #if @user.save
-    #  if @user.password.nil?
-    #    generated_password = Devise.friendly_token.first(6)
-    #    @user.password = generated_password
-    #    @user.notify_account(generated_password)
-    #  end
-    #end
+    if @user.password.nil?
+      generated_password = Devise.friendly_token.first(6)
+      @user.password = generated_password
+      @user.notify_account(generated_password)
+    end
+    
+    if @user.save
+      
+    end
     
     respond_with(@user)
   end

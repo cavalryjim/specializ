@@ -18,9 +18,10 @@ class GroupingsController < ApplicationController
   # GET /groupings/1
   # GET /groupings/1.xml
   def show
-    #@grouping = Grouping.find(params[:id])
-
-    respond_with(@grouping)
+    #redirect_to groupings_path
+    @grouping = Grouping.find(params[:id])
+    redirect_to edit_grouping_path(@grouping)
+    #respond_with(@grouping)
   end
 
   # GET /groupings/new
@@ -64,7 +65,8 @@ class GroupingsController < ApplicationController
       @root = false
     end
     
-    respond_with(@grouping)
+    #respond_with(@grouping)
+    redirect_to edit_grouping_path(@grouping)
   end
 
   # PUT /groupings/1
