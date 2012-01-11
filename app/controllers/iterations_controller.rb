@@ -5,7 +5,7 @@ class IterationsController < ApplicationController
   load_and_authorize_resource
   #load_and_authorize_resource :through => :topic_group
   
-  respond_to :html, :xml, :json, :js
+  respond_to :html, :json
   
 
   # GET /iterations/1
