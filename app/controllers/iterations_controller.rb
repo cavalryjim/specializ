@@ -66,7 +66,7 @@ class IterationsController < ApplicationController
   
   # JDavis: this method closes the current iteration.
   def close
-    #@iteration = Iteration.find(params[:id])
+    @iteration = Iteration.find(params[:iteration_id])
     @topic_group = TopicGroup.find(params[:topic_group_id])
     
     flash[:notice] = 'Iteration was successfully closed.' if @iteration.close
