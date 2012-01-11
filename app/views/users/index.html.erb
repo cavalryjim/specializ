@@ -27,3 +27,12 @@
 
 <%= link_to 'New User', new_user_path%> <br />
 
+<div>
+	<%= form_tag({ :controller => "users", :action => "import_users" }, {:multipart => true} ) do %>
+	
+		Upload users: <%= file_field_tag 'file' %>
+		
+		<%= submit_tag("Submit List", :confirm => 'Upload list from spreadsheet?') %>
+	<% end %>
+</div>
+

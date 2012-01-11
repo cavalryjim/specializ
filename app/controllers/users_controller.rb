@@ -118,9 +118,12 @@ class UsersController < ApplicationController
     end
   end
   
-  def admin_created_user
+  def import_users
+    current_user.import_users
     
+    redirect_to users_path
   end
+  
   
   private
   

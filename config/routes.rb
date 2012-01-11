@@ -37,9 +37,10 @@ Specializ::Application.routes.draw do
   match '/groupings/:id/new_user', :to => 'groupings#new_user'
   match '/groupings/:id/add_user', :to => 'groupings#add_user'
   match '/auth/failure', :to => 'authentications#auth_fail'
+  match '/users/import_users', :to => 'users#import_users'
    
   resources :topic_groups do
-    post 'close'
+    post 'close', :to => 'topic_groups#close'
     resources :iterations do
       post 'close', :to => 'iterations#close'
       post 'start', :to => 'iterations#start'
@@ -63,6 +64,7 @@ Specializ::Application.routes.draw do
   
   resources :users do
     get :autocomplete_company_name, :on => :collection
+    #post 'import_users', :to => 'users#import_users'
   end
   
   resources :elements

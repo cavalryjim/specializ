@@ -137,6 +137,10 @@ class User < ActiveRecord::Base
     Iteration.find(iteration_id).new_elements.where(:created_by => self.id)
   end
   
+  def import_users
+    true
+  end
+  
   def apply_omniauth(omniauth)
     self.email = omniauth['user_info']['email'] if email.blank?
     authentications.build(:provider => omniauth['provider'], :uid => omniauth['uid'])
