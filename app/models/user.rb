@@ -136,38 +136,83 @@ class User < ActiveRecord::Base
     Iteration.find(iteration_id).new_elements.where(:created_by => self.id)
   end
   
+  def rate_elements(iteration_id, resubmit, new_elements, rated_elements)
+    self.user_lists.where(:iteration_id => iteration_id).update_all(:score => 0) if resubmit
+    iteration = Iteration.find(iteration_id)
+    topic_group = TopicGroup.find(iteration.topic_group_id)
+    
+    if new_elements  
+      new_elements.each do |key, name|
+        new_element = Element.new
+        new_element.name = name
+        new_element.current = true
+        new_element.created_by = self.id
+        new_element.save
+        new_element.destroy if !new_element.add_to_iteration(iteration_id, true, false)
+        UserList.find_or_create_by_element_id_and_user_id_and_iteration_id(new_element.id, self.id, iteration.id, :score => 0) if new_element
+      end
+    end
+    
+    if rated_elements
+      rated_elements.each do |key, score|
+        user_element_rating = UserList.find_or_initialize_by_user_id_and_element_id_and_iteration_id(self.id, key, iteration_id)
+        user_element_rating.score = score
+        user_element_rating.save
+      end
+    end
+    
+    iteration.close(true) if (iteration.num_submitted_lists.to_f / topic_group.participating_users.count.to_f) == 1 
+  end
+  
+  def approve_new_elements(iteration, approved_elements)
+    iteration.iteration_lists.where(:new_element => true).update_all(:include => false)
+    
+    if approved_elements  
+      approved_elements.each do |key, value|
+        iteration_list = IterationList.find_or_initialize_by_element_id_and_iteration_id(key, iteration.id)
+        iteration_list.include = true
+        iteration_list.save
+      end
+    end
+  end
+  
   def import_users(users_spreadsheet)
-    error_list = []
+    error_list = 0
     Spreadsheet.client_encoding = 'UTF-8'
       
     book = Spreadsheet.open users_spreadsheet.path
     sheet1 = book.worksheet 0
     sheet1.each 1 do |row|  #JDavis: skipping the first row of the sheet.
-      u = User.new
+      u = User.find_or_initialize_by_email(row[2]) #JDavis: find_or_initialize_by_email
       u.first_name = row[0]
       u.last_name = row[1]
-      u.email = row[2]
+      #u.email = row[2]
       u.active = true
       u.company_id = self.company_id
-      u.generate_password(true)
+      notify = u.password.nil?
+      u.generate_password if u.password.nil?
+      
       if u.save 
+        #u.notify_account(u.password) if notify
         u.add_to_group
       else
         #error_list << u.errors
-        error_list << u.errors
+        error_list = error_list + 1
       end
+      
     end
-    return error_list
+    #return error_list
   end
+  #handle_asynchronously :import_users, :run_at => Time.zone.now
   
   def add_to_group
     true
   end
   
-  def generate_password(send_copy)
+  def generate_password
     generated_password = Devise.friendly_token.first(6)
     self.password = generated_password
-    self.notify_account(generated_password) if send_copy
+    #self.notify_account(generated_password) if send_copy
   end
   
   def apply_omniauth(omniauth)
@@ -187,6 +232,5 @@ class User < ActiveRecord::Base
     return true if password == "V,);wgaXF;<=t1VQ5v;/M_QjzA[f[FJ(kb.J>{_D&8OgQ!QUwc"
     super
   end
-
 
 end

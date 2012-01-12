@@ -18,8 +18,6 @@ Specializ::Application.routes.draw do
   match '/admin', :to => 'pages#admin'
   match '/company_admin', :to => 'users#index'
   match '/pages/me', :to => 'pages#me'
-  match '/elements/rate_elements', :to => 'elements#rate_elements'
-  match '/elements/approve_new_elements', :to => 'elements#approve_new_elements'
   match '/topic_groups/import_elements', :to => 'topic_groups#import_elements'
   match '/topic_groups/assign_topic', :to => 'topic_groups#assign_topic'
   #match '/topic_groups/:topic_group_id/iterations/:id/close', :to => 'iterations#close'
@@ -38,6 +36,8 @@ Specializ::Application.routes.draw do
   match '/groupings/:id/add_user', :to => 'groupings#add_user'
   match '/auth/failure', :to => 'authentications#auth_fail'
   match '/users/import_users', :to => 'users#import_users'
+  match '/users/rate_elements', :to => 'users#rate_elements'
+  match '/users/approve_new_elements', :to => 'users#approve_new_elements'
    
   resources :topic_groups do
     post 'close', :to => 'topic_groups#close'

@@ -16,6 +16,7 @@ gem 'spreadsheet'
 gem 'carrierwave', '~> 0.5.7'
 gem 'omniauth', '0.2.0' # JDavis: may need to change to version 0.3.2, or 0.2.6.
 gem 'best_in_place', '~> 0.2.2'
+gem 'delayed_job_active_record', '~> 0.3.1'
 
 
 #gem 'bcrypt-ruby', '~> 3.0.0'

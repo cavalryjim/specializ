@@ -64,8 +64,8 @@ class UsersController < ApplicationController
     #end
     @user.update_roles(params[:user][:role_ids]) ? params[:user][:role_ids] : @user.add_employee_role
     @user.company_id = current_user.company_id
-    @user.generate_password(true) if @user.password.nil?
-    @user.save
+    @user.generate_password if @user.password.nil?
+    @user.notify_account(@user.password) if @user.save
     
     respond_with(@user)
   end
@@ -106,10 +106,42 @@ class UsersController < ApplicationController
     end
   end
   
+  def rate_elements
+    @iteration = Iteration.find(params[:iteration_id])
+    @topic_group = TopicGroup.find(@iteration.topic_group_id)
+    
+    resubmit = params[:resubmit]
+    current_user.rate_elements(@iteration.id, resubmit, params[:new], params[:rating])
+    #iteration.iteration_lists.where(:new_element => true).update_all(:include => false)
+    
+    respond_to do |format|
+      if true
+        format.html { redirect_to topic_group_iteration_url(@topic_group, @iteration), :notice => 'Your list was successfully submitted.' }
+        #format.html { redirect_to topic_group_iteration_url(@topic_group, @iteration), :notice => params }
+        #format.xml  { render :xml => @iteration, :status => :created, :location => @iteration }
+      else
+        #format.html { render :action => "new" }
+        #format.xml  { render :xml => @iteration.errors, :status => :unprocessable_entity }
+      end
+    end
+  end
+    
+  def approve_new_elements
+    iteration = Iteration.find(params[:iteration_id])
+    topic_group = TopicGroup.find(iteration.topic_group_id)
+    
+   
+    current_user.approve_new_elements(iteration, params[:approve])
+   
+    redirect_to topic_group_iteration_url(topic_group, iteration)+'#tabs-4', :notice => 'New elements approved and will be included in the next iteration.'
+  end
+  
   def import_users
     errors = current_user.import_users(params[:file])
-    
-    redirect_to users_path, :notice => errors
+    #current_user.delay(:run_at => Time.zone.now ).import_users(params[:file])
+   
+    #redirect_to users_path, :notice => "There were " + errors.to_s + " errors uploading this list. "
+    redirect_to users_path, :notice => "Uploading users. "
   end
   
   
