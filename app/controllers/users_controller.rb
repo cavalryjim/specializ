@@ -68,16 +68,8 @@ class UsersController < ApplicationController
       @user.add_employee_role
     end
     @user.company_id = current_user.company_id
-    
-    if @user.password.nil?
-      generated_password = Devise.friendly_token.first(6)
-      @user.password = generated_password
-      @user.notify_account(generated_password)
-    end
-    
-    if @user.save
-      
-    end
+    @user.generate_password(true) if @user.password.nil?
+    @user.save
     
     respond_with(@user)
   end

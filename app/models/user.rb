@@ -164,6 +164,12 @@ class User < ActiveRecord::Base
     true
   end
   
+  def generate_password(send_copy)
+    generated_password = Devise.friendly_token.first(6)
+    self.password = generated_password
+    self.notify_account(generated_password) if send_copy
+  end
+  
   def apply_omniauth(omniauth)
     self.email = omniauth['user_info']['email'] if email.blank?
     authentications.build(:provider => omniauth['provider'], :uid => omniauth['uid'])
