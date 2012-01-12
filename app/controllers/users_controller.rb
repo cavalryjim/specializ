@@ -48,36 +48,24 @@ class UsersController < ApplicationController
   # GET /users/1/edit
   def edit
     #@user = User.find(params[:id])
-    
     @authentications = current_user.authentications if current_user == @user
+    @return_path = me_path ? params[:return] == 'me' : users_path
     
-    if params[:return] == 'me'
-      @return_path = me_path
-    else
-      @return_path = users_path
-    end
   end
 
   # POST /users
   # POST /users.xml
   def create
     #@user = User.new(params[:user])
-    if params[:user][:role_ids]
-      @user.update_roles(params[:user][:role_ids])  
-    else 
-      @user.add_employee_role
-    end
+    #if params[:user][:role_ids]
+    #  @user.update_roles(params[:user][:role_ids])  
+    #else 
+    #  @user.add_employee_role
+    #end
+    @user.update_roles(params[:user][:role_ids]) ? params[:user][:role_ids] : @user.add_employee_role
     @user.company_id = current_user.company_id
-    
-    if @user.password.nil?
-      generated_password = Devise.friendly_token.first(6)
-      @user.password = generated_password
-      @user.notify_account(generated_password)
-    end
-    
-    if @user.save
-      
-    end
+    @user.generate_password(true) if @user.password.nil?
+    @user.save
     
     respond_with(@user)
   end
@@ -97,7 +85,7 @@ class UsersController < ApplicationController
 
     respond_to do |format|
       if @user.update_attributes(params[:user])
-        format.html { redirect_to(return_path, :notice => 'User was successfully updated.' ) }
+        format.html { redirect_to(root_path, :notice => return_path ) }
         format.xml  { head :ok }
       else
         format.html { render :action => "edit" }
@@ -119,9 +107,9 @@ class UsersController < ApplicationController
   end
   
   def import_users
-    current_user.import_users
+    errors = current_user.import_users(params[:file])
     
-    redirect_to users_path
+    redirect_to users_path, :notice => errors
   end
   
   

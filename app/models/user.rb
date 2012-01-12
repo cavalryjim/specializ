@@ -86,8 +86,8 @@ class User < ActiveRecord::Base
   end
   
   def update_roles(selected_roles)
-    employee_role = [1] # JDavis: everyone gets the employee role
-    self.role_ids = employee_role + selected_roles
+    employee_role = ["1"] # JDavis: everyone gets the employee role
+    self.role_ids = (employee_role + selected_roles).uniq
   end
   
   # JDavis: only peoplenetz administrators can grant the pnetz_admin role.
@@ -95,7 +95,6 @@ class User < ActiveRecord::Base
     if self.role?(:pnetz_admin)
       Role.find_all_by_name(["manager", "hr", "admin", "pnetz_admin"])
     else
-      #Role.find(:all, :conditions => { :name => ["manager", "hr", "admin"] })
       Role.find_all_by_name(["manager", "hr", "admin"])
     end
   end
@@ -137,8 +136,38 @@ class User < ActiveRecord::Base
     Iteration.find(iteration_id).new_elements.where(:created_by => self.id)
   end
   
-  def import_users
+  def import_users(users_spreadsheet)
+    error_list = []
+    Spreadsheet.client_encoding = 'UTF-8'
+      
+    book = Spreadsheet.open users_spreadsheet.path
+    sheet1 = book.worksheet 0
+    sheet1.each 1 do |row|  #JDavis: skipping the first row of the sheet.
+      u = User.new
+      u.first_name = row[0]
+      u.last_name = row[1]
+      u.email = row[2]
+      u.active = true
+      u.company_id = self.company_id
+      u.generate_password(true)
+      if u.save 
+        u.add_to_group
+      else
+        #error_list << u.errors
+        error_list << u.errors
+      end
+    end
+    return error_list
+  end
+  
+  def add_to_group
     true
+  end
+  
+  def generate_password(send_copy)
+    generated_password = Devise.friendly_token.first(6)
+    self.password = generated_password
+    self.notify_account(generated_password) if send_copy
   end
   
   def apply_omniauth(omniauth)
