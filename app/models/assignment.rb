@@ -17,15 +17,9 @@ class Assignment < ActiveRecord::Base
   belongs_to :user
   belongs_to :topic_group
   
-  after_initialize :default_values
-  
   validates :user_id, :presence => true
   validates :topic_group_id, :presence => true
   validates :manager, :inclusion => {:in => [true, false]}
   validates :participating, :inclusion => {:in => [true, false]}
   
-  private
-    def default_values
-      self.participating = true
-    end
 end

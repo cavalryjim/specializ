@@ -18,4 +18,13 @@ class Company < ActiveRecord::Base
   
   validates :name, :presence => true
   validates :active, :inclusion => {:in => [true, false]}
+  
+  #before_create :set_expiration_date
+  
+  private
+  
+  def set_expiration_date
+    #self.expiration_date = Time.now
+  end
+  
 end

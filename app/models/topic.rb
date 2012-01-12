@@ -25,11 +25,8 @@ class Topic < ActiveRecord::Base
   validates :name, :presence => true
   validates :company_id, :presence => true
   validates :goal, :inclusion => { :in => 1..100 }
+  validates :status, :inclusion => { :in => 1..3 }
   validates_uniqueness_of :name, :scope => [ :company_id ]    # Unique for [name, company]
-
-  
-  #JDavis: need to ensure the company_id is set.
-  #before_create :set_company
   
   def update_groupings(grouping_ids)
     
@@ -48,7 +45,5 @@ class Topic < ActiveRecord::Base
   
   private
     
-    #def set_company
-    #  self.company_id = @current_user.company_id
-    #end
+    
 end

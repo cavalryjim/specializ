@@ -123,11 +123,7 @@ class TopicGroup < ActiveRecord::Base
   private
     
     def create_first_iteration
-      first_iteration = Iteration.new
-      first_iteration.topic_group_id = self.id
-      first_iteration.num = 1
-      first_iteration.active = false
-      first_iteration.save
+      Iteration.create(:topic_group_id => self.id, :num => 1, :active => false)
     end
   
 end

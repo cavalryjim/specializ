@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120112193027) do
+ActiveRecord::Schema.define(:version => 20120112223155) do
 
   create_table "active_admin_comments", :force => true do |t|
     t.integer  "resource_id",   :null => false
@@ -48,8 +48,8 @@ ActiveRecord::Schema.define(:version => 20120112193027) do
   create_table "assignments", :force => true do |t|
     t.integer  "user_id"
     t.integer  "topic_group_id"
-    t.boolean  "manager"
-    t.boolean  "participating"
+    t.boolean  "manager",        :default => false
+    t.boolean  "participating",  :default => true
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -64,8 +64,8 @@ ActiveRecord::Schema.define(:version => 20120112193027) do
 
   create_table "companies", :force => true do |t|
     t.string   "name"
-    t.boolean  "active"
-    t.boolean  "never_expires"
+    t.boolean  "active",          :default => true
+    t.boolean  "never_expires",   :default => false
     t.date     "expiration_date"
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -150,7 +150,7 @@ ActiveRecord::Schema.define(:version => 20120112193027) do
   create_table "topic_groups", :force => true do |t|
     t.string   "name"
     t.integer  "goal"
-    t.boolean  "active"
+    t.boolean  "active",               :default => true
     t.integer  "update_frequency"
     t.integer  "topic_id"
     t.integer  "grouping_id"
@@ -162,7 +162,7 @@ ActiveRecord::Schema.define(:version => 20120112193027) do
   create_table "topics", :force => true do |t|
     t.string   "name"
     t.string   "description"
-    t.integer  "status"
+    t.integer  "status",           :default => 1
     t.integer  "update_frequency"
     t.integer  "due_days"
     t.boolean  "opt_out"

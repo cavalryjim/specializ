@@ -112,18 +112,8 @@ class UsersController < ApplicationController
     
     resubmit = params[:resubmit]
     current_user.rate_elements(@iteration.id, resubmit, params[:new], params[:rating])
-    #iteration.iteration_lists.where(:new_element => true).update_all(:include => false)
     
-    respond_to do |format|
-      if true
-        format.html { redirect_to topic_group_iteration_url(@topic_group, @iteration), :notice => 'Your list was successfully submitted.' }
-        #format.html { redirect_to topic_group_iteration_url(@topic_group, @iteration), :notice => params }
-        #format.xml  { render :xml => @iteration, :status => :created, :location => @iteration }
-      else
-        #format.html { render :action => "new" }
-        #format.xml  { render :xml => @iteration.errors, :status => :unprocessable_entity }
-      end
-    end
+    redirect_to topic_group_iteration_url(@topic_group, @iteration), :notice => 'Your list was successfully submitted.'
   end
     
   def approve_new_elements
