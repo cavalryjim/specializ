@@ -93,7 +93,7 @@ class User < ActiveRecord::Base
   # JDavis: only peoplenetz administrators can grant the pnetz_admin role.
   def available_roles
     if self.role?(:pnetz_admin)
-      Role.all
+      Role.find_all_by_name(["manager", "hr", "admin", "pnetz_admin"])
     else
       #Role.find(:all, :conditions => { :name => ["manager", "hr", "admin"] })
       Role.find_all_by_name(["manager", "hr", "admin"])
