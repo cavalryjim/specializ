@@ -86,16 +86,15 @@ class User < ActiveRecord::Base
   end
   
   def update_roles(selected_roles)
-    employee_role = [1] # JDavis: everyone gets the employee role
-    self.role_ids = employee_role + selected_roles
+    employee_role = ["1"] # JDavis: everyone gets the employee role
+    self.role_ids = (employee_role + selected_roles).uniq
   end
   
   # JDavis: only peoplenetz administrators can grant the pnetz_admin role.
   def available_roles
     if self.role?(:pnetz_admin)
-      Role.all
+      Role.all 
     else
-      #Role.find(:all, :conditions => { :name => ["manager", "hr", "admin"] })
       Role.find_all_by_name(["manager", "hr", "admin"])
     end
   end
@@ -150,6 +149,7 @@ class User < ActiveRecord::Base
       u.email = row[2]
       u.active = true
       u.company_id = self.company_id
+      u.generate_password(true)
       if u.save 
         u.add_to_group
       else

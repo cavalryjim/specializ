@@ -1,5 +1,5 @@
 class AjaxController < ApplicationController
-  autocomplete :company, :name
+  autocomplete :company, :name, :full => true
 
   #def companies
   #  names = Company.all
