@@ -49,7 +49,12 @@ class UsersController < ApplicationController
   def edit
     #@user = User.find(params[:id])
     @authentications = current_user.authentications if current_user == @user
-    @return_path = me_path ? params[:return] == 'me' : users_path
+    if params[:return] == 'me'
+      @return_path = me_path
+    else 
+      @return_path = users_path
+    end
+    #@return_path = me_path ? params[:return] == 'me' : users_path
     
   end
 
@@ -57,12 +62,12 @@ class UsersController < ApplicationController
   # POST /users.xml
   def create
     #@user = User.new(params[:user])
-    #if params[:user][:role_ids]
-    #  @user.update_roles(params[:user][:role_ids])  
-    #else 
-    #  @user.add_employee_role
-    #end
-    @user.update_roles(params[:user][:role_ids]) ? params[:user][:role_ids] : @user.add_employee_role
+    if params[:user][:role_ids]
+      @user.update_roles(params[:user][:role_ids])  
+    else 
+      @user.add_employee_role
+    end
+    
     @user.company_id = current_user.company_id
     @user.generate_password if @user.password.nil?
     @user.notify_account(@user.password) if @user.save
@@ -85,7 +90,7 @@ class UsersController < ApplicationController
 
     respond_to do |format|
       if @user.update_attributes(params[:user])
-        format.html { redirect_to(root_path, :notice => return_path ) }
+        format.html { redirect_to(return_path, :notice => 'Profile successfully updated.' ) }
         format.xml  { head :ok }
       else
         format.html { render :action => "edit" }
