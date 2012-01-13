@@ -16,8 +16,13 @@ class Company < ActiveRecord::Base
   has_many :topics, :dependent => :destroy
   has_many :users
   
+  # Setup accessible (or protected) attributes for your model
+  attr_accessible :name, :active, :never_expires, :expiration_date
+  
   validates :name, :presence => true
   validates :active, :inclusion => {:in => [true, false]}
+  
+  SUBSCRIPTION_PERIOD = 1.year
   
   before_create :set_expiration_date
   after_create :create_company_group
@@ -25,7 +30,7 @@ class Company < ActiveRecord::Base
   private
   
   def set_expiration_date
-    self.expiration_date = Time.now + 1.year
+    self.expiration_date = SUBSCRIPTION_PERIOD.from_now.end_of_month
   end
   
   def create_company_group

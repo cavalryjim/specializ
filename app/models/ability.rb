@@ -48,6 +48,9 @@ class Ability
         auth.new_record? or
         auth.user_id == user.id
       end
+      can :read, Grouping do |grouping|
+        grouping.company_id == user.company_id
+      end
     end
     
     if (user.role? :manager) && user.active
