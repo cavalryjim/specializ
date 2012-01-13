@@ -19,7 +19,7 @@
     <%= f.label :description %><br />
     <%= f.text_area :description, :id => "description_area", :cols => 10, :rows => 5 %>
   </div>
-  <div class="field"
+  <div class="field">
 	<%= f.label 'Participating Groups: ' %>
 	<%= select_tag(:groupings, options_for_select(nested_set_options(Grouping.find(@seed_id).root) {|i| "#{' -' * i.level} #{i.name}" }, 
 			:selected => @selected_groups ), { :multiple => true } ) %>

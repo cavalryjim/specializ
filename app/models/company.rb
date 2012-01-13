@@ -19,12 +19,17 @@ class Company < ActiveRecord::Base
   validates :name, :presence => true
   validates :active, :inclusion => {:in => [true, false]}
   
-  #before_create :set_expiration_date
+  before_create :set_expiration_date
+  after_create :create_company_group
   
   private
   
   def set_expiration_date
-    #self.expiration_date = Time.now
+    self.expiration_date = Time.now + 1.year
+  end
+  
+  def create_company_group
+    Grouping.create(:name => self.name, :company_id => self.id)
   end
   
 end
