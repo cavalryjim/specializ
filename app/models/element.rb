@@ -12,14 +12,13 @@
 #
 
 class Element < ActiveRecord::Base
-  #require 'appropriate_validator'
+  
   has_many :iteration_lists, :dependent => :destroy
   has_many :iterations, :through => :iteration_lists
   has_many :user_lists, :dependent => :destroy
   has_many :users, :through => :user_lists
   
   validates :name,  :presence => true
-                    #:appropriate => true
   validates :created_by, :presence => true
   validates :current, :inclusion => {:in => [true, false]}
   
