@@ -80,21 +80,13 @@ class UsersController < ApplicationController
   def update
     #@user = User.find(params[:id])
     return_path = params[:return_path]
-    @user.update_roles(params[:user][:role_ids]) if params[:user][:role_ids]
-    
-    # JDavis: If do not remove these params, Devise will fail to validate
-    #if params[:user][:password].blank?
-    #  params[:user].delete(:password)
-    #  params[:user].delete(:password_confirmation)
-    #end
 
     respond_to do |format|
       if @user.update_attributes(params[:user])
+        @user.update_roles(params[:user][:role_ids]) if params[:user][:role_ids]
         format.html { redirect_to(return_path, :notice => 'Profile successfully updated.' ) }
-        format.xml  { head :ok }
       else
         format.html { render :action => "edit" }
-        format.xml  { render :xml => @user.errors, :status => :unprocessable_entity }
       end
     end
   end

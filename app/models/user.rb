@@ -87,7 +87,8 @@ class User < ActiveRecord::Base
   
   def update_roles(selected_roles)
     #employee_role = [1] # JDavis: everyone gets the employee role
-    self.role_ids = (['1'] + selected_roles)
+    self.role_ids = (["1"] + selected_roles)
+    return self.role_ids
   end
   
   # JDavis: only peoplenetz administrators can grant the pnetz_admin role.
