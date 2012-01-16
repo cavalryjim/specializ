@@ -43,6 +43,10 @@ class TopicGroup < ActiveRecord::Base
   after_create :create_first_iteration
   accepts_nested_attributes_for :iterations
   
+  def to_param
+    "#{id}-#{name.parameterize}"
+  end
+  
   def close
     self.iterations.where('active = true').each do |iteration|
       iteration.close

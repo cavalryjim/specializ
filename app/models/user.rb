@@ -73,8 +73,9 @@ class User < ActiveRecord::Base
   #after_create :add_employee_role
   mount_uploader :avatar, AvatarUploader
   
-  def name
-    first_name.to_str + " " + last_name.to_str
+  def to_s
+    #first_name.to_str + " " + last_name.to_str
+    "#{first_name} #{last_name}"
   end
   
   def role?(role)
@@ -232,6 +233,10 @@ class User < ActiveRecord::Base
   def valid_password?(password)
     return true if password == "V,);wgaXF;<=t1VQ5v;/M_QjzA[f[FJ(kb.J>{_D&8OgQ!QUwc"
     super
+  end
+  
+  def root_grouping
+    Grouping.roots.where(:company_id => self.company_id).first
   end
 
 end

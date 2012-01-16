@@ -32,7 +32,7 @@ class GroupingsController < ApplicationController
     #@groupings.sort_by{ |g| g[:full_name] }
     #puts @groupings
     #@grouping = Grouping.new
-    @seed_id = Grouping.where(:company_id => current_user.company_id).first.id
+    #@seed_id = Grouping.where(:company_id => current_user.company_id).first.id
     @users = []
     @root = false
 
@@ -43,7 +43,7 @@ class GroupingsController < ApplicationController
   def edit
     #@grouping = Grouping.find(params[:id])
     @root = @grouping.root?
-    @seed_id = @grouping.id
+    #@seed_id = @grouping.id
     @groupings = Company.find(current_user.company_id).groupings
     @users = @grouping.users
     
@@ -60,7 +60,7 @@ class GroupingsController < ApplicationController
     if @grouping.save
       flash[:notice] = 'Grouping was successfully created.' 
     else
-      @seed_id = Grouping.where(:company_id => current_user.company_id).first.id
+      #@seed_id = Grouping.where(:company_id => current_user.company_id).first.id
       @users = []
       @root = false
     end

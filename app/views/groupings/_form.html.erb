@@ -22,7 +22,7 @@
   
   <div class="field">
     <%= f.label 'Parent Group' %><br />
-	<%= f.select :parent_id, nested_set_options(Grouping.find(@seed_id).root) {|i| "#{'-' * i.level} #{i.name}" },{},{ :disabled => @root }  %>
+	<%= f.select :parent_id, nested_set_options(current_user.root_grouping) {|i| "#{'-' * i.level} #{i.name}" },{},{ :disabled => @root }  %>
   </div>
   <div class="actions">
 	<%= f.hidden_field :company_id, :value => current_user.company_id %>

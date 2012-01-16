@@ -28,6 +28,10 @@ class Topic < ActiveRecord::Base
   validates :status, :inclusion => { :in => 1..3 }
   validates_uniqueness_of :name, :scope => [ :company_id ]    # Unique for [name, company]
   
+  def to_param
+    "#{id}-#{name.parameterize}"
+  end
+  
   def update_groupings(grouping_ids)
     
     grouping_ids.each do |grouping_id|

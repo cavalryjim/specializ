@@ -22,7 +22,7 @@
 	 <tbody>
 		<% @assignments.each do |assignment| %>
 		  <tr>
-		    <td><%= link_to User.find(assignment.user_id).name, edit_topic_assignment_path(@topic, assignment) %></td>
+		    <td><%= link_to User.find(assignment.user_id), edit_topic_assignment_path(@topic, assignment) %></td>
 		    <td><%= TopicGroup.find(assignment.topic_group_id).name %></td>
 		    <td><%= check_box_tag assignment.id, 1, assignment.manager, { :disabled => true } %></td>
 		    <td><%= link_to 'Remove?', topic_assignment_path(@topic, assignment), :confirm => 'Are you sure?', :method => :delete %></td>

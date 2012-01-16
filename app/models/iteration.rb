@@ -29,6 +29,10 @@ class Iteration < ActiveRecord::Base
   validates :active, :inclusion => {:in => [true, false]}
   validates :topic_group_id, :presence => true
   
+  def to_param
+    "#{id}-#{num}"
+  end
+  
   def close(alert_manager = false)
     self.current_elements.each do |element|
       element.compute_agreement(self.id)

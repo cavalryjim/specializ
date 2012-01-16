@@ -55,11 +55,12 @@ group :development do
   gem 'rspec-rails', '2.6.1'
   gem 'annotate', '2.4.0'
   gem 'nifty-generators'
+  gem 'bullet', '~> 2.1.0'
 end
 
 group :test do
   gem 'rspec-rails', '2.6.1'
   #gem 'webrat', '0.7.1'
+  gem 'mocha'
 end
 
-gem "mocha", :group => :test

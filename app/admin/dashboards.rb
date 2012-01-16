@@ -3,7 +3,7 @@ ActiveAdmin::Dashboards.build do
   section "Recently Added Users" do
     table_for User.order("created_at desc").limit(5) do
       column :name do |user|
-        link_to user.name, admin_user_path(user)
+        link_to user, admin_user_path(user)
       end
       column :email
       column :created_at

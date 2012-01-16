@@ -4,24 +4,24 @@ class UserMailer < ActionMailer::Base
   def new_assignment(user, topic_group)
     @user = user
     @topic_group = topic_group
-    mail(:to => "#{user.name} <#{user.email}>", :subject => 'New Topic Assignment')
+    mail(:to => "#{user} <#{user.email}>", :subject => 'New Topic Assignment')
   end
   
   def iteration_start(user, topic_group)
     @user = user
     @topic_group = topic_group
-    mail(:to => "#{user.name} <#{user.email}>", :subject => 'Next Iteration')
+    mail(:to => "#{user} <#{user.email}>", :subject => 'Next Iteration')
   end
   
   def new_account(user, generated_password)
     @user = user
     @password = generated_password
-    mail(:to => "#{user.name} <#{user.email}>", :subject => 'New Account')
+    mail(:to => "#{user} <#{user.email}>", :subject => 'New Account')
   end
   
   def iteration_close(manager, iteration_id)
     @manager = manager
     @topic_group = TopicGroup.find(Iteration.find(iteration_id).topic_group_id)
-    mail(:to => "#{manager.name} <#{manager.email}>", :subject => 'Iteration Closed')
+    mail(:to => "#{manager} <#{manager.email}>", :subject => 'Iteration Closed')
   end
 end
