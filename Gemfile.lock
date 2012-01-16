@@ -73,6 +73,7 @@ GEM
       activesupport (>= 2.3.7)
       i18n (~> 0.4)
     googlecharts (1.6.8)
+    gritter (0.6.3)
     has_scope (0.5.1)
     i18n (0.5.0)
     inherited_resources (1.2.2)
@@ -221,6 +222,7 @@ DEPENDENCIES
   delayed_job_active_record (~> 0.3.1)
   devise (= 1.4.2)
   googlecharts
+  gritter (= 0.6.3)
   jquery-rails
   mocha
   mysql2 (= 0.2.18)

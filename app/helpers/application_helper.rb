@@ -1,5 +1,4 @@
 module ApplicationHelper
-  #include Datatables::Helpers
 
   # Return a title on a per-page basis.
   def title
@@ -21,7 +20,5 @@ module ApplicationHelper
     direction = column == sort_column && sort_direction == "asc" ? "desc" : "asc"
     link_to title, params.merge(:sort => column, :direction => direction, :page => nil), {:class => css_class}
   end
-
-
   
 end

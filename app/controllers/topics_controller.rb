@@ -30,8 +30,8 @@ class TopicsController < ApplicationController
     @topic = Topic.new
     @assignments = []
     @selected_groups = []
-    #@seed_id = Grouping.where(:company_id => current_user.company_id).first.id
-    
+    #gflash :success => "The product has been created successfully!", :notice => "This product doesn't have a category."
+
     respond_with(@topic)
   end
 
@@ -39,10 +39,8 @@ class TopicsController < ApplicationController
   def edit
     @topic = Topic.find(params[:id])
     @topics = Topic.where(:company_id => current_user.company_id)
-    #@current_user = current_user
     @assignments = Assignment.where(:topic_group_id => TopicGroup.where(:topic_id => @topic.id))
     @selected_groups = TopicGroup.where(:topic_id => @topic.id).map(&:grouping_id)
-    #@seed_id = Grouping.where(:company_id => current_user.company_id).first.id
     
     respond_with(@topic)
   end
@@ -61,7 +59,6 @@ class TopicsController < ApplicationController
       @topics = Topic.where(:company_id => current_user.company_id)
       @assignments = []
       @selected_groups = []
-      #@seed_id = Grouping.where(:company_id => current_user.company_id).first.id
     end
     
     respond_with(@topic)
@@ -80,13 +77,9 @@ class TopicsController < ApplicationController
       @topics = Topic.where(:company_id => current_user.company_id)
       @assignments = []
       @selected_groups = []
-      #@seed_id = Grouping.where(:company_id => current_user.company_id).first.id
     end  
     
     respond_with(@topic)
-    #respond_with(@topic) do |format|
-    #  format.html { redirect_to edit_topic_path(@topic) }
-    #end
     
   end
 
