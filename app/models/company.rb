@@ -19,8 +19,9 @@ class Company < ActiveRecord::Base
   # Setup accessible (or protected) attributes for your model
   attr_accessible :name, :active, :never_expires, :expiration_date
   
-  validates :name, :presence => true
-  validates :active, :inclusion => {:in => [true, false]}
+  validates :name,    :presence => true,
+                      :uniqueness => { :case_sensitive => false }
+  validates :active,  :inclusion => {:in => [true, false]}
   
   SUBSCRIPTION_PERIOD = 1.year
   
