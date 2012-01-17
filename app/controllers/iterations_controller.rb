@@ -40,7 +40,7 @@ class IterationsController < ApplicationController
     #@iteration = Iteration.find(params[:id])
     @topic_group = TopicGroup.find(params[:topic_group_id])
 
-    flash[:notice] = 'Iteration was successfully updated.' if @iteration.update_attributes(params[:iteration])
+    gflash :success => 'Iteration updated.' if @iteration.update_attributes(params[:iteration])
     respond_with(@iteration) do |format|
       format.html { redirect_to topic_group_iteration_url(@topic_group, @iteration) }
     end
