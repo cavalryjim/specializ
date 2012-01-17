@@ -1,7 +1,7 @@
 class AssignmentsController < ApplicationController
   before_filter :authenticate_user!
   load_and_authorize_resource
-  autocomplete :user, :last_name, :extra_data => [:id, :first_name], :display_value => :name
+  autocomplete :user, :last_name, :extra_data => [:id, :first_name], :display_value => :to_s
   
   # GET /assignments
   # GET /assignments.xml
@@ -57,7 +57,8 @@ class AssignmentsController < ApplicationController
     respond_to do |format|
       if @assignment.save
         user.notify_assignment(topic_group)
-        format.html { redirect_to edit_topic_path(@topic)+"#tabs-3", :notice => 'Assignment was successfully created.' }
+        gflash :success => "User assigned."
+        format.html { redirect_to edit_topic_path(@topic)+"#tabs-3" }
         format.xml  { render :xml => @assignment, :status => :created, :location => @assignment }
       else
         format.html { render :action => "new" }
@@ -74,7 +75,8 @@ class AssignmentsController < ApplicationController
 
     respond_to do |format|
       if @assignment.update_attributes(params[:assignment])
-        format.html { redirect_to edit_topic_path(@topic)+"#tabs-3", :notice => 'Assignment was successfully updated.' }
+        gflash :success => "Assignement updated."
+        format.html { redirect_to edit_topic_path(@topic)+"#tabs-3" }
         format.xml  { head :ok }
       else
         format.html { render :action => "edit" }
@@ -88,10 +90,10 @@ class AssignmentsController < ApplicationController
   def destroy
     @topic = Topic.find(params[:topic_id])
     #@assignment = Assignment.find(params[:id])
-    @assignment.destroy
+    gflash :success => "User removed." if @assignment.destroy
 
     respond_to do |format|
-      format.html { redirect_to edit_topic_path(@topic)+"#tabs-3", :notice => 'User was successfully removed.' }
+      format.html { redirect_to edit_topic_path(@topic)+"#tabs-3" }
       format.xml  { head :ok }
     end
   end

@@ -8,12 +8,15 @@ class AuthenticationsController < ApplicationController
     authentication = Authentication.find_by_provider_and_uid(omniauth['provider'], omniauth['uid'])
     if authentication
       sign_in(authentication.user)
-      redirect_to root_url, :notice => "Signed in successfully."
+      gflash :success => "Signed in."
+      redirect_to root_url
     elsif current_user
       current_user.authentications.create!(:provider => omniauth['provider'], :uid => omniauth['uid'])
-      redirect_to edit_user_path(current_user) + '?return=me', :notice => "Authentication added."
+      gflash :success => "Authentication added."
+      redirect_to edit_user_path(current_user) + '?return=me' 
     else
-      redirect_to new_user_registration_url, :notice => "You must add this authentication to your profile before using it."
+      gflash :error => "You must add this authentication to your profile before using it."
+      redirect_to new_user_registration_url 
       #JDavis: might need to change this such that it only requests an account vs creating one.
       #JDavis: Also need to create a manner in which the requestor picks a company.
       #JDavis:  Arrrrgh!
@@ -34,11 +37,12 @@ class AuthenticationsController < ApplicationController
 
   def destroy
     @authentication = current_user.authentications.find(params[:id])
-    @authentication.destroy
-    redirect_to authentications_url, :notice => "Successfully destroyed authentication."
+    gflash :success => "Authentication destroyed." if @authentication.destroy
+    redirect_to authentications_url
   end
   
   def auth_fail
-    redirect_to new_user_registration_url, :notice => "Authentication failed."
+    gflash :error => "Authentication failed."
+    redirect_to new_user_registration_url
   end
 end

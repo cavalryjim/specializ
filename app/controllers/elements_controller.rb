@@ -47,13 +47,15 @@ class ElementsController < ApplicationController
     respond_to do |format|
       if @element.save  
         if @element.add_to_iteration(@iteration.id, true, true)
-          format.html { redirect_to topic_group_iteration_url(@topic_group, @iteration)+'#tabs-2', :notice => 'Element was successfully created.' }
+          gflash :success => "Element created."
+          format.html { redirect_to topic_group_iteration_url(@topic_group, @iteration)+'#tabs-2' }
           format.xml  { render :xml => @element, :status => :created, :location => @element }
         else
           @element.destroy #JDavis: I do not want a rogue element not assigned to an iteration.
         end
       else
-        format.html { redirect_to topic_group_iteration_url(@topic_group, @iteration), :notice => 'Element was not successfully created.' }
+        gflash :error => "There was a problem adding that element."
+        format.html { redirect_to topic_group_iteration_url(@topic_group, @iteration) }
         format.xml  { render :xml => @element.errors, :status => :unprocessable_entity }
       end
  
@@ -63,24 +65,10 @@ class ElementsController < ApplicationController
   # PUT /elements/1
   # PUT /elements/1.xml
   def update
-    #@element = Element.find(params[:id])
-    #iteration = Iteration.find(params[:iteration_id])
-    #topic_group = TopicGroup.find(iteration.topic_group_id)
-    #JDavis: identifying the last user to edit this element
-    params[:element][:edited_by] = current_user.id
+    params[:element][:edited_by] = current_user.id #JDavis: identifying the last user to edit this element
     @element.update_attributes(params[:element])
 
     respond_with(@element)
-    #respond_with do |format|
-    #  if @element.update_attributes(params[:element])
-        #format.html { redirect_to(@element, :notice => 'Element was successfully updated.') }
-    #    format.html { redirect_to topic_group_iteration_url(topic_group, iteration)+'#tabs-2', :notice => 'Element was successfully updated.' }
-    #    format.xml  { head :ok }
-    #  else
-    #    format.html { render :action => "edit" }
-    #    format.xml  { render :xml => @element.errors, :status => :unprocessable_entity }
-    #  end
-    #end
   end
 
   # DELETE /elements/1
@@ -88,11 +76,10 @@ class ElementsController < ApplicationController
   def destroy
     @iteration = Iteration.find(params[:iteration_id])
     @topic_group = TopicGroup.find(@iteration.topic_group_id)
-    #@element = Element.find(params[:id])
-    @element.destroy
+    gflash :success => "Item removed." if @element.destroy
 
     respond_to do |format|
-      format.html { redirect_to topic_group_iteration_url(@topic_group, @iteration), :notice => 'Item was successfully removed.' }
+      format.html { redirect_to topic_group_iteration_url(@topic_group, @iteration) }
       format.xml  { head :ok }
     end
   end

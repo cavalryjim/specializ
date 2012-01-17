@@ -15,22 +15,15 @@ class IterationsController < ApplicationController
     @topic_group = TopicGroup.find(@iteration.topic_group_id)
     @iterations = @topic_group.iterations.sort_by{ |iteration| iteration.num }
     @topic = Topic.find(@topic_group.topic_id)
-    #@elements = @iteration.elements
     @elements = @iteration.current_elements
     @suggested_elements = current_user.suggested_elements(@iteration.id)
     @participating_users = @topic_group.participating_users
     @submitted = current_user.submitted_list?(@iteration.id)
-    #@manager = current_user.manager?(@topic_group.id)
-    #flash[:notice] = @suggested_elements.size
     
     if (can? :manage, @topic_group) && @topic_group.active
       @new_elements = @topic_group.iterations.last.new_elements
     end
     
-    # JDavis: if the iteration is active, check to see it the user has submitted.
-    #@active = @iteration.active ? !current_user.submitted_list?(@iteration.id) : false
-    
-    #flash[:notice] = '@iteration.active = ' + @iteration.active.to_s + ', submitted_list = ' + current_user.submitted_list?(@iteration.id).to_s + ', @active = ' + @active.to_s
     respond_with(@iteration)
   end
 
@@ -69,7 +62,7 @@ class IterationsController < ApplicationController
     @iteration = Iteration.find(params[:iteration_id])
     @topic_group = TopicGroup.find(params[:topic_group_id])
     
-    flash[:notice] = 'Iteration was successfully closed.' if @iteration.close
+    gflash :success => 'Iteration closed.' if @iteration.close
     respond_with(@iteration) do |format|
       format.html { redirect_to topic_group_iteration_url(@topic_group, @iteration)+'#tabs-4' }
     end
@@ -83,7 +76,7 @@ class IterationsController < ApplicationController
     new_iteration = last_iteration.user_lists.size > 0 ? last_iteration.start_new_iteration : last_iteration.reopen
     topic_group.notify_users_new_iteration
     
-    flash[:notice] = 'Iteration was successfully started.' if new_iteration
+    gflash :success => 'Iteration started.' if new_iteration
     
     respond_to do |format|
       format.html { redirect_to topic_group_iteration_url(topic_group, new_iteration)+'#tabs-4' }

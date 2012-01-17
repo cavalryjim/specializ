@@ -8,16 +8,8 @@ class UsersController < ApplicationController
   # GET /users
   # GET /users.xml
   def index
-    #redirect_to me_path if !(current_user.role? :admin)
     @users = User.where(:company_id => current_user.company_id)
-    #if current_user.role? :admin
-    #  respond_to do |format|
-    #    format.html # index.html.erb
-    #    format.xml  { render :xml => @users }
-    #  end
-    #else
-    #  redirect_to me_path, :notice => 'You can not access this resource.'
-    #end
+    
     respond_with @users
   end
 
@@ -25,12 +17,7 @@ class UsersController < ApplicationController
   # GET /users/1.xml
   def show
     redirect_to users_path
-    #@user = User.find(params[:id])
-
-    #respond_to do |format|
-    #  format.html # show.html.erb
-    #  format.xml  { render :xml => @user }
-    #end
+    
   end
 
   # GET /users/new
@@ -80,12 +67,14 @@ class UsersController < ApplicationController
   def update
     #@user = User.find(params[:id])
     return_path = params[:return_path]
-
     respond_to do |format|
       if @user.update_attributes(params[:user])
         @user.update_roles(params[:user][:role_ids]) if params[:user][:role_ids]
-        format.html { redirect_to(return_path, :notice => 'Profile successfully updated.' ) }
+        gflash :success => "Profile updated."
+        #redirect_to (return_path)
+        format.html { redirect_to(return_path) }
       else
+        gflash :error => "There was a problem."
         format.html { render :action => "edit" }
       end
     end
@@ -109,18 +98,16 @@ class UsersController < ApplicationController
     
     resubmit = params[:resubmit]
     current_user.rate_elements(@iteration.id, resubmit, params[:new], params[:rating])
-    
-    redirect_to topic_group_iteration_url(@topic_group, @iteration), :notice => 'Your list was successfully submitted.'
+    gflash :success => "List submitted."
+    redirect_to topic_group_iteration_url(@topic_group, @iteration)
   end
     
   def approve_new_elements
     iteration = Iteration.find(params[:iteration_id])
     topic_group = TopicGroup.find(iteration.topic_group_id)
-    
-   
     current_user.approve_new_elements(iteration, params[:approve])
-   
-    redirect_to topic_group_iteration_url(topic_group, iteration)+'#tabs-4', :notice => 'New elements approved and will be included in the next iteration.'
+    gflash :success => "Elements approved and will be included in the next iteration."
+    redirect_to topic_group_iteration_url(topic_group, iteration)+'#tabs-4'
   end
   
   def import_users

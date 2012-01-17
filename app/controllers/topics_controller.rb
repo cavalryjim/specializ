@@ -30,7 +30,6 @@ class TopicsController < ApplicationController
     @topic = Topic.new
     @assignments = []
     @selected_groups = []
-    #gflash :success => "The product has been created successfully!", :notice => "This product doesn't have a category."
 
     respond_with(@topic)
   end
@@ -71,7 +70,7 @@ class TopicsController < ApplicationController
     #groupings = []
     if params.has_key?(:groupings) && @topic.update_attributes(params[:topic])  
       @topic.update_groupings(params[:groupings])
-      flash[:notice] = 'Topic was successfully updated.'
+      gflash :success => 'Topic updated.'
     else
       @topic.errors[:base] << "You must select one or more participating groups." unless params.has_key?(:groupings)
       @topics = Topic.where(:company_id => current_user.company_id)
@@ -99,7 +98,7 @@ class TopicsController < ApplicationController
   def staff_topic
     @topic = Topic.find(params[:topic_id])
     @topic_groups = @topic.topic_groups
-    new_notice = 'Topic successfully staffed!'
+    new_notice = 'Topic staffed'
     percentage = (params[:percentage]).to_f/100
     users = []
     
@@ -109,7 +108,9 @@ class TopicsController < ApplicationController
       topic_group.staff(users) if users.size > 0
     end
     
-    redirect_to edit_topic_path(@topic)+"#tabs-3", {:notice => new_notice}
+    gflash :success => new_notice
+    
+    redirect_to edit_topic_path(@topic)+"#tabs-3"
   end
   
 end

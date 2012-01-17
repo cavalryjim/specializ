@@ -52,7 +52,8 @@ class TopicGroupsController < ApplicationController
     @topic_group.name = Topic.find(@topic_group.topic_id).name + ": " + Grouping.find(@topic_group.grouping_id).fullname
     respond_to do |format|
       if @topic_group.save
-        format.html { redirect_to(@topic_group, :notice => 'Topic group was successfully created.') }
+        gflash :success => "Topic created."
+        format.html { redirect_to(@topic_group) }
         format.xml  { render :xml => @topic_group, :status => :created, :location => @topic_group }
       else
         format.html { render :action => "new" }
@@ -66,7 +67,7 @@ class TopicGroupsController < ApplicationController
   def update
     @topic_group = TopicGroup.find(params[:id])
 
-    flash[:notice] = 'Topic Group was successfully updated.' if @topic_group.update_attributes(params[:topic_group])
+    gflash :notice => 'Topic Group updated.' if @topic_group.update_attributes(params[:topic_group])
     respond_with(@topic_group) do |format|
       format.html { redirect_to edit_topic_path(@topic_group.topic_id)+'#tabs-4' }
     end
@@ -90,7 +91,8 @@ class TopicGroupsController < ApplicationController
     
     respond_to do |format|
       if @topic_group.close
-        format.html { redirect_to topic_group_iteration_url(@topic_group, @topic_group.iterations.last), :notice => 'Topic group was successfully closed.' }
+        gflash :success => "Topic Group closed."
+        format.html { redirect_to topic_group_iteration_url(@topic_group, @topic_group.iterations.last) }
         format.xml  { head :ok }
       else
         format.html { render :action => "edit" }
@@ -105,9 +107,10 @@ class TopicGroupsController < ApplicationController
     @topic_group = TopicGroup.find(params[:topic_group_id])
     @topic_group.import_elements(params[:file], current_user.id)
     #@topic_group.delay( :run_at => Time.zone.now ).import_elements(params[:file], current_user.id)
-
+    gflash :success => "List imported."
+    
     respond_to do |format|
-      format.html { redirect_to topic_group_iteration_url(@topic_group, @topic_group.iterations.last), :notice => 'List was successfully imported.' }
+      format.html { redirect_to topic_group_iteration_url(@topic_group, @topic_group.iterations.last)}
       format.xml  { head :ok }
     end
   end

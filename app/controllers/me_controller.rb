@@ -7,6 +7,7 @@ class MeController < ApplicationController
       @closed_topic_groups = current_user.closed_topic_groups
       @managed_topic_groups = current_user.managed_topic_groups
     else
+      gflash :warning => "Please sign in to participate."
       redirect_to authentications_url
     end
   end

@@ -19,12 +19,12 @@
 	  
 	  <!-- Deleted round CSS class from section tag -->
       <section>
-		<!--><div id="flash">
+		<div id="flash">
         <% flash.each do |key, value| %>
-			<%= js add_gritter(flash[key], :image => :notice, :title => key.to_s, :sticky => false) %>	  
+			<%= js add_gritter(flash[key], :image => key.to_s , :sticky => false) %>	 
         <% end %>
-		</div>-->
 		<%= gflash %>
+		</div>
 
         <%= yield %>
 
