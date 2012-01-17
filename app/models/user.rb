@@ -42,15 +42,18 @@ class User < ActiveRecord::Base
   has_many  :managed_topic_groups, :through => :assignments,
             :class_name => "TopicGroup",
             :source => :topic_group,
-            :conditions => {'assignments.manager' => true, 'active' => true}
+            :conditions => {'assignments.manager' => true, 'active' => true},
+            :order => 'created_at desc'
   has_many  :open_topic_groups, :through => :assignments,
             :class_name => "TopicGroup",
             :source => :topic_group,
-            :conditions => {'assignments.participating' => true, 'active' => true}
+            :conditions => {'assignments.participating' => true, 'active' => true},
+            :order => 'created_at desc'
   has_many  :closed_topic_groups, :through => :assignments,
             :class_name => "TopicGroup",
             :source => :topic_group,
-            :conditions => {'assignments.participating' || 'assignments.manager' => true, 'active' => false}
+            :conditions => {'assignments.participating' || 'assignments.manager' => true, 'active' => false},
+            :order => 'created_at desc'
   has_many  :authentications
   
   # Setup accessible (or protected) attributes for your model
@@ -74,7 +77,6 @@ class User < ActiveRecord::Base
   mount_uploader :avatar, AvatarUploader
   
   def to_s
-    #first_name.to_str + " " + last_name.to_str
     "#{first_name} #{last_name}"
   end
   
@@ -87,7 +89,6 @@ class User < ActiveRecord::Base
   end
   
   def update_roles(selected_roles)
-    #employee_role = [1] # JDavis: everyone gets the employee role
     self.role_ids = (["1"] + selected_roles)
     return self.role_ids
   end

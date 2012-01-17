@@ -38,7 +38,7 @@ class AuthenticationsController < ApplicationController
   def destroy
     @authentication = current_user.authentications.find(params[:id])
     gflash :success => "Authentication destroyed." if @authentication.destroy
-    redirect_to authentications_url
+    redirect_to edit_user_path(current_user) + '?return=me'
   end
   
   def auth_fail

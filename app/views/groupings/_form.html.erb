@@ -1,14 +1,8 @@
 <%= form_for(@grouping) do |f| %>
   <% if @grouping.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@grouping.errors.count, "error") %> prohibited this grouping from being saved:</h2>
-
-      <ul>
-      <% @grouping.errors.full_messages.each do |msg| %>
-        <li><%= msg %></li>
-      <% end %>
-      </ul>
-    </div>
+    <% @grouping.errors.full_messages.each do |msg| %>
+	  <%= js add_gritter( msg, :image => :error, :sticky => true ) %>
+    <% end %>
   <% end %>
 
   <div class="field">

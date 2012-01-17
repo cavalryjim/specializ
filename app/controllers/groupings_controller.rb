@@ -57,7 +57,8 @@ class GroupingsController < ApplicationController
       @root = false
     end
     
-    redirect_to edit_grouping_path(@grouping)
+    #redirect_to edit_grouping_path(@grouping)
+    respond_with(@grouping)
   end
 
   # PUT /groupings/1
@@ -102,12 +103,16 @@ class GroupingsController < ApplicationController
   
   def add_user
     @grouping = Grouping.find(params[:id])
-    user = User.find(params[:grouping_user_id])
-    if @grouping.users.include?(user)
-      new_notice = 'User is already in this group.'
-    else
-      @grouping.users << user 
-      new_notice =  'User successfully added to group.'
+    if params[:grouping_user_id].blank?
+      new_notice = 'Please select a user.'
+    else 
+      user = User.find(params[:grouping_user_id])
+      if @grouping.users.include?(user)
+        new_notice = 'User is already in this group.'
+      else
+        @grouping.users << user 
+        new_notice =  'User successfully added to group.'
+      end
     end
     gflash :success => new_notice
     redirect_to edit_grouping_path(@grouping)+'#tabs-2'

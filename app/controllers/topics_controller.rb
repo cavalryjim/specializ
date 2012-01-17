@@ -50,9 +50,9 @@ class TopicsController < ApplicationController
     @topic = Topic.new(params[:topic])
     @topic.company_id = current_user.company_id
     
-    if params.has_key?(:groupings) && @topic.save 
+    if @topic.save && params.has_key?(:groupings)
       @topic.update_groupings(params[:groupings])
-      flash[:notice] = 'Topic was successfully created.' 
+      gflash :success => 'Topic created.' 
     else
       @topic.errors[:base] << "You must select one or more participating groups." unless params.has_key?(:groupings)
       @topics = Topic.where(:company_id => current_user.company_id)
@@ -74,8 +74,8 @@ class TopicsController < ApplicationController
     else
       @topic.errors[:base] << "You must select one or more participating groups." unless params.has_key?(:groupings)
       @topics = Topic.where(:company_id => current_user.company_id)
-      @assignments = []
-      @selected_groups = []
+      @assignments = Assignment.where(:topic_group_id => TopicGroup.where(:topic_id => @topic.id))
+      @selected_groups = TopicGroup.where(:topic_id => @topic.id).map(&:grouping_id)
     end  
     
     respond_with(@topic)
