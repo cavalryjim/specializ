@@ -4,18 +4,18 @@
 	  <tr>
 	    <th>Name</th>
 		<th>Email</th>
-		<% if can? :manage, @topic_group %>
+		<% if can? :manage, topic_group %>
 	    	<th>Remove</th>
 		<% end %>
 	    
 	  </tr>
 	 </thead>
 	 <tbody>
-		<% @participating_users.each do |user| %>
+		<% participating_users.each do |user| %>
 		  <tr>
 		    <td><%= user %></td>
 		    <td><%= user.email %></td>
-			<% if can? :manage, @topic_group %>
+			<% if can? :manage, topic_group %>
 		    	<td><%= link_to 'Remove?', '#' , :confirm => 'Are you sure?' %></td>
 			<% end %>
 		  </tr>

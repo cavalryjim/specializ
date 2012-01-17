@@ -46,7 +46,8 @@
 		</div>
 	</div>
 	<div id="tabs-3">
-		<%= render 'members' %>
+		<%= render 'members', :topic_group => @topic_group, 
+							  :participating_users => @participating_users %>
 	</div>
 	<% if can? :manage, @topic_group %>
 		<div id="tabs-4">
