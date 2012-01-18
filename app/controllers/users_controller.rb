@@ -115,8 +115,8 @@ class UsersController < ApplicationController
     errors = current_user.import_users(params[:file])
     #current_user.delay(:run_at => Time.zone.now ).import_users(params[:file])
    
-    #redirect_to users_path, :notice => "There were " + errors.to_s + " errors uploading this list. "
-    redirect_to users_path, :notice => "Uploading users. "
+    gflash :success => "Uploading users. "
+    redirect_to users_path
   end
   
   

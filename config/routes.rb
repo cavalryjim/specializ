@@ -34,6 +34,7 @@ Specializ::Application.routes.draw do
   #match '/groupings/:grouping_id/users/:id/remove', :to => 'groupings#remove'
   match '/groupings/:id/new_user', :to => 'groupings#new_user'
   match '/groupings/:id/add_user', :to => 'groupings#add_user'
+  match '/groupings/import_groups', :to => 'groupings#import_groups'
   match '/auth/failure', :to => 'authentications#auth_fail'
   match '/users/import_users', :to => 'users#import_users'
   match '/users/rate_elements', :to => 'users#rate_elements'

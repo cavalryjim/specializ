@@ -23,3 +23,12 @@
     <%= f.submit %>
   </div>
 <% end %>
+
+<div>
+	<%= form_tag({ :controller => "groupings", :action => "import_groups" }, {:multipart => true} ) do %>
+	
+		Upload groups: <%= file_field_tag 'file' %>
+		
+		<%= submit_tag("Submit List", :confirm => 'Upload list from spreadsheet?') %>
+	<% end %>
+</div>

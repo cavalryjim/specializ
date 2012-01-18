@@ -212,7 +212,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  activeadmin
+  activeadmin (~> 0.3.4)
   annotate (= 2.4.0)
   awesome_nested_set (~> 2.0.2)
   best_in_place (~> 0.2.2)
@@ -221,16 +221,16 @@ DEPENDENCIES
   carrierwave (~> 0.5.7)
   delayed_job_active_record (~> 0.3.1)
   devise (= 1.4.2)
-  googlecharts
+  googlecharts (~> 1.6.8)
   gritter (= 0.6.3)
-  jquery-rails
-  mocha
+  jquery-rails (= 1.0.19)
+  mocha (~> 0.10.0)
   mysql2 (= 0.2.18)
-  nifty-generators
+  nifty-generators (~> 0.4.6)
   omniauth (= 0.2.0)
   rails (= 3.0.9)
   rails3-jquery-autocomplete (~> 1.0.4)
   randumb (~> 0.1.3)
   rspec-rails (= 2.6.1)
-  spreadsheet
+  spreadsheet (~> 0.6.5.9)
   will_paginate (= 3.0.pre2)

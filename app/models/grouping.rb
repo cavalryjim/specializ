@@ -53,5 +53,37 @@ class Grouping < ActiveRecord::Base
     end
     return user_list
   end
+  
+  def import_groups(groups_spreadsheet)
+    error_list = 0
+    Spreadsheet.client_encoding = 'UTF-8'
+      
+    book = Spreadsheet.open groups_spreadsheet.path
+    sheet1 = book.worksheet 0
+    #info = ''
+    #num = 0
+    parent_list = []
+    
+    sheet1.each 1 do |row|  #JDavis: skipping the first row of the sheet.
+      if row.length == 1
+        parent_id = self.id 
+      else
+        parent_id = parent_list[row.length-2]
+      end
+      #parent_id = Grouping.find_all_by_name(row[1]).last.id || self.id
+      name = row.last
+      new_group = Grouping.find_or_initialize_by_name_and_parent_id_and_company_id(name, parent_id, self.company_id) 
+      #new_group.company_id = self.company_id
+      
+      if new_group.save
+        parent_list[row.length-1] = new_group.id 
+      else
+        error_list = error_list + 1  
+      end
+      
+    end
+    
+    return error_list
+  end
 
 end

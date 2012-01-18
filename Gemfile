@@ -5,14 +5,13 @@ gem 'mysql2', '0.2.18' # JDavis: with Rails 3, must use a mysql2 gem version < 0
 gem 'cancan', '~> 1.6.7'
 gem 'awesome_nested_set', '~> 2.0.2'
 gem 'will_paginate', '3.0.pre2'
-gem 'jquery-rails'
-gem 'activeadmin'
-#gem 'datatables', :git => 'git://github.com/cajun-code/datatables.git'
+gem 'jquery-rails', '1.0.19'
+gem 'activeadmin', '~> 0.3.4'
 gem 'devise', '1.4.2'
 gem 'randumb', '~> 0.1.3'
 gem 'rails3-jquery-autocomplete', '~> 1.0.4'
-gem 'googlecharts'
-gem 'spreadsheet'
+gem 'googlecharts', '~> 1.6.8'
+gem 'spreadsheet', '~> 0.6.5.9'
 gem 'carrierwave', '~> 0.5.7'
 gem 'omniauth', '0.2.0' # JDavis: may need to change to version 0.3.2, or 0.2.6.
 gem 'best_in_place', '~> 0.2.2'
@@ -55,13 +54,13 @@ gem 'gritter', '0.6.3'
 group :development do
   gem 'rspec-rails', '2.6.1'
   gem 'annotate', '2.4.0'
-  gem 'nifty-generators'
+  gem 'nifty-generators', '~> 0.4.6'
   gem 'bullet', '~> 2.1.0'
 end
 
 group :test do
   gem 'rspec-rails', '2.6.1'
   #gem 'webrat', '0.7.1'
-  gem 'mocha'
+  gem 'mocha', '~> 0.10.0'
 end
 

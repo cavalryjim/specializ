@@ -117,4 +117,14 @@ class GroupingsController < ApplicationController
     gflash :success => new_notice
     redirect_to edit_grouping_path(@grouping)+'#tabs-2'
   end
+  
+  def import_groups
+    root = current_user.root_grouping
+    errors = root.import_groups(params[:file])
+    #current_user.delay(:run_at => Time.zone.now ).import_users(params[:file])
+   
+    gflash :success => 'There were ' + errors.to_s + ' errors.'
+    
+    redirect_to hr_path
+  end
 end
