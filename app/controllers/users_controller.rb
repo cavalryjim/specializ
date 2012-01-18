@@ -106,6 +106,7 @@ class UsersController < ApplicationController
     iteration = Iteration.find(params[:iteration_id])
     topic_group = TopicGroup.find(iteration.topic_group_id)
     current_user.approve_new_elements(iteration, params[:approve])
+    
     gflash :success => "Elements approved and will be included in the next iteration."
     redirect_to topic_group_iteration_url(topic_group, iteration)+'#tabs-4'
   end

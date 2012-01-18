@@ -1,8 +1,10 @@
-
-
-
 <h2>Request Account</h2>
-<%= devise_error_messages! %>
+
+<% if resource.errors.any? %>
+  <% resource.errors.full_messages.each do |msg| %>
+	<%= js add_gritter( msg, :image => :error, :sticky => true ) %>
+  <% end %>
+<% end %>
 
 <%= autocomplete_field_tag 'company', '', autocomplete_company_name_ajax_index_path, :id_element => '#user_company_id' %> (start typing the company name)
 
