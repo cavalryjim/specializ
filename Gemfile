@@ -1,4 +1,10 @@
 source 'http://rubygems.org'
+# JDavis: Please use a version number when adding gems to Specializ.
+# Specify the exact gem version via '3.0.9'.
+# Notation such as '>= 1.1.4' indicates you can use any version greater than or equal to 1.1.4
+# Notation such as '~> 0.2.2' is called a pessimistic version constraint and indicates a maximum upper limit
+#   for the gem version.  The '~> 0.2.2' would have been equivalent to: [‘>= 0.2.2’, ‘< 0.3.0’]
+
 
 gem 'rails', '3.0.9'
 gem 'mysql2', '0.2.18' # JDavis: with Rails 3, must use a mysql2 gem version < 0.3.  Moving from 0.2.7 to support windows.
