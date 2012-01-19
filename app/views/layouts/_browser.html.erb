@@ -1,15 +1,13 @@
-<div id="browser">
+<div style="width: 100%; height: 600px">
+<h3>My Topics </h3>
 
-<h3>My Topics - <%= current_user %>, you are assigned to <%= @open_topic_groups.size %> active topics</h3>
-
-<div id="accordion" style="width:100%;">
+<div id="accordion">
     <h3><a href="#">Open Topics</a></h3>
     <div>
 		<table>
-		<% @open_topic_groups.each do |topic_group| %>
+		<% current_user.open_topic_groups.each do |topic_group| %>
 		  <tr>
 		    <td><%=link_to topic_group.name, topic_group_iteration_path(topic_group, topic_group.iterations.last) %> </td>
-		
 		  </tr>
 		<% end %>
 		</table>
@@ -18,7 +16,7 @@
 	<h3><a href="#">Closed Topics</a></h3>
     <div>
 		<table>
-		<% @closed_topic_groups.each do |closed_topic_group| %>
+		<% current_user.closed_topic_groups.each do |closed_topic_group| %>
 		  <tr>
 		    <td><%=link_to closed_topic_group.name, url_for([closed_topic_group, closed_topic_group.iterations.last]) %> </td>
 		  </tr>
@@ -29,7 +27,7 @@
     <h3><a href="#">Managed Topics</a></h3>
     <div>
 		<table>
-		<% @managed_topic_groups.each do |managed_topic_group| %>
+		<% current_user.managed_topic_groups.each do |managed_topic_group| %>
 		  <tr>
 		    <td><%=link_to managed_topic_group.name, url_for([managed_topic_group, managed_topic_group.iterations.last]) %></td>
 		  </tr>
@@ -37,4 +35,5 @@
 		</table>
 	</div>
 </div> 
-</div> 
+</div>
+

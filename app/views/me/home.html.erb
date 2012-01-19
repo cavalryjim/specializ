@@ -1,9 +1,8 @@
 <% if user_signed_in? %>
-  <div style="height:100%; width:100%;">
-	<div id="browser">
-		<%= render 'layouts/browser' %>
-	</div>
-
+  <div class="span-17">
+   <h2>
+	<%= current_user %>, you are assigned to <%= current_user.open_topic_groups.size %> active topics.  Please
+    select a topic to participate.
+   </h2>
   </div>
-
 <% end %>

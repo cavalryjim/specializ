@@ -14,11 +14,12 @@
 </head>
 <body>
     <div class="container">
-	 
-	  <%= render 'layouts/header' %>
+	  <div id="header" class="span-24 last">
+	  	<%= render 'layouts/header' %>
+	  </div>
 	  
 	  <!-- Deleted round CSS class from section tag -->
-      <section>
+      
 		<div id="flash">
         <% flash.each do |key, value| %>
 			<%= js add_gritter(flash[key], :image => key.to_s , :sticky => false) %>	 
@@ -26,9 +27,19 @@
 		<%= gflash %>
 		</div>
 
-        <%= yield %>
+		<hr />
+		<% if user_signed_in? %>
+		<div class="span-6" id="sidebar" >
+			<%= render 'layouts/browser' %>
+		</div>
+		<% end %>
 
-      </section>
+		
+		<div class="span-18" id="content">
+        	<%= yield %>
+		</div>
+
+      
     </div>
 </body>
 </html>

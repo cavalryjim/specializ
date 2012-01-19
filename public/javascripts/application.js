@@ -16,7 +16,7 @@ $(function() {
 		dropDownWidth: '150px'
 	});
 
-	$( "#accordion" ).accordion(); // accordion on the _browser partial
+	$( "#accordion" ).accordion({ fillSpace: true }); // accordion on the _browser partial
 	mTabs = $( "#manager_tabs" ).tabs(); // tabs used in the manager module
 	hrTabs = $( "#hr_tabs" ).tabs(); // tabs used in the HR module
 	$( "#me_tabs" ).tabs(); // tabs used in the Me module
