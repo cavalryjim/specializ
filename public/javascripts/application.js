@@ -103,8 +103,8 @@ $(function() {
 	
 	rTable = $( "#rating_table" ).dataTable({ // datatable where users rate the elements
 		"aoColumns": [
-		              { "sWidth": "75%" },
-		              { "sWidth": "15%" },
+		              { "sWidth": "80%" },
+		              { "sWidth": "20%" },
 		              { "bVisible": false },
 		              { "bVisible": false }
 		          ],

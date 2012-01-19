@@ -1,7 +1,7 @@
 
 <%= select_tag 'grouping_select', options_for_select(nested_set_options(current_user.root_grouping) {|i| "#{'-' * i.level} #{i.name}" }, @grouping.id ) , { :include_blank => 'New Group ' }  %>
 
-<div id="hr_tabs">
+<div id="hr_tabs" class="ui-tabs">
 	<ul>
 		<li><a href="#tabs-1">Setup</a></li>
 		<li><a href="#tabs-2">Staff</a></li>

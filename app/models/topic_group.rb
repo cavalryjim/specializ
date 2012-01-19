@@ -84,7 +84,7 @@ class TopicGroup < ActiveRecord::Base
                             :axis_with_labels => ['x', 'y'],
                             :axis_labels => [x_axis, y_axis],
                             :legend => ["Consensus not reached", "Consensus goal reached"],
-                            :width => 900,
+                            :width => 700,
                             :height => 240, 
                             :max_value => 100)
   end

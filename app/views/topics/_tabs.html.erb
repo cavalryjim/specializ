@@ -2,7 +2,7 @@
 <%= select_tag(:topic_select, options_from_collection_for_select(@topics, :id, :name, @topic.id ), { :include_blank => 'New Topic ' }) %>
 
 
-<div id="manager_tabs">
+<div id="manager_tabs" class="ui-tabs">
 	<ul>
 		<li><a href="#tabs-1">Setup</a></li>
 		<!--<li><a href="#tabs-2">Configure</a></li>-->
