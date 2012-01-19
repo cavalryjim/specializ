@@ -25,23 +25,23 @@ $(function() {
 	$( "#groupings").multiselect({header: "Select groups that will participate"}).multiselectfilter();
 	
 	$( "#staffing_table" ).dataTable({ // datatable in the manager module's staffing tab
-		"bJQueryUI": true,
-        "sPaginationType": "full_numbers"
+		"bJQueryUI": true
+        //"sPaginationType": "full_numbers"
 	}); 
 	
 	$( "#user_table" ).dataTable({ // datatable in the admin module
-		"bJQueryUI": true,
-        "sPaginationType": "full_numbers"
+		"bJQueryUI": true
+        //"sPaginationType": "full_numbers"
 	}); 
 	
 	$( "#member_table" ).dataTable({ // datatable listing the other user participating in a topic
-		"bJQueryUI": true,
-        "sPaginationType": "full_numbers"
+		"bJQueryUI": true
+        //"sPaginationType": "full_numbers"
 	}); 
 	
 	$( "#topic_groups_table" ).dataTable({ // datatable listing the topic_groups belonging to a topic
-		"bJQueryUI": true,
-        "sPaginationType": "full_numbers"
+		"bJQueryUI": true
+        //"sPaginationType": "full_numbers"
 	}); 
 	
 	$( "#new_elements_table" ).dataTable({ // datatable listing newly suggested elements needing manager approval
@@ -50,8 +50,8 @@ $(function() {
 		              { "sWidth": "90%" }
 		          ],
 		"bAutoWidth": false,
-		"bJQueryUI": true,
-        "sPaginationType": "full_numbers"
+		"bJQueryUI": true
+        //"sPaginationType": "full_numbers"
 	}); 
 	
 	
@@ -103,14 +103,14 @@ $(function() {
 	
 	rTable = $( "#rating_table" ).dataTable({ // datatable where users rate the elements
 		"aoColumns": [
-		              { "sWidth": "80%" },
+		              { "sWidth": "60%" },
 		              { "sWidth": "20%" },
 		              { "bVisible": false },
 		              { "bVisible": false }
 		          ],
 		"bAutoWidth": false,
-		"bJQueryUI": true,
-        "sPaginationType": "full_numbers"
+		"bJQueryUI": true
+        //"sPaginationType": "full_numbers"
         
     });
 
