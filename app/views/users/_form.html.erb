@@ -1,7 +1,7 @@
 <%= form_for @user, :html => {:multipart => true} do |f| %>
   <% if @user.errors.any? %>
       <% @user.errors.full_messages.each do |msg| %>
-	  	<%= js add_gritter( msg, :image => :error, :sticky => true ) %>
+	  	<%= js add_gritter( msg, :title => "Error", :image => :error, :sticky => true ) %>
       <% end %>
   <% end %>
 
