@@ -14,7 +14,7 @@
 </head>
 <body>
     <div class="container">
-	  <div id="header" class="span-24 last">
+	  <div id="header" >
 	  	<%= render 'layouts/header' %>
 	  </div>
 	  
@@ -29,13 +29,13 @@
 
 		<hr />
 		<% if user_signed_in? %>
-		<div class="span-6" id="sidebar" >
-			<%= render 'layouts/browser' %>
-		</div>
+			<div class="span-8" id="sidebar" >
+				<%= render 'layouts/browser' %>
+			</div>
 		<% end %>
 
 		
-		<div class="span-18" id="content">
+		<div class="span-22" id="content">
         	<%= yield %>
 		</div>
 

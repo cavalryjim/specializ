@@ -83,6 +83,7 @@ nav ul li {
 	list-style-type: none;
 	display: inline-block;
 	padding: 0.2em 0;
+	color: #FF0000;
 }
 
 nav ul li a {
@@ -294,12 +295,14 @@ div.field, div.actions {
 	#navigation_horiz .dropdown {position:absolute; width:20px; border-bottom-right-radius:10px; border-bottom-left-radius:10px; -moz-border-radius-bottomright:10px; -moz-border-radius-bottomleft:10px}
 		
 		/* style for each drop down - horizontal */
-		#navigation_horiz ul li #dropdown_one {background:#ccc; color:#fff}
+		#navigation_horiz ul li #dropdown_one {padding:1px 1px 1px 1px; background:#333; color:#fff}
 		#navigation_horiz ul li #dropdown_one a {color:red}
 		#navigation_horiz ul li #dropdown_two {background:#ccc; color:#fff}
 		#navigation_horiz ul li #dropdown_two a {color:black}
 		#navigation_horiz ul li #dropdown_three {background:#ccc; color:#fff}	
 		#navigation_horiz ul li #dropdown_three a {color:gray}
+		
+		#navigation_horiz p {margin:1px; padding:0 1px 0 0}
 
 /* navigation styles - END */ 
 

@@ -4,7 +4,8 @@
 
 <%= stylesheet_link_tag 'blueprint/screen', :media => 'screen' %> 
 <%= stylesheet_link_tag 'blueprint/print', :media => 'print' %>
-<%= stylesheet_link_tag 'custom', :media => 'screen' %>
+<!--[if lt IE 8]><%= stylesheet_link_tag 'blueprint/ie' %><![endif]-->
+
 
 <%= stylesheet_link_tag 'jscript/jquery-ui-1.8.16.custom', :media => 'screen' %>
 <%= stylesheet_link_tag 'jscript/jquery_rating', :media => 'screen' %>
@@ -15,5 +16,6 @@
 <%= stylesheet_link_tag 'dbase/datatable_page', :media => 'screen' %>
 <%= stylesheet_link_tag 'dbase/datatable_jui', :media => 'screen' %>
 
+<%= stylesheet_link_tag 'custom', :media => 'screen' %>
 
 
