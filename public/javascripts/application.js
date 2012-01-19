@@ -19,6 +19,7 @@ $(function() {
 	var mTabs = $( "#manager_tabs" ).tabs(); // tabs used in the manager module
 	//var disabled = $( "#manager_tabs" ).tabs( "option", "disabled" );
 	//mTabs.tabs({disabled: [1, 2]});
+	//fnSetManagerTabs();
 
 	$( "#hr_tabs" ).tabs(); // tabs used in the HR module
 	$( "#me_tabs" ).tabs(); // tabs used in the Me module
@@ -84,8 +85,7 @@ $(function() {
 		//alert(window.location.pathname);
 	});
 	
-	
-	// JDavis: for some reason, these two lines must come last or else shit breaks.
+	// JDavis: for some reason, the rating stuff must come last or else shit breaks.
 	$( "#rating_table input.jdstar" ).rating(); // JDavis: this line must come before rating_table dataTable()
 	
 	/* Add a click handler to the rows - this could be used as a callback */
