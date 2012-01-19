@@ -1,5 +1,6 @@
 var rTable;
 var mTabs;
+var hrTabs;
 var giRedraw = false;
 
 $(function() {
@@ -16,12 +17,8 @@ $(function() {
 	});
 
 	$( "#accordion" ).accordion(); // accordion on the _browser partial
-	var mTabs = $( "#manager_tabs" ).tabs(); // tabs used in the manager module
-	//var disabled = $( "#manager_tabs" ).tabs( "option", "disabled" );
-	//mTabs.tabs({disabled: [1, 2]});
-	//fnSetManagerTabs();
-
-	$( "#hr_tabs" ).tabs(); // tabs used in the HR module
+	mTabs = $( "#manager_tabs" ).tabs(); // tabs used in the manager module
+	hrTabs = $( "#hr_tabs" ).tabs(); // tabs used in the HR module
 	$( "#me_tabs" ).tabs(); // tabs used in the Me module
 	//$( "#grouping" ).multiselect({header: false}); // select widget in the manager module's configuration tab
 	$( "#topic_groupings").multiselect({header: "Select groups that will participate"}).multiselectfilter(); // select widget in the manager module's setup tab
