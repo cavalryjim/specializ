@@ -1,7 +1,8 @@
 Add the ability to push code to heroku
 heroku keys:add  (if you have not done so earlier)
-git remote add heroku git@github.com:cavalryjim/specializ.git
+git remote add heroku git@heroku.com:specializ.git (this connects your local git with heroku)
 git push heroku
+heroku open
 
 
 
