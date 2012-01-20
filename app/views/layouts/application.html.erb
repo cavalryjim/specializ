@@ -20,24 +20,28 @@
 	  
 	  <!-- Deleted round CSS class from section tag -->
       
-		<div id="flash">
+	  <div id="flash">
         <% flash.each do |key, value| %>
 			<%= js add_gritter(flash[key], :image => key.to_s , :sticky => false) %>	 
         <% end %>
 		<%= gflash %>
-		</div>
-
-		<hr />
-		<% if user_signed_in? %>
-			<div class="span-8" id="sidebar" >
+	  </div>
+	  
+	  <table width="100%" border="2">
+	   <tr>
+	   	<td valign="top" width="310px">
+		  <% if user_signed_in? %>
+			
 				<%= render 'layouts/browser' %>
-			</div>
-		<% end %>
+			
+		  <% end %>
+	   	</td>
 
-		
-		<div class="span-22" id="content">
-        	<%= yield %>
-		</div>
+		<td valign="top">
+          <%= yield %>
+		</td>
+	   </tr>
+	  </table>
 
       
     </div>
