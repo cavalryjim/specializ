@@ -15,6 +15,13 @@ $(function() {
 	$('#navigation_horiz').naviDropDown({
 		dropDownWidth: '150px'
 	});
+	
+	//$("#layout_table").colResizable();
+	$( "#browser_div" ).resizable({
+		maxWidth: 400,
+		minWidth: 200
+	});
+
 
 	$( "#accordion" ).accordion({ fillSpace: true }); // accordion on the _browser partial
 	mTabs = $( "#manager_tabs" ).tabs(); // tabs used in the manager module

@@ -14,44 +14,7 @@
 		
 	</p>
 
-	<% if can? :manage, @topic_group %>
-	  <div>
-	  	<%= form_tag(:controller => "users", :action => "approve_new_elements", :method => "post") do %>
-			<table id="new_elements_table">
-			 <thead>
-			  <tr>
-				<th>Approve</th>
-			    <th>New Suggestions</th>
-			  </tr>
-			 </thead>
-			 <tbody>
-				<% @new_elements.each do |new_element| %>
-				  <tr>
-					<% name = 'approve['+new_element.id.to_s+']' %>
-				    <td> <%= check_box_tag name, 1, new_element.approved?(@iterations.last.id) %> </td>
-				    <td><%= new_element.name %></td>
-				  </tr>
-				<% end %>
-			 </tbody>
-			</table>
-			<%= hidden_field_tag(:iteration_id, @iterations.last.id) %>
-			<%= submit_tag("Submit Approvals", :confirm => 'Approve these elements?') %>
-	 	<% end %>
-	  </div>
-	<% end %>
-
-
-
-  	<div>
-	<%= form_tag({ :controller => "topic_groups", :action => "import_elements"}, {:multipart => true} ) do %>
 	
-		Upload elements: <%= file_field_tag 'file' %>
-	
-		<%= hidden_field_tag(:iteration_id, @iteration.id) %>
-		<%= hidden_field_tag(:topic_group_id, @topic_group.id) %>
-		<%= submit_tag("Submit List", :confirm => 'Upload list from spreadsheet?', :disabled => @active) %>
-	<% end %>
-  	</div>
 
 
 	
