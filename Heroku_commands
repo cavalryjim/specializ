@@ -1,0 +1,7 @@
+Add the ability to push code to heroku
+heroku keys:add  (if you have not done so earlier)
+git remote add heroku git@github.com:cavalryjim/specializ.git
+git push heroku
+
+
+
