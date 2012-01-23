@@ -14,6 +14,11 @@ module ApplicationHelper
     image_tag("specializ.png", :alt => "Specializ")
   end
   
+  def company_logo
+    company = Company.find(current_user.company_id)
+    image_tag(company.logo, :alt => company.name) if company.logo
+  end
+  
   def sortable(column, title = nil)
     title ||= column.titleize
     css_class = column == sort_column ? "current #{sort_direction}" : nil

@@ -2,6 +2,7 @@ class MeController < ApplicationController
   #before_filter :authenticate_user!
   
   def home
+    @title = "Home"
     if user_signed_in?
       @open_topic_groups = current_user.open_topic_groups
       @closed_topic_groups = current_user.closed_topic_groups

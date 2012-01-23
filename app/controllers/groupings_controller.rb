@@ -8,7 +8,6 @@ class GroupingsController < ApplicationController
   # GET /groupings.xml
   def index
     #@groupings = Grouping.all
-
     respond_to do |format|
       format.html # index.html.erb
       format.xml  { render :xml => @groupings }
@@ -29,6 +28,7 @@ class GroupingsController < ApplicationController
   def new
     @users = []
     @root = false
+    @title = 'HR'
 
     respond_with(@grouping)
   end
@@ -36,6 +36,7 @@ class GroupingsController < ApplicationController
   # GET /groupings/1/edit
   def edit
     #@grouping = Grouping.find(params[:id])
+    @title = @grouping
     @root = @grouping.root?
     @groupings = Company.find(current_user.company_id).groupings
     @users = @grouping.users

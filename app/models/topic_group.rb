@@ -5,7 +5,7 @@
 #  id                   :integer(4)      not null, primary key
 #  name                 :string(255)
 #  goal                 :integer(4)
-#  active               :boolean(1)
+#  active               :boolean(1)      default(TRUE)
 #  update_frequency     :integer(4)
 #  topic_id             :integer(4)
 #  grouping_id          :integer(4)
@@ -45,6 +45,10 @@ class TopicGroup < ActiveRecord::Base
   
   def to_param
     "#{id}-#{name.parameterize}"
+  end
+  
+  def to_s
+    self.name
   end
   
   def close
@@ -131,3 +135,6 @@ class TopicGroup < ActiveRecord::Base
     end
   
 end
+
+
+

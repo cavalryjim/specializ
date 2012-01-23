@@ -5,10 +5,10 @@ var giRedraw = false;
 
 $(function() {
 
-	$('#flash').delay(500).fadeIn('normal', function() {
+	//$('#flash').delay(500).fadeIn('normal', function() {
 		//$(this).delay(1500).fadeOut('slow');
-		$(this).delay(2500).fadeTo('slow', 0);
-	});
+	//	$(this).delay(2500).fadeTo('slow', 0);
+	//});
 	
 	$(".best_in_place").best_in_place();
 	
@@ -20,6 +20,11 @@ $(function() {
 	$( "#browser_div" ).resizable({
 		maxWidth: 400,
 		minWidth: 200
+	});
+	
+	$( "#main_content_div" ).resizable({
+		minWidth: 600,
+		maxWidth: 800
 	});
 
 

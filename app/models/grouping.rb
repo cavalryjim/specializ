@@ -31,6 +31,10 @@ class Grouping < ActiveRecord::Base
     return self.self_and_ancestors.map(&:name).join("- ")
   end
   
+  def to_s
+    self.name
+  end
+  
   def add_to_topic(topic)
     topic_group = TopicGroup.find_or_initialize_by_topic_id_and_grouping_id(topic.id, self.id)
     topic_group.name = topic.name + ": " + self.fullname

@@ -43,6 +43,7 @@ class TopicGroupsController < ApplicationController
   # GET /topic_groups/1/edit
   def edit
     @topic_group = TopicGroup.find(params[:id])
+    @title = @topic_group
   end
 
   # POST /topic_groups

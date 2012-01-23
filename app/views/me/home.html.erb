@@ -1,8 +1,10 @@
 <% if user_signed_in? %>
-  <div class="span-17">
+
+	<%= company_logo %>
+  
    <h2>
 	<%= current_user %>, you are assigned to <%= current_user.open_topic_groups.size %> active topics.  Please
     select a topic to participate.
    </h2>
-  </div>
+  
 <% end %>

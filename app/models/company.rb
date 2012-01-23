@@ -4,11 +4,12 @@
 #
 #  id              :integer(4)      not null, primary key
 #  name            :string(255)
-#  active          :boolean(1)
-#  never_expires   :boolean(1)
+#  active          :boolean(1)      default(TRUE)
+#  never_expires   :boolean(1)      default(FALSE)
 #  expiration_date :date
 #  created_at      :datetime
 #  updated_at      :datetime
+#  logo            :string(255)
 #
 
 class Company < ActiveRecord::Base
@@ -17,7 +18,7 @@ class Company < ActiveRecord::Base
   has_many :users
   
   # Setup accessible (or protected) attributes for your model
-  attr_accessible :name, :active, :never_expires, :expiration_date
+  attr_accessible :name, :active, :never_expires, :expiration_date, :logo
   
   validates :name,    :presence => true,
                       :uniqueness => { :case_sensitive => false }
@@ -39,3 +40,6 @@ class Company < ActiveRecord::Base
   end
   
 end
+
+
+

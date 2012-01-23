@@ -8,6 +8,7 @@ class UsersController < ApplicationController
   # GET /users
   # GET /users.xml
   def index
+    @title = 'Admin'
     @users = User.where(:company_id => current_user.company_id)
     
     respond_with @users
@@ -35,6 +36,7 @@ class UsersController < ApplicationController
   # GET /users/1/edit
   def edit
     #@user = User.find(params[:id])
+    @title = @user
     @authentications = current_user.authentications if current_user == @user
     if params[:return] == 'me'
       @return_path = me_path

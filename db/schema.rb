@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120112223155) do
+ActiveRecord::Schema.define(:version => 20120123165400) do
 
   create_table "active_admin_comments", :force => true do |t|
     t.integer  "resource_id",   :null => false
@@ -69,6 +69,7 @@ ActiveRecord::Schema.define(:version => 20120112223155) do
     t.date     "expiration_date"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "logo"
   end
 
   create_table "delayed_jobs", :force => true do |t|
