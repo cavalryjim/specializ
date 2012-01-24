@@ -21,17 +21,28 @@
     <%= f.label :email %>
     <%= f.text_field :email %>
   </div>
- <% if (can? :manage, User) && @return_path != me_path %>
+  <div class="field">
+	<%= f.label 'Assigned Groups: ' %>
+	<%= select_tag(:user_groupings, options_for_select(nested_set_options(current_user.root_grouping) {|i| "#{' -' * i.level} #{i.name}" }, 
+			:selected => @assigned_groups ), { :multiple => true } ) %>
+  </div>
+
+ <% if (can? :manage, @user) && @return_path != me_path %>
+  <div class="field">
+	<%= f.label 'Assigned Roles: ' %>
+	<%= select_tag(:user_roles, options_from_collection_for_select(current_user.available_roles, 'id', 'name', 
+			:selected => @assigned_roles ), { :multiple => true } ) %>
+  </div>
   <div class="field">
     <%= f.check_box :active %>
     <%= f.label :active %>
   </div>
-  <% for role in current_user.available_roles %>
+  <!--<% for role in current_user.available_roles %>
 	<div class="field">
 	<%= check_box_tag "user[role_ids][]", role.id, @user.roles.include?(role) %>
 	<%= role.name %>
   	</div>
-  <% end %>
+  <% end %>-->
  <% end %>
 
   <div class="actions">

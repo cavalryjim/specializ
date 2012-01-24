@@ -35,6 +35,8 @@ $(function() {
 	//$( "#grouping" ).multiselect({header: false}); // select widget in the manager module's configuration tab
 	$( "#topic_groupings").multiselect({header: "Select groups that will participate"}).multiselectfilter(); // select widget in the manager module's setup tab
 	$( "#groupings").multiselect({header: "Select groups that will participate"}).multiselectfilter();
+	$( "#user_groupings").multiselect({header: "Assign user to groups"}).multiselectfilter();
+	$( "#user_roles").multiselect({header: "Assign roles to user"});
 	
 	$( "#staffing_table" ).dataTable({ // datatable in the manager module's staffing tab
 		"bJQueryUI": true,

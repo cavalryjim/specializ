@@ -26,6 +26,8 @@ class UsersController < ApplicationController
   def new
     #@user = User.new
     @user.active = true
+    @assigned_groups = current_user.root_grouping.id
+    @assigned_roles = []
 
     respond_to do |format|
       format.html # new.html.erb
@@ -38,6 +40,9 @@ class UsersController < ApplicationController
     #@user = User.find(params[:id])
     @title = @user
     @authentications = current_user.authentications if current_user == @user
+    @assigned_groups = @user.grouping_ids
+    @assigned_roles = @user.role_ids
+    
     if params[:return] == 'me'
       @return_path = me_path
     else 
