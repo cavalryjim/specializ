@@ -104,16 +104,12 @@ class TopicGroupsController < ApplicationController
   
   # JDavis: this method imports elements from a spreadsheet
   def import_elements
-    #@iteration = Iteration.find(params[:iteration_id])
     @topic_group = TopicGroup.find(params[:topic_group_id])
     @topic_group.import_elements(params[:file], current_user.id)
-    #@topic_group.delay( :run_at => Time.zone.now ).import_elements(params[:file], current_user.id)
+   
     gflash :success => "List imported."
     
-    respond_to do |format|
-      format.html { redirect_to topic_group_iteration_url(@topic_group, @topic_group.iterations.last)}
-      format.xml  { head :ok }
-    end
+    redirect_to topic_group_iteration_path(@topic_group, @topic_group.iterations.last)
   end
   
 end

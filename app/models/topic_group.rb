@@ -100,26 +100,24 @@ class TopicGroup < ActiveRecord::Base
   end
   
   def import_elements(elements_spreadsheet, current_user_id)
-    self.elements_spreadsheet = elements_spreadsheet
-    if self.save
-      Spreadsheet.client_encoding = 'UTF-8'
+    #self.elements_spreadsheet = elements_spreadsheet
+    
+    Spreadsheet.client_encoding = 'UTF-8'
       
-      book = Spreadsheet.open self.elements_spreadsheet_url
-      #book = Spreadsheet.open '../../public/uploads/topic_group/elements_spreadsheet/1/spz_test_upload.xls'
-      sheet1 = book.worksheet 0
-      sheet1.each 1 do |row|  #JDavis: skipping the first row of the sheet.
-        e = Element.new
-        e.name = row[0]
-        e.current = true
-        e.created_by = current_user_id
-        if e.save 
-          if !e.add_to_iteration(self.iterations.last.id, false, true)
-            e.destroy #JDavis: no orphan elements.
-          end
+    book = Spreadsheet.open elements_spreadsheet.path
+    #book = Spreadsheet.open '../../public/uploads/topic_group/elements_spreadsheet/1/spz_test_upload.xls'
+    sheet1 = book.worksheet 0
+    sheet1.each 1 do |row|  #JDavis: skipping the first row of the sheet.
+      e = Element.new
+      e.name = row[0]
+      e.current = true
+      e.created_by = current_user_id
+      if e.save 
+        if !e.add_to_iteration(self.iterations.last.id, false, true)
+          e.destroy #JDavis: no orphan elements.
         end
       end
-      
-    end
+    end 
   end
   
   def notify_users_new_iteration
