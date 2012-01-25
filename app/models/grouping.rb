@@ -52,7 +52,8 @@ class Grouping < ActiveRecord::Base
     user_list = []
     self.self_and_descendants.each do |sub_group|
       if sub_group.users.size > 0
-        user_list = user_list + sub_group.users.order("RAND()").limit((sub_group.users.count*percentage).ceil)
+        #user_list = user_list + sub_group.users.order("RAND()").limit((sub_group.users.count*percentage).ceil)
+        user_list = user_list + sub_group.users.sample((sub_group.users.count*percentage).ceil)
       end
     end
     return user_list
