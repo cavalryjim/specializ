@@ -93,6 +93,11 @@ class User < ActiveRecord::Base
     return self.role_ids
   end
   
+  def update_groupings(selected_groups)
+    self.grouping_ids = selected_groups
+    return self.grouping_ids
+  end
+  
   # JDavis: only peoplenetz administrators can grant the pnetz_admin role.
   def available_roles
     if self.role?(:pnetz_admin)
