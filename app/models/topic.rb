@@ -27,6 +27,8 @@ class Topic < ActiveRecord::Base
   validates :goal, :inclusion => { :in => 1..100 }
   validates :status, :inclusion => { :in => 1..3 }
   validates_uniqueness_of :name, :scope => [ :company_id ]    # Unique for [name, company]
+  validates :update_frequency, :numericality => { :only_integer => true, :greater_than => 0 }, :if => :has_update_frequency?
+  validates :due_days, :numericality => { :only_integer => true, :greater_than => 0 }, :if => :has_due_days?
   
   def to_param
     "#{id}-#{name.parameterize}"
@@ -49,6 +51,14 @@ class Topic < ActiveRecord::Base
       grouping = Grouping.find(grouping_id)
       grouping.remove_from_topic(self.id)
     end
+  end
+  
+  def has_update_frequency?
+    update_frequency
+  end
+  
+  def has_due_days?
+    due_days
   end
   
   private
