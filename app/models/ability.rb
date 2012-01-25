@@ -3,7 +3,8 @@ class Ability
   
   def initialize(user)
     
-    if (user.role? :employee) && user.active
+    #if (user.role? :employee) && user.active
+    if user.active  #JDavis: if all users have the 'employee' role, then why ask for it?
       can :read, Company do |company|
         company.id == user.company_id
       end
@@ -40,22 +41,17 @@ class Ability
       can :manage, UserList do |user_list|
         user_list.user_id == user.id
       end
-      can [:read, :update], User do |me|
+      can [:manage], User do |me|
         me.id == user.id
       end
-      #can :create, Authentication
       can [:manage], Authentication do |auth|
         auth.new_record? or
         auth.user_id == user.id
       end
-      can :read, Grouping do |grouping|
-        grouping.company_id == user.company_id
-      end
+      can :read, Role
     end
     
     if (user.role? :manager) && user.active
-      #can :manage, Element
-      #can :manage, Assignment
       can :manage, Assignment do |assignment|
         assignment.new_record? or 
         User.find(assignment.user_id).company_id == user.company_id
