@@ -194,15 +194,18 @@ class User < ActiveRecord::Base
       u = User.find_or_initialize_by_email(row[2]) #JDavis: find_or_initialize_by_email
       u.first_name = row[0]
       u.last_name = row[1]
-      #u.email = row[2]
       u.active = true
       u.company_id = self.company_id
-      notify = u.password.nil?
-      u.generate_password if u.password.nil?
+      
+      if u.password.nil?
+        notify = true
+        u.generate_password 
+      end
       
       if u.save 
-        #u.notify_account(u.password) if notify
-        u.add_to_group
+        u.notify_account(u.password) if notify
+        u.add_company_group
+        u.add_employee_role
       else
         #error_list << u.errors
         error_list = error_list + 1
@@ -213,8 +216,8 @@ class User < ActiveRecord::Base
   end
   #handle_asynchronously :import_users, :run_at => Time.zone.now
   
-  def add_to_group
-    true
+  def add_company_group
+    self.grouping_ids = self.grouping_ids << self.root_grouging.id unless self.grouping_ids.include?(self.root_grouging.id)
   end
   
   def generate_password

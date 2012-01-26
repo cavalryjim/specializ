@@ -44,7 +44,7 @@ class Element < ActiveRecord::Base
     if user_lists.size > 0
       sum = user_lists.sum('score')
       agreement = (sum * 20)  / total_participants.to_f
-      iteration_list.agreement = [ agreement, 100 - agreement].max
+      iteration_list.agreement = [ agreement, 100 - agreement ].max
       iteration_list.include = self.include?(iteration_id, total_participants)
     else
       iteration_list.agreement = 100
