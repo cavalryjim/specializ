@@ -36,15 +36,16 @@ class Element < ActiveRecord::Base
   
   def compute_agreement(iteration_id)
     iteration = Iteration.find(iteration_id)
+    topic_group = TopicGroup.find(iteration.topic_group_id)
     iteration_list = IterationList.find_or_create_by_element_id_and_iteration_id(self.id, iteration_id)
-    #user_lists = self.user_lists(:conditions => { :iteration_id => iteration_id }) # this is returning all user_lists!
     user_lists = self.user_lists.where( :iteration_id => iteration_id )
-    if user_lists.size > 0 
-      total_submissions = iteration.users.size
+    total_participants = topic_group.participating_users.size
+    
+    if user_lists.size > 0
       sum = user_lists.sum('score')
-      agreement = (sum * 20)  / total_submissions
+      agreement = (sum * 20)  / total_participants.to_f
       iteration_list.agreement = [ agreement, 100 - agreement].max
-      iteration_list.include = self.include?(iteration_id, total_submissions)
+      iteration_list.include = self.include?(iteration_id, total_participants)
     else
       iteration_list.agreement = 100
       iteration_list.include = false
@@ -55,10 +56,14 @@ class Element < ActiveRecord::Base
     return iteration_list.save
   end
   
-  def include?(iteration_id, total_submissions)
-    total_scored = self.user_lists.count(:conditions => {:iteration_id => iteration_id } && ['score > 0'] ) # this is likely wrong also.
- 
-    return ((total_scored.to_f / total_submissions.to_f) >= 0.5) ? true : false
+  def include?(iteration_id, total_participants)
+    total_scored = self.user_lists.where('iteration_id = ? AND score > 0 ', iteration_id).size
+    if ((total_scored.to_f / total_participants.to_f) >= 0.5)
+      true
+    else
+      false
+    end
+    
   end
   
   def approved?(iteration_id)

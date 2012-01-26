@@ -24,7 +24,7 @@ class Iteration < ActiveRecord::Base
   has_many :current_elements, :through => :iteration_lists,
            :class_name => "Element",
            :source => :element,
-           :conditions => ['iteration_lists.new_element = false', 'iteration_lists.include = true', 'current = true']
+           :conditions => ['iteration_lists.new_element = false', 'iteration_lists.include = true']
   
   validates :num, :presence => true
   validates :active, :inclusion => {:in => [true, false]}
@@ -44,13 +44,18 @@ class Iteration < ActiveRecord::Base
     end
     
     sum = self.iteration_lists.sum('agreement')
-    included_elements = self.iteration_lists.count(:conditions => { :include => true, :new_element => false })
-    total_elements = self.iteration_lists.count(:conditions => {:new_element => false })
-    consensus = (sum - (total_elements - included_elements) * 100 ) / included_elements
-    self.consensus = consensus.nan? ? 0 : consensus
+    included_elements = self.iteration_lists.where(:include => true, :new_element => false).size
+    total_elements = self.iteration_lists.where(:new_element => false).size
+    if included_elements > 0
+      consensus = (sum - (total_elements - included_elements) * 100 ) / included_elements
+    else
+      consensus = 0
+    end
+    #self.consensus = consensus.nan? ? 0 : consensus
+    self.consensus = consensus
     
     if alert_manager
-      topic_group.managers.each do |manager|
+      TopicGroup.find(self.topic_group_id).managers.each do |manager|
         manager.notify_iteration_close(self.id)
       end
     end
@@ -66,7 +71,7 @@ class Iteration < ActiveRecord::Base
     new_iteration.topic_group_id = self.topic_group_id
     new_iteration.consensus = 0.0
     new_iteration.save
-    self.iteration_lists.where('include = true').each do |old_iteration_list|
+    self.iteration_lists.where(:include => true).each do |old_iteration_list|
       new_iteration_list = IterationList.new
       new_iteration_list.iteration_id = new_iteration.id
       new_iteration_list.element_id = old_iteration_list.element_id
@@ -92,7 +97,7 @@ class Iteration < ActiveRecord::Base
   
   def num_submitted_lists
     #self.user_lists.count(:user_id, :distinct => true)
-    self.users.size
+    self.users.uniq.size
   end
   
   def last?
