@@ -1,7 +1,10 @@
 var rTable;
 var mTabs;
 var hrTabs;
+var meTabs;
 var giRedraw = false;
+
+$('html').addClass('js');
 
 $(function() {
 
@@ -28,10 +31,11 @@ $(function() {
 	});
 
 
-	$( "#accordion" ).accordion({ fillSpace: true }); // accordion on the _browser partial
-	mTabs = $( "#manager_tabs" ).tabs(); // tabs used in the manager module
-	hrTabs = $( "#hr_tabs" ).tabs(); // tabs used in the HR module
-	$( "#me_tabs" ).tabs(); // tabs used in the Me module
+	$( "#accordion" ).accordion({ fillSpace: true }).show(); // accordion on the _browser partial
+	mTabs = $( "#manager_tabs" ).tabs().show(); // tabs used in the manager module
+	hrTabs = $( "#hr_tabs" ).tabs().show(); // tabs used in the HR module
+	$( "#me_tabs" ).tabs().show(); // tabs used in the Me module
+
 	//$( "#grouping" ).multiselect({header: false}); // select widget in the manager module's configuration tab
 	$( "#topic_groupings").multiselect({header: "Select groups that will participate"}).multiselectfilter(); // select widget in the manager module's setup tab
 	$( "#groupings").multiselect({header: "Select groups that will participate"}).multiselectfilter();
@@ -46,7 +50,7 @@ $(function() {
 	$( "#user_table" ).dataTable({ // datatable in the admin module
 		"bJQueryUI": true,
         "sPaginationType": "full_numbers"
-	}); 
+	}).show(); 
 	
 	$( "#member_table" ).dataTable({ // datatable listing the other user participating in a topic
 		"bJQueryUI": true,
