@@ -37,9 +37,10 @@ class Element < ActiveRecord::Base
   def compute_agreement(iteration_id)
     iteration = Iteration.find(iteration_id)
     iteration_list = IterationList.find_or_create_by_element_id_and_iteration_id(self.id, iteration_id)
-    user_lists = self.user_lists(:conditions => { :iteration_id => iteration_id })
-    if user_lists.size > 0 && iteration.num_submitted_lists > 0
-      total_submissions = iteration.num_submitted_lists
+    #user_lists = self.user_lists(:conditions => { :iteration_id => iteration_id }) # this is returning all user_lists!
+    user_lists = self.user_lists.where( :iteration_id => iteration_id )
+    if user_lists.size > 0 
+      total_submissions = iteration.users.size
       sum = user_lists.sum('score')
       agreement = (sum * 20)  / total_submissions
       iteration_list.agreement = [ agreement, 100 - agreement].max
@@ -55,7 +56,7 @@ class Element < ActiveRecord::Base
   end
   
   def include?(iteration_id, total_submissions)
-    total_scored = self.user_lists.count(:conditions => {:iteration_id => iteration_id } && ['score > 0'] )
+    total_scored = self.user_lists.count(:conditions => {:iteration_id => iteration_id } && ['score > 0'] ) # this is likely wrong also.
  
     return ((total_scored.to_f / total_submissions.to_f) >= 0.5) ? true : false
   end

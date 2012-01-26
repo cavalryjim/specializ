@@ -16,6 +16,7 @@ class Iteration < ActiveRecord::Base
   has_many :iteration_lists, :dependent => :destroy
   has_many :elements, :through => :iteration_lists
   has_many :user_lists, :dependent => :destroy
+  has_many :users, :through => :user_lists
   has_many :new_elements, :through => :iteration_lists,
            :class_name => "Element",
            :source => :element,
@@ -31,6 +32,10 @@ class Iteration < ActiveRecord::Base
   
   def to_param
     "#{id}-#{num}"
+  end
+  
+  def to_s
+    "#{num}"
   end
   
   def close(alert_manager = false)
@@ -86,7 +91,8 @@ class Iteration < ActiveRecord::Base
   end
   
   def num_submitted_lists
-    self.user_lists.count(:user_id, :distinct => true)
+    #self.user_lists.count(:user_id, :distinct => true)
+    self.users.size
   end
   
   def last?
