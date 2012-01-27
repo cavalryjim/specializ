@@ -7,11 +7,6 @@ var giRedraw = false;
 $('html').addClass('js');
 
 $(function() {
-
-	//$('#flash').delay(500).fadeIn('normal', function() {
-		//$(this).delay(1500).fadeOut('slow');
-	//	$(this).delay(2500).fadeTo('slow', 0);
-	//});
 	
 	$(".best_in_place").best_in_place();
 	
@@ -72,12 +67,6 @@ $(function() {
 		"bJQueryUI": true,
         "sPaginationType": "full_numbers"
 	}); 
-	
-	$('#pp').portal({
-		border:true,
-		fit:true
-	});
-	add();
 	
 	// JDavis: this function responds to the dropdown selection on the manager page and navigates to the select topic.
 	$('#topic_select').change(function() {
@@ -156,24 +145,5 @@ function fnGetSelected( oTableLocal )
     return aReturn;
 }
 
-function add(){
-	for(var i=0; i<3; i++){
-		var p = $('<div/>').appendTo('body');
-		p.panel({
-			title:'Title'+i,
-			content:'<div style="padding:5px;">Content'+(i+1)+'</div>',
-			height:100,
-			closable:true,
-			collapsible:true
-		});
-		$('#pp').portal('add', {
-			panel:p,
-			columnIndex:i
-		});
-	}
-	$('#pp').portal('resize');
-}
-function remove(){
-	$('#pp').portal('remove',$('#pgrid'));
-	$('#pp').portal('resize');
-}
+
+
