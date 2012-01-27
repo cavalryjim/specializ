@@ -25,7 +25,12 @@ $(function() {
 		maxWidth: 800
 	});
 	
-
+	$('#pp').portal({
+		border:true,
+		fit:true
+	});
+	
+	  
 
 	$( "#accordion" ).accordion({ fillSpace: true }).show(); // accordion on the _browser partial
 	mTabs = $( "#manager_tabs" ).tabs().show(); // tabs used in the manager module
