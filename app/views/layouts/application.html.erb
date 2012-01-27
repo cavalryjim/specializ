@@ -4,7 +4,8 @@
   <title><%= title %></title>
   <%= csrf_meta_tag %>
   <%= render 'layouts/stylesheets' %>
-  <%= javascript_include_tag 'jquery.min', 'jquery.purr', 'best_in_place', 'jquery_ujs', 'autocomplete-rails', 'application' %>
+  <%= javascript_include_tag 'jquery.min', 'jquery.purr', 'best_in_place', 'jquery_ujs', 'autocomplete-rails' %>
+  <%= javascript_include_tag 'jquery.easyui.min', 'jquery.portal', 'application'  %>
   <%= javascript_include_tag 'jquery-ui-1.8.16.custom.min', 'jquery.dataTables.min', 'dataTables.fnFindCellRowIndexes' %>
   <%= javascript_include_tag 'jquery.multiselect.min', 'jquery.multiselect.filter' %>
   <%= javascript_include_tag 'jquery.easing.1.3', 'jquery.hoverIntent.minified', 'jquery.naviDropDown.1.0'  %>

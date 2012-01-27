@@ -29,6 +29,7 @@ $(function() {
 		minWidth: 600,
 		maxWidth: 800
 	});
+	
 
 
 	$( "#accordion" ).accordion({ fillSpace: true }).show(); // accordion on the _browser partial
@@ -72,6 +73,11 @@ $(function() {
         "sPaginationType": "full_numbers"
 	}); 
 	
+	$('#pp').portal({
+		border:true,
+		fit:true
+	});
+	add();
 	
 	// JDavis: this function responds to the dropdown selection on the manager page and navigates to the select topic.
 	$('#topic_select').change(function() {
@@ -148,4 +154,26 @@ function fnGetSelected( oTableLocal )
         }
     }
     return aReturn;
+}
+
+function add(){
+	for(var i=0; i<3; i++){
+		var p = $('<div/>').appendTo('body');
+		p.panel({
+			title:'Title'+i,
+			content:'<div style="padding:5px;">Content'+(i+1)+'</div>',
+			height:100,
+			closable:true,
+			collapsible:true
+		});
+		$('#pp').portal('add', {
+			panel:p,
+			columnIndex:i
+		});
+	}
+	$('#pp').portal('resize');
+}
+function remove(){
+	$('#pp').portal('remove',$('#pgrid'));
+	$('#pp').portal('resize');
 }
