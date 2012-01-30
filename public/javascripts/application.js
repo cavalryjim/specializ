@@ -7,7 +7,7 @@ var giRedraw = false;
 $('html').addClass('js');
 
 $(function() {
-	
+
 	$(".best_in_place").best_in_place();
 	
 	$('#navigation_horiz').naviDropDown({
@@ -25,14 +25,29 @@ $(function() {
 		maxWidth: 800
 	});
 	
-	$('#pp').portal({
-		border:true,
-		fit:true
-	});
+	var browserOpen = $.cookie("browserState");
+	if ( browserOpen == 'open' ) {
+		$( "#browser_div" ).show();
+		$( "#browser_show" ).html('-');
+	} else {
+		$( "#browser_div" ).hide();
+		$( "#browser_show" ).html('+');
+	}
 	
-	  
+	$( "#browser_show" ).click(function() // JDavis: this hides & shows the left-side browser.
+	  {
+		if ($( "#browser_div" ).is(':hidden')){
+			$(this).html('-');
+			$.cookie("browserState", "open");
+		} else {
+			$(this).html('+');
+			$.cookie("browserState", "closed");
+		}
+		$( "#browser_div" ).slideToggle("slow");
+	  });
 
-	$( "#accordion" ).accordion({ fillSpace: true }).show(); // accordion on the _browser partial
+	
+	bAccordion = $( "#accordion" ).accordion({ fillSpace: true }).show(); // accordion on the _browser partial
 	mTabs = $( "#manager_tabs" ).tabs().show(); // tabs used in the manager module
 	hrTabs = $( "#hr_tabs" ).tabs().show(); // tabs used in the HR module
 	$( "#me_tabs" ).tabs().show(); // tabs used in the Me module
@@ -100,6 +115,12 @@ $(function() {
 		//alert(window.location.pathname);
 	});
 	
+	//$(".trigger").click(function(){
+	//	$(".panel").toggle("fast");
+	//	$(this).toggleClass("active");
+	//	return false;
+	//});
+	
 	// JDavis: for some reason, the rating stuff must come last or else shit breaks.
 	$( "#rating_table input.jdstar" ).rating(); // JDavis: this line must come before rating_table dataTable()
 	
@@ -131,6 +152,7 @@ $(function() {
         "sPaginationType": "full_numbers"
         
     });
+	
 
 });
 
@@ -149,6 +171,7 @@ function fnGetSelected( oTableLocal )
     }
     return aReturn;
 }
+
 
 
 

@@ -100,7 +100,7 @@ nav ul li a:hover {
 }
 
 /* Browser */
-browser {
+.browser {
 	width: 300px;
 	float: left;	
 }
@@ -266,8 +266,8 @@ div.field, div.actions {
 }
 
 .auth_provider {
-	float: left;
-	text-decoration: none;
+  float: left;
+  text-decoration: none;
   margin-right: 20px;
   text-align: center;
   margin-bottom: 10px;

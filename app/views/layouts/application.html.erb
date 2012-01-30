@@ -24,14 +24,18 @@
 		<%= gflash %>
 	  </div>
 	  
-	  <div id="layout_div" class="layout">
+	  <div id="layout_div" class="layout" >
+	   <% if user_signed_in? %>
+		<div id="browser_show" style="width:20px;height:20px;
+				top:0px;left:0px;background:#3b587a;text-align:center;color:#FFFFFF;">
+    		-
+  		</div>
 	   	<div id="browser_div" class="span-8">
-		  <% if user_signed_in? %>
 			
 			<%= render 'layouts/browser' %>
 			
-		  <% end %>
 	   	</div>
+	   <% end %>
 
 		<div id="main_content_div" class="span-18">
           <%= yield %>
