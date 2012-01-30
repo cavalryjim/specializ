@@ -16,10 +16,25 @@ $(function() {
 	
 	$(".collapsibleContainer").collapsiblePanel();
 	
+	//var browserWidth = $.cookie("browserWidth");
+	//alert(broswerWidth);
+	//if (!browserSize){
+	//	browserSize = 
+	//}
 	//$("#layout_table").colResizable();
 	$( "#browser_div" ).resizable({
 		maxWidth: 400,
-		minWidth: 200
+		minWidth: 200, 
+		stop: function(event, ui){
+			alert(ui.size.width);
+			//$.cookie("browserWidth") = ui.size.width;
+		}
+		//create: function(event, ui){
+		//	if (browserWidth){
+		//		alert(browserWidth);
+		//		//ui.size = browserSize;
+		//	} 
+		//}
 	});
 	
 	$( "#main_content_div" ).resizable({
