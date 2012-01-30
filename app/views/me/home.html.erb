@@ -3,9 +3,50 @@
 
 	<%= #company_logo 
 	%>
-   <h3>
-	<%= current_user %>, you are assigned to <%= current_user.open_topic_groups.size %> active topics.
-   </h3>
+   <!---><h3>
+	<%= current_user %>, you are assigned to <%= pluralize(current_user.open_topic_groups.size, "active topic") %>.
+   </h3>--->
+
+   <div class="collapsibleContainer" title="<%= current_user %>, you are assigned to <%= pluralize(current_user.open_topic_groups.size, "active topic") %>">
+	 <table class="portalTable">
+	  <tr>
+	   <td background-color="#FFF">
+		<div class="collapsibleContainer" title="Tutorials" >
+			<p>Lorem ipsum dolor sit amet </p>
+		</div>
+	   </td>
+	   <td>
+		<div class="collapsibleContainer" title="Tutorials" >
+			<p>Lorem ipsum dolor sit amet </p>
+		</div>
+	   </td>
+	  </tr>
+	  <tr>
+	   <td background-color="#FFF">
+		<div class="collapsibleContainer" title="Tutorials" >
+			<p>Lorem ipsum dolor sit amet </p>
+		</div>
+	   </td>
+	   <td>
+		<div class="collapsibleContainer" title="Tutorials" >
+			<p>Lorem ipsum dolor sit amet </p>
+		</div>
+	   </td>
+	  </tr>
+      <tr class="portalTable">
+	   <td>
+		<div class="collapsibleContainer" title="Tutorials" >
+			<p>Lorem ipsum dolor sit amet </p>
+		</div>
+	   </td>
+	   <td>
+		<div class="collapsibleContainer" title="Tutorials" >
+			<p>Lorem ipsum dolor sit amet </p>
+		</div>
+	   </td>
+	  </tr>
+	 </table>
+   </div>
 
 
 

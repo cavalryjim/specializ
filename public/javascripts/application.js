@@ -14,6 +14,8 @@ $(function() {
 		dropDownWidth: '150px'
 	});
 	
+	$(".collapsibleContainer").collapsiblePanel();
+	
 	//$("#layout_table").colResizable();
 	$( "#browser_div" ).resizable({
 		maxWidth: 400,
@@ -26,21 +28,21 @@ $(function() {
 	});
 	
 	var browserOpen = $.cookie("browserState");
-	if ( browserOpen == 'open' ) {
-		$( "#browser_div" ).show();
-		$( "#browser_show" ).html('-');
-	} else {
+	if ( browserOpen == 'closed' ) {
 		$( "#browser_div" ).hide();
-		$( "#browser_show" ).html('+');
+		$( "#browser_trigger" ).html('My Topics +');
+	} else {
+		$( "#browser_div" ).show();
+		$( "#browser_trigger" ).html('My Topics -');
 	}
 	
-	$( "#browser_show" ).click(function() // JDavis: this hides & shows the left-side browser.
+	$( "#browser_trigger" ).click(function() // JDavis: this hides & shows the left-side browser.
 	  {
 		if ($( "#browser_div" ).is(':hidden')){
-			$(this).html('-');
+			$(this).html('My Topics -');
 			$.cookie("browserState", "open");
 		} else {
-			$(this).html('+');
+			$(this).html('My Topics +');
 			$.cookie("browserState", "closed");
 		}
 		$( "#browser_div" ).slideToggle("slow");
