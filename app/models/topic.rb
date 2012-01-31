@@ -61,6 +61,10 @@ class Topic < ActiveRecord::Base
     due_days
   end
   
+  def check_for_restart
+    true
+  end
+  
   private
     
     

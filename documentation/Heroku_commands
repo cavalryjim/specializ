@@ -3,6 +3,10 @@ heroku keys:add  (if you have not done so earlier)
 git remote add heroku git@heroku.com:specializ.git (this connects your local git with heroku)
 git push heroku
 heroku open
+heroku logs
+heroku logs --ps cron.1  # JDavis: this command just checks for the nightly cron jobs.
+
+
 
 
 
