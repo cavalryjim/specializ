@@ -8,44 +8,33 @@
    </h3>--->
 
    <div class="collapsibleContainer" title="<%= current_user %>, you are assigned to <%= pluralize(current_user.open_topic_groups.size, "active topic") %>">
-	 <table class="portalTable">
+	 <!--<table class="portalTable">
 	  <tr>
 	   <td background-color="#FFF">
 		<div class="collapsibleContainer" title="Tutorials" >
-			<p>Lorem ipsum dolor sit amet </p>
+			<ul>
+				<li><%= link_to "Participate in a topic", "#" %></li>
+				<li><%= link_to "Manage a topic", "#" %></li>
+				<li><%= link_to "Create a topic", "#" %></li>
+				<li><%= link_to "Information on groups", "#" %></li>
+				<li><%= link_to "Import topic elements", "#" %></li>
+			</ul>
 		</div>
 	   </td>
 	   <td>
-		<div class="collapsibleContainer" title="Tutorials" >
+		<div class="collapsibleContainer" title="Announcements" >
 			<p>Lorem ipsum dolor sit amet </p>
 		</div>
 	   </td>
 	  </tr>
 	  <tr>
-	   <td background-color="#FFF">
-		<div class="collapsibleContainer" title="Tutorials" >
-			<p>Lorem ipsum dolor sit amet </p>
-		</div>
-	   </td>
-	   <td>
-		<div class="collapsibleContainer" title="Tutorials" >
-			<p>Lorem ipsum dolor sit amet </p>
-		</div>
-	   </td>
+	   <td colspan="2">
+		<div class="collapsibleContainer" title="Calendar" >-->
+			<div id='calendar'></div>
+		 <!--</div>
+	  </td>
 	  </tr>
-      <tr class="portalTable">
-	   <td>
-		<div class="collapsibleContainer" title="Tutorials" >
-			<p>Lorem ipsum dolor sit amet </p>
-		</div>
-	   </td>
-	   <td>
-		<div class="collapsibleContainer" title="Tutorials" >
-			<p>Lorem ipsum dolor sit amet </p>
-		</div>
-	   </td>
-	  </tr>
-	 </table>
+	 </table>-->
    </div>
 
 
