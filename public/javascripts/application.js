@@ -16,26 +16,21 @@ $(function() {
 	
 	$(".collapsibleContainer").collapsiblePanel();
 	
-	//var browserWidth = $.cookie("browserWidth");
-	//alert(broswerWidth);
-	//if (!browserSize){
-	//	browserSize = 
-	//}
 	//$("#layout_table").colResizable();
-	$( "#browser_div" ).resizable({
+	var rBrowser = $( "#browser_div" ).resizable({
 		maxWidth: 400,
 		minWidth: 200, 
 		stop: function(event, ui){
-			alert(ui.size.width);
-			//$.cookie("browserWidth") = ui.size.width;
+			//alert(ui.size.width);
+			$.cookie("browserWidth", ui.size.width);
 		}
-		//create: function(event, ui){
-		//	if (browserWidth){
-		//		alert(browserWidth);
-		//		//ui.size = browserSize;
-		//	} 
-		//}
 	});
+	
+	var browserWidth = $.cookie("browserWidth");
+	if (browserWidth){
+	//	rBrowser.css("width") = '400px';
+		rBrowser.css("width", browserWidth);
+	}
 	
 	$( "#main_content_div" ).resizable({
 		minWidth: 600,
