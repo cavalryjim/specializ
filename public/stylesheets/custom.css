@@ -359,7 +359,7 @@ textarea {width:390px;height:100px;padding:5px;}
 
 .collapsibleContainer
 {
-    border: solid 1px #9BB5C1;
+    border: solid 1px #aaaaaa;
 
 }
 
@@ -372,8 +372,12 @@ textarea {width:390px;height:100px;padding:5px;}
 {
     padding-top:5px;
     padding-left:10px;
-    background-color:#9BB5C1;
-    color:#607882;
+    /*background-color:#003366;*/
+    border: 1px solid #aaaaaa; 
+    background: #cccccc url(../../images/jquery_ui/ui-bg_highlight-soft_75_cccccc_1x100.png) 50% 50% repeat-x; 
+    color: #222222; 
+	font-weight: bold; 
+    /*color:#607882;*/
 }
 
 .collapsibleContainerContent

@@ -1,13 +1,7 @@
 	
 <% if user_signed_in? %>
 
-	<%= #company_logo 
-	%>
-   <!---><h3>
-	<%= current_user %>, you are assigned to <%= pluralize(current_user.open_topic_groups.size, "active topic") %>.
-   </h3>--->
-
-   <div class="collapsibleContainer" title="<%= current_user %>, you are assigned to <%= pluralize(current_user.open_topic_groups.size, "active topic") %>">
+   <div id="collapsibleContainer" class="ui-widget" class="ui-widget-header" title="<%= current_user %>, you are assigned to <%= pluralize(current_user.open_topic_groups.size, "active topic") %>">
 	 <!--<table class="portalTable">
 	  <tr>
 	   <td background-color="#FFF">

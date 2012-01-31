@@ -14,7 +14,7 @@ $(function() {
 		dropDownWidth: '150px'
 	});
 	
-	$(".collapsibleContainer").collapsiblePanel();
+	$("#collapsibleContainer").collapsiblePanel();
 	
 	//$("#layout_table").colResizable();
 	var rBrowser = $( "#browser_div" ).resizable({
