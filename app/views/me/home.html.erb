@@ -1,10 +1,11 @@
 	
 <% if user_signed_in? %>
 
-   <div id="collapsibleContainer" class="ui-widget" class="ui-widget-header" title="<%= current_user %>, you are assigned to <%= pluralize(current_user.open_topic_groups.size, "active topic") %>">
-	 <!--<table class="portalTable">
+   <div class="collapsibleContainer ui-widget ui-corner-all" 
+	title="<%= current_user %>, you are assigned to <%= pluralize(current_user.open_topic_groups.size, "active topic") %>">
+	 <table class="portalTable">
 	  <tr>
-	   <td background-color="#FFF">
+	   <td background-color="#FFF" width='50%'>
 		<div class="collapsibleContainer" title="Tutorials" >
 			<ul>
 				<li><%= link_to "Participate in a topic", "#" %></li>
@@ -17,18 +18,25 @@
 	   </td>
 	   <td>
 		<div class="collapsibleContainer" title="Announcements" >
-			<p>Lorem ipsum dolor sit amet </p>
+			<p> Specializ will be down for mantenance Feburary 6 from 2am-3am CST.  </p>
 		</div>
 	   </td>
 	  </tr>
 	  <tr>
-	   <td colspan="2">
-		<div class="collapsibleContainer" title="Calendar" >-->
+	   <td>
+		<div class="collapsibleContainer" title="Calendar" >
 			<div id='calendar'></div>
-		 <!--</div>
-	  </td>
+		 </div>
+	   </td>
+	   <td>
+		<div class="collapsibleContainer" title="Events" >
+		  <div id="events_div">
+			<p> Your topic input is due today! </p>
+		  </div>
+		</div>
+	   </td>
 	  </tr>
-	 </table>-->
+	 </table>
    </div>
 
 

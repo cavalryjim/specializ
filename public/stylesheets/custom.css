@@ -356,12 +356,10 @@ font-size: 12px;
 textarea {width:390px;height:100px;padding:5px;}
 
 /* JDavis: this is styling for the container on the home page */
-
-.collapsibleContainer
-{
-    border: solid 1px #aaaaaa;
-
+.collapsibleContainer {
+	-moz-border-radius-topleft: 4px; -webkit-border-top-left-radius: 4px; -khtml-border-top-left-radius: 4px; border-top-left-radius: 4px;
 }
+
 
 .collapsibleContainerTitle
 {
@@ -372,18 +370,9 @@ textarea {width:390px;height:100px;padding:5px;}
 {
     padding-top:5px;
     padding-left:10px;
-    /*background-color:#003366;*/
-    border: 1px solid #aaaaaa; 
-    background: #cccccc url(../../images/jquery_ui/ui-bg_highlight-soft_75_cccccc_1x100.png) 50% 50% repeat-x; 
-    color: #222222; 
-	font-weight: bold; 
-    /*color:#607882;*/
+    
 }
 
-.collapsibleContainerContent
-{
-    padding: 10px;
-}
 
 table.portalTable tbody tr:nth-child(even) td, tbody tr.even td {background:#fff;}
 
