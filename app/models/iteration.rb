@@ -63,7 +63,6 @@ class Iteration < ActiveRecord::Base
     self.active = false
     return self.save
   end
-  handle_asynchronously :close
   
   def start_new_iteration
     new_iteration = Iteration.new

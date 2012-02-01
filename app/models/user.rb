@@ -171,7 +171,7 @@ class User < ActiveRecord::Base
       end
     end
     
-    iteration.close(true) if (iteration.num_submitted_lists.to_f / topic_group.participating_users.count.to_f) == 1 
+    iteration.delay.close(true) if (iteration.num_submitted_lists.to_f / topic_group.participating_users.count.to_f) == 1 
   end
   
   def approve_new_elements(iteration, approved_elements)

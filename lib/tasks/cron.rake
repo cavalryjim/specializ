@@ -5,11 +5,8 @@ task :cron => :environment do
   #  NewsFeed.update
   #  puts "done."
   #end
-
-  if Time.now.hour == 0 # run at midnight
-    #User.send_reminders
-    puts "Checking for Topics to restart."
-    Topic.check_for_restart
-    puts "Done with Topics."
-  end
+  
+  puts "Checking for Topics to restart."
+  Topic.check_for_restart
+  puts "Done with Topics."
 end
