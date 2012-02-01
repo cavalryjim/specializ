@@ -64,7 +64,14 @@ $(function() {
 
 	$('#calendar').fullCalendar({
 		dayClick: function(date) {
-			$('#events_div').html('<p>'+date+'<p>');
+			//$('#events_div').html('<p>'+date+'<p>');
+			d = date.getDate();
+			m = date.getMonth();
+			y = date.getFullYear();
+			alert(y+"-"+m+"-"+d);
+			$.ajax("/me/events/"+y+"-"+m+"-"+d);
+			 
+
 
 	    }
 

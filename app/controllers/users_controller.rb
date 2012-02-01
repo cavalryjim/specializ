@@ -3,7 +3,7 @@ class UsersController < ApplicationController
   load_and_authorize_resource
   #helper_method :sort_column, :sort_direction
   #autocomplete :company, :name, :full => true
-  respond_to :html, :json
+  respond_to :html, :json, :xml
   
   # GET /users
   # GET /users.xml

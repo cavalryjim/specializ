@@ -35,6 +35,7 @@ class User < ActiveRecord::Base
   has_and_belongs_to_many :roles, :uniq => true
   has_and_belongs_to_many :groupings, :uniq => true
   belongs_to :company
+  has_many  :authentications
   has_many  :assignments, :dependent => :destroy
   has_many  :topic_groups, :through => :assignments
   has_many  :user_lists, :dependent => :destroy
@@ -54,7 +55,6 @@ class User < ActiveRecord::Base
             :source => :topic_group,
             :conditions => {'assignments.participating' || 'assignments.manager' => true, 'active' => false},
             :order => 'created_at desc'
-  has_many  :authentications
   
   # Setup accessible (or protected) attributes for your model
   attr_accessible :first_name, :last_name, :email, :active, :company_id, 

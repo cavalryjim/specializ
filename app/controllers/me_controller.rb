@@ -1,5 +1,6 @@
 class MeController < ApplicationController
   #before_filter :authenticate_user!
+  respond_to :html, :json, :xml, :js
   
   def home
     @title = "Home"
@@ -11,6 +12,13 @@ class MeController < ApplicationController
       gflash :notice => "Please sign in to participate."
       redirect_to authentications_url
     end
+  end
+  
+  def events
+    @date = params[:date]
+    #@date = Time.now
+    
+    render :home
   end
 
 end
