@@ -117,19 +117,21 @@ class User < ActiveRecord::Base
   end
   
   def notify_assignment(topic_group)
-    UserMailer.new_assignment(self, topic_group).deliver
+    UserMailer.delay.new_assignment(self, topic_group)
   end
   
   def notify_iteration_start(topic_group)
-    UserMailer.iteration_start(self, topic_group).deliver
+    UserMailer.delay.iteration_start(self, topic_group)
   end
   
   def notify_account(password)
-    UserMailer.new_account(self, password).deliver
+    #UserMailer.new_account(self, password).deliver
+    UserMailer.delay.new_account(self, password)
   end
   
   def notify_iteration_close(iteration_id)
-    UserMailer.iteration_close(self, iteration_id).deliver
+    #UserMailer.iteration_close(self, iteration_id).deliver
+    UserMailer.delay.iteration_close(self, iteration_id)
   end
   
   def join_topic_group(topic_group)
@@ -214,7 +216,6 @@ class User < ActiveRecord::Base
     end
     #return error_list
   end
-  #handle_asynchronously :import_users, :run_at => Time.zone.now
   
   def add_company_group
     self.grouping_ids = self.grouping_ids << self.root_grouging.id unless self.grouping_ids.include?(self.root_grouging.id)
