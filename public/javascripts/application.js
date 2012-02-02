@@ -61,20 +61,21 @@ $(function() {
 	var d = date.getDate();
 	var m = date.getMonth();
 	var y = date.getFullYear();
-
+	
 	$('#calendar').fullCalendar({
 		dayClick: function(date) {
-			//$('#events_div').html('<p>'+date+'<p>');
 			d = date.getDate();
 			m = date.getMonth();
 			y = date.getFullYear();
-			alert(y+"-"+m+"-"+d);
-			$.ajax("/me/events/"+y+"-"+m+"-"+d);
-			 
-
-
-	    }
-
+			$.ajax({
+				url: "/me/events/"+y+"-"+m+"-"+d,
+				context: document.body,
+				dataType: "html",
+				success: function(data){
+					$('#events_div').html(data);
+				}
+			});
+		}
 	});
 	
 	bAccordion = $( "#accordion" ).accordion({ fillSpace: true }).show(); // accordion on the _browser partial

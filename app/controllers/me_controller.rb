@@ -1,6 +1,6 @@
 class MeController < ApplicationController
   #before_filter :authenticate_user!
-  respond_to :html, :json, :xml, :js
+  #respond_to  :html
   
   def home
     @title = "Home"
@@ -16,9 +16,10 @@ class MeController < ApplicationController
   
   def events
     @date = params[:date]
-    #@date = Time.now
     
-    render :home
+    respond_to do |format|
+      format.html {render :partial => "events"}
+    end
   end
 
 end
