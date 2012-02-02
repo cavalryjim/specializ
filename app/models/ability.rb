@@ -13,6 +13,7 @@ class Ability
       end
       can :read, TopicGroup do |topic_group|
         topic_group.participating_users.include?(user)
+        #topic_group.users.include?(user)
       end
       can :manage, TopicGroup do |topic_group|
         topic_group.managers.include?(user)

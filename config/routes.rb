@@ -40,6 +40,7 @@ Specializ::Application.routes.draw do
   match '/users/rate_elements', :to => 'users#rate_elements'
   match '/users/approve_new_elements', :to => 'users#approve_new_elements'
   match '/me/events/:date', :to => 'me#events'
+  match '/me/events', :to => 'me#events'
    
   resources :topic_groups do
     post 'close', :to => 'topic_groups#close'

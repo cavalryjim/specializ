@@ -63,6 +63,10 @@ $(function() {
 	var y = date.getFullYear();
 	
 	var hCalendar = $('#calendar').fullCalendar({
+		events: 'me/events'
+	
+			
+		/*
 		dayClick: function(date) {
 			d = date.getDate();
 			m = date.getMonth()+1;
@@ -76,6 +80,7 @@ $(function() {
 				}
 			});
 		}
+		*/
 	});
 	
 	bAccordion = $( "#accordion" ).accordion({ fillSpace: true }).show(); // accordion on the _browser partial

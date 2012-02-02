@@ -12,6 +12,7 @@
 #  created_at           :datetime
 #  updated_at           :datetime
 #  elements_spreadsheet :string(255)
+#  due_date             :date
 #
 
 class TopicGroup < ActiveRecord::Base

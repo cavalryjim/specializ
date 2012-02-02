@@ -250,7 +250,7 @@ class User < ActiveRecord::Base
     Grouping.roots.where(:company_id => self.company_id).first
   end
   
-  def events(date)
+  def events(start, stop)
     self.topic_groups
   end
 
