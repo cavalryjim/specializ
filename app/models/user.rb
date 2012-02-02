@@ -249,5 +249,9 @@ class User < ActiveRecord::Base
   def root_grouping
     Grouping.roots.where(:company_id => self.company_id).first
   end
+  
+  def events(date)
+    self.topic_groups
+  end
 
 end

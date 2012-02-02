@@ -8,6 +8,8 @@ class MeController < ApplicationController
       @open_topic_groups = current_user.open_topic_groups
       @closed_topic_groups = current_user.closed_topic_groups
       @managed_topic_groups = current_user.managed_topic_groups
+      @date = Date.today
+      @events = current_user.events(@date)
     else
       gflash :notice => "Please sign in to participate."
       redirect_to authentications_url
@@ -15,7 +17,9 @@ class MeController < ApplicationController
   end
   
   def events
-    @date = params[:date]
+    @date = Date.parse(params[:date])
+    @events = current_user.events(@date)
+    authorize! :read, @events
     
     respond_to do |format|
       format.html {render :partial => "events"}

@@ -19,7 +19,7 @@ $(function() {
 	//$("#layout_table").colResizable();
 	var rBrowser = $( "#browser_div" ).resizable({
 		maxWidth: 400,
-		minWidth: 200, 
+		minWidth: 200,
 		stop: function(event, ui){
 			//alert(ui.size.width);
 			$.cookie("browserWidth", ui.size.width);
@@ -62,10 +62,10 @@ $(function() {
 	var m = date.getMonth();
 	var y = date.getFullYear();
 	
-	$('#calendar').fullCalendar({
+	var hCalendar = $('#calendar').fullCalendar({
 		dayClick: function(date) {
 			d = date.getDate();
-			m = date.getMonth();
+			m = date.getMonth()+1;
 			y = date.getFullYear();
 			$.ajax({
 				url: "/me/events/"+y+"-"+m+"-"+d,
@@ -145,12 +145,6 @@ $(function() {
 		window.location.pathname = '/'+temp[1]+'/'+temp[2]+'/'+temp[3]+'/'+$(this).attr('value')+'#tabs-2';
 		//alert(window.location.pathname);
 	});
-	
-	//$(".trigger").click(function(){
-	//	$(".panel").toggle("fast");
-	//	$(this).toggleClass("active");
-	//	return false;
-	//});
 	
 	// JDavis: for some reason, the rating stuff must come last or else shit breaks.
 	$( "#rating_table input.jdstar" ).rating(); // JDavis: this line must come before rating_table dataTable()
