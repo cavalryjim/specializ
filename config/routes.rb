@@ -39,7 +39,7 @@ Specializ::Application.routes.draw do
   match '/users/import_users', :to => 'users#import_users'
   match '/users/rate_elements', :to => 'users#rate_elements'
   match '/users/approve_new_elements', :to => 'users#approve_new_elements'
-  match '/me/events/:date', :to => 'me#events'
+  match '/me/event_list/:date', :to => 'me#event_list'
   match '/me/events', :to => 'me#events'
    
   resources :topic_groups do

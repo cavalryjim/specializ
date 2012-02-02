@@ -14,6 +14,7 @@ $(function() {
 		dropDownWidth: '150px'
 	});
 	
+	//var ePanel = $("#events_panel").collapsiblePanel();
 	$(".collapsibleContainer").collapsiblePanel();
 	
 	//$("#layout_table").colResizable();
@@ -58,29 +59,26 @@ $(function() {
 	  });
 	
 	var date = new Date();
-	var d = date.getDate();
-	var m = date.getMonth();
-	var y = date.getFullYear();
 	
 	var hCalendar = $('#calendar').fullCalendar({
-		events: 'me/events'
-	
-			
-		/*
+		events: 'me/events',
+
 		dayClick: function(date) {
 			d = date.getDate();
 			m = date.getMonth()+1;
 			y = date.getFullYear();
 			$.ajax({
-				url: "/me/events/"+y+"-"+m+"-"+d,
+				url: "/me/event_list/"+y+"-"+m+"-"+d,
 				context: document.body,
 				dataType: "html",
 				success: function(data){
 					$('#events_div').html(data);
+					$("#events_panel").attr("title", "Events: "+y+"-"+m+"-"+d);
+					$("#events_panel").collapsiblePanel();
 				}
 			});
 		}
-		*/
+		
 	});
 	
 	bAccordion = $( "#accordion" ).accordion({ fillSpace: true }).show(); // accordion on the _browser partial

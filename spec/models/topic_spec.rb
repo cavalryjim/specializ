@@ -5,7 +5,7 @@
 #  id               :integer(4)      not null, primary key
 #  name             :string(255)
 #  description      :string(255)
-#  status           :integer(4)
+#  status           :integer(4)      default(1)
 #  update_frequency :integer(4)
 #  due_days         :integer(4)
 #  opt_out          :boolean(1)

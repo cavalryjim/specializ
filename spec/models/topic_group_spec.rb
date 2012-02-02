@@ -5,13 +5,14 @@
 #  id                   :integer(4)      not null, primary key
 #  name                 :string(255)
 #  goal                 :integer(4)
-#  active               :boolean(1)
+#  active               :boolean(1)      default(TRUE)
 #  update_frequency     :integer(4)
 #  topic_id             :integer(4)
 #  grouping_id          :integer(4)
 #  created_at           :datetime
 #  updated_at           :datetime
 #  elements_spreadsheet :string(255)
+#  due_date             :date
 #
 
 require 'spec_helper'

@@ -5,8 +5,8 @@
 #  id             :integer(4)      not null, primary key
 #  user_id        :integer(4)
 #  topic_group_id :integer(4)
-#  manager        :boolean(1)
-#  participating  :boolean(1)
+#  manager        :boolean(1)      default(FALSE)
+#  participating  :boolean(1)      default(TRUE)
 #  created_at     :datetime
 #  updated_at     :datetime
 #

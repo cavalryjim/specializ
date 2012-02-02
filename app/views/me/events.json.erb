@@ -1,10 +1,10 @@
 [
-<%#{"id":111,"title":" ","start":"2012-02-10","url":"http:\/\/yahoo.com\/"},
-%>
+
+<%= @start %>
+<%= @stop %>
 <% @events.each do |event| %>
 {"title":"", "start":"<%= event.due_date %>"}<% if event != @events.last %>,<% end %>
 <% end %>
-
 ]
 
 

@@ -1,0 +1,9 @@
+<div id="events_panel" class="collapsibleContainer" title="Events: today" >
+<ul>
+<% @event_list.each do |event| %>
+
+	<li><%= link_to event.name, "#" %></li>
+
+<% end %>
+</ul>
+</div>

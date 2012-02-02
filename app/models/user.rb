@@ -251,7 +251,7 @@ class User < ActiveRecord::Base
   end
   
   def events(start, stop)
-    self.topic_groups
+    self.topic_groups.find(:all, :conditions => ["due_date >= ? and due_date <= ?", start, stop])
   end
 
 end
