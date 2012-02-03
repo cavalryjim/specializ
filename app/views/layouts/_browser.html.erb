@@ -1,8 +1,8 @@
 
-<div id="accordion">
+<div id="accordion" style="height:600px">
     <h3><a href="#">Open Topics</a></h3>
     <div>
-		<table height='450px'>
+		<table >
 		<% current_user.open_topic_groups.each do |topic_group| %>
 		  <tr>
 		    <td><%=link_to topic_group.name, topic_group_iteration_path(topic_group, topic_group.iterations.last) %> </td>
@@ -12,7 +12,7 @@
 
 	</div>
 	<h3><a href="#">Closed Topics</a></h3>
-    <div>
+    <div >
 		<table>
 		<% current_user.closed_topic_groups.each do |closed_topic_group| %>
 		  <tr>
@@ -21,7 +21,7 @@
 		<% end %>
 		</table>
 
-	</div>
+	</div >
     <h3><a href="#">Managed Topics</a></h3>
     <div>
 		<table>

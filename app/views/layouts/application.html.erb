@@ -15,20 +15,22 @@
 	  	<%= render 'layouts/header' %>
 	  </div>
 	 
+	  <section id="main_body" style="width:98%;overflow:auto;border: 1px solid blue;" >
 	   <% if user_signed_in? %>
 		<div id="browser_trigger">
     		My Topics -
   		</div>
-	   	<div id="browser_div" class="span-8">
-			
+	   	<div id="browser_div" style="height:100%;width: 300px; border: 1px solid red; float: left; padding-right:5px;" >
 			<%= render 'layouts/browser' %>
-			
 	   	</div>
 	   <% end %>
 
-		<div id="main_content_div" class="span-18" style="overflow: hidden;">
+		<div id="main_content_div" style="width: 720px; border: 1px solid red; float: left; padding-left:5px; "  >
           <%= yield %>
 		</div>
+		<div class="clear"></div>
+
+	  </section>
 	  
     </div>
 	  

@@ -21,6 +21,7 @@ $(function() {
 	var rBrowser = $( "#browser_div" ).resizable({
 		maxWidth: 400,
 		minWidth: 200,
+		minHeight: 600,
 		stop: function(event, ui){
 			//alert(ui.size.width);
 			$.cookie("browserWidth", ui.size.width);
@@ -32,19 +33,29 @@ $(function() {
 		rBrowser.css("width", browserWidth);
 	}
 	
-	$( "#main_content_div" ).resizable({
+	var rContent = $( "#main_content_div" ).resizable({
 		minWidth: 600,
-		maxWidth: 800
+		maxWidth: 800,
+		minHeight: 600,
+		stop: function(event, ui){
+			$.cookie("contentWidth", ui.size.width);
+		}
 	});
 	
-	var browserOpen = $.cookie("browserState");
-	if ( browserOpen == 'closed' ) {
+	var contentWidth = $.cookie("contentWidth");
+	if (contentWidth){
+		rContent.css("width", contentWidth);
+	}
+	
+	var browserState = $.cookie("browserState");
+	if ( browserState == 'closed' ) {
 		$( "#browser_div" ).hide();
 		$( "#browser_trigger" ).html('My Topics +');
 	} else {
 		$( "#browser_div" ).show();
 		$( "#browser_trigger" ).html('My Topics -');
 	}
+	
 	
 	$( "#browser_trigger" ).click(function() // JDavis: this hides & shows the left-side browser.
 	  {
@@ -81,7 +92,7 @@ $(function() {
 		
 	});
 	
-	bAccordion = $( "#accordion" ).accordion(); // accordion on the _browser partial
+	bAccordion = $( "#accordion" ).accordion({ fillSpace: true }); // accordion on the _browser partial
 	mTabs = $( "#manager_tabs" ).tabs().show(); // tabs used in the manager module
 	hrTabs = $( "#hr_tabs" ).tabs().show(); // tabs used in the HR module
 	$( "#me_tabs" ).tabs().show(); // tabs used in the Me module

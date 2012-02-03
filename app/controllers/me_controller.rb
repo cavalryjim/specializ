@@ -9,7 +9,7 @@ class MeController < ApplicationController
       @closed_topic_groups = current_user.closed_topic_groups
       @managed_topic_groups = current_user.managed_topic_groups
       date = Date.today
-      @event_list = current_user.events(date.beginning_of_month, date.end_of_month)
+      @event_list = current_user.events(date.beginning_of_week, date.end_of_week)
     else
       gflash :notice => "Please sign in to participate."
       redirect_to authentications_url

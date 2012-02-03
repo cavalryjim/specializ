@@ -1,7 +1,7 @@
 	
 <% if user_signed_in? %>
 
-   <div class="collapsibleContainer ui-widget ui-corner-all" 
+   <div class="collapsibleContainer" 
 	title="<%= current_user %>, you are assigned to <%= pluralize(current_user.open_topic_groups.size, "active topic") %>">
 	 <table class="portalTable">
 	  <tr>
@@ -18,7 +18,7 @@
 	   </td>
 	   <td>
 		<div class="collapsibleContainer" title="Announcements" >
-			<p> Specializ will be down for mantenance Feburary 6 from 2am-3am CST.  </p>
+			<p> Specializ will be down for mantenance Feburary 18 from 2am-3am CST.  </p>
 		</div>
 	   </td>
 	  </tr>
@@ -30,11 +30,9 @@
 	   </td>
 	   <td>
 		<div id="events_div">
-		
-		  
-			<%= render 'event_list' %>
-			
-			
+ 
+		 	<%= render 'event_list' %>
+
 		</div>
 	   </td>
 	  </tr>
