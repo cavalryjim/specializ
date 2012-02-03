@@ -30,11 +30,22 @@ $(function() {
 		}
 	});
 	
-	*/
+	 */
 	
-	$( "#browser_trigger" ).click(function() // JDavis: this hides & shows the left-side browser.
+	var browserState = $.cookie("browserState");
+	var browserCol = $( "#browser_col" );
+	var browserTrigger = $( "#browser_trigger" );
+	
+	if (browserState == 'closed') {
+		browserCol.hide();
+		browserTrigger.html('My Topics +');
+	} else {
+		browserCol.show();
+	}
+	
+	browserTrigger.click(function() // JDavis: this hides & shows the left-side browser.
 	  {
-		if ($( "#browser_col" ).is(':hidden')){
+		if (browserCol.is(':hidden')){
 			$(this).html('My Topics -');
 			$.cookie("browserState", "open");
 		} else {
@@ -42,10 +53,28 @@ $(function() {
 			$.cookie("browserState", "closed");
 		}
 		$( "#browser_col" ).slideToggle("slow");
-	  });
+	});
 	
-	var date = new Date();
+	var hCalendar = $('#calendar').fullCalendar({
+		events: 'me/events',
+		
+		dayClick: function(date) {
+			d = date.getDate();
+			m = date.getMonth()+1;
+			y = date.getFullYear();
+			$.ajax({
+				url: "/me/event_list/"+y+"-"+m+"-"+d,
+				context: document.body,
+				dataType: "html",
+				success: function(data){
+					$('#events_div').html(data);
+					$("#events_panel").attr("title", "Events: "+y+"-"+m+"-"+d);
+					$("#events_panel").collapsiblePanel();
+				}
+			});
+		}
 	
+	});
 	
 	bAccordion = $( "#accordion" ).accordion({ fillSpace: true }).show(); // accordion on the _browser partial
 	mTabs = $( "#manager_tabs" ).tabs().show(); // tabs used in the manager module
@@ -94,26 +123,6 @@ $(function() {
 		minWidth: 200
 	});
 	
-	var hCalendar = $('#calendar').fullCalendar({
-		events: 'me/events',
-		
-		dayClick: function(date) {
-			d = date.getDate();
-			m = date.getMonth()+1;
-			y = date.getFullYear();
-			$.ajax({
-				url: "/me/event_list/"+y+"-"+m+"-"+d,
-				context: document.body,
-				dataType: "html",
-				success: function(data){
-					$('#events_div').html(data);
-					$("#events_panel").attr("title", "Events: "+y+"-"+m+"-"+d);
-					$("#events_panel").collapsiblePanel();
-				}
-			});
-		}
-	
-	});
 	
 	// JDavis: this function responds to the dropdown selection on the manager page and navigates to the select topic.
 	$('#topic_select').change(function() {
