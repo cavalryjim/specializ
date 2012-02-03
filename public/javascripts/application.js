@@ -16,10 +16,6 @@ $(function() {
 	
 	$(".collapsibleContainer").collapsiblePanel();
 	
-	$("#layout_table").colResizable({
-		postbackSafe:true,
-		minWidth: 200
-	});
 	
 	/*
 	var browserWidth = $.cookie("browserWidth");
@@ -92,6 +88,11 @@ $(function() {
 	}); 
 	
 	$( "#app_container" ).show(); //JDavis: this keeps from flashing unformatted content (fouc).
+	
+	$("#layout_table").colResizable({
+		postbackSafe:true,
+		minWidth: 200
+	});
 	
 	var hCalendar = $('#calendar').fullCalendar({
 		events: 'me/events',

@@ -5,6 +5,7 @@ git push heroku
 heroku open
 heroku logs
 heroku logs --ps cron.1  # JDavis: this command just checks for the nightly cron jobs.
+heroku rake db:migrate   # JDavis: this runs database migrations on heroku.
 
 
 
