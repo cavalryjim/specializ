@@ -7,6 +7,7 @@ var giRedraw = false;
 //$('html').addClass('js');
 
 $(function() {
+	$( "#app_container" ).show(); //JDavis: this keeps from flashing unformatted content (fouc).
 
 	$(".best_in_place").best_in_place();
 	
@@ -87,7 +88,6 @@ $(function() {
         "sPaginationType": "full_numbers"
 	}); 
 	
-	$( "#app_container" ).show(); //JDavis: this keeps from flashing unformatted content (fouc).
 	
 	$("#layout_table").colResizable({
 		postbackSafe:true,
