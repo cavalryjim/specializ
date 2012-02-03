@@ -4,7 +4,7 @@ var hrTabs;
 var meTabs;
 var giRedraw = false;
 
-$('html').addClass('js');
+//$('html').addClass('js');
 
 $(function() {
 
@@ -81,7 +81,7 @@ $(function() {
 		
 	});
 	
-	bAccordion = $( "#accordion" ).accordion({ fillSpace: true }).show(); // accordion on the _browser partial
+	bAccordion = $( "#accordion" ).accordion(); // accordion on the _browser partial
 	mTabs = $( "#manager_tabs" ).tabs().show(); // tabs used in the manager module
 	hrTabs = $( "#hr_tabs" ).tabs().show(); // tabs used in the HR module
 	$( "#me_tabs" ).tabs().show(); // tabs used in the Me module

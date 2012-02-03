@@ -319,9 +319,24 @@ div.notice {
 	border: 1px solid #EFD500;
 }
 
-div.layout {
+#browser_div {
+	width: 300px;
+}
+
+#layout {
 	padding: 5px;
+	height: 100%;
 	
+}
+
+#browser_trigger {
+	width:75px;
+	height:20px;
+	top:0px;
+	left:0px;
+	background:#003366;
+	text-align:center;
+	color:#FFFFFF;
 }
 
 h2,

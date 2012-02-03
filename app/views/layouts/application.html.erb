@@ -14,20 +14,9 @@
 	  <div id="header" >
 	  	<%= render 'layouts/header' %>
 	  </div>
-	  
-	  <!-- Deleted round CSS class from section tag -->
-      
-	  <div id="flash">
-        <% flash.each do |key, value| %>
-			<%= js add_gritter(flash[key], :image => key.to_s , :sticky => false) %>	 
-        <% end %>
-		<%= gflash %>
-	  </div>
-	  
-	  <div id="layout_div" class="layout" >
+	 
 	   <% if user_signed_in? %>
-		<div id="browser_trigger" style="width:75px;height:20px;
-				top:0px;left:0px;background:#003366;text-align:center;color:#FFFFFF;">
+		<div id="browser_trigger">
     		My Topics -
   		</div>
 	   	<div id="browser_div" class="span-8">
@@ -40,9 +29,13 @@
 		<div id="main_content_div" class="span-18" style="overflow: hidden;">
           <%= yield %>
 		</div>
-	  </div>
-
-      
+	  
     </div>
+	  
+    <% flash.each do |key, value| %>
+		<%= js add_gritter(flash[key], :image => key.to_s , :sticky => false) %>	 
+    <% end %>
+	<%= gflash %>
+	  
 </body>
 </html>
