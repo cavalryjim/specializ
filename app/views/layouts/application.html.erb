@@ -10,29 +10,38 @@
 
 </head>
 <body>
-    <div class="container">
-	  <div id="header" >
+  <div id="app_container" class="container">
+    <div id="header" >
 	  	<%= render 'layouts/header' %>
-	  </div>
+	</div>
 	 
-	  <section id="main_body" style="width:98%;overflow:auto;border: 1px solid blue;" >
-	   <% if user_signed_in? %>
-		<div id="browser_trigger">
+	<div id="main_body" >
+	 <% if user_signed_in? %>
+	  <div id="browser_trigger">
     		My Topics -
-  		</div>
-	   	<div id="browser_div" style="height:100%;width: 300px; border: 1px solid red; float: left; padding-right:5px;" >
+  	  </div>
+	 <% end %>
+	 <table id="layout_table" >
+	  <tr>
+	  <% if user_signed_in? %>
+		<td id="browser_col" width = "300px">
+	   	
 			<%= render 'layouts/browser' %>
-	   	</div>
-	   <% end %>
+	   
+		</td>
+	  <% end %>
+	    <td>
+		
+          <div style="padding-left:5px;height:100%;"><%= yield %></div>
+		
+  	    </td>
+	  </tr>
+	 </table>
+		
 
-		<div id="main_content_div" style="width: 720px; border: 1px solid red; float: left; padding-left:5px; "  >
-          <%= yield %>
-		</div>
-		<div class="clear"></div>
-
-	  </section>
+	</div>
 	  
-    </div>
+  </div>
 	  
     <% flash.each do |key, value| %>
 		<%= js add_gritter(flash[key], :image => key.to_s , :sticky => false) %>	 

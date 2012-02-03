@@ -1,7 +1,5 @@
 .container {
-	
-	min-width: 1200px;
-	float: left;
+	width: 100%;
 	
 }
 
@@ -46,8 +44,9 @@ section {
   background: #fff;
 }
 
-#main_content_div {
-  width: 720px;
+#main_body {
+  border: 1px solid blue; 
+  padding: 5px;
 }
 
 .clear { 
@@ -110,7 +109,8 @@ nav ul li a:hover {
 
 /* Browser */
 .browser {
-	width: 300px;
+	height: 580px;
+	width: 100%
 	float: left;	
 }
 
@@ -327,15 +327,18 @@ div.notice {
 	border: 1px solid #EFD500;
 }
 
-#browser_div {
-	width: 300px;
+#layout_table {
+	padding: 5px;
+	border: solid 1px #999;
+	height: 700px;
 }
 
-#layout {
-	padding: 5px;
-	height: 100%;
-	
-}
+
+/**
+
+#layout_table tr td {
+	border: solid 1px #999;
+}**/
 
 #browser_trigger {
 	width:75px;
@@ -347,11 +350,9 @@ div.notice {
 	color:#FFFFFF;
 }
 
-h2,
-h3,
-h4 {
-margin: 0;
-font-weight: normal;
+h2,h3,h4 {
+  margin: 0;
+  font-weight: normal;
 }
 
 h2, h3 {
@@ -359,14 +360,14 @@ padding: 0 0 9px;
 }
 
 h4 {
-padding-bottom: 21px;
-border-bottom: 1px dashed #999;
-font-size: 12px;
-font-weight: bold;
+  padding-bottom: 21px;
+  border-bottom: 1px dashed #999;
+  font-size: 12px;
+  font-weight: bold;
 }
 
 p {
-font-size: 12px;
+ font-size: 12px;
 }
 
 .clear {
@@ -377,10 +378,15 @@ font-size: 12px;
 	outline:0;
 }
 
-textarea {width:390px;height:100px;padding:5px;}
+textarea {
+	width:390px;
+	height:100px;
+	padding:5px;
+}
 
 /* JDavis: this is styling for the container on the home page */
 .collapsibleContainer {
+	padding: 5px;
 	-moz-border-radius-topleft: 4px; -webkit-border-top-left-radius: 4px; -khtml-border-top-left-radius: 4px; border-top-left-radius: 4px;
 }
 
@@ -397,8 +403,8 @@ textarea {width:390px;height:100px;padding:5px;}
     
 }
 
-
 table.portalTable tbody tr:nth-child(even) td, tbody tr.even td {background:#fff;}
+table.portalTable tbody, tr, td { padding:5px; }
 
 
 /*

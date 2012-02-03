@@ -7,6 +7,7 @@ task :cron => :environment do
   #end
   
   puts "Checking for Topics to restart."
-  Topic.check_for_restart
+  result = Topic.new.check_for_restart
+  puts "Did it work? " + result.to_s
   puts "Done with Topics."
 end
