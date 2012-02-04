@@ -69,6 +69,7 @@ class TopicGroup < ActiveRecord::Base
         below_goal << iteration.consensus
         above_goal << nil
       else
+        below_goal << nil
         above_goal << iteration.consensus
       end
     end
@@ -77,7 +78,7 @@ class TopicGroup < ActiveRecord::Base
     
     x_axis = self.iterations.map { |a| a.num.to_s }
     y_axis = [0, 10, 20, 30, 40, 50, 60, 70, 80, 90, 100]
-    bar_chart = Gchart.bar(:title => "Consensus Levels",
+    bar_chart = Gchart.bar( :title => "Consensus Levels",
                             :title_alignment => :left,
                             :title_size => 15,
                             :data => consensus_data, 
