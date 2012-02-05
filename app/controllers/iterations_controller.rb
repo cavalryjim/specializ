@@ -65,7 +65,7 @@ class IterationsController < ApplicationController
     
     gflash :success => 'Iteration closed.' if @iteration.close
     respond_with(@iteration) do |format|
-      format.html { redirect_to topic_group_iteration_url(@topic_group, @iteration)+'#tabs-4' }
+      format.html { redirect_to topic_group_iteration_url(@topic_group, @iteration) }
     end
   end
   
@@ -80,7 +80,7 @@ class IterationsController < ApplicationController
     gflash :success => 'Iteration started.' if new_iteration
     
     respond_to do |format|
-      format.html { redirect_to topic_group_iteration_url(topic_group, new_iteration)+'#tabs-4' }
+      format.html { redirect_to topic_group_iteration_url(topic_group, new_iteration) }
     end
   end
  

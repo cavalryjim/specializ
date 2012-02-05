@@ -48,7 +48,7 @@ class ElementsController < ApplicationController
       if @element.save  
         if @element.add_to_iteration(@iteration.id, true, true)
           gflash :success => "Element created."
-          format.html { redirect_to topic_group_iteration_url(@topic_group, @iteration)+'#tabs-2' }
+          format.html { redirect_to topic_group_iteration_url(@topic_group, @iteration) }
           format.xml  { render :xml => @element, :status => :created, :location => @element }
         else
           @element.destroy #JDavis: I do not want a rogue element not assigned to an iteration.

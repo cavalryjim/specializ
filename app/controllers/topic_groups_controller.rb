@@ -70,7 +70,7 @@ class TopicGroupsController < ApplicationController
 
     gflash :notice => 'Topic Group updated.' if @topic_group.update_attributes(params[:topic_group])
     respond_with(@topic_group) do |format|
-      format.html { redirect_to edit_topic_path(@topic_group.topic_id)+'#tabs-4' }
+      format.html { redirect_to edit_topic_path(@topic_group.topic_id) }
     end
   end
 

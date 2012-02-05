@@ -94,12 +94,12 @@ class GroupingsController < ApplicationController
     @grouping = Grouping.find(params[:grouping_id])
     @grouping.users.delete(User.find(params[:user_id]))
     gflash :success => "User removed."
-    redirect_to edit_grouping_path(@grouping)+'#tabs-2'
+    redirect_to edit_grouping_path(@grouping)
   end
   
   def new_user
     @grouping = Grouping.find(params[:id])
-    #redirect_to edit_grouping_path(@grouping)+'#tabs-2', :notice => 'User successfully added to group.'
+    #redirect_to edit_grouping_path(@grouping), :notice => 'User successfully added to group.'
   end
   
   def add_user
@@ -116,7 +116,7 @@ class GroupingsController < ApplicationController
       end
     end
     gflash :success => new_notice
-    redirect_to edit_grouping_path(@grouping)+'#tabs-2'
+    redirect_to edit_grouping_path(@grouping)
   end
   
   def import_groups

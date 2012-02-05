@@ -112,7 +112,7 @@ class TopicsController < ApplicationController
     
     gflash :success => new_notice
     
-    redirect_to edit_topic_path(@topic)+"#tabs-3"
+    redirect_to edit_topic_path(@topic)
   end
   
 end

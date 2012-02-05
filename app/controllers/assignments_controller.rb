@@ -58,7 +58,7 @@ class AssignmentsController < ApplicationController
       if @assignment.save
         user.notify_assignment(topic_group)
         gflash :success => "User assigned."
-        format.html { redirect_to edit_topic_path(@topic)+"#tabs-3" }
+        format.html { redirect_to edit_topic_path(@topic) }
         format.xml  { render :xml => @assignment, :status => :created, :location => @assignment }
       else
         format.html { render :action => "new" }
@@ -76,7 +76,7 @@ class AssignmentsController < ApplicationController
     respond_to do |format|
       if @assignment.update_attributes(params[:assignment])
         gflash :success => "Assignement updated."
-        format.html { redirect_to edit_topic_path(@topic)+"#tabs-3" }
+        format.html { redirect_to edit_topic_path(@topic) }
         format.xml  { head :ok }
       else
         format.html { render :action => "edit" }
@@ -93,7 +93,7 @@ class AssignmentsController < ApplicationController
     gflash :success => "User removed." if @assignment.destroy
 
     respond_to do |format|
-      format.html { redirect_to edit_topic_path(@topic)+"#tabs-3" }
+      format.html { redirect_to edit_topic_path(@topic) }
       format.xml  { head :ok }
     end
   end
