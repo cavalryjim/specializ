@@ -115,10 +115,15 @@ class UsersController < ApplicationController
   def rate_elements
     @iteration = Iteration.find(params[:iteration_id])
     @topic_group = TopicGroup.find(@iteration.topic_group_id)
-    
     resubmit = params[:resubmit]
-    current_user.rate_elements(@iteration.id, resubmit, params[:new], params[:rating])
-    gflash :success => "List submitted."
+    
+    if @iteration.active
+      current_user.rate_elements(@iteration.id, resubmit, params[:new], params[:rating])
+      gflash :success => "List submitted."
+    else
+      gflash :notice => "Iteration is closed."
+    end
+      
     redirect_to topic_group_iteration_url(@topic_group, @iteration)
   end
     
