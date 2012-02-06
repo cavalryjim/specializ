@@ -8,32 +8,24 @@
   <%= f.input :name %>
   <%= f.input :description %>
 
-  <div class="field">
+  
 	<%= f.label 'Participating Groups: ' %>
 	<%= select_tag(:groupings, options_for_select(nested_set_options(current_user.root_grouping) {|i| "#{' -' * i.level} #{i.name}" }, 
 			:selected => @selected_groups ), { :multiple => true } ) %>
-  </div>
-  <div class="field">
+ 
+  
+  <%= f.input :status, :collection => [ 'Open', 'Closed', 'Archived' ] %>
+
+  
     <%= f.label :status %>
     <%= f.select(:status, [['Open', 1], ['Closed', 2], ['Archived', 3]])%>
-  </div>
-  <div class="field">
-    <%= f.label :goal %>
-    <%= f.text_field :goal, :size => 5 %>
-  </div>
-  <div class="field">
-    <%= f.label :update_frequency %>
-    <%= f.text_field :update_frequency, :size => 5 %> days
-  </div>
-  <div class="field">
-    <%= f.label :due_days %>
-    <%= f.text_field :due_days, :size => 5 %> days
-  </div>
-  <%= f.input :opt_out %>
   
-  <div class="actions">
-    <%= f.submit %>
-  </div>
+  <%= f.input :goal %>
+  <%= f.input :update_frequency %> days
+  <%= f.input :due_days %> days
+  <%= f.input :opt_out %>
+  <%= f.button :submit %>
+
 <% end %>
 
 
