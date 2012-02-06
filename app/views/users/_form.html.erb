@@ -8,33 +8,17 @@
   <%= f.input :last_name %>
   <%= f.input :avatar %>
   <%= f.input :email %>
-<!--
-  <div>
-	<%= f.label :avatar %>
-	<%= f.file_field :avatar %>
-  </div>
-  <div class="field">
-	<%= f.label 'Assigned Groups: ' %>
-	<%= select_tag(:user_groupings, options_for_select(nested_set_options(current_user.root_grouping) {|i| "#{' -' * i.level} #{i.name}" }, 
-			:selected => @assigned_groups ), { :multiple => true } ) %>
-  </div>
-  <div class="field">
-	<%= f.label 'Assigned Roles: ' %>
-	<%= select_tag(:user_roles, options_from_collection_for_select(current_user.available_roles, 'id', 'name', 
-			:selected => @assigned_roles ), { :multiple => true } ) %>
-  </div>
--->
  
  <% if (can? :manage, @user) && @return_path != me_path %>
 	<%= f.association :groupings, :label => 'Assigned groups', 
-		:collection => nested_set_options(current_user.root_grouping) {|i| "#{' -' * i.level} #{i.name}" }, :multiple => true %>
-	<%= f.association :roles, :label => 'Assigned roles', :multiple => true %>
+		:collection => nested_set_options(current_user.root_grouping) {|i| "#{' -' * i.level} #{i.name}" }, 
+		:multiple => true, :required => true %>
+	<%= f.association :roles, :required => true %>
 	<%= f.input :active %>
  <% end %>
 
-  
   <%= f.hidden_field :company_id, :value => current_user.company_id %>
   <%= hidden_field_tag 'return_path', @return_path %>
   <%= f.button :submit %>
- 
+
 <% end %>

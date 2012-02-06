@@ -224,6 +224,9 @@ div.field, div.actions {
 /* Authentication */ 
 .authentications {
   margin-bottom: 30px;
+  margin-left: 100px;
+  margin-top: 10px;
+  
 }
 
 .authentication {
@@ -330,6 +333,11 @@ div.notice {
 	padding: 5px;
 	border: solid 1px #999;
 	height: 700px;
+}
+
+.simple_form {
+	border: solid 1px #999;
+	padding: 5px;
 }
 
 

@@ -26,8 +26,9 @@ class UsersController < ApplicationController
   def new
     #@user = User.new
     @user.active = true
-    @assigned_groups = current_user.root_grouping.id
-    @assigned_roles = []
+    @user.role_ids = [1]
+    @user.groupings << current_user.root_grouping
+    #@assigned_roles = []
 
     respond_to do |format|
       format.html # new.html.erb
@@ -40,8 +41,8 @@ class UsersController < ApplicationController
     #@user = User.find(params[:id])
     @title = @user
     @authentications = current_user.authentications if current_user == @user
-    @assigned_groups = @user.grouping_ids
-    @assigned_roles = @user.role_ids
+    #@assigned_groups = @user.grouping_ids
+    #@assigned_roles = @user.role_ids
     
     if params[:return] == 'me'
       @return_path = me_path
@@ -80,21 +81,19 @@ class UsersController < ApplicationController
   # PUT /users/1
   # PUT /users/1.xml
   def update
-    #@user = User.find(params[:id])
     return_path = params[:return_path]
-    #gflash :notice => return_path
-    #return_path = users_path
     
-    if params.has_key?(:user_groupings) && return_path == users_path && @user.update_attributes(params[:user]) 
-      @user.update_roles(params[:user_roles]) if params[:user_roles]
-      @user.update_groupings(params[:user_groupings])
+    if params.has_key?(:multiselect_user_grouping_ids) && (return_path.to_s == users_path.to_s) && @user.update_attributes(params[:user]) 
+      @user.update_roles(params[:user][:role_ids]) if params.has_key?(:multiselect_user_role_ids)
+      @user.update_groupings(params[:user][:grouping_ids])
       gflash :success => "Profile updated."
       redirect_to users_path
-    elsif return_path != users_path && @user.update_attributes(params[:user])
+    elsif (return_path.to_s != users_path.to_s) && @user.update_attributes(params[:user])
       gflash :success => "Profile updated."
       redirect_to :back
     else
-      @user.errors[:base] << "You must assign the user to one or more groups." unless params.has_key?(:user_groupings)
+      @user.errors[:base] << "You must assign the user to one or more groups." unless params[:user][:grouping_ids]
+      @return_path = return_path
       respond_with(@user)
     end
     

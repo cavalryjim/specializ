@@ -1,12 +1,12 @@
-<h3>Editing user</h3>
+<h3>Editing: <%= @user %></h3>
 <%= image_tag @user.avatar_url if @user.avatar? %>
 
 <%= render 'form' %>
 
 <% if @authentications %>
   <% unless @authentications.empty? %>
-    <p><strong>These login options are available for this account:</strong></p>
     <div class="authentications">
+    <p><strong>These login options are available for this account:</strong></p>
       <% for authentication in @authentications %>
         <div class="authentication">
           <%= image_tag "#{authentication.provider}_32.png", :size => "32x32" %>
@@ -21,6 +21,7 @@
 <% end %>
 
 <% if @user == current_user %>
+  <div class="authentications">
 	<p><strong>Add a service to sign in with:</strong></p>
 	<a href="/auth/twitter" class="auth_provider">
 	  <%= image_tag "twitter_64.png", :size => "64x64", :alt => "Twitter" %>
@@ -34,6 +35,7 @@
 	  <%= image_tag "facebook_64.png", :size => "64x64", :alt => "Facebook" %>
 	  Facebook
 	</a>
+  </div>
 <% end %>
 <div class="clear"></div>
 
