@@ -1,48 +1,40 @@
-<%= form_for @user, :html => {:multipart => true} do |f| %>
+<%= simple_form_for @user, :html => {:multipart => true} do |f| %>
   <% if @user.errors.any? %>
       <% @user.errors.full_messages.each do |msg| %>
 	  	<%= js add_gritter( msg, :title => "Error", :image => :error, :sticky => true ) %>
       <% end %>
   <% end %>
-
-  <div class="field">
-    <%= f.label :first_name %>
-    <%= f.text_field :first_name %>
-  </div>
-  <div class="field">
-    <%= f.label :last_name %>
-    <%= f.text_field :last_name %>
-  </div>
+  <%= f.input :first_name %>
+  <%= f.input :last_name %>
+  <%= f.input :avatar %>
+  <%= f.input :email %>
+<!--
   <div>
 	<%= f.label :avatar %>
 	<%= f.file_field :avatar %>
   </div>
   <div class="field">
-    <%= f.label :email %>
-    <%= f.text_field :email %>
-  </div>
- <% if (can? :manage, @user) && @return_path != me_path %>
-
-  <div class="field">
 	<%= f.label 'Assigned Groups: ' %>
 	<%= select_tag(:user_groupings, options_for_select(nested_set_options(current_user.root_grouping) {|i| "#{' -' * i.level} #{i.name}" }, 
 			:selected => @assigned_groups ), { :multiple => true } ) %>
   </div>
-
   <div class="field">
 	<%= f.label 'Assigned Roles: ' %>
 	<%= select_tag(:user_roles, options_from_collection_for_select(current_user.available_roles, 'id', 'name', 
 			:selected => @assigned_roles ), { :multiple => true } ) %>
   </div>
-  <div class="field">
-    <%= f.check_box :active %>
-    <%= f.label :active %>
-  </div>
+-->
+ 
+ <% if (can? :manage, @user) && @return_path != me_path %>
+	<%= f.association :groupings, :label => 'Assigned groups', 
+		:collection => nested_set_options(current_user.root_grouping) {|i| "#{' -' * i.level} #{i.name}" }, :multiple => true %>
+	<%= f.association :roles, :label => 'Assigned roles', :multiple => true %>
+	<%= f.input :active %>
  <% end %>
 
-  <div class="actions">
-    <%= f.hidden_field :company_id, :value => current_user.company_id %>
-	<%= hidden_field_tag 'return_path', @return_path %>
-    <%= f.submit %>
-  </div>
+  
+  <%= f.hidden_field :company_id, :value => current_user.company_id %>
+  <%= hidden_field_tag 'return_path', @return_path %>
+  <%= f.button :submit %>
+ 
 <% end %>

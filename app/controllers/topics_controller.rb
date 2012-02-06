@@ -29,7 +29,7 @@ class TopicsController < ApplicationController
     @topics = Topic.where(:company_id => current_user.company_id)
     @topic = Topic.new
     @assignments = []
-    @selected_groups = []
+    #@selected_groups = []
     @title = 'Manager'
 
     respond_with(@topic)
@@ -40,7 +40,7 @@ class TopicsController < ApplicationController
     @topic = Topic.find(params[:id])
     @topics = Topic.where(:company_id => current_user.company_id)
     @assignments = Assignment.where(:topic_group_id => TopicGroup.where(:topic_id => @topic.id))
-    @selected_groups = TopicGroup.where(:topic_id => @topic.id).map(&:grouping_id)
+    #@selected_groups = TopicGroup.where(:topic_id => @topic.id).map(&:grouping_id)
     @title = @topic
     
     respond_with(@topic)
@@ -59,7 +59,7 @@ class TopicsController < ApplicationController
       @topic.errors[:base] << "You must select one or more participating groups." unless params.has_key?(:groupings)
       @topics = Topic.where(:company_id => current_user.company_id)
       @assignments = []
-      @selected_groups = []
+      #@selected_groups = []
     end
     
     respond_with(@topic)
@@ -70,14 +70,14 @@ class TopicsController < ApplicationController
   def update
     @topic = Topic.find(params[:id])
     #groupings = []
-    if params.has_key?(:groupings) && @topic.update_attributes(params[:topic])  
-      @topic.update_groupings(params[:groupings])
+    if params[:topic][:grouping_ids] && @topic.update_attributes(params[:topic])  
+      @topic.update_groupings(params[:topic][:grouping_ids])
       gflash :success => 'Topic updated.'
     else
-      @topic.errors[:base] << "You must select one or more participating groups." unless params.has_key?(:groupings)
+      @topic.errors[:base] << "You must select one or more participating groups." unless params[:topic][:grouping_ids]
       @topics = Topic.where(:company_id => current_user.company_id)
       @assignments = Assignment.where(:topic_group_id => TopicGroup.where(:topic_id => @topic.id))
-      @selected_groups = TopicGroup.where(:topic_id => @topic.id).map(&:grouping_id)
+      #@selected_groups = TopicGroup.where(:topic_id => @topic.id).map(&:grouping_id)
     end  
     
     respond_with(@topic)

@@ -6,24 +6,15 @@
   <% end %>
 
   <%= f.input :name %>
-  <%= f.input :description %>
-
-  
-	<%= f.label 'Participating Groups: ' %>
-	<%= select_tag(:groupings, options_for_select(nested_set_options(current_user.root_grouping) {|i| "#{' -' * i.level} #{i.name}" }, 
-			:selected => @selected_groups ), { :multiple => true } ) %>
- 
-  
-  <%= f.input :status, :collection => [ 'Open', 'Closed', 'Archived' ] %>
-
-  
-    <%= f.label :status %>
-    <%= f.select(:status, [['Open', 1], ['Closed', 2], ['Archived', 3]])%>
-  
-  <%= f.input :goal %>
-  <%= f.input :update_frequency %> days
-  <%= f.input :due_days %> days
-  <%= f.input :opt_out %>
+  <%= f.input :description, :as => :text %>
+  <%= f.association :groupings, :label => 'Participating groups', 
+		:collection => nested_set_options(current_user.root_grouping) {|i| "#{' -' * i.level} #{i.name}" },
+		:multiple => true, :required => true %>
+  <%= f.input :status, :collection => [['Open', 1], ['Closed', 2], ['Archived', 3]] %>
+  <%= f.input :goal, :label => 'Consensus goal', :required => true, :input_html => { :size => 4 } %>
+  <%= f.input :update_frequency, :input_html => { :size => 4 } %>
+  <%= f.input :due_days, :input_html => { :size => 4 } %> 
+  <%= f.input :opt_out, :label => 'Allow participants to opt out?' %>
   <%= f.button :submit %>
 
 <% end %>

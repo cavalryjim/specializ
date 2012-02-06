@@ -3,7 +3,7 @@
 <%= @start %>
 <%= @stop %>
 <% @events.each do |event| %>
-{"title":"", "start":"<%= event.due_date %>"}<% if event != @events.last %>,<% end %>
+{"title":"Due", "start":"<%= event.due_date %>"}<% if event != @events.last %>,<% end %>
 <% end %>
 ]
 

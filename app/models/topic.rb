@@ -30,6 +30,7 @@ class Topic < ActiveRecord::Base
   validates :update_frequency, :numericality => { :only_integer => true, :greater_than => 0 }, :if => :has_update_frequency?
   validates :due_days, :numericality => { :only_integer => true, :greater_than => 0 }, :if => :has_due_days?
   
+  
   def to_param
     "#{id}-#{name.parameterize}"
   end

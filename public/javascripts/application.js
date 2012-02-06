@@ -58,20 +58,12 @@ $(function() {
 	var hCalendar = $('#calendar').fullCalendar({
 		events: 'me/events',
 		
+		eventClick: function(event){
+			fnEvents(event.start);
+		},
+		
 		dayClick: function(date) {
-			d = date.getDate();
-			m = date.getMonth()+1;
-			y = date.getFullYear();
-			$.ajax({
-				url: "/me/event_list/"+y+"-"+m+"-"+d,
-				context: document.body,
-				dataType: "html",
-				success: function(data){
-					$('#events_div').html(data);
-					$("#events_panel").attr("title", "Events: "+y+"-"+m+"-"+d);
-					$("#events_panel").collapsiblePanel();
-				}
-			});
+			fnEvents(date);
 		}
 	
 	});
@@ -86,10 +78,25 @@ $(function() {
 	}); 
 
 	//$( "#grouping" ).multiselect({header: false}); // select widget in the manager module's configuration tab
-	$( "#topic_groupings").multiselect({header: "Select groups that will participate"}).multiselectfilter(); // select widget in the manager module's setup tab
-	$( "#groupings").multiselect({header: "Select groups that will participate"}).multiselectfilter();
-	$( "#user_groupings").multiselect({header: "Assign user to groups"}).multiselectfilter();
-	$( "#user_roles").multiselect({header: "Assign roles to user"});
+	//$( "#topic_groupings").multiselect({header: "Select groups that will participate"}).multiselectfilter(); // select widget in the manager module's setup tab
+	$( "#topic_grouping_ids").multiselect({
+		header: "Select groups that will participate",
+		minWidth: 300,
+		position: {
+		      my: 'center',
+		      at: 'center'
+		   }
+	}).multiselectfilter(); // select widget in the manager module's setup tab
+	
+	$( "#groupings").multiselect({
+		header: "Select groups that will participate",
+		minWidth: 300
+	}).multiselectfilter();
+	$( "#user_grouping_ids").multiselect({
+		header: "Assign user to groups",
+		minWidth: 300
+	}).multiselectfilter();
+	$( "#user_role_ids").multiselect({header: "Assign roles to user"});
 	
 	$( "#staffing_table" ).dataTable({ // datatable in the manager module's staffing tab
 		"bJQueryUI": true,
@@ -204,6 +211,22 @@ function fnGetSelected( oTableLocal )
         }
     }
     return aReturn;
+}
+
+function fnEvents(date) {
+	d = date.getDate();
+	m = date.getMonth()+1;
+	y = date.getFullYear();
+	$.ajax({
+		url: "/me/event_list/"+y+"-"+m+"-"+d,
+		context: document.body,
+		dataType: "html",
+		success: function(data){
+			$('#events_div').html(data);
+			$("#events_panel").attr("title", "Events: "+y+"-"+m+"-"+d);
+			$("#events_panel").collapsiblePanel();
+		}
+	});
 }
 
 
