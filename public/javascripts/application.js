@@ -69,14 +69,10 @@ $(function() {
 	});
 	
 	bAccordion = $( "#accordion" ).accordion({ fillSpace: true }); // accordion on the _browser partial
-	mTabs = $( "#manager_tabs" ).tabs(); // tabs used in the manager module
-	hrTabs = $( "#hr_tabs" ).tabs(); // tabs used in the HR module
-	$( "#me_tabs" ).tabs({  // tabs used in the Me module
-		cookie: {	
-				expires: 1  // store cookie for a day, without, it would be a session cookie
-			}
-	}); 
-
+	mTabs = $( "#manager_tabs" ).tabs({ cookie:{ expires:1 }}); // tabs used in the manager module
+	hrTabs = $( "#hr_tabs" ).tabs({ cookie:{ expires:1 }}); // tabs used in the HR module
+	$( "#me_tabs" ).tabs({ cookie:{ expires: 1 }});   // tabs used in the Me module
+		
 	//$( "#grouping" ).multiselect({header: false}); // select widget in the manager module's configuration tab
 	//$( "#topic_groupings").multiselect({header: "Select groups that will participate"}).multiselectfilter(); // select widget in the manager module's setup tab
 	$( "#topic_grouping_ids").multiselect({
@@ -99,6 +95,13 @@ $(function() {
 	$( "#user_role_ids").multiselect({header: "Assign roles to user"});
 	
 	$( "#staffing_table" ).dataTable({ // datatable in the manager module's staffing tab
+		"aoColumns": [
+		              { "sWidth": "25%" },
+		              { "sWidth": "50%" },
+		              { "sWidth": "10%" },
+		              { "sWidth": "10%" }
+		          ],
+		"bAutoWidth": false,
 		"bJQueryUI": true,
         "sPaginationType": "full_numbers"
 	}); 
@@ -114,6 +117,7 @@ $(function() {
 	}); 
 	
 	$( "#topic_groups_table" ).dataTable({ // datatable listing the topic_groups belonging to a topic
+		"bAutoWidth": true,
 		"bJQueryUI": true,
         "sPaginationType": "full_numbers"
 	}); 
