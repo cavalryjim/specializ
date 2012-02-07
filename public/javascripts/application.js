@@ -195,9 +195,7 @@ $(function() {
 		"bAutoWidth": false,
 		"bJQueryUI": true,
         "sPaginationType": "full_numbers"
-        
     });
-	
 
 });
 
