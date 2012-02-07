@@ -1,23 +1,12 @@
-<%= form_for(@topic_group) do |f| %>
+<%= simple_form_for(@topic_group) do |f| %>
   <% if @topic_group.errors.any? %>
     <% @topic_group.errors.full_messages.each do |msg| %>
 	  <%= js add_gritter( msg, :image => :error, :sticky => true ) %>
     <% end %>
   <% end %>
 
-  <div class="field">
-    <%= f.label :goal %><br />
-    <%= f.text_field :goal %>
-  </div>
-  <div class="field">
-    <%= f.label :active %><br />
-    <%= f.check_box :active %>
-  </div>
-  <div class="field">
-    <%= f.label :update_frequency %><br />
-    <%= f.text_field :update_frequency %>
-  </div>
-  <div class="actions">
-    <%= f.submit %>
-  </div>
+  <%= f.input :goal, :input_html => { :size => 4 } %>
+  <%= f.input :active %>
+  <%= f.input :update_frequency, :input_html => { :size => 4 } %>
+  <%= f.button :submit %>
 <% end %>

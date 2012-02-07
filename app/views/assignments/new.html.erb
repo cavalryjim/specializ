@@ -1,6 +1,9 @@
-<h1>New assignment</h1>
+<h3>New assignment</h3>
 
-<%= autocomplete_field_tag 'user', '', autocomplete_user_last_name_topic_assignments_path, :id_element => '#assignment_user_id' %> Start typing the user's last name
+<div style="padding:5px; margin-left:170px;">
+	<%= autocomplete_field_tag 'user', '', autocomplete_user_last_name_topic_assignments_path, 
+		:id_element => '#assignment_user_id' %> Start typing the user's last name
+</div>
 
 <%= render 'form' %>
 
