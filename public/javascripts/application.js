@@ -8,7 +8,7 @@ var giRedraw = false;
 
 $(function() {
 	$( "#app_container" ).show(); //JDavis: this keeps from flashing unformatted content (fouc).
-
+	
 	$(".best_in_place").best_in_place();
 	
 	$('#navigation_horiz').naviDropDown({
@@ -108,8 +108,8 @@ $(function() {
 	
 	$( "#user_table" ).dataTable({ // datatable in the admin module
 		"bJQueryUI": true,
-        "sPaginationType": "full_numbers"
-	}).show(); 
+		"sPaginationType": "full_numbers"
+	});
 	
 	$( "#member_table" ).dataTable({ // datatable listing the other user participating in a topic
 		"bJQueryUI": true,
