@@ -68,6 +68,8 @@ $(function() {
 	
 	});
 	
+	$( "#topic_group_datepicker").datepicker({ dateFormat: 'yy-mm-dd' });
+	
 	bAccordion = $( "#accordion" ).accordion({ fillSpace: true }); // accordion on the _browser partial
 	mTabs = $( "#manager_tabs" ).tabs({ cookie:{ expires:1 }}); // tabs used in the manager module
 	hrTabs = $( "#hr_tabs" ).tabs({ cookie:{ expires:1 }}); // tabs used in the HR module

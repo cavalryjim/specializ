@@ -13,10 +13,11 @@
 #  updated_at           :datetime
 #  elements_spreadsheet :string(255)
 #  due_date             :date
+#  due_days             :integer(4)
 #
 
 class TopicGroup < ActiveRecord::Base
-  attr_accessible :name, :goal, :active, :update_frequency, 
+  attr_accessible :name, :goal, :active, :update_frequency, :due_date, :due_days,
                   :topic_id, :grouping_id, :elements_spreadsheet
                   
   mount_uploader :elements_spreadsheet, ElementsSpreadsheetUploader
@@ -42,6 +43,7 @@ class TopicGroup < ActiveRecord::Base
   validates :grouping_id, :presence => true
   
   after_create :create_first_iteration
+  #after_create :set_due_date
   accepts_nested_attributes_for :iterations
   
   def to_param
@@ -126,6 +128,16 @@ class TopicGroup < ActiveRecord::Base
     self.participating_users.each do |user|
       user.notify_iteration_start(self)
     end
+  end
+  
+  def set_due_date
+    if self.due_days.present?
+      self.due_date = Date.today + self.due_days 
+      self.save
+      return self.due_date
+    end
+    
+    return false
   end
   
   private

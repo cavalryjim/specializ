@@ -1,25 +1,18 @@
-<h2>Changing password for: <%= resource %></h2>
+<h3>Changing password for: <%= resource %></h3>
 
-<%= form_for(resource, :as => resource_name, :url => registration_path(resource_name), :html => { :method => :put }) do |f| %>
+<%= simple_form_for(resource, :as => resource_name, :url => registration_path(resource_name), :html => { :method => :put }) do |f| %>
   <% if resource.errors.any? %>
 	<% resource.errors.full_messages.each do |msg| %>
 	   <%= js add_gritter( msg, :image => :error, :sticky => true ) %>
 	<% end %>
   <% end %>
+  
+  <%= f.input :password %>
+  <%= f.input :password_confirmation %>
+  <%= f.input :current_password, :hint => 'we need your current password to confirm your changes' %>
+  <%= f.hidden_field :email %>
+  <%= f.button :submit %>
 
-  <div><%= f.label :email %><br />
-  <%= f.email_field :email, :disabled => true %></div>
-
-  <div><%= f.label :password %> <br />
-  <%= f.password_field :password %></div>
-
-  <div><%= f.label :password_confirmation %><br />
-  <%= f.password_field :password_confirmation %></div>
-
-  <div><%= f.label :current_password %> <i>(we need your current password to confirm your changes)</i><br />
-  <%= f.password_field :current_password %></div>
-
-  <div><%= f.submit "Update" %></div>
 <% end %>
 
 

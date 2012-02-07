@@ -13,6 +13,7 @@
 #  updated_at           :datetime
 #  elements_spreadsheet :string(255)
 #  due_date             :date
+#  due_days             :integer(4)
 #
 
 require 'spec_helper'

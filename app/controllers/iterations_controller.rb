@@ -74,8 +74,10 @@ class IterationsController < ApplicationController
     topic_group = TopicGroup.find(params[:topic_group_id])
     last_iteration = topic_group.iterations.last
     
+    # JDavis: should move this to the iteration model
     new_iteration = last_iteration.user_lists.size > 0 ? last_iteration.start_new_iteration : last_iteration.reopen
-    topic_group.notify_users_new_iteration
+    topic_group.notify_users_new_iteration  
+    topic_group.set_due_date
     
     gflash :success => 'Iteration started.' if new_iteration
     

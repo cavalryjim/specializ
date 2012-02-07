@@ -79,6 +79,7 @@ class Iteration < ActiveRecord::Base
       new_iteration_list.new_element = false
       new_iteration_list.save
     end
+    
     return new_iteration
   end
   
