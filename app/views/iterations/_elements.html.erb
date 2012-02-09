@@ -21,8 +21,11 @@
 	  <tr>
 		<th>Name</th>
 	    <th>Rating</th>
+<!-- jdavis: trying something 
 		<th>Remove</th> 
+-->
 		<th>hidden</th>
+
 		
 	  </tr>
 	 </thead>
@@ -40,35 +43,42 @@
 			<td>
 			  <%= my_suggestion(@iteration.active) %>
 			</td>
-
+<!-- jdavis: trying something 
 			<td><%= link_to 'Delete', topic_group_iteration_element_path(@topic_group, @iteration, element), :confirm => 'Are you sure?', :method => :delete%></td>
 
+-->
 			<td><%= element.name.upcase %></td>
-		  </tr>
+		 </tr>
+
 		<% end %>
 		
 		<% @elements.each do |element| %>
 		  <tr>
 		    <td>
+				
 			  <%= best_in_place_if ((can? :manage, @topic_group) && @iteration.last?), element, :name, :type => :input, :html_attrs => { :size => 60 } %>				
 			</td>
 			<% score = element.score(current_user.id ,@iteration.id) %>
 		
-			<td id="rating">	
+			<td id="rating" >
+			  
 				<%= radio_button_tag row_name(element.id), 1, score == 1, options = { :class => "jdstar", :disabled => !@iteration.active } %>
 				<%= radio_button_tag row_name(element.id), 2, score == 2, options = { :class => "jdstar", :disabled => !@iteration.active } %>
 				<%= radio_button_tag row_name(element.id), 3, score == 3, options = { :class => "jdstar", :disabled => !@iteration.active } %>
 				<%= radio_button_tag row_name(element.id), 4, score == 4, options = { :class => "jdstar", :disabled => !@iteration.active } %>
 				<%= radio_button_tag row_name(element.id), 5, score == 5, options = { :class => "jdstar", :disabled => !@iteration.active } %>
+			 
 			</td>
-	
+<!-- jdavis: trying something 
 		    <td><%= link_to 'Delete', topic_group_iteration_element_path(@topic_group, @iteration, element), :confirm => 'Are you sure?', :method => :delete%></td>
 			
+-->
 			<td><%= element.name.upcase %></td>
 		  </tr>
 		<% end %>
 	 </tbody>
 	</table>
+	<div id="pager_rating_table"></div>
   </div>
   
   <%= hidden_field_tag(:iteration_id, @iteration.id) %>

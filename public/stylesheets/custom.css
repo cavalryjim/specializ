@@ -335,6 +335,13 @@ div.notice {
 	height: 700px;
 }
 
+#rating input.radio {
+	display: inline;
+}
+
+  
+}
+
 .simple_form {
 	border: solid 1px #999;
 	padding: 5px;
