@@ -3,7 +3,7 @@ ActionMailer::Base.smtp_settings = {
   :port                 => 587,
   :domain               => "peoplenetz.com",
   :user_name            => "jdavis@peoplenetz.com",
-  :password             => "&OE#omma1194",
+  :password             => "&OE#omma1973",
   :authentication       => :plain,
   :enable_starttls_auto => true
 }
