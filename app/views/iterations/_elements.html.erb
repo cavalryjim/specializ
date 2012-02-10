@@ -34,6 +34,9 @@
 		<% @suggested_elements.each do |element| %>
 	      <tr>
 			<td>
+			  <% if element.attributes %>
+			    <img src="details_open.png" />
+			  <% end %>
 			  <%= best_in_place_if (@iteration.active), element, :name, :type => :input %>
 			  <% if @iteration.last? %>
 				<%= link_to '(delete?)', topic_group_iteration_element_path(@topic_group, @iteration, element), :confirm => 'Are you sure?', :method => :delete%>
@@ -49,6 +52,19 @@
 -->
 			<td><%= element.name.upcase %></td>
 		 </tr>
+		  <% if element.attributes %>
+		   <tr class="sub_table" >
+		 	 <table>
+		 	   <% element.attributes.each do |attribute| %>
+		 	    <tr>
+			 	  	<td>
+			 	  		<%= attribute.name %>
+			 	  	</td>
+		 	    </tr> 	
+		 	<% end %>
+		 	 </table>
+		   </tr>
+		  <% end %>
 
 		<% end %>
 		
