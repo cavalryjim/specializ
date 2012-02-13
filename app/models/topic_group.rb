@@ -112,14 +112,22 @@ class TopicGroup < ActiveRecord::Base
     #book = Spreadsheet.open '../../public/uploads/topic_group/elements_spreadsheet/1/spz_test_upload.xls'
     sheet1 = book.worksheet 0
     sheet1.each 1 do |row|  #JDavis: skipping the first row of the sheet.
-      e = Element.new
-      e.name = row[0]
-      e.current = true
-      e.created_by = current_user_id
-      if e.save 
-        if !e.add_to_iteration(self.iterations.last.id, false, true)
-          e.destroy #JDavis: no orphan elements.
+      if row.length == 1
+        e = Element.new
+        e.name = row[0]
+        e.current = true
+        e.created_by = current_user_id
+        if e.save 
+          if !e.add_to_iteration(self.iterations.last.id, false, true)
+            e.destroy #JDavis: no orphan elements.
+          end
         end
+      else
+        a = ElementAttribute.new
+        a.name = row[1]
+        a.input_type = row[2]
+        a.element_id = e.id
+        a.save
       end
     end 
   end

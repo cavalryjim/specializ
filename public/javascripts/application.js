@@ -159,6 +159,37 @@ $(function() {
 		minWidth: 200
 	});
 	
+	$('#rating_table img').live( 'click', function () {
+		var nTr = this.parentNode;
+		//alert(nTr);
+		//$('img', this.parentNode).attr( 'src', "details_close.png" );
+		//if ( div.innerDetails.is(':hidden')) {
+		//	alert('done!');
+		//}
+		if ($('div.innerDetails', nTr).is(':hidden')){
+			$('div.innerDetails', nTr).slideDown();
+			$('img', nTr).attr( 'src', "../../../images/details_close.png" );
+		} else {
+			$('div.innerDetails', nTr).slideUp();
+			$('img', nTr).attr( 'src', "../../../images/details_open.png" );
+		}
+		
+		/*
+		if ( i === -1 ) {
+			$('img', this).attr( 'src', sImageUrl+"details_close.png" );
+		    var nDetailsRow = oTable.fnOpen( nTr, fnFormatDetails(oTable, nTr), 'details' );
+		    $('div.innerDetails', nDetailsRow).slideDown();
+		    anOpen.push( nTr );
+		 }
+		 else {
+		   $('img', this).attr( 'src', sImageUrl+"details_open.png" );
+		   $('div.innerDetails', $(nTr).next()[0]).slideUp( function () {
+		     oTable.fnClose( nTr );
+		     anOpen.splice( i, 1 );
+		   } );
+		 }*/
+	} );
+	
 	
 	// JDavis: this function responds to the dropdown selection on the manager page and navigates to the select topic.
 	$('#topic_select').change(function() {

@@ -64,14 +64,16 @@
 			  
 			  <%= best_in_place_if ((can? :manage, @topic_group) && @iteration.last?), element, :name, :type => :input, :html_attrs => { :size => 60 } %>	
 
-			  <% if !element.element_attributes.empty? %>
+			  <% if element.has_attributes? %>
 			    <div class="innerDetails">
-				  <table>
-				 	<% element.element_attributes.each do |e_attribute| %>
+				  <table cellpadding="0" cellspacing="0" border="0" style="padding-left:50px;">
+				 	<% e_attributes(element).each do |e_attribute| %>
 				 	  <tr>
 					 	 <td>
 					 	 	<%= e_attribute.name %>
-					 	 </td>
+							<%= number_field_tag 'e_attribute[' + e_attribute.id.to_s + ']' %>
+							<%= e_attribute.input_type %>
+						 </td>
 				 	  </tr> 	
 				 	<% end %>
 				  </table>

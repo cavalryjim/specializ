@@ -19,4 +19,9 @@ module IterationsHelper
       'My suggestion'
     end
   end
+  
+  def e_attributes(element)
+    element.element_attributes
+  end
+  
 end

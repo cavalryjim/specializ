@@ -441,7 +441,16 @@ textarea {
 
 /* JDavis: this hides the element attributes and lets jQuery handle the display */
 div.innerDetails { 
-	display: none 
+	display: none;
+	background: #ccc;
+	border: 1px solid #999;
+	
+}
+
+div.innerDetails table tr td {
+	background-color: #ccc;
+	border: 1px solid #999;
+	text-align: right;
 }
 
 /* JDavis: this is styling for the container on the home page */
