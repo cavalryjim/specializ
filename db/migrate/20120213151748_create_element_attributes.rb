@@ -1,6 +1,6 @@
-class CreateAttributes < ActiveRecord::Migration
+class CreateElementAttributes < ActiveRecord::Migration
   def self.up
-    create_table :attributes do |t|
+    create_table :element_attributes do |t|
       t.string :name
       t.string :type
       t.integer :element_id
@@ -10,6 +10,6 @@ class CreateAttributes < ActiveRecord::Migration
   end
 
   def self.down
-    drop_table :attributes
+    drop_table :element_attributes
   end
 end

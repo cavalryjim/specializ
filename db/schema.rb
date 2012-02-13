@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120210203104) do
+ActiveRecord::Schema.define(:version => 20120213170319) do
 
   create_table "active_admin_comments", :force => true do |t|
     t.integer  "resource_id",   :null => false
@@ -54,14 +54,6 @@ ActiveRecord::Schema.define(:version => 20120210203104) do
     t.datetime "updated_at"
   end
 
-  create_table "attributes", :force => true do |t|
-    t.string   "name"
-    t.string   "type"
-    t.integer  "element_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
   create_table "authentications", :force => true do |t|
     t.integer  "user_id"
     t.string   "provider"
@@ -95,6 +87,14 @@ ActiveRecord::Schema.define(:version => 20120210203104) do
   end
 
   add_index "delayed_jobs", ["priority", "run_at"], :name => "delayed_jobs_priority"
+
+  create_table "element_attributes", :force => true do |t|
+    t.string   "name"
+    t.string   "input_type"
+    t.integer  "element_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "elements", :force => true do |t|
     t.string   "name"

@@ -439,6 +439,10 @@ textarea {
 	padding:5px;
 }
 
+/* JDavis: this hides the element attributes and lets jQuery handle the display */
+div.innerDetails { 
+	display: none 
+}
 
 /* JDavis: this is styling for the container on the home page */
 .collapsibleContainer {

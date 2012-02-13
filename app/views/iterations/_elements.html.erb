@@ -52,27 +52,31 @@
 -->
 			<td><%= element.name.upcase %></td>
 		 </tr>
-		  <% if element.attributes %>
-		   <tr class="sub_table" >
-		 	 <table>
-		 	   <% element.attributes.each do |attribute| %>
-		 	    <tr>
-			 	  	<td>
-			 	  		<%= attribute.name %>
-			 	  	</td>
-		 	    </tr> 	
-		 	<% end %>
-		 	 </table>
-		   </tr>
-		  <% end %>
 
 		<% end %>
 		
 		<% @elements.each do |element| %>
 		  <tr>
 		    <td>
-				
-			  <%= best_in_place_if ((can? :manage, @topic_group) && @iteration.last?), element, :name, :type => :input, :html_attrs => { :size => 60 } %>				
+			  <% if !element.element_attributes.empty? %>
+			    <%= image_tag 'details_open.png' %>
+			  <% end %>
+			  
+			  <%= best_in_place_if ((can? :manage, @topic_group) && @iteration.last?), element, :name, :type => :input, :html_attrs => { :size => 60 } %>	
+
+			  <% if !element.element_attributes.empty? %>
+			    <div class="innerDetails">
+				  <table>
+				 	<% element.element_attributes.each do |e_attribute| %>
+				 	  <tr>
+					 	 <td>
+					 	 	<%= e_attribute.name %>
+					 	 </td>
+				 	  </tr> 	
+				 	<% end %>
+				  </table>
+				</div>
+			  <% end %>			
 			</td>
 			<% score = element.score(current_user.id ,@iteration.id) %>
 		
@@ -90,7 +94,10 @@
 			
 -->
 			<td><%= element.name.upcase %></td>
+
+		  
 		  </tr>
+			
 		<% end %>
 	 </tbody>
 	</table>
