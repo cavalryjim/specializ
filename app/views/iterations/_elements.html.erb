@@ -71,7 +71,7 @@
 				 	  <tr>
 					 	 <td>
 					 	 	<%= e_attribute.name %>
-							<%= number_field_tag 'e_attribute[' + e_attribute.id.to_s + ']' %>
+							<%= number_field_tag 'e_attribute[' + e_attribute.id.to_s + ']', e_attribute.value(current_user.id) %>
 							<%= e_attribute.input_type %>
 						 </td>
 				 	  </tr> 	

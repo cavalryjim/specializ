@@ -12,6 +12,13 @@
 
 class ElementAttribute < ActiveRecord::Base
   belongs_to :element
+  has_many   :user_element_attribute_lists, :dependent => :destroy
+  has_many   :users, :through => :user_element_attribute_lists
   
   attr_accessible :name, :type, :element_id
+  
+  def value(user_id)
+    attr_value = UserElementAttributeList.find_by_element_attribute_id_and_user_id(self.id, user_id).value
+  end
+  
 end

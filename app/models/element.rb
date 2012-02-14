@@ -17,7 +17,7 @@ class Element < ActiveRecord::Base
   has_many :iterations, :through => :iteration_lists
   has_many :user_lists, :dependent => :destroy
   has_many :users, :through => :user_lists
-  has_many :element_attributes
+  has_many :element_attributes, :dependent => :destroy
   
   attr_accessible :name, :current, :created_by, :edited_by
   validates :name,  :presence => true

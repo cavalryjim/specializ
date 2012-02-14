@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120213170319) do
+ActiveRecord::Schema.define(:version => 20120214155845) do
 
   create_table "active_admin_comments", :force => true do |t|
     t.integer  "resource_id",   :null => false
@@ -181,6 +181,14 @@ ActiveRecord::Schema.define(:version => 20120213170319) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "goal"
+  end
+
+  create_table "user_element_attribute_lists", :force => true do |t|
+    t.integer  "user_id"
+    t.integer  "element_attribute_id"
+    t.float    "value"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "user_lists", :force => true do |t|
