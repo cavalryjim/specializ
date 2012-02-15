@@ -18,7 +18,8 @@ class ElementAttribute < ActiveRecord::Base
   attr_accessible :name, :type, :element_id
   
   def value(user_id)
-    UserElementAttributeList.find_by_element_attribute_id_and_user_id(self.id, user_id).value
+    attr_list = UserElementAttributeList.find_by_element_attribute_id_and_user_id(self.id, user_id)
+    return attr_list.nil? ? nil : attr_list.value
   end
   
 end
