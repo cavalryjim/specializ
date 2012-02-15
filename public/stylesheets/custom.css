@@ -335,6 +335,13 @@ div.notice {
 	height: 700px;
 }
 
+#rating input.radio {
+	display: inline;
+}
+
+  
+}
+
 .simple_form {
 	border: solid 1px #999;
 	padding: 5px;
@@ -432,6 +439,19 @@ textarea {
 	padding:5px;
 }
 
+/* JDavis: this hides the element attributes and lets jQuery handle the display */
+div.innerDetails { 
+	display: none;
+	background: #ccc;
+	border: 1px solid #999;
+	
+}
+
+div.innerDetails table tr td {
+	background-color: #ccc;
+	border: 1px solid #999;
+	text-align: right;
+}
 
 /* JDavis: this is styling for the container on the home page */
 .collapsibleContainer {

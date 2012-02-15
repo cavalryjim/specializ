@@ -52,11 +52,11 @@ class TopicsController < ApplicationController
     @topic = Topic.new(params[:topic])
     @topic.company_id = current_user.company_id
     
-    if @topic.save && params.has_key?(:groupings)
-      @topic.update_groupings(params[:groupings])
+    if @topic.save && params[:topic][:grouping_ids]
+      @topic.update_groupings(params[:topic][:grouping_ids])
       gflash :success => 'Topic created.' 
     else
-      @topic.errors[:base] << "You must select one or more participating groups." unless params.has_key?(:groupings)
+      @topic.errors[:base] << "You must select one or more participating groups." unless params[:topic][:grouping_ids]
       @topics = Topic.where(:company_id => current_user.company_id)
       @assignments = []
       #@selected_groups = []

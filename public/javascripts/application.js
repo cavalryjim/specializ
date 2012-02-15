@@ -1,4 +1,4 @@
-var rTable;
+//var rTable;
 var mTabs;
 var hrTabs;
 var meTabs;
@@ -48,7 +48,7 @@ $(function() {
 		if (browserCol.is(':hidden')){
 			$(this).html('My Topics -');
 			$.cookie("browserState", "open");
-		} else {
+	} else {
 			$(this).html('My Topics +');
 			$.cookie("browserState", "closed");
 		}
@@ -59,7 +59,7 @@ $(function() {
 		events: 'me/events',
 		
 		eventClick: function(event){
-			fnEvents(event.start);
+		fnEvents(event.start);
 		},
 		
 		dayClick: function(date) {
@@ -73,10 +73,29 @@ $(function() {
 	bAccordion = $( "#accordion" ).accordion({ fillSpace: true }); // accordion on the _browser partial
 	mTabs = $( "#manager_tabs" ).tabs({ cookie:{ expires:1 }}); // tabs used in the manager module
 	hrTabs = $( "#hr_tabs" ).tabs({ cookie:{ expires:1 }}); // tabs used in the HR module
-	$( "#me_tabs" ).tabs({ cookie:{ expires: 1 }});   // tabs used in the Me module
+	$( "#me_tabs" ).tabs({ cookie:{ expires:1 }});   // tabs used in the Me module
+	
+	
+	//$("#rating_table").jqGrid('navGrid','#pager_rating_table',{edit:false,add:false,del:false});
+/*
+	$("#rating_table").each(function() {
+			var myid = this.id;
+			var mycaption = "Topic Items";
 		
-	//$( "#grouping" ).multiselect({header: false}); // select widget in the manager module's configuration tab
-	//$( "#topic_groupings").multiselect({header: "Select groups that will participate"}).multiselectfilter(); // select widget in the manager module's setup tab
+			tableToGrid("#" + myid, { 
+				pager:'#pager_rating_table',
+				rowNum:10,
+				height: '300',
+				width: '100%',
+				viewrecords: true,
+				caption: mycaption
+			});
+
+			
+
+	});
+*/		
+	
 	$( "#topic_grouping_ids").multiselect({
 		header: "Select groups that will participate",
 		minWidth: 300,
@@ -140,6 +159,37 @@ $(function() {
 		minWidth: 200
 	});
 	
+	$('#rating_table img').live( 'click', function () {
+		var nTr = this.parentNode;
+		//alert(nTr);
+		//$('img', this.parentNode).attr( 'src', "details_close.png" );
+		//if ( div.innerDetails.is(':hidden')) {
+		//	alert('done!');
+		//}
+		if ($('div.innerDetails', nTr).is(':hidden')){
+			$('div.innerDetails', nTr).slideDown();
+			$('img', nTr).attr( 'src', "../../../images/details_close.png" );
+		} else {
+			$('div.innerDetails', nTr).slideUp();
+			$('img', nTr).attr( 'src', "../../../images/details_open.png" );
+		}
+		
+		/*
+		if ( i === -1 ) {
+			$('img', this).attr( 'src', sImageUrl+"details_close.png" );
+		    var nDetailsRow = oTable.fnOpen( nTr, fnFormatDetails(oTable, nTr), 'details' );
+		    $('div.innerDetails', nDetailsRow).slideDown();
+		    anOpen.push( nTr );
+		 }
+		 else {
+		   $('img', this).attr( 'src', sImageUrl+"details_open.png" );
+		   $('div.innerDetails', $(nTr).next()[0]).slideUp( function () {
+		     oTable.fnClose( nTr );
+		     anOpen.splice( i, 1 );
+		   } );
+		 }*/
+	} );
+	
 	
 	// JDavis: this function responds to the dropdown selection on the manager page and navigates to the select topic.
 	$('#topic_select').change(function() {
@@ -168,30 +218,32 @@ $(function() {
 		//alert(window.location.pathname);
 	});
 	
+	
 	// JDavis: for some reason, the rating stuff must come last or else shit breaks.
 	$( "#rating_table input.jdstar" ).rating(); // JDavis: this line must come before rating_table dataTable()
 	
 	/* Add a click handler to the rows - this could be used as a callback */
+	
     $("#rating_table tbody").click(function(event) {
         $(rTable.fnSettings().aoData).each(function (){
             $(this.nTr).removeClass('row_selected');
         });
         $(event.target.parentNode).addClass('row_selected');
-        //rTable.fnDraw();
-    });
+    }); 
      
     /* Add a click handler for the delete row */
+	
     $('#item_delete').click( function() {
         var anSelected = fnGetSelected( rTable );
         rTable.fnDeleteRow( anSelected[0] );
-    } );
+    } ); 
 	
 	
 	rTable = $( "#rating_table" ).dataTable({ // datatable where users rate the elements
 		"aoColumns": [
 		              { "sWidth": "60%" },
 		              { "sWidth": "20%" },
-		              { "bVisible": false },
+		              //{ "bVisible": false },
 		              { "bVisible": false }
 		          ],
 		"bAutoWidth": false,
@@ -203,8 +255,7 @@ $(function() {
 		}
 
 
-    });
-
+    }); 
 });
 
 /* Get the rows which are currently selected */
@@ -238,6 +289,8 @@ function fnEvents(date) {
 		}
 	});
 }
+
+
 
 
 

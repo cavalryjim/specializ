@@ -17,10 +17,13 @@ class Element < ActiveRecord::Base
   has_many :iterations, :through => :iteration_lists
   has_many :user_lists, :dependent => :destroy
   has_many :users, :through => :user_lists
+  has_many :element_attributes, :dependent => :destroy
   
+  attr_accessible :name, :current, :created_by, :edited_by
   validates :name,  :presence => true
   validates :created_by, :presence => true
   validates :current, :inclusion => {:in => [true, false]}
+  #validates_uniqueness_of :name, :scope => [ :iteration_id ]
   
   def score(user_id, iteration_id)
     user_score = UserList.find_by_element_id_and_user_id_and_iteration_id(self.id, user_id, iteration_id)
@@ -68,6 +71,10 @@ class Element < ActiveRecord::Base
   
   def approved?(iteration_id)
     IterationList.find_by_element_id_and_iteration_id(self.id, iteration_id).include
+  end
+  
+  def has_attributes?
+    !self.element_attributes.empty?
   end
   
 end

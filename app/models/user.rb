@@ -40,6 +40,8 @@ class User < ActiveRecord::Base
   has_many  :topic_groups, :through => :assignments
   has_many  :user_lists, :dependent => :destroy
   has_many  :elements, :through => :user_lists
+  has_many  :user_element_attribute_lists, :dependent => :destroy
+  has_many  :element_attributes, :through => :user_element_attribute_lists
   has_many  :managed_topic_groups, :through => :assignments,
             :class_name => "TopicGroup",
             :source => :topic_group,
@@ -146,7 +148,7 @@ class User < ActiveRecord::Base
     Iteration.find(iteration_id).new_elements.where(:created_by => self.id)
   end
   
-  def rate_elements(iteration_id, resubmit, new_elements, rated_elements)
+  def rate_elements(iteration_id, resubmit, new_elements, rated_elements, element_attributes)
     self.user_lists.where(:iteration_id => iteration_id).update_all(:score => 0) if resubmit
     iteration = Iteration.find(iteration_id)
     topic_group = TopicGroup.find(iteration.topic_group_id)
@@ -168,6 +170,14 @@ class User < ActiveRecord::Base
         user_element_rating = UserList.find_or_initialize_by_user_id_and_element_id_and_iteration_id(self.id, key, iteration_id)
         user_element_rating.score = score
         user_element_rating.save
+      end
+    end
+    
+    if element_attributes
+      element_attributes.each do |key, value|
+        user_attribute = UserElementAttributeList.find_or_initialize_by_user_id_and_element_attribute_id(self.id, key)
+        user_attribute.value = value
+        user_attribute.save
       end
     end
     

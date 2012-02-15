@@ -117,7 +117,7 @@ class UsersController < ApplicationController
     resubmit = params[:resubmit]
     
     if @iteration.active
-      current_user.rate_elements(@iteration.id, resubmit, params[:new], params[:rating])
+      current_user.rate_elements(@iteration.id, resubmit, params[:new], params[:rating], params[:e_attribute])
       gflash :success => "List submitted."
     else
       gflash :notice => "Iteration is closed."
