@@ -1,4 +1,4 @@
-<%= simple_form_for(@grouping) do |f| %>
+<%= simple_form_for @grouping, :validate => true do |f| %>
   <% if @grouping.errors.any? %>
     <% @grouping.errors.full_messages.each do |msg| %>
 	  <%= js add_gritter( msg, :title => "Error", :image => :error, :sticky => true ) %>

@@ -28,6 +28,7 @@ class TopicsController < ApplicationController
   def new
     @topics = Topic.where(:company_id => current_user.company_id)
     @topic = Topic.new
+    @topic.company_id = current_user.company_id
     @assignments = []
     #@selected_groups = []
     @title = 'Manager'

@@ -17,4 +17,5 @@ class UserElementAttributeList < ActiveRecord::Base
   validates :user_id, :presence => true
   validates :element_attribute_id, :presence => true
   validates :value, :presence => true
+  
 end

@@ -1,4 +1,4 @@
-<%= simple_form_for @topic do |f| %>
+<%= simple_form_for @topic, :validate => true do |f| %>
   <% if @topic.errors.any? %>
     <% @topic.errors.full_messages.each do |msg| %>
 	  <%= js add_gritter( msg, :title => "Error", :image => :error, :sticky => true ) %>

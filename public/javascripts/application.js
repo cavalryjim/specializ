@@ -74,27 +74,7 @@ $(function() {
 	mTabs = $( "#manager_tabs" ).tabs({ cookie:{ expires:1 }}); // tabs used in the manager module
 	hrTabs = $( "#hr_tabs" ).tabs({ cookie:{ expires:1 }}); // tabs used in the HR module
 	$( "#me_tabs" ).tabs({ cookie:{ expires:1 }});   // tabs used in the Me module
-	
-	
-	//$("#rating_table").jqGrid('navGrid','#pager_rating_table',{edit:false,add:false,del:false});
-/*
-	$("#rating_table").each(function() {
-			var myid = this.id;
-			var mycaption = "Topic Items";
-		
-			tableToGrid("#" + myid, { 
-				pager:'#pager_rating_table',
-				rowNum:10,
-				height: '300',
-				width: '100%',
-				viewrecords: true,
-				caption: mycaption
-			});
-
 			
-
-	});
-*/		
 	
 	$( "#topic_grouping_ids").multiselect({
 		header: "Select groups that will participate",
@@ -126,6 +106,11 @@ $(function() {
 		"bJQueryUI": true,
         "sPaginationType": "full_numbers"
 	}); 
+	
+	$( "#group_staffing_table" ).dataTable({ // datatable in the admin module
+		"bJQueryUI": true,
+		"sPaginationType": "full_numbers"
+	});
 	
 	$( "#user_table" ).dataTable({ // datatable in the admin module
 		"bJQueryUI": true,
@@ -161,11 +146,7 @@ $(function() {
 	
 	$('#rating_table img').live( 'click', function () {
 		var nTr = this.parentNode;
-		//alert(nTr);
-		//$('img', this.parentNode).attr( 'src', "details_close.png" );
-		//if ( div.innerDetails.is(':hidden')) {
-		//	alert('done!');
-		//}
+		
 		if ($('div.innerDetails', nTr).is(':hidden')){
 			$('div.innerDetails', nTr).slideDown();
 			$('img', nTr).attr( 'src', "../../../images/details_close.png" );
@@ -174,20 +155,6 @@ $(function() {
 			$('img', nTr).attr( 'src', "../../../images/details_open.png" );
 		}
 		
-		/*
-		if ( i === -1 ) {
-			$('img', this).attr( 'src', sImageUrl+"details_close.png" );
-		    var nDetailsRow = oTable.fnOpen( nTr, fnFormatDetails(oTable, nTr), 'details' );
-		    $('div.innerDetails', nDetailsRow).slideDown();
-		    anOpen.push( nTr );
-		 }
-		 else {
-		   $('img', this).attr( 'src', sImageUrl+"details_open.png" );
-		   $('div.innerDetails', $(nTr).next()[0]).slideUp( function () {
-		     oTable.fnClose( nTr );
-		     anOpen.splice( i, 1 );
-		   } );
-		 }*/
 	} );
 	
 	

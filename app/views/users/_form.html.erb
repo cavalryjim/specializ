@@ -1,4 +1,4 @@
-<%= simple_form_for @user, :html => {:multipart => true} do |f| %>
+<%= simple_form_for @user, :validate => true, :html => {:multipart => true} do |f| %>
   <% if @user.errors.any? %>
       <% @user.errors.full_messages.each do |msg| %>
 	  	<%= js add_gritter( msg, :title => "Error", :image => :error, :sticky => true ) %>

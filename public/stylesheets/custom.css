@@ -182,13 +182,13 @@ div.field, div.actions {
 /* styling for error messages */
 
 .field_with_errors {
-  padding: 2px;
-  background-color: red;
-  display: table;
+ 
+  display: inline;
+  
 }
 
 .field_with_errors label {
-  color: #fff;
+  color: #D00;
 }
 
 #error_explanation {
@@ -375,7 +375,8 @@ div.notice {
   margin-left: 170px;
   font-size: 12px;
   color: #D00;
-  display: block;
+  display: table;
+  vertical-align: top;
 }
 
 .simple_form .hint {

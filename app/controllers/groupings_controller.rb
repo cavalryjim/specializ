@@ -26,6 +26,7 @@ class GroupingsController < ApplicationController
   # GET /groupings/new
   # GET /groupings/new.xml
   def new
+    @grouping.company_id = current_user.company_id
     @users = []
     @root = false
     @title = 'HR'
@@ -49,7 +50,7 @@ class GroupingsController < ApplicationController
   def create
     #redirect_to new_grouping_path if params[:grouping][:name] == ''
     #@grouping = Grouping.new(params[:grouping])
-    #@grouping.company_id = current_user.company_id
+    @grouping.company_id = current_user.company_id
 
     if @grouping.save
       gflash :success => 'Group created.' 

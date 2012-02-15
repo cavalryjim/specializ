@@ -1,29 +1,9 @@
-<%= simple_form_for([@topic, @assignment]) do |f| %>
+<%= simple_form_for [@topic, @assignment], :validate => true do |f| %>
   <% if @assignment.errors.any? %>
   	<% @assignment.errors.full_messages.each do |msg| %>
 	  	<%= js add_gritter( msg, :title => "Error", :image => :error, :sticky => true ) %>
     <% end %>
   <% end %>
-<!--
-  <div class="field">
-    <%= f.label :topic_group_id %><br />
-    <%= #f.select :topic_group_id, @topic_groups.collect {|tg| [ tg.name, tg.id ]} 
-	%>
-	<%= f.select :topic_group_id, options_from_collection_for_select(@topic_groups, :id, :name, @assignment.topic_group_id ) %>
-  </div>
-  <div class="field">
-    <%= f.label :manager %><br />
-    <%= f.check_box :manager %>
-  </div>
-  <div class="field">
-    <%= f.label :participating %><br />
-    <%= f.check_box :participating %>
-  </div>
-  <div class="actions">
-	<%= f.hidden_field :user_id %>
-    <%= f.submit %>
-  </div>
--->
   <%= f.input :topic_group_id, :collection => @topic_groups %>
   <%= f.input :manager %>
   <%= f.input :participating %>
