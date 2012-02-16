@@ -37,7 +37,9 @@
 			  <% if !element.element_attributes.empty? %>
 			    <%= image_tag 'details_open.png' %>
 			  <% end %>
-			  <%= best_in_place_if (@iteration.active), element, :name, :type => :input %>
+			  <%=# best_in_place_if (@iteration.active), element, :name, :type => :input 
+			  %>
+			  <%= element.name %>
 			  <% if @iteration.last? %>
 				<%= link_to '(delete?)', topic_group_iteration_element_path(@topic_group, @iteration, element), :confirm => 'Are you sure?', :method => :delete%>
 			  <% end %>
@@ -65,7 +67,10 @@
 			    <%= image_tag 'details_open.png' %>
 			  <% end %>
 			  
-			  <%= best_in_place_if ((can? :manage, @topic_group) && @iteration.last?), element, :name, :type => :input, :html_attrs => { :size => 60 } %>	
+			  <%=# best_in_place_if ((can? :manage, @topic_group) && @iteration.last?), element, :name, :type => :input, :html_attrs => { :size => 60 } 
+			  %>
+			  
+			  <%= link_to element, element, :remote => true, :class => 'element_link'  %>	
 
 			  <% if element.has_attributes? %>
 			    <%= render 'inner_details', :element => element %>

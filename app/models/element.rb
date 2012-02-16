@@ -27,6 +27,10 @@ class Element < ActiveRecord::Base
   
   accepts_nested_attributes_for :element_attributes, :reject_if => lambda { |a| a[:name].blank? }, :allow_destroy => true
   
+  def to_s
+    self.name
+  end
+  
   def score(user_id, iteration_id)
     user_score = UserList.find_by_element_id_and_user_id_and_iteration_id(self.id, user_id, iteration_id)
     return user_score.nil? ? 0 : user_score.score

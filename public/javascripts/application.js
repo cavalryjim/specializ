@@ -157,17 +157,22 @@ $(function() {
 		
 	} );
 	
-	$('#element_dialog_form').dialog({
+	var dElement = $('#element_dialog_form').dialog({
 		autoOpen: false,
 		minWidth: 400
 	});
 	
 	$('#new_element_btn').click(function() {
-		$( '#element_dialog_form' ).dialog( "open" );
+		//$( '#element_dialog_form' ).dialog( "open" );
+		dElement.dialog( "open" );
 		return false;
 	});
 
-	
+	$('.element_link').click(function() {
+		//$( '#element_dialog_form' ).dialog( "open" );
+		dElement.dialog( "open" );
+		return false;
+	});
 	
 	// JDavis: this function responds to the dropdown selection on the manager page and navigates to the select topic.
 	$('#topic_select').change(function() {

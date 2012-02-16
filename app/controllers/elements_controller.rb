@@ -25,8 +25,6 @@ class ElementsController < ApplicationController
     
     3.times { @element.element_attributes.build }
    
-
-
     #respond_with(@element, @topic_group, @iteration, @element)
     
   end
