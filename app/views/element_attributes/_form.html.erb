@@ -1,0 +1,10 @@
+<%= form_for [@topic_group, @iteration, @element, @element_attribute ] do |f| %>
+  <div class="field">
+	<%= f.label :name %>
+  	<%= f.text_field :name %>
+  </div>
+	
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

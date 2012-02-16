@@ -23,6 +23,7 @@ class IterationsController < ApplicationController
     @element = Element.new
     3.times { @element.element_attributes.build }
     gon.submitted = @submitted
+    @element_attribute = ElementAttribute.new
     
     if (can? :manage, @topic_group) && @topic_group.active
       @new_elements = @topic_group.iterations.last.new_elements

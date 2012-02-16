@@ -47,7 +47,9 @@ Specializ::Application.routes.draw do
     resources :iterations do
       post 'close', :to => 'iterations#close'
       post 'start', :to => 'iterations#start'
-      resources :elements 
+      resources :elements do
+        resources :element_attributes
+      end
     end
   end
   

@@ -4,8 +4,6 @@
 			<tr>
 				<td>
 					<%= best_in_place_if (((can? :manage, @topic_group)||(can? :manage, e_attribute)) && @iteration.last?), e_attribute, :name, :type => :input, :html_attrs => { :size => 20 } %>
-					<%=# e_attribute.name 
-%>
 					<%= number_field_tag 'e_attribute[' + e_attribute.id.to_s + ']', e_attribute.value(current_user.id), :disabled => !@iteration.active%>
 					<%= e_attribute.input_type %>
 				</td>

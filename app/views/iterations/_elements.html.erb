@@ -21,9 +21,9 @@
 	  <tr>
 		<th>Name</th>
 	    <th>Rating</th>
-<!-- jdavis: trying something 
-		<th>Remove</th> 
--->
+
+		<th></th> 
+
 		<th>hidden</th>
 
 		
@@ -34,15 +34,11 @@
 		<% @suggested_elements.each do |element| %>
 	      <tr>
 			<td>
-			  <% if !element.element_attributes.empty? %>
-			    <%= image_tag 'details_open.png' %>
+			  <% if element.has_attributes? %>
+			    <%= image_tag 'details_open.png', :class => 'details' %>
 			  <% end %>
 			  <%= best_in_place_if (@iteration.active), element, :name, :type => :input, :html_attrs => { :size => 60 } %>
 
-			  <% if @iteration.last? %>
-				<%= link_to '(delete?)', topic_group_iteration_element_path(@topic_group, @iteration, element), 
-					:confirm => "Select 'OK' to delete. Any unsaved ratings may be lost.", :method => :delete%>
-			  <% end %>
 			  <% if element.has_attributes? %>
 			    <%= render 'inner_details', :element => element %>
 			  <% end %>	
@@ -51,10 +47,15 @@
 			<td>
 			  <%= my_suggestion(@iteration.active) %>
 			</td>
-<!-- jdavis: trying something 
-			<td><%= link_to 'Delete', topic_group_iteration_element_path(@topic_group, @iteration, element), :confirm => 'Are you sure?', :method => :delete%></td>
+ 
+			<td>
+				<% if @iteration.last? %>
+					<%= link_to image_tag('trashcan.png'), topic_group_iteration_element_path(@topic_group, @iteration, element), 
+						:confirm => "Select 'OK' to delete. Any unsaved ratings may be lost.", :method => :delete%>
+				<% end %>
+			</td>
 
--->
+
 			<td><%= element.name.upcase %></td>
 		 </tr>
 
@@ -63,11 +64,10 @@
 		<% @elements.each do |element| %>
 		  <tr>
 		    <td>
-			  <% if !element.element_attributes.empty? %>
-			    <%= image_tag 'details_open.png' %>
+			  <% if element.has_attributes? %>
+			    <%= image_tag 'details_open.png', :class => 'details' %>
 			  <% end %>
-			  <%=# link_to element, element, :remote => true, :action => "edit" 
-%>
+			
 			  <%= best_in_place_if ((can? :manage, @topic_group) && @iteration.last?), element, :name, :type => :input, :html_attrs => { :size => 60 } %>
 
 			  <% if element.has_attributes? %>
@@ -85,10 +85,14 @@
 				<%= radio_button_tag row_name(element.id), 5, score == 5, options = { :class => "jdstar", :disabled => !@iteration.active } %>
 			 
 			</td>
-<!-- jdavis: trying something 
-		    <td><%= link_to 'Delete', topic_group_iteration_element_path(@topic_group, @iteration, element), :confirm => 'Are you sure?', :method => :delete%></td>
+
+		    <td>
+				<% if @iteration.last? && (can? :manage, @topic_group) %>
+					<%= link_to image_tag('trashcan.png'), topic_group_iteration_element_path(@topic_group, @iteration, element), 
+					:confirm => "Select 'OK' to delete. Any unsaved ratings may be lost.", :method => :delete%>
+				<% end %>
+			</td>
 			
--->
 			<td><%= element.name.upcase %></td>
 
 		  </tr>

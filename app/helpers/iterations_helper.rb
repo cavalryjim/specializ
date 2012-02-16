@@ -13,7 +13,7 @@ module IterationsHelper
   end
   
   def my_suggestion(iteration_active)
-    if @iteration_active
+    if iteration_active
       'Waiting approval'
     else
       'My suggestion'
@@ -21,11 +21,10 @@ module IterationsHelper
   end
   
   def e_attributes(element)
-    element.element_attributes
+    # JDavis: fighting with eager loadings & N+1 crap....
+    #element.element_attributes.find(:all, :include => :element)
+    element.element_attributes.find(:all)
   end
   
-  def update_element(element)
-    @element = element
-  end
   
 end

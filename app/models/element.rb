@@ -80,7 +80,7 @@ class Element < ActiveRecord::Base
   end
   
   def has_attributes?
-    !self.element_attributes.empty?
+    self.element_attributes.first
   end
   
 end

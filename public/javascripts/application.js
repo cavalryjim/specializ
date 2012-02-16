@@ -1,9 +1,8 @@
-//var rTable;
 var mTabs;
 var hrTabs;
 var meTabs;
 var giRedraw = false;
-//var answer = false;
+
 
 //$('html').addClass('js');
 
@@ -145,19 +144,21 @@ $(function() {
 		minWidth: 200
 	});
 	
-	$('#rating_table img').live( 'click', function () {
+	// JDavis: image the opens / closes the element attributes div
+	$('#rating_table img.details').live( 'click', function () {
 		var nTr = this.parentNode;
 		
 		if ($('div.innerDetails', nTr).is(':hidden')){
 			$('div.innerDetails', nTr).slideDown();
-			$('img', nTr).attr( 'src', "../../../images/details_close.png" );
+			$('img.details', nTr).attr( 'src', "../../../images/details_close.png" );
 		} else {
 			$('div.innerDetails', nTr).slideUp();
-			$('img', nTr).attr( 'src', "../../../images/details_open.png" );
+			$('img.details', nTr).attr( 'src', "../../../images/details_open.png" );
 		}
 		
 	} );
 	
+	// JDavis: this is a popup form for submitting new elements in the 'Participate' tab.
 	var dElementForm = $('#element_dialog_form').dialog({
 		autoOpen: false,
 		minWidth: 400
@@ -166,9 +167,6 @@ $(function() {
 	var answer = $.cookie("confirmNewElement");
 	
 	$('#new_element_btn').click(function() {
-		//$( '#element_dialog_form' ).dialog( "open" );
-		//alert('You should save your ratings before creating new items');
-		//alert(gon.submitted);
 		if (!answer) {
 			answer = confirm("Submitting new items will cause you to lose any unsaved ratings.  Continue?");
 			$.cookie("confirmNewElement", answer);
@@ -236,9 +234,9 @@ $(function() {
 	
 	rTable = $( "#rating_table" ).dataTable({ // datatable where users rate the elements
 		"aoColumns": [
-		              { "sWidth": "60%" },
+		              { "sWidth": "75%" },
 		              { "sWidth": "20%" },
-		              //{ "bVisible": false },
+		              { "sWidth": "5%" },
 		              { "bVisible": false }
 		          ],
 		"bAutoWidth": false,
