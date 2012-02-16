@@ -24,4 +24,8 @@ module IterationsHelper
     element.element_attributes
   end
   
+  def update_element(element)
+    @element = element
+  end
+  
 end

@@ -3,7 +3,7 @@
 <div>
   <div id="elementDiv" align=right>
     <% if @iteration.active %>
-	  <!--><input type="text" id="element_name" />-->
+	  <!---<input type="text" id="element_name" />--->
 	  <button id="new_element_btn"> Add New Item </button>
     <% end %>
   </div>  
@@ -37,11 +37,11 @@
 			  <% if !element.element_attributes.empty? %>
 			    <%= image_tag 'details_open.png' %>
 			  <% end %>
-			  <%=# best_in_place_if (@iteration.active), element, :name, :type => :input 
-			  %>
-			  <%= element.name %>
+			  <%= best_in_place_if (@iteration.active), element, :name, :type => :input, :html_attrs => { :size => 60 } %>
+
 			  <% if @iteration.last? %>
-				<%= link_to '(delete?)', topic_group_iteration_element_path(@topic_group, @iteration, element), :confirm => 'Are you sure?', :method => :delete%>
+				<%= link_to '(delete?)', topic_group_iteration_element_path(@topic_group, @iteration, element), 
+					:confirm => "Select 'OK' to delete. Any unsaved ratings may be lost.", :method => :delete%>
 			  <% end %>
 			  <% if element.has_attributes? %>
 			    <%= render 'inner_details', :element => element %>
@@ -66,11 +66,9 @@
 			  <% if !element.element_attributes.empty? %>
 			    <%= image_tag 'details_open.png' %>
 			  <% end %>
-			  
-			  <%=# best_in_place_if ((can? :manage, @topic_group) && @iteration.last?), element, :name, :type => :input, :html_attrs => { :size => 60 } 
-			  %>
-			  
-			  <%= link_to element, element, :remote => true, :class => 'element_link'  %>	
+			  <%=# link_to element, element, :remote => true, :action => "edit" 
+%>
+			  <%= best_in_place_if ((can? :manage, @topic_group) && @iteration.last?), element, :name, :type => :input, :html_attrs => { :size => 60 } %>
 
 			  <% if element.has_attributes? %>
 			    <%= render 'inner_details', :element => element %>
@@ -93,7 +91,6 @@
 -->
 			<td><%= element.name.upcase %></td>
 
-		  
 		  </tr>
 			
 		<% end %>
@@ -105,11 +102,13 @@
   <%= hidden_field_tag(:iteration_id, @iteration.id) %>
   <%= hidden_field_tag(:resubmit, @submitted) %>
   <div align='right'> 
-	<%= submit_tag("Submit List", :confirm => confirm_dialogue(@submitted), :disabled => !@iteration.active) %> 
+	<%= submit_tag("Save List", :confirm => confirm_dialogue(@submitted), :disabled => !@iteration.active) %> 
   </div>
  
 <% end %>
-<% if @iteration.active %>
+<% if false %> <!--JDavis: was @iteration.active -->
 	<div align='left'> <button id="item_delete"> Remove Selected Item </button>	</div>
 <% end %>
+
+
 

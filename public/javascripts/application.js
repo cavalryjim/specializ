@@ -3,6 +3,7 @@ var mTabs;
 var hrTabs;
 var meTabs;
 var giRedraw = false;
+//var answer = false;
 
 //$('html').addClass('js');
 
@@ -157,22 +158,35 @@ $(function() {
 		
 	} );
 	
-	var dElement = $('#element_dialog_form').dialog({
+	var dElementForm = $('#element_dialog_form').dialog({
 		autoOpen: false,
 		minWidth: 400
 	});
 	
+	var answer = $.cookie("confirmNewElement");
+	
 	$('#new_element_btn').click(function() {
 		//$( '#element_dialog_form' ).dialog( "open" );
-		dElement.dialog( "open" );
+		//alert('You should save your ratings before creating new items');
+		//alert(gon.submitted);
+		if (!answer) {
+			answer = confirm("Submitting new items will cause you to lose any unsaved ratings.  Continue?");
+			$.cookie("confirmNewElement", answer);
+		}
+		
+		if (answer) {
+			dElementForm.dialog( "open" );
+		} 	
+		
 		return false;
 	});
 
-	$('.element_link').click(function() {
+	//$('.element_link').click(function(event) {
 		//$( '#element_dialog_form' ).dialog( "open" );
-		dElement.dialog( "open" );
-		return false;
-	});
+		//dElementForm.dialog( "open" );
+	//	alert(event.target);
+	//	return false;
+	//});
 	
 	// JDavis: this function responds to the dropdown selection on the manager page and navigates to the select topic.
 	$('#topic_select').change(function() {

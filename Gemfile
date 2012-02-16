@@ -26,6 +26,8 @@ gem 'gritter', '0.6.3'
 gem 'daemons', '~> 1.1.6'
 gem 'simple_form', '~> 1.5.2'
 gem 'client_side_validations', '3.0.4'
+gem 'gon', '2.1.0'
+
 
 
 

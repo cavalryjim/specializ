@@ -71,6 +71,7 @@ Specializ::Application.routes.draw do
   end
   
   resources :elements
+  resources :element_attributes
   
   resources :ajax do
     get :autocomplete_company_name, :on => :collection, :full => true

@@ -39,9 +39,15 @@ class Ability
         element.created_by == user.id or
         TopicGroup.find(element.iterations.last.topic_group_id).managers.include?(user)
       end
+      can [:create, :read], ElementAttribute
       can :create, UserList
       can :manage, UserList do |user_list|
         user_list.user_id == user.id
+      end
+      can :create, UserElementAttributeList
+      can :manage, UserElementAttributeList do |list|
+        list.new_record? or
+        list.user_id == user.id
       end
       can [:manage], User do |me|
         me.id == user.id
@@ -70,6 +76,7 @@ class Ability
         topic_group.new_record? or 
         Topic.find(topic_group.topic_id).company_id == user.company_id
       end
+      can :manage, UserElementAttributeList
       
     end
     
