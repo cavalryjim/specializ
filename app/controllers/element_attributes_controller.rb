@@ -1,0 +1,2 @@
+class ElementAttributesController < ApplicationController
+end

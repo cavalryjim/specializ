@@ -1,8 +1,14 @@
-<%= form_for([@topic_group, @iteration, @element ]) do |f| %>
+<%= form_for [@topic_group, @iteration, @element ] do |f| %>
   <div class="field">
-    <%= f.label :name %><br />
-    <%= f.text_field :name %>
+	<%= f.label :name %>
+  	<%= f.text_field :name %>
   </div>
+  <div class="field">
+  	<%= f.fields_for :element_attributes do |builder| %>
+		<%= render 'elements/element_attributes', :f => builder %>
+  	<% end %>
+  </div>
+	
   <div class="actions">
     <%= f.submit %>
   </div>

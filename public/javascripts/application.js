@@ -157,6 +157,17 @@ $(function() {
 		
 	} );
 	
+	$('#element_dialog_form').dialog({
+		autoOpen: false,
+		minWidth: 400
+	});
+	
+	$('#new_element_btn').click(function() {
+		$( '#element_dialog_form' ).dialog( "open" );
+		return false;
+	});
+
+	
 	
 	// JDavis: this function responds to the dropdown selection on the manager page and navigates to the select topic.
 	$('#topic_select').change(function() {
@@ -190,7 +201,6 @@ $(function() {
 	$( "#rating_table input.jdstar" ).rating(); // JDavis: this line must come before rating_table dataTable()
 	
 	/* Add a click handler to the rows - this could be used as a callback */
-	
     $("#rating_table tbody").click(function(event) {
         $(rTable.fnSettings().aoData).each(function (){
             $(this.nTr).removeClass('row_selected');
@@ -199,7 +209,6 @@ $(function() {
     }); 
      
     /* Add a click handler for the delete row */
-	
     $('#item_delete').click( function() {
         var anSelected = fnGetSelected( rTable );
         rTable.fnDeleteRow( anSelected[0] );

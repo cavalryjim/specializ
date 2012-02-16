@@ -19,11 +19,13 @@ class Element < ActiveRecord::Base
   has_many :users, :through => :user_lists
   has_many :element_attributes, :dependent => :destroy
   
-  attr_accessible :name, :current, :created_by, :edited_by
+  attr_accessible :name, :current, :created_by, :edited_by, :element_attributes_attributes
   validates :name,  :presence => true
   validates :created_by, :presence => true
   validates :current, :inclusion => {:in => [true, false]}
-  #validates_uniqueness_of :name, :scope => [ :iteration_id ]
+  #validates_uniqueness_of :name, :scope => [ :iteration_ids ]
+  
+  accepts_nested_attributes_for :element_attributes, :reject_if => lambda { |a| a[:name].blank? }, :allow_destroy => true
   
   def score(user_id, iteration_id)
     user_score = UserList.find_by_element_id_and_user_id_and_iteration_id(self.id, user_id, iteration_id)

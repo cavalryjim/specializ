@@ -15,7 +15,9 @@ class ElementAttribute < ActiveRecord::Base
   has_many   :user_element_attribute_lists, :dependent => :destroy
   has_many   :users, :through => :user_element_attribute_lists
   
-  attr_accessible :name, :type, :element_id
+  attr_accessible :name, :input_type, :element_id
+  validates :name,  :presence => true
+  #validates_uniqueness_of :name, :scope => [ :element_id ]
   
   def value(user_id)
     attr_list = UserElementAttributeList.find_by_element_attribute_id_and_user_id(self.id, user_id)

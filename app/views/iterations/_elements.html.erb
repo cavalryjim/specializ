@@ -3,8 +3,8 @@
 <div>
   <div id="elementDiv" align=right>
     <% if @iteration.active %>
-	  <input type="text" id="element_name" />
-	  <button id="new_element"> Add New Item </button>
+	  <!--><input type="text" id="element_name" />-->
+	  <button id="new_element_btn"> Add New Item </button>
     <% end %>
   </div>  
    
@@ -34,13 +34,16 @@
 		<% @suggested_elements.each do |element| %>
 	      <tr>
 			<td>
-			  <% if element.attributes %>
-			    <img src="details_open.png" />
+			  <% if !element.element_attributes.empty? %>
+			    <%= image_tag 'details_open.png' %>
 			  <% end %>
 			  <%= best_in_place_if (@iteration.active), element, :name, :type => :input %>
 			  <% if @iteration.last? %>
 				<%= link_to '(delete?)', topic_group_iteration_element_path(@topic_group, @iteration, element), :confirm => 'Are you sure?', :method => :delete%>
 			  <% end %>
+			  <% if element.has_attributes? %>
+			    <%= render 'inner_details', :element => element %>
+			  <% end %>	
 			</td>
 
 			<td>
@@ -65,19 +68,7 @@
 			  <%= best_in_place_if ((can? :manage, @topic_group) && @iteration.last?), element, :name, :type => :input, :html_attrs => { :size => 60 } %>	
 
 			  <% if element.has_attributes? %>
-			    <div class="innerDetails">
-				  <table cellpadding="0" cellspacing="0" border="0" style="padding-left:50px;">
-				 	<% e_attributes(element).each do |e_attribute| %>
-				 	  <tr>
-					 	 <td>
-					 	 	<%= e_attribute.name %>
-							<%= number_field_tag 'e_attribute[' + e_attribute.id.to_s + ']', e_attribute.value(current_user.id), :disabled => !@iteration.active%>
-							<%= e_attribute.input_type %>
-						 </td>
-				 	  </tr> 	
-				 	<% end %>
-				  </table>
-				</div>
+			    <%= render 'inner_details', :element => element %>
 			  <% end %>			
 			</td>
 			<% score = element.score(current_user.id ,@iteration.id) %>

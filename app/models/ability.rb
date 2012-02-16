@@ -35,6 +35,7 @@ class Ability
         TopicGroup.find(element.iterations.last.topic_group_id).participating_users.include?(user)
       end
       can :manage, Element do |element|
+        element.new_record? or 
         element.created_by == user.id or
         TopicGroup.find(element.iterations.last.topic_group_id).managers.include?(user)
       end

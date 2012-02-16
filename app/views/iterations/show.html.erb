@@ -1,8 +1,8 @@
 <script type="text/javascript">
 
   //window.onload = function(){ meTabs.show(); }
+/*
   $(function(){
-
 	i=0;
 	$("#new_element").click(function() {
 		var str = $("#element_name").val();
@@ -11,7 +11,7 @@
 		a = rTable.fnFindCellRowIndexes( str.toUpperCase(), 3 );
 		if (a.length == 0) {
 			i++;
-	    	$(rTable.fnAddData( [ '<input id="new['+i+']" name="new['+i+']" type="text" value="'+str+'" />', 'New Element' , 'Delete' , str.toUpperCase()] ));
+	    	$(rTable.fnAddData( [ '<input id="new['+i+']" name="new['+i+']" type="text" value="'+str+'" /> <label>(add attribute)</label> ', 'New Element' , 'Delete' , str.toUpperCase()] ));
 			// Append to a hidden list
 			$("#test_field").val(str);
 		}
@@ -22,8 +22,8 @@
 		$("#element_name").val("");
     });
 
-	
   });
+*/
 
 </script>
 
@@ -65,3 +65,6 @@
 	<% end %>
 </div>
 
+<div id="element_dialog_form" title="Create new item">
+	<%= render :partial => 'elements/form' %>
+</div>
