@@ -177,7 +177,7 @@ class User < ActiveRecord::Base
     if element_attributes
       element_attributes.each do |key, value|
         user_attribute = UserElementAttributeList.find_or_initialize_by_user_id_and_element_attribute_id(self.id, key)
-        user_attribute.value = value
+        user_attribute.encode(value)
         user_attribute.save
       end
     end

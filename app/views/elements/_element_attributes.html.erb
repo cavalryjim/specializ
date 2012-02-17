@@ -1,6 +1,7 @@
 <p class="fields">
   <%= f.label :name, "Attribute" %>
   <%= f.text_field :name %>
-  <%= link_to_remove_fields 'remove', f %>
+  <%= f.select :element_attribute_type_id, @element_attribute_types.map{ |t| [t.name, t.id] }%>
+  <%= link_to_remove_fields image_tag('trashcan.png'), f %>
 </p>
 

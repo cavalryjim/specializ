@@ -5,10 +5,9 @@
 #  id                   :integer(4)      not null, primary key
 #  user_id              :integer(4)
 #  element_attribute_id :integer(4)
-#  value_num            :float
 #  created_at           :datetime
 #  updated_at           :datetime
-#  value_str            :string(255)
+#  encoded_value        :string(255)
 #
 
 require 'spec_helper'

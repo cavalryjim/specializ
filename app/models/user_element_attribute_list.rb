@@ -5,23 +5,28 @@
 #  id                   :integer(4)      not null, primary key
 #  user_id              :integer(4)
 #  element_attribute_id :integer(4)
-#  value_num            :float
 #  created_at           :datetime
 #  updated_at           :datetime
-#  value_str            :string(255)
+#  encoded_value        :string(255)
 #
 
+# JDavis: the encoded_value should be stored as .to_yaml.  Use the 'encode' method below.
 class UserElementAttributeList < ActiveRecord::Base
   belongs_to :user
   belongs_to :element_attribute
   
-  attr_accessible :user_id, :element_attribute_id, :value_num, :value_str
+  attr_accessible :user_id, :element_attribute_id, :encoded_value
   
-  #validates :user_id, :presence => true
-  #validates :element_attribute_id, :presence => true
-  #validates :value, :presence => true
+  validates :encoded_value, :presence => true
   validates_associated :element_attribute
   validates_associated :user
-  #validates :value_num, :numericality => true  #JDavis: is need to add a has_value_num? method.
+  
+  def value
+    YAML.parse(self.encoded_value).transform
+  end
+  
+  def encode(value)
+    self.encoded_value = value.to_yaml
+  end
   
 end

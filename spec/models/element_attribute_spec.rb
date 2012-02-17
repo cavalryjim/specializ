@@ -2,12 +2,12 @@
 #
 # Table name: element_attributes
 #
-#  id         :integer(4)      not null, primary key
-#  name       :string(255)
-#  input_type :string(255)
-#  element_id :integer(4)
-#  created_at :datetime
-#  updated_at :datetime
+#  id                        :integer(4)      not null, primary key
+#  name                      :string(255)
+#  element_id                :integer(4)
+#  created_at                :datetime
+#  updated_at                :datetime
+#  element_attribute_type_id :integer(4)
 #
 
 require 'spec_helper'

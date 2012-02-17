@@ -161,7 +161,7 @@ $(function() {
 	// JDavis: this is a popup form for submitting new elements in the 'Participate' tab.
 	var dElementForm = $('#element_dialog_form').dialog({
 		autoOpen: false,
-		minWidth: 500
+		minWidth: 700
 	});
 	
 	var answer = $.cookie("confirmNewElement");
