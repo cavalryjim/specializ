@@ -67,10 +67,16 @@ class ElementsController < ApplicationController
   # PUT /elements/1
   # PUT /elements/1.xml
   def update
+    @topic_group = TopicGroup.find_by_id(params[:topic_group_id])
+    @iteration = Iteration.find_by_id(params[:iteration_id]) 
     params[:element][:edited_by] = current_user.id #JDavis: identifying the last user to edit this element
-    @element.update_attributes(params[:element])
+    if @element.update_attributes(params[:element])
+      gflash :success => "Item updated."
+      redirect_to topic_group_iteration_url(@topic_group, @iteration)
+    else 
+      respond_with(@element)  
+    end
 
-    respond_with(@element)
   end
 
   # DELETE /elements/1

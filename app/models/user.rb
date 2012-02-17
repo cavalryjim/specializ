@@ -73,7 +73,8 @@ class User < ActiveRecord::Base
                     :format         => { :with => email_regex },
                     :uniqueness     => { :case_sensitive => false }
   validates :active, :inclusion     => {:in => [true, false]}
-  validates :company_id, :presence  => true
+  #validates :company_id, :presence  => true
+  validates_associated :company
   
   #after_create :add_employee_role
   mount_uploader :avatar, AvatarUploader

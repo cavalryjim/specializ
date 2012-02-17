@@ -23,6 +23,7 @@ class Element < ActiveRecord::Base
   validates :name,  :presence => true
   validates :created_by, :presence => true
   validates :current, :inclusion => {:in => [true, false]}
+  #validates_associated :iteration
   #validates_uniqueness_of :name, :scope => [ :iteration_ids ]
   
   accepts_nested_attributes_for :element_attributes, :reject_if => lambda { |a| a[:name].blank? }, :allow_destroy => true

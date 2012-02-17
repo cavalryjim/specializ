@@ -38,10 +38,13 @@
 			    <%= image_tag 'details_open.png', :class => 'details' %>
 			  <% end %>
 			  <%= best_in_place_if (@iteration.active), element, :name, :type => :input, :html_attrs => { :size => 60 } %>
+			  <%= link_to_if @iteration.active, image_tag('attr_add2.png', :size => '8x8'), edit_topic_group_iteration_element_path(@topic_group, @iteration, element) %>
 
 			  <% if element.has_attributes? %>
 			    <%= render 'inner_details', :element => element %>
-			  <% end %>	
+			  <% end %>
+			  
+	
 			</td>
 
 			<td>
@@ -69,6 +72,7 @@
 			  <% end %>
 			
 			  <%= best_in_place_if ((can? :manage, @topic_group) && @iteration.last?), element, :name, :type => :input, :html_attrs => { :size => 60 } %>
+			  <%= link_to_if ((can? :manage, @topic_group) && @iteration.last?), image_tag('attr_add2.png', :size => '8x8'), edit_topic_group_iteration_element_path(@topic_group, @iteration, element) %>
 
 			  <% if element.has_attributes? %>
 			    <%= render 'inner_details', :element => element %>
@@ -88,7 +92,7 @@
 
 		    <td>
 				<% if @iteration.last? && (can? :manage, @topic_group) %>
-					<%= link_to image_tag('trashcan.png'), topic_group_iteration_element_path(@topic_group, @iteration, element), 
+					<%= link_to image_tag('trashcan.png', :alt => "del"), topic_group_iteration_element_path(@topic_group, @iteration, element), 
 					:confirm => "Select 'OK' to delete. Any unsaved ratings may be lost.", :method => :delete%>
 				<% end %>
 			</td>

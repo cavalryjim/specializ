@@ -161,7 +161,7 @@ $(function() {
 	// JDavis: this is a popup form for submitting new elements in the 'Participate' tab.
 	var dElementForm = $('#element_dialog_form').dialog({
 		autoOpen: false,
-		minWidth: 400
+		minWidth: 500
 	});
 	
 	var answer = $.cookie("confirmNewElement");
@@ -283,7 +283,16 @@ function fnEvents(date) {
 	});
 }
 
+function remove_fields(link) {
+	$(link).prev("input[type=hidden]").val("1");
+	$(link).closest(".fields").hide();
+}
 
+function add_fields(link, association, content) {
+	var new_id = new Date().getTime();
+	var regexp = new RegExp("new_" + association, "g")
+	$(link).parent().before(content.replace(regexp, new_id));
+}
 
 
 

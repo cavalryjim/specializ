@@ -29,7 +29,7 @@ class Topic < ActiveRecord::Base
   validates_uniqueness_of :name, :scope => [ :company_id ]    # Unique for [name, company]
   validates :update_frequency, :numericality => { :only_integer => true, :greater_than => 0 }, :if => :has_update_frequency?
   validates :due_days, :numericality => { :only_integer => true, :greater_than => 0 }, :if => :has_due_days?
-  
+  validates_associated :company
   
   def to_param
     "#{id}-#{name.parameterize}"

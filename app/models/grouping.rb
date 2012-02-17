@@ -24,7 +24,8 @@ class Grouping < ActiveRecord::Base
   #attr_protected :lft, :rgt
  
   validates :name, :presence => true
-  validates :company_id, :presence => true
+  #validates :company_id, :presence => true
+  validates_associated :company
   validates_uniqueness_of :name, :scope => [ :company_id, :parent_id ]    # Unique for [name, company, parent]
   
   def fullname

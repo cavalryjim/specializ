@@ -11,7 +11,7 @@
 		a = rTable.fnFindCellRowIndexes( str.toUpperCase(), 3 );
 		if (a.length == 0) {
 			i++;
-	    	$(rTable.fnAddData( [ '<input id="new['+i+']" name="new['+i+']" type="text" value="'+str+'" /> <label>(add attribute)</label> ', 'New Element' , 'Delete' , str.toUpperCase()] ));
+	    	$(rTable.fnAddData( [ '<input id="new['+i+']" name="new['+i+']" type="text" value="'+str+'" /> ', 'New Element' , 'Delete' , str.toUpperCase()] ));
 			// Append to a hidden list
 			$("#test_field").val(str);
 		}
@@ -75,9 +75,5 @@
 <div id="element_dialog_form" title="Create new item">
 	<%= render :partial => 'elements/form' %>
 </div>
-<!--
-<div id="attribute_dialog_form" title="Add Attribute">
-	<%= render :partial => 'element_attributes/form' %>
-</div>
--->
+
 
