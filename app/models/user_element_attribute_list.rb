@@ -22,7 +22,7 @@ class UserElementAttributeList < ActiveRecord::Base
   validates_associated :user
   
   def value
-    YAML.parse(self.encoded_value).transform
+    YAML.parse(self.encoded_value).transform if self.encoded_value
   end
   
   def encode(value)
