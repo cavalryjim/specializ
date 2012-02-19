@@ -101,6 +101,10 @@ class Ability
         company_user.new_record? or
         company_user.company_id == user.company_id
       end
+      can :manage, LdapSetting do |ldap|
+        ldap.new_record? or 
+        ldap.company_id == user.company_id
+      end
     end
     
     if (user.role? :pnetz_admin) && user.active

@@ -36,19 +36,18 @@ class LdapSetting < ActiveRecord::Base
   validates :group_names,            :presence => true 
   validates :encrypted_password,     :presence => true
   
-  before_save :encrypt_password
+  #before_save :encrypt_password
   
-  #secret_key = Digest::SHA256.hexdigest('bnalBEL6FSLKmFug10xM1IP94J29Iqe0')
+  secret_key = Digest::SHA1.hexdigest('bnalBEL6FSLKmFug10xM1IP94J29Iqe0')
+  @@encryptor = ActiveSupport::MessageEncryptor.new(secret_key)
 
-  Encryptor.default_options.merge!(:key => 'bnalBEL6FSLKmFug10xM1IP94J29Iqe0')
   
-  def encrypt_password
-    #self.save
-    self.encrypted_password.encrypt!
+  def encrypt_password(password)
+    self.encrypted_password = @@encryptor.encrypt(password)
   end
   
   def password
-    self.encrypted_password.decrypt! unless self.encrypted_password.nil?
+    @@encryptor.decrypt(self.encrypted_password) if self.encrypted_password
   end
   
 end

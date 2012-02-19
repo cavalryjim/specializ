@@ -37,7 +37,7 @@ class LdapSettingsController < ApplicationController
   def create
     @ldap_setting = LdapSetting.new(params[:ldap_setting])
     @ldap_setting.company_id = current_user.company_id
-    
+    @ldap_setting.encrypt_password(params[:ldap_setting][:password])
     
     if @ldap_setting.save
       gflash :success => 'LDAP settings were successfully created' 
@@ -52,8 +52,10 @@ class LdapSettingsController < ApplicationController
   # PUT /companies/1.xml
   def update
     @ldap_setting = LdapSetting.find(params[:id])
+    @ldap_setting.attributes = params[:ldap_setting]
+    @ldap_setting.encrypt_password(params[:ldap_setting][:password])
 
-    if @ldap_setting.update_attributes(params[:ldap_setting])
+    if @ldap_setting.save
       gflash :success => 'LDAP settings were successfully updated' 
       redirect_to edit_ldap_setting_path(@ldap_setting)
     else
@@ -68,7 +70,7 @@ class LdapSettingsController < ApplicationController
     @ldap_setting = LdapSetting.find(params[:id])
     if @ldap_setting.destroy
       gflash :success => 'LDAP settings were removed'
-      redirect_to home_path
+      redirect_to me_path
     end
   end
   
