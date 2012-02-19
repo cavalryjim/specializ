@@ -23,7 +23,7 @@ class ElementsController < ApplicationController
     @iteration = Iteration.find_by_id(params[:iteration_id])
     #@element = Element.new
     
-    3.times { @element.element_attributes.build }
+    #3.times { @element.element_attributes.build }
    
     #respond_with(@element, @topic_group, @iteration, @element)
     

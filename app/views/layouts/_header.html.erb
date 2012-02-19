@@ -7,7 +7,7 @@
     <ul>
 	 <% if user_signed_in? %>
 	  	<li><%= link_to "Me", me_path %>
-			<div class="dropdown" id="dropdown_one">
+			<div class="dropdown" id="dropdown_me">
 				<p><%= link_to "Home", me_path %></p>
 				<p><%= link_to "Edit profile",  edit_user_path(current_user) + '?return=me'%></p>
 				<p><%= link_to "Change password",  edit_user_registration_path %></p>
@@ -20,7 +20,16 @@
 		  <li><%= link_to "HR", hr_path %></li>
 		<% end %>
 		<% if current_user.role? :admin %>
-		  <li><%= link_to "Admin", company_admin_path %></li>
+		  <li><%= link_to "Admin", company_admin_path %>
+			<div class="dropdown" id="dropdown_admin">
+				<p><%= link_to "Users", company_admin_path %></p>
+                <% if Company.find(current_user.company_id).ldap_setting %>
+				  <p><%= link_to "LDAP", edit_ldap_setting_path(LdapSetting.find_by_company_id(current_user.company_id)) %></p>
+				<% else %>
+				  <p><%= link_to "LDAP", new_ldap_setting_path %></p>
+				<% end %>
+			</div>
+		  </li>
 		<% end %>
 		<% if (current_user.role? :pnetz_admin) && (current_user.email.split('@').last == 'peoplenetz.com') %>
 		  <li><%= link_to "Peoplenetz", admin_path %></li>

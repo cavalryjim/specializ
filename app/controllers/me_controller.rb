@@ -10,6 +10,13 @@ class MeController < ApplicationController
       @managed_topic_groups = current_user.managed_topic_groups
       date = Date.today
       @event_list = current_user.events(date.beginning_of_week, date.end_of_week)
+      if Company.find(current_user.company_id).ldap_setting
+        @ldap_setting = Company.find(current_user.company_id).ldap_setting
+        @ldap_path = edit_ldap_setting_path(@ldap_setting)
+      else
+        #@ldap_settings = LdapSettings.new
+        @ldap_path = new_ldap_setting_path
+      end
     else
       gflash :notice => "Please sign in to participate."
       redirect_to authentications_url

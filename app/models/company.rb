@@ -16,6 +16,7 @@ class Company < ActiveRecord::Base
   has_many :groupings
   has_many :topics, :dependent => :destroy
   has_many :users
+  has_one :ldap_setting
   
   # Setup accessible (or protected) attributes for your model
   attr_accessible :name, :active, :never_expires, :expiration_date, :logo

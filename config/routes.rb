@@ -41,6 +41,7 @@ Specializ::Application.routes.draw do
   match '/users/approve_new_elements', :to => 'users#approve_new_elements'
   match '/me/event_list/:date', :to => 'me#event_list'
   match '/me/events', :to => 'me#events'
+  #match '/ldap_settings', :to => 'companies#ldap_settings'
    
   resources :topic_groups do
     post 'close', :to => 'topic_groups#close'
@@ -78,8 +79,8 @@ Specializ::Application.routes.draw do
   resources :ajax do
     get :autocomplete_company_name, :on => :collection, :full => true
   end
-
-  #resources :me, :elements, :iterations, :assignments, :topic_groups, :topics, :users, :groupings, :companies, :elements
+  
+  resources :ldap_settings
   
   root :to => 'me#home'
 
