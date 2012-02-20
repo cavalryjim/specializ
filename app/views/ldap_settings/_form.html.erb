@@ -8,8 +8,7 @@
   <%= f.input :server_address %>
   <%= f.input :port_number %>
   <%= f.input :user_name %>
-  <%= f.input :password, :value => @ldap_setting.password, :required => true, 
-  			  :input_html => {  } %>
+  <%= f.input :password, :value => @ldap_setting.password, :required => true %> 
   <%= f.input :root_node %>
   <%= f.input :account_attribute_name %>
   <%= f.input :group_attribute_name %>

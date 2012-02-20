@@ -24,12 +24,13 @@ class LdapSettingsController < ApplicationController
   # GET /companies/new.xml
   def new
     @ldap_setting = LdapSetting.new
-
+ 
   end
 
   # GET /companies/1/edit
   def edit
     @ldap_setting = LdapSetting.find(params[:id])
+    
   end
 
   # POST /companies
