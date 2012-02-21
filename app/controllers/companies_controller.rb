@@ -1,7 +1,8 @@
 class CompaniesController < ApplicationController
-  before_filter :authentiate_user
+  before_filter :authenticate_user!
   load_and_authorize_resource
   
+=begin
   # GET /companies
   # GET /companies.xml
   def index
@@ -12,6 +13,7 @@ class CompaniesController < ApplicationController
       format.xml  { render :xml => @companies }
     end
   end
+
 
   # GET /companies/1
   # GET /companies/1.xml
@@ -83,4 +85,6 @@ class CompaniesController < ApplicationController
       format.xml  { head :ok }
     end
   end
+=end 
+  
 end

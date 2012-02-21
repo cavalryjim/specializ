@@ -1,5 +1,10 @@
 <h3>Listing users</h3>
 
+<div id='new_user' align=right >
+	<!---<%= link_to 'New User', new_user_path %> <br />--->
+	<%= button_to "New user", new_user_path, :method => :get %>
+</div>
+
 <div id='demo'>
 	<table id="user_table">
 	 <thead>
@@ -22,10 +27,9 @@
 	  </tr>
 	 <% end %>
 	 </tbody>
-	</table>
+	</table><br/>
 </div>
 
-<%= link_to 'New User', new_user_path%> <br />
 
 <div>
 	<%= form_tag({ :controller => "users", :action => "import_users" }, {:multipart => true} ) do %>

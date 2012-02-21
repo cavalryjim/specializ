@@ -1,0 +1,21 @@
+<%= simple_form_for @ldap_setting, :validate => true do |f| %>
+  <% if @ldap_setting.errors.any? %>
+    <% @ldap_setting.errors.full_messages.each do |msg| %>
+	  <%= js add_gritter( msg, :title => "Error", :image => :error, :sticky => true ) %>
+    <% end %>
+  <% end %>
+
+  <%= f.input :server_address %>
+  <%= f.input :port_number %>
+  <%= f.input :user_name %>
+  <%= f.input :password, :value => @ldap_setting.password, :required => true %> 
+  <%= f.input :root_node %>
+  <%= f.input :account_attribute_name %>
+  <%= f.input :group_attribute_name %>
+  <%= f.input :group_member_attribute %>
+  <%= f.input :group_names %>
+  <%= f.input :company_id, :as => :hidden, :value => current_user.company_id %>
+
+  <%= f.button :submit %>
+
+<% end %>

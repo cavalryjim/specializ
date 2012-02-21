@@ -55,6 +55,7 @@ $(function() {
 		$( "#browser_col" ).slideToggle("slow");
 	});
 	
+	
 	var hCalendar = $('#calendar').fullCalendar({
 		events: 'me/events',
 		
@@ -75,7 +76,6 @@ $(function() {
 	hrTabs = $( "#hr_tabs" ).tabs({ cookie:{ expires:1 }}); // tabs used in the HR module
 	$( "#me_tabs" ).tabs({ cookie:{ expires:1 }});   // tabs used in the Me module
 			
-	
 	$( "#topic_grouping_ids").multiselect({
 		header: "Select groups that will participate",
 		minWidth: 300,
@@ -155,6 +155,7 @@ $(function() {
 		postbackSafe:true,
 		minWidth: 200
 	});
+	
 	
 	// JDavis: image the opens / closes the element attributes div
 	$('#rating_table img.details').live( 'click', function () {

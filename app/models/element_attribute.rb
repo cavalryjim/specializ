@@ -23,8 +23,8 @@ class ElementAttribute < ActiveRecord::Base
   validates_uniqueness_of :name, :scope => [ :element_id ]
   
   def value(user_id)
-    attr_list = UserElementAttributeList.find_by_element_attribute_id_and_user_id(self.id, user_id)
-    return attr_list.nil? ? nil : attr_list.value
+    user_e_attr_list = UserElementAttributeList.find_by_element_attribute_id_and_user_id(self.id, user_id)
+    user_e_attr_list.nil? ? nil : user_e_attr_list.value
   end
   
   def symbol

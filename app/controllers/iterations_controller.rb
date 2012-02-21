@@ -21,8 +21,7 @@ class IterationsController < ApplicationController
     @submitted = current_user.submitted_list?(@iteration.id)
     @title = @topic_group
     @element = Element.new
-    #3.times { @element.element_attributes.build }
-    gon.submitted = @submitted
+    gon.submitted = @submitted #JDavis: gon is a method for passing variables to javascript.
     @element_attribute_types = ElementAttributeType.all
     
     if (can? :manage, @topic_group) && @topic_group.active
