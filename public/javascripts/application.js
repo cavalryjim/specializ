@@ -99,8 +99,8 @@ $(function() {
 		"aoColumns": [
 		              { "sWidth": "25%" },
 		              { "sWidth": "65%" },
-		              { "sWidth": "5%" },
-		              { "sWidth": "5%" }
+		              { "sWidth": "5%", "bSortable": false },
+		              { "sWidth": "5%", "bSortable": false }
 		          ],
 		"bAutoWidth": false,
 		"bJQueryUI": true,
@@ -111,7 +111,7 @@ $(function() {
 		"aoColumns": [
 		              { "sWidth": "25%" },
 		              { "sWidth": "70%" },
-		              { "sWidth": "5%" }
+		              { "sWidth": "5%", "bSortable": false }
 		          ],
 		"bAutoWidth": false,
 		"bJQueryUI": true,
@@ -119,6 +119,15 @@ $(function() {
 	});
 	
 	$( "#user_table" ).dataTable({ // datatable in the admin module
+		"aaSorting": [[2,'asc'], [1,'asc']],
+		"aoColumns": [
+		              { "sWidth": "5%", "bSortable": false },
+		              { "sWidth": "20%" },
+		              { "sWidth": "20%" },
+		              { "sWidth": "50%" },
+		              { "sWidth": "5%", "bSortable": false }
+		          ],
+		"bAutoWidth": false,
 		"bJQueryUI": true,
 		"sPaginationType": "full_numbers"
 	});
@@ -127,7 +136,7 @@ $(function() {
 		"aoColumns": [
 		              { "sWidth": "25%" },
 		              { "sWidth": "70%" },
-		              { "sWidth": "5%" }
+		              { "sWidth": "5%", "bSortable": false }
 		          ],
 		"bAutoWidth": false,
 		"bJQueryUI": true,
@@ -135,6 +144,13 @@ $(function() {
 	}); 
 	
 	$( "#topic_groups_table" ).dataTable({ // datatable listing the topic_groups belonging to a topic
+		"aoColumns": [
+		              { "sWidth": "65%" },
+		              { "sWidth": "10%", "bSortable": false },
+		              { "sWidth": "10%" },
+		              { "sWidth": "10%", "bSortable": false },
+		              { "sWidth": "5%", "bSortable": false }
+		          ],
 		"bAutoWidth": false,
 		"bJQueryUI": true,
         "sPaginationType": "full_numbers"
@@ -142,7 +158,7 @@ $(function() {
 	
 	$( "#new_elements_table" ).dataTable({ // datatable listing newly suggested elements needing manager approval
 		"aoColumns": [
-		              { "sWidth": "5%" },
+		              { "sWidth": "5%", "bSortable": false },
 		              { "sWidth": "90%" }
 		          ],
 		"bAutoWidth": false,
@@ -249,7 +265,7 @@ $(function() {
 		"aoColumns": [
 		              { "sWidth": "75%" },
 		              { "sWidth": "20%" },
-		              { "sWidth": "5%" },
+		              { "sWidth": "5%", "bSortable": false },
 		              { "bVisible": false }
 		          ],
 		"bAutoWidth": false,

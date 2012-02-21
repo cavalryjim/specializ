@@ -149,6 +149,10 @@ table.display td {
 	padding: 3px 10px !important;
 }
 
+table.display th.center {
+	text-align: center !important;
+}
+
 table.display td.center {
 	text-align: center !important;
 }

@@ -6,24 +6,28 @@
 </div>
 
 <div id='demo'>
-	<table id="user_table">
+	<table id="user_table" class="display">
 	 <thead>
 	  <tr>
-	    <th>First Name</th>
-	    <th>Last Name</th>
-		<th>email</th>
-		<th>Active</th>
+		<th class="center">Active</th>
+	    <th class="center">First Name</th>
+	    <th class="center">Last Name</th>
+		<th class="center">email</th>
 	    <th></th>
 	  </tr>
 	 </thead>
 	 <tbody>
 	 <% for user in @users %>
 	  <tr>
+		<td class="center">
+		  <%= check_box_tag user.id, 1, user.active, { :disabled => true } %>
+		</td>
 	    <td><%= link_to user.first_name, edit_user_path(user) %></td>
 	    <td><%= link_to user.last_name, edit_user_path(user) %></td>
 		<td><%= link_to user.email, edit_user_path(user) %></td>
-		<td><%= check_box_tag user.id, 1, user.active, { :disabled => true } %></td>
-	    <td><%= link_to 'Delete', user, :confirm => 'Are you sure?', :method => :delete %></td>
+	    <td class="center">
+		  <%= link_to image_tag('icons/cross.png'), user, :confirm => 'Remove this user from the system?', :method => :delete %>
+		</td>
 	  </tr>
 	 <% end %>
 	 </tbody>
