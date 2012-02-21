@@ -10,7 +10,7 @@
 </div>
 
 <div>
-	<table id="staffing_table">
+	<table id="staffing_table" class="display">
 	 <thead>
 	  <tr>
 	    <th>User</th>
@@ -24,8 +24,13 @@
 		  <tr>
 		    <td><%= link_to User.find(assignment.user_id), edit_topic_assignment_path(@topic, assignment) %></td>
 		    <td><%= TopicGroup.find(assignment.topic_group_id).name %></td>
-		    <td><%= check_box_tag assignment.id, 1, assignment.manager, { :disabled => true } %></td>
-		    <td><%= link_to 'Remove?', topic_assignment_path(@topic, assignment), :confirm => 'Are you sure?', :method => :delete %></td>
+		    <td class="center">
+			  <%= check_box_tag assignment.id, 1, assignment.manager, { :disabled => true } %>
+			</td>
+		    <td class="center">
+			  <%= link_to image_tag('icons/cross.png'), topic_assignment_path(@topic, assignment), 
+				:confirm => 'Remove this user from participating in this topic?', :method => :delete %>
+			</td>
 		  </tr>
 		<% end %>
 	 </tbody>

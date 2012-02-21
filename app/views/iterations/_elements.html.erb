@@ -51,7 +51,7 @@
 			  <%= my_suggestion(@iteration.active) %>
 			</td>
  
-			<td>
+			<td class="center">
 				<% if @iteration.last? %>
 					<%= link_to image_tag('trashcan.png'), topic_group_iteration_element_path(@topic_group, @iteration, element), 
 						:confirm => "Select 'OK' to delete. Any unsaved ratings may be lost.", :method => :delete%>
@@ -90,7 +90,7 @@
 			 
 			</td>
 
-		    <td>
+		    <td class="center">
 				<% if @iteration.last? && (can? :manage, @topic_group) %>
 					<%= link_to image_tag('trashcan.png', :alt => "del"), topic_group_iteration_element_path(@topic_group, @iteration, element), 
 					:confirm => "Select 'OK' to delete. Any unsaved ratings may be lost.", :method => :delete%>

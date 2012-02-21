@@ -1,7 +1,7 @@
 <h2>Listing group assignments</h2>
 
 <div>
-	<table id="group_staffing_table">
+	<table id="group_staffing_table" class="display">
 	 <thead>
 	  <tr>
 	    <th>Name</th>
@@ -15,7 +15,10 @@
 		  <tr>
 		    <td><%= user %></td>
 		    <td><%= user.email %></td>
-		    <td><%= link_to 'Remove?', grouping_user_path(@grouping, user)+'/remove' , :confirm => 'Are you sure?', :method => "post" %></td>
+		    <td class="center">
+			  <%= link_to image_tag('icons/cross.png'), grouping_user_path(@grouping, user)+'/remove' , 
+						:confirm => 'Remove user from this group?', :method => "post" %>
+			</td>
 		  </tr>
 		<% end %>
 	 </tbody>

@@ -98,9 +98,9 @@ $(function() {
 	$( "#staffing_table" ).dataTable({ // datatable in the manager module's staffing tab
 		"aoColumns": [
 		              { "sWidth": "25%" },
-		              { "sWidth": "50%" },
-		              { "sWidth": "10%" },
-		              { "sWidth": "10%" }
+		              { "sWidth": "65%" },
+		              { "sWidth": "5%" },
+		              { "sWidth": "5%" }
 		          ],
 		"bAutoWidth": false,
 		"bJQueryUI": true,
@@ -108,6 +108,12 @@ $(function() {
 	}); 
 	
 	$( "#group_staffing_table" ).dataTable({ // datatable in the admin module
+		"aoColumns": [
+		              { "sWidth": "25%" },
+		              { "sWidth": "70%" },
+		              { "sWidth": "5%" }
+		          ],
+		"bAutoWidth": false,
 		"bJQueryUI": true,
 		"sPaginationType": "full_numbers"
 	});
@@ -118,12 +124,18 @@ $(function() {
 	});
 	
 	$( "#member_table" ).dataTable({ // datatable listing the other user participating in a topic
+		"aoColumns": [
+		              { "sWidth": "25%" },
+		              { "sWidth": "70%" },
+		              { "sWidth": "5%" }
+		          ],
+		"bAutoWidth": false,
 		"bJQueryUI": true,
         "sPaginationType": "full_numbers"
 	}); 
 	
 	$( "#topic_groups_table" ).dataTable({ // datatable listing the topic_groups belonging to a topic
-		"bAutoWidth": true,
+		"bAutoWidth": false,
 		"bJQueryUI": true,
         "sPaginationType": "full_numbers"
 	}); 

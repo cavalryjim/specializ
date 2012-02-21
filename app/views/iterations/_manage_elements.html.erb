@@ -1,7 +1,7 @@
 	<% if can? :manage, @topic_group %>
 	  <div>
 	  	<%= form_tag(:controller => "users", :action => "approve_new_elements", :method => "post") do %>
-			<table id="new_elements_table">
+			<table id="new_elements_table" class="display">
 			 <thead>
 			  <tr>
 				<th>Approve</th>
@@ -12,7 +12,7 @@
 				<% @new_elements.each do |new_element| %>
 				  <tr>
 					<% name = 'approve['+new_element.id.to_s+']' %>
-				    <td> <%= check_box_tag name, 1, new_element.approved?(@iterations.last.id) %> </td>
+				    <td class="center"> <%= check_box_tag name, 1, new_element.approved?(@iterations.last.id) %> </td>
 				    <td><%= new_element.name %></td>
 				  </tr>
 				<% end %>

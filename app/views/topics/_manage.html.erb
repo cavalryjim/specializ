@@ -1,11 +1,11 @@
 <div>
-	<table id="topic_groups_table">
+	<table id="topic_groups_table" class="display">
 	 <thead>
 	  <tr>
 	    <th>Topic Groups</th>
 		<th>Goal</th>
 		<th>Num of Iterations</th>
-		<th>Current Consensus</th>
+		<th>Consensus</th>
 		<th>Active?</th>
 	    
 	  </tr>
@@ -14,10 +14,10 @@
 		<% @topic.topic_groups.each do |topic_group| %>
 		  <tr>
 		    <td><%= link_to topic_group.name, edit_topic_topic_group_path(@topic, topic_group)  %></td>
-		    <td><%= topic_group.goal %></td>
-			<td><%= topic_group.iterations.count %></td>
-			<td><%= topic_group.iterations.last.consensus %></td>
-			<td><%= check_box_tag topic_group.id, 1, topic_group.active, { :disabled => true } %></td>
+		    <td class="center"><%= topic_group.goal %></td>
+			<td class="center"><%= topic_group.iterations.count %></td>
+			<td class="center"><%= topic_group.iterations.max_by{|i| i.consensus}.consensus %></td>
+			<td class="center"><%= check_box_tag topic_group.id, 1, topic_group.active, { :disabled => true } %></td>
 		  </tr>
 		<% end %>
 	 </tbody>
