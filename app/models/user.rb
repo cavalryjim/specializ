@@ -57,6 +57,8 @@ class User < ActiveRecord::Base
             :source => :topic_group,
             :conditions => {'assignments.participating' || 'assignments.manager' => true, 'active' => false},
             :order => 'created_at desc'
+            
+  #scope     :belongs_company, lambda { |company_id| where("company_id = ?", :company_id) } 
   
   # Setup accessible (or protected) attributes for your model
   attr_accessible :first_name, :last_name, :email, :active, :company_id, 
@@ -81,6 +83,10 @@ class User < ActiveRecord::Base
   
   def to_s
     "#{first_name} #{last_name}"
+  end
+  
+  def name_email
+    "#{first_name} #{last_name} #{email}"
   end
   
   def role?(role)

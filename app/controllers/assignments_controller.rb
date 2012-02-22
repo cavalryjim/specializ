@@ -1,7 +1,7 @@
 class AssignmentsController < ApplicationController
   before_filter :authenticate_user!
   load_and_authorize_resource
-  autocomplete :user, :last_name, :extra_data => [:id, :first_name], :display_value => :to_s
+  autocomplete :user, :last_name, :extra_data => [:id, :first_name, :email], :display_value => :name_email, :scope => [:belongs_company]
   
   # GET /assignments
   # GET /assignments.xml

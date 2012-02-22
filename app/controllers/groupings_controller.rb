@@ -1,7 +1,7 @@
 class GroupingsController < ApplicationController
   before_filter :authenticate_user!
   load_and_authorize_resource
-  autocomplete :user, :last_name, :extra_data => [:id, :first_name], :display_value => :to_s, :scope => [:belongs_company]
+  autocomplete :user, :last_name, :extra_data => [:id, :first_name], :display_value => :name_email, :scope => [:belongs_company]
   respond_to :html, :json
   
   # GET /groupings
