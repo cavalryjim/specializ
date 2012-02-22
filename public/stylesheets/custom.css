@@ -299,22 +299,390 @@ div.field, div.actions {
 /* JDavis: styling for the dropdown navigation menu */
 /* navigation styles - BEGIN */ 
 	
-	/* style for horizontal nav */	
-	#navigation_horiz { clear:both; padding:0 0 0 0; margin:0 auto}
-	#navigation_horiz  ul { display:block}
-	#navigation_horiz  ul li { float:left;  margin:0 1px 0 0; position:relative}
-	#navigation_horiz  ul li a.navlink {display:block; width:200px; height:30px; padding: 20px 0 0 0; text-align:center; color:#fff; text-decoration:none}
-	#navigation_horiz .dropdown {position:absolute; width:20px; border-bottom-right-radius:10px; border-bottom-left-radius:10px; -moz-border-radius-bottomright:10px; -moz-border-radius-bottomleft:10px}
-		
-		/* style for each drop down - horizontal */
-		#navigation_horiz ul li #dropdown_me {padding:1px 1px 1px 1px; background:#333; color:#fff}
-		#navigation_horiz ul li #dropdown_me a {color:red}
-		#navigation_horiz ul li #dropdown_admin {padding:1px 1px 1px 1px; background:#333; color:#fff}
-		#navigation_horiz ul li #dropdown_admin a {color:red}
-		#navigation_horiz ul li #dropdown_three {background:#ccc; color:#fff}	
-		#navigation_horiz ul li #dropdown_three a {color:gray}
-		
-		#navigation_horiz p {margin:1px; padding:0 1px 0 0}
+.SiteHeader * {
+	z-index: inherit;  /* Make sure IE drops the header in front of other elements */
+}
+
+.SiteHeader {
+    position: relative;
+    margin: 0 0 0px;
+    line-height: 14px;
+    color: #FFF;
+    zoom: 1;
+    z-index: 999;
+	text-rendering: auto;
+}
+
+.SiteHeaderHome,
+.SiteHeaderInfo,
+.SiteHeaderSearchButton {
+    text-indent: -9999px;
+}
+
+
+.SiteHeaderBar {
+    padding-left: 0px;
+    line-height: 30px;
+	background: #424242 none;
+	background: -webkit-gradient(linear, left top, left bottom, from(#505050), to(#343434));
+	background: -moz-linear-gradient(top, #505050, #343434);
+	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#FF505050, endColorstr=#FF343434);
+	-ms-filter: "progid:DXImageTransform.Microsoft.gradient(startColorstr=#FF505050, endColorstr=#FF343434)";
+	background: -ms-linear-gradient(top, #505050, #343434);
+	background: -o-linear-gradient(top, #505050, #343434);
+}
+
+.SiteHeaderBarItemHover, .SiteHeaderBarItem:hover {
+	border-left: 1px solid #515151;
+	background: #5c5c5c none;
+	background: -webkit-gradient(linear, left top, left bottom, from(#6a6a6a), to(#414141));
+	background: -moz-linear-gradient(top, #6a6a6a, #414141);
+	background: -ms-linear-gradient(top, #6a6a6a, #414141);
+	background: -o-linear-gradient(top, #6a6a6a, #414141);
+}
+
+.SiteHeaderBarItem:active, .SiteHeaderBarItemActive {
+    margin-left: 0;
+    margin-right: 0;
+    padding: 1px 16px 0 16px;
+	border-left: 1px solid #303030;
+	background: #303030 none;
+	background: -webkit-gradient(linear, left top, left bottom, from(#2d2d2d), to(#343434));
+	background: -moz-linear-gradient(top, #2d2d2d, #343434);
+	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#FF2d2d2d, endColorstr=#FF343434);
+	-ms-filter: "progid:DXImageTransform.Microsoft.gradient(startColorstr=#FF2d2d2d, endColorstr=#FF343434)";
+	background: -ms-linear-gradient(top, #2d2d2d, #343434);
+	background: -o-linear-gradient(top, #2d2d2d, #343434);
+}
+
+.SiteHeaderBar,
+.SiteHeaderUser {
+    _height: 1em;
+    zoom: 1;
+}
+
+.SiteHeaderBar:after,
+.SiteHeaderUser:after {
+    clear: both;
+    content: "\0020";
+    height: 0;
+    display: block;
+}
+
+.SiteHeaderBar li {
+    float: left;
+}
+
+.SiteHeaderBarItem {
+    position: relative;
+    float: left;
+    border-left: 1px solid #4c4c4c;
+    border-right: 1px solid #000;
+    padding: 1px 16px 0 16px;
+    margin: 0;
+    z-index: 1000;
+	cursor: pointer;
+}
+
+.SiteHeaderBarItemFirst {
+    border-left: 1px solid #414141;
+}
+
+.SiteHeaderBarItemLast {
+    background: none;
+    border-right: 0;
+	padding: 1px 0 0 0;
+	width: 1px;
+}
+
+.SiteHeaderBarLink,
+a.SiteHeaderBarLink,
+a.SiteHeaderBarLink:link,
+a.SiteHeaderBarLink:visited,
+a.SiteHeaderBarLink:active,
+a.SiteHeaderBarLink:hover,
+a.SiteHeaderBarLink:visited:hover {
+    color: #DDD !important;  /* !important needed for IE 6 */
+    text-decoration: none;
+    text-shadow:  0 -1px 0 #151515;
+    -moz-text-shadow: 0 -1px 0 #151515;
+}
+
+.SiteHeaderBarItemLastHover, 
+.SiteHeaderBarItemLast:hover {
+    background: none;
+	border-left: 1px solid #595959;
+}
+
+.SiteHeaderBarItemLast:active {
+    background: none;
+	border-left: 1px solid #595959;
+}
+
+.SiteHeaderUser {
+    padding-top: 4px;
+    padding-right: 4px;
+	font-size: 12px;
+}
+
+.SiteHeaderUserItem {
+    position: relative;
+    float: right;
+    margin-left: 10px;
+    line-height: 20px;
+}
+
+.SiteHeaderUserItem,
+a.SiteHeaderUserItem,
+a.SiteHeaderUserItem:link,
+a.SiteHeaderUserItem:visited,
+a.SiteHeaderUserItem:active,
+.SiteHeaderUserItem a,
+.SiteHeaderUserItem a:link,
+.SiteHeaderUserItem a:visited {
+    text-decoration: none;
+}
+
+a.SiteHeaderUserItem:hover,
+a.SiteHeaderUserItem:visited:hover,
+.SiteHeaderUserItem a:hover,
+.SiteHeaderUserItem a:visited:hover {
+    text-decoration: none;
+}
+
+.SiteHeaderInfo {
+    background: transparent url(../style/../style/default/SiteHeader/info.png) left center no-repeat;
+}
+
+.SiteHeaderInfo {
+    width: 16px;
+    height: 16px;
+	margin-left: 4px;
+	padding-top: 6px;
+	_padding-top: 0;
+	cursor: pointer;
+}
+
+.SiteHeaderCartInfo {
+    width: 14px;
+    height: 14px;
+    line-height: 14px;
+    background: transparent url(../style/../style/default/SiteHeader/red_dot.png) left center no-repeat;
+    display: block;
+    float: right;
+	margin-left: 4px;
+	margin-top: 4px;
+	text-align: center;
+	color: #fff;
+	_padding-top: 0;	
+	cursor: pointer;
+}
+
+.ThreeDigitQuantity
+{
+	font-size: 8px;
+}
+
+a.SiteHeaderSearchButton {
+	width: 15px;
+    background: transparent url(../style/../style/default/SiteHeader/icon_search_mobile.png) no-repeat 50% 50%;
+}
+
+.SiteHeaderSearch {
+    float: right;
+    width: 272px;
+    height: 40px;
+}
+
+#search-submit {
+    display: none;
+}
+
+#search-input {
+    background-color: #2d2d2d;
+    border: none;
+    margin-left: 34px;
+    margin-top: 9px;
+    *margin-top: 0;
+    _margin-top: 9px;
+    padding-top: 4px;
+    _padding-top: 3px;
+    width: 220px;
+	color: #CCC;
+    font: 12px Arial,Helvetica,sans-serif;
+}
+
+@media screen and (-webkit-min-device-pixel-ratio:0) {
+    #search-input {
+        padding-top: 7px;
+    }
+}
+
+.SiteHeaderDropPanel {
+    position: absolute;
+    background-color: #FFF;
+    border: 1px solid;
+    border-color: #2F4E6B #B0B0B0 #737373;
+    *border-color: #2F4E6B #2F4E6B #737373;
+    box-shadow: 0 4px 10px rgba(0,0,0,.5);
+    -moz-box-shadow: 0 4px 10px -moz-rgba(0,0,0,.5);
+    -webkit-box-shadow: 0 4px 10px rgba(0,0,0,.5);
+    *filter: progid:DXImageTransform.Microsoft.Shadow(color='#999999', Direction=180, Strength=4);
+    z-index: 100;
+    top: 100%;
+    left: 0;
+    width: 220px;
+    color: #333;
+    padding: 6px 0;
+    margin-top: -1px;
+    _margin-top: 0;
+	margin-left: -1px;
+	line-height: normal;
+    zoom: 100%;
+}
+
+.SiteHeaderPopPanel {
+    position: absolute;
+    border-top: 1px solid #D8D8D8;
+    background-color: #FFF;
+    z-index: 100;
+    top: 100%;
+    right: 0;
+    color: #333;
+    margin: 2px 1px;
+    padding: 6px 0;
+}
+
+.SiteHeaderPopPanelShadow {
+    position: absolute;
+    border: 1px solid;
+    border-top: 0;
+    border-color: #FFF #B0B0B0 #737373;
+    box-shadow: 0 4px 10px rgba(0,0,0,.5);
+    -moz-box-shadow: 0 4px 10px -moz-rgba(0,0,0,.5);
+    -webkit-box-shadow: 0 4px 10px rgba(0,0,0,.5);
+    filter: progid:DXImageTransform.Microsoft.Shadow(color='#999999', Direction=180, Strength=4);
+    margin: 2px 0;
+    top: 100%;
+    right: 0;
+    z-index: 99;
+}
+
+.CartHeaderPopPanel {    
+    border-top: 1px solid #D8D8D8;
+    background-color: #FFF;    
+    color: #333;
+    /*margin: 0;*/
+    overflow: hidden;
+    /*padding: 6px 0;*/
+}
+
+.CartHeaderPopPanelShadow {
+    position: absolute;
+    border: 1px solid;
+    border-top: 0;
+    border-color: #FFF #B0B0B0 #737373;
+    box-shadow: 0 4px 10px rgba(0,0,0,.5);
+    -moz-box-shadow: 0 4px 10px -moz-rgba(0,0,0,.5);
+    -webkit-box-shadow: 0 4px 10px rgba(0,0,0,.5);
+    filter: progid:DXImageTransform.Microsoft.Shadow(color='#999999', Direction=180, Strength=4);
+    filter: none\9;
+    top: 100%;
+    right: 0;
+    z-index: 99999 !important;
+}
+
+
+#modalContent .CartHeaderPopPanelShadow
+{
+	border-bottom: 0px;
+}
+
+.width-150 {
+    width: 150px;
+}
+
+.width-250 {
+    width: 250px;
+}
+
+.width-450 {
+    width: 450px;
+}
+
+.width-485 {
+	width:485px;
+}
+
+.HoverCartBoxShot{
+	width: 50px;
+	position: relative;
+	clear: left;
+	float: left;
+	left: -60px;
+	margin-right: -60px;
+}
+
+div.SiteHeaderPanelRow {
+    padding: 5px 12px;
+    position: relative;
+}
+
+div.SiteHeaderPanelRow a,
+.SiteHeaderPanelHeader a {
+	display: block;
+	width: 100%;
+}
+
+.SiteHeaderPanelHeader {
+    display: block;
+    font-weight: bold;
+}
+
+div.SiteHeaderPanelLink a,
+div.SiteHeaderPanelLink a:link,
+div.SiteHeaderPanelLink a:visited,
+div.SiteHeaderPanelLink a:active,
+div.SiteHeaderPanelLink a:visited {
+    text-decoration: none;
+    color: #333;
+}
+
+div.SiteHeaderPanelLinkHover,
+div.SiteHeaderPanelLinkHover a,
+div.SiteHeaderPanelLink:hover,
+div.SiteHeaderPanelLink a:hover {
+    background-color: #447099;
+    color: #FFF !important;  /* !important needed for IE 6 */
+}
+
+.SiteHeaderPanelLinkNoBar a,
+.SiteHeaderPanelLinkNoBar a:link,
+.SiteHeaderPanelLinkNoBar a:visited,
+a.SiteHeaderPanelLinkNoBar,
+a.SiteHeaderPanelLinkNoBar:link,
+a.SiteHeaderPanelLinkNoBar:visited {
+	color: #447099;
+	cursor: pointer;
+	text-decoration: none;
+}
+
+.SiteHeaderPanelLinkNoBar a:hover,
+.SiteHeaderPanelLinkNoBar a:visited:hover,
+a.SiteHeaderPanelLinkNoBar:hover,
+a.SiteHeaderPanelLinkNoBar:visited:hover {
+	color: #7193B2;
+	text-decoration: underline;
+}
+
+.SiteHeaderDropdownLink .SiteHeaderDropPanel {
+    display: none;
+}
+
+.SiteHeaderDropdownLink:hover .SiteHeaderDropPanel {
+    display: block;
+}
+
 
 /* navigation styles - END */ 
 
