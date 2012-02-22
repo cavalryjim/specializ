@@ -1,7 +1,7 @@
 class GroupingsController < ApplicationController
   before_filter :authenticate_user!
   load_and_authorize_resource
-  autocomplete :user, :last_name, :extra_data => [:id, :first_name], :display_value => :name_email, :scope => [:belongs_company]
+  autocomplete :user, :last_name, :extra_data => [:id, :first_name, :email], :display_value => :name_email
   respond_to :html, :json
   
   # GET /groupings
@@ -106,17 +106,17 @@ class GroupingsController < ApplicationController
   def add_user
     @grouping = Grouping.find(params[:id])
     if params[:grouping_user_id].blank?
-      new_notice = 'Please select a user.'
+      gflash :error => 'Please select a user.'
     else 
       user = User.find(params[:grouping_user_id])
       if @grouping.users.include?(user)
-        new_notice = 'User is already in this group.'
+        gflash :notice => 'User is already in this group.'
       else
         @grouping.users << user 
-        new_notice =  'User successfully added to group.'
+        gflash :success =>  'User successfully added to group.'
       end
     end
-    gflash :success => new_notice
+    #gflash :success => new_notice
     redirect_to edit_grouping_path(@grouping)
   end
   
@@ -129,4 +129,10 @@ class GroupingsController < ApplicationController
     
     redirect_to hr_path
   end
+  
+  def get_autocomplete_items(parameters)
+    users = super(parameters)
+    users = users.where(:company_id => current_user.company_id)
+  end
+  
 end

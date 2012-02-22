@@ -17,8 +17,8 @@ class Assignment < ActiveRecord::Base
   belongs_to :user
   belongs_to :topic_group
   
-  #validates :user_id, :presence => true
-  #validates :topic_group_id, :presence => true
+  validates :user_id, :presence => true
+  validates :topic_group_id, :presence => true
   validates_associated :user
   validates_associated :topic_group
   validates :manager, :inclusion => {:in => [true, false]}
