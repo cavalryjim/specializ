@@ -1,37 +1,33 @@
-<h2>Request Account</h2>
 
-<% if resource.errors.any? %>
-  <% resource.errors.full_messages.each do |msg| %>
-	<%= js add_gritter( msg, :image => :error, :sticky => true ) %>
-  <% end %>
-<% end %>
+<div class="collapsibleContainer" title="Request Account">
+	<% if resource.errors.any? %>
+	  <% resource.errors.full_messages.each do |msg| %>
+		<%= js add_gritter( msg, :image => :error, :sticky => true ) %>
+	  <% end %>
+	<% end %>
+	
+	<%= simple_form_for(resource, :as => resource_name, :url => registration_path(resource_name)) do |f| %>
+	  <div>
+		<%= label_tag '* Company'%>
+		<%= autocomplete_field_tag 'company', '', autocomplete_company_name_ajax_index_path, :id_element => '#user_company_id' %> (start typing the company name)
+	  </div>
+	
+	  
+	  <%= f.input :first_name %>
+	  <%= f.input :last_name %>
+	  <%= f.input :email %>
+	
+	 <% if @user.password_required? %>
+	  <%= f.input :password, :required => true%>
+	  <%= f.input :password_confirmation, :required => true %>
+	 <% end %>
 
-<%= autocomplete_field_tag 'company', '', autocomplete_company_name_ajax_index_path, :id_element => '#user_company_id' %> (start typing the company name)
+	  
+	  <%= f.input :active, :as => :hidden, :input_html => { :value => '0' } %>
+	  <%= f.input :company_id, :as => :hidden %>
+	  <%= f.submit "Sign up" %>
+	  
+	<% end %>
 
-<%= form_for(resource, :as => resource_name, :url => registration_path(resource_name)) do |f| %>
-
-  <div><%= f.label :first_name %><br />
-  <%= f.text_field :first_name %></div>
-
-  <div><%= f.label :last_name %><br />
-  <%= f.text_field :last_name %></div>
-
-  <div><%= f.label :email %><br />
-  <%= f.email_field :email %></div>
-
-<% if @user.password_required? %>
-  <div><%= f.label :password %><br />
-  <%= f.password_field :password %></div>
-
-  <div><%= f.label :password_confirmation %><br />
-  <%= f.password_field :password_confirmation %></div>
-<% end %>
-
-  <div>
-	<%= f.hidden_field :active, :value => false %>
-	<%= f.hidden_field :company_id %>
-	<%= f.submit "Sign up" %>
-  </div>
-<% end %>
-
-<%= render :partial => "devise/shared/links" %>
+	<%= render :partial => "devise/shared/links" %>
+</div>

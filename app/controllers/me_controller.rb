@@ -19,7 +19,7 @@ class MeController < ApplicationController
       end
     else
       gflash :notice => "Please sign in to participate."
-      redirect_to authentications_url
+      redirect_to new_user_session_path
     end
   end
   

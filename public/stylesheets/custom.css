@@ -719,7 +719,7 @@ div.notice {
 
 .simple_form label {
   float: left;
-  width: 150px;
+  width: 155px;
   text-align: right;
   margin: 2px 10px;
 }
@@ -730,7 +730,7 @@ div.notice {
 }
 
 .simple_form div.boolean, .simple_form input[type='submit'] {
-  margin-left: 170px;
+  margin-left: 175px;
 }
 
 .simple_form div.boolean label, .simple_form label.collection_radio {
@@ -741,7 +741,7 @@ div.notice {
 
 .simple_form .error {
   clear: left;
-  margin-left: 170px;
+  margin-left: 175px;
   font-size: 12px;
   color: #D00;
   display: table;
@@ -750,7 +750,7 @@ div.notice {
 
 .simple_form .hint {
   clear: left;
-  margin-left: 170px;
+  margin-left: 175px;
   font-size: 12px;
   color: #555;
   display: block;
