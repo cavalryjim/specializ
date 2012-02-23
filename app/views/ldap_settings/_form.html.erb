@@ -7,13 +7,13 @@
 
   <%= f.input :server_address %>
   <%= f.input :port_number %>
-  <%= f.input :user_name %>
+  <%= f.input :user_name, :hint => 'EX: cd=admin, dc=peoplenetz, dc=com OR windowsdomainame\administrator'%>
   <%= f.input :password, :value => @ldap_setting.password, :required => true %> 
-  <%= f.input :root_node %>
-  <%= f.input :account_attribute_name %>
-  <%= f.input :group_attribute_name %>
-  <%= f.input :group_member_attribute %>
-  <%= f.input :group_names %>
+  <%= f.input :root_node, :hint => 'EX: dc=peoplenetz, dc=com' %>
+  <%= f.input :account_attribute_name, :hint => 'EX: SaMAccountName' %>
+  <%= f.input :group_attribute_name, :hint => 'EX: cn' %>
+  <%= f.input :group_member_attribute, :hint => 'EX: memberOf' %>
+  <%= f.input :group_names, :hint => 'EX: Finance, Accounting, Marketing, etc' %>
   <%= f.input :company_id, :as => :hidden, :value => current_user.company_id %>
 
   <%= f.button :submit %>
