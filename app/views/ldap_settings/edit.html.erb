@@ -1,8 +1,9 @@
-<h3>Editing LDAP Settings</h3>
 
+<div class="collapsibleContainer" title="Editing LDAP Settings">
+	<%= render 'form' %>
+	
+	<%=# link_to 'Back', :back
+	 %>
+	<%= link_to 'Destroy', @ldap_setting, :confirm => 'Are you sure?', :method => :delete %>
+</div>
 
-<%= render 'form' %>
-
-<%=# link_to 'Back', :back
- %>
-<%= link_to 'Destroy', @ldap_setting, :confirm => 'Are you sure?', :method => :delete %>

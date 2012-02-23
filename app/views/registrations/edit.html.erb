@@ -1,20 +1,22 @@
-<h3>Changing password for: <%= resource %></h3>
+<!--<h3>Changing password for: <%= resource %></h3>-->
+<div class="collapsibleContainer" title="Changing password for: <%= resource %>">
 
-<%= simple_form_for(resource, :as => resource_name, :url => registration_path(resource_name), :validate => true, :html => { :method => :put }) do |f| %>
-  <% if resource.errors.any? %>
-	<% resource.errors.full_messages.each do |msg| %>
-	   <%= js add_gritter( msg, :image => :error, :sticky => true ) %>
+	<%= simple_form_for(resource, :as => resource_name, :url => registration_path(resource_name), :validate => true, :html => { :method => :put }) do |f| %>
+	  <% if resource.errors.any? %>
+		<% resource.errors.full_messages.each do |msg| %>
+		   <%= js add_gritter( msg, :image => :error, :sticky => true ) %>
+		<% end %>
+	  <% end %>
+	  
+	  <%= f.input :password %>
+	  <%= f.input :password_confirmation %>
+	  <%= f.input :current_password, :hint => 'we need your current password to confirm your changes' %>
+	  <%= f.hidden_field :email %>
+	  <%= f.button :submit %>
+	
 	<% end %>
-  <% end %>
-  
-  <%= f.input :password %>
-  <%= f.input :password_confirmation %>
-  <%= f.input :current_password, :hint => 'we need your current password to confirm your changes' %>
-  <%= f.hidden_field :email %>
-  <%= f.button :submit %>
-
-<% end %>
-
-
-<%= #link_to "Back", :back 
-%>
+	
+	
+	<%= #link_to "Back", :back 
+	%>
+</div>

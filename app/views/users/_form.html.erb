@@ -13,7 +13,7 @@
 	<%= f.association :groupings, :label => 'Assigned groups', 
 		:collection => nested_set_options(current_user.root_grouping) {|i| "#{' -' * i.level} #{i.name}" }, 
 		:multiple => true, :required => true %>
-	<%= f.association :roles, :collection => current_user.available_roles.map{ |t| [t.name, t.id] }, :required => true %>
+	<%= f.association :roles, :collection => current_user.available_roles.map{ |t| [t.name, t.id] }%>
 	<%= f.input :active %>
  <% end %>
 

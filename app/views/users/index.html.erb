@@ -1,46 +1,48 @@
-<h3>Listing users</h3>
 
-<div id='new_user' align=right >
-	<!---<%= link_to 'New User', new_user_path %> <br />--->
-	<%= button_to "New user", new_user_path, :method => :get %>
-</div>
+<div class="collapsibleContainer" title="Listing users">
 
-<div id='demo'>
-	<table id="user_table" class="display">
-	 <thead>
-	  <tr>
-		<th class="center">Active</th>
-	    <th class="center">First Name</th>
-	    <th class="center">Last Name</th>
-		<th class="center">email</th>
-	    <th></th>
-	  </tr>
-	 </thead>
-	 <tbody>
-	 <% for user in @users %>
-	  <tr>
-		<td class="center">
-		  <%= check_box_tag user.id, 1, user.active, { :disabled => true } %>
-		</td>
-	    <td><%= link_to user.first_name, edit_user_path(user) %></td>
-	    <td><%= link_to user.last_name, edit_user_path(user) %></td>
-		<td><%= link_to user.email, edit_user_path(user) %></td>
-	    <td class="center">
-		  <%= link_to image_tag('icons/cross.png'), user, :confirm => 'Remove this user from the system?', :method => :delete %>
-		</td>
-	  </tr>
-	 <% end %>
-	 </tbody>
-	</table><br/>
-</div>
-
-
-<div>
-	<%= form_tag({ :controller => "users", :action => "import_users" }, {:multipart => true} ) do %>
+	<div id='new_user' align=right >
+		<!---<%= link_to 'New User', new_user_path %> <br />--->
+		<%= button_to "New user", new_user_path, :method => :get %>
+	</div>
 	
-		Upload users: <%= file_field_tag 'file' %>
+	<div id='demo'>
+		<table id="user_table" class="display">
+		 <thead>
+		  <tr>
+			<th class="center">Active</th>
+		    <th class="center">First Name</th>
+		    <th class="center">Last Name</th>
+			<th class="center">email</th>
+		    <th></th>
+		  </tr>
+		 </thead>
+		 <tbody>
+		 <% for user in @users %>
+		  <tr>
+			<td class="center">
+			  <%= check_box_tag user.id, 1, user.active, { :disabled => true } %>
+			</td>
+		    <td><%= link_to user.first_name, edit_user_path(user) %></td>
+		    <td><%= link_to user.last_name, edit_user_path(user) %></td>
+			<td><%= link_to user.email, edit_user_path(user) %></td>
+		    <td class="center">
+			  <%= link_to image_tag('icons/cross.png'), user, :confirm => 'Remove this user from the system?', :method => :delete %>
+			</td>
+		  </tr>
+		 <% end %>
+		 </tbody>
+		</table><br/>
+	</div>
+	
+	
+	<div>
+		<%= form_tag({ :controller => "users", :action => "import_users" }, {:multipart => true} ) do %>
 		
-		<%= submit_tag("Submit List", :confirm => 'Upload list from spreadsheet?') %>
-	<% end %>
-</div>
+			Upload users: <%= file_field_tag 'file' %>
+			
+			<%= submit_tag("Submit List", :confirm => 'Upload list from spreadsheet?') %>
+		<% end %>
+	</div>
 
+</div>

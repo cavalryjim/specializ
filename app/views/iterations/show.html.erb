@@ -33,47 +33,49 @@
   });
 
 </script>
-
+<!-- 
 <h3>
   <%= @topic_group.active? ? @topic_group.name : @topic_group.name + ' (closed)' %> <br/>
 </h3>
+-->
+<div class="collapsibleContainer" title="<%= @topic_group.active? ? @topic_group.name : @topic_group.name + ' (closed)' %>">
 
-
-<div id="me_tabs" class="ui-tabs">
-	<ul>
-		<li><a href="#tabs-1">Topic Info</a></li>
-		<li><a href="#tabs-2">Participate</a></li>
-		<li><a href="#tabs-3">Members</a></li>
+	<div id="me_tabs" class="ui-tabs">
+		<ul>
+			<li><a href="#tabs-1">Topic Info</a></li>
+			<li><a href="#tabs-2">Participate</a></li>
+			<li><a href="#tabs-3">Members</a></li>
+			<% if can? :manage, @topic_group %>
+				<li><a href="#tabs-4">Manage Participants</a></li>
+				<li><a href="#tabs-5">Manage Elements</a></li>
+			<% end %>
+		</ul>
+		<div id="tabs-1" class="ui-tabs-hide">
+			<%= render 'information' %>
+		</div>
+		<div id="tabs-2" class="ui-tabs-hide">
+			
+			<div id = "elements">
+				<%= render 'elements' %>
+			</div>
+		</div>
+		<div id="tabs-3" class="ui-tabs-hide">
+			<%= render 'members', :topic_group => @topic_group, 
+								  :participating_users => @participating_users %>
+		</div>
 		<% if can? :manage, @topic_group %>
-			<li><a href="#tabs-4">Manage Participants</a></li>
-			<li><a href="#tabs-5">Manage Elements</a></li>
+			<div id="tabs-4" class="ui-tabs-hide">
+				<%= render 'manage' %>
+			</div>
+			<div id="tabs-5" class="ui-tabs-hide">
+				<%= render 'manage_elements' %>
+			</div>
 		<% end %>
-	</ul>
-	<div id="tabs-1" class="ui-tabs-hide">
-		<%= render 'information' %>
-	</div>
-	<div id="tabs-2" class="ui-tabs-hide">
-		
-		<div id = "elements">
-			<%= render 'elements' %>
-		</div>
-	</div>
-	<div id="tabs-3" class="ui-tabs-hide">
-		<%= render 'members', :topic_group => @topic_group, 
-							  :participating_users => @participating_users %>
-	</div>
-	<% if can? :manage, @topic_group %>
-		<div id="tabs-4" class="ui-tabs-hide">
-			<%= render 'manage' %>
-		</div>
-		<div id="tabs-5" class="ui-tabs-hide">
-			<%= render 'manage_elements' %>
-		</div>
-	<% end %>
 </div>
 
 <div id="element_dialog_form" title="Create new item">
 	<%= render :partial => 'elements/form' %>
 </div>
 
+</div>
 

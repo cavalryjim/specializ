@@ -68,7 +68,7 @@ group :development do
   gem 'rspec-rails', '2.6.1'
   gem 'annotate', '2.4.0'
   gem 'nifty-generators', '~> 0.4.6'
-  gem 'bullet', '~> 2.1.0'
+  gem 'bullet', '~> 2.1.0'  # JDavis: this gem is very verbose.
 end
 
 group :test do
