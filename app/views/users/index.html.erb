@@ -1,6 +1,7 @@
 
-<div class="collapsibleContainer" title="Listing users">
-
+<div class="panel" >
+  <h3>Listing users</h3>
+  <div>
 	<div id='new_user' align=right >
 		<!---<%= link_to 'New User', new_user_path %> <br />--->
 		<%= button_to "New user", new_user_path, :method => :get %>
@@ -44,5 +45,6 @@
 			<%= submit_tag("Submit List", :confirm => 'Upload list from spreadsheet?') %>
 		<% end %>
 	</div>
+  </div>
 
 </div>

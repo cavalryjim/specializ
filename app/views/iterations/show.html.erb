@@ -33,13 +33,11 @@
   });
 
 </script>
-<!-- 
-<h3>
-  <%= @topic_group.active? ? @topic_group.name : @topic_group.name + ' (closed)' %> <br/>
-</h3>
--->
-<div class="collapsibleContainer" title="<%= @topic_group.active? ? @topic_group.name : @topic_group.name + ' (closed)' %>">
 
+
+<div class="panel" >
+  <h3><%= @topic_group.active? ? @topic_group.name : @topic_group.name + ' (closed)' %> </h3>
+  <div>
 	<div id="me_tabs" class="ui-tabs">
 		<ul>
 			<li><a href="#tabs-1">Topic Info</a></li>
@@ -71,6 +69,7 @@
 				<%= render 'manage_elements' %>
 			</div>
 		<% end %>
+  </div>
 </div>
 
 <div id="element_dialog_form" title="Create new item">

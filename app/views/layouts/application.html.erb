@@ -15,24 +15,22 @@
 	</div>
 	 
 	<div id="main_body" >
+     <!-- 
 	 <% if user_signed_in? %>
 	  <div id="browser_trigger">
     		My Topics -
   	  </div>
 	 <% end %>
+	 -->
 	 <table id="layout_table" >
 	  <tr>
-	  <% if user_signed_in? %>
-		<td id="browser_col" style="width:300px;">
-	   	
-			<%= render 'layouts/browser' %>
-	   
-		</td>
-	  <% end %>
 	    <td>
-		
-          <div style="padding-left:5px;height:100%;"><%= yield %></div>
-		
+	  <% if user_signed_in? %>
+		<!-- <td id="browser_col" >-->
+			<%= render 'layouts/browser' %>
+		<!-- </td>-->
+	  <% end %>
+          <div><%= yield %></div>
   	    </td>
 	  </tr>
 	 </table>

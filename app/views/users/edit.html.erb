@@ -1,44 +1,46 @@
-<div class="collapsibleContainer" title="Editing: <%= @user %> ">
-
-<%= image_tag @user.avatar_url if @user.avatar? %>
-
-<%= render 'form' %>
-
-<% if @authentications %>
-  <% unless @authentications.empty? %>
-    <div class="authentications">
-    <p><strong>These login options are available for this account:</strong></p>
-      <% for authentication in @authentications %>
-        <div class="authentication">
-          <%= image_tag "#{authentication.provider}_32.png", :size => "32x32" %>
-          <div class="provider"><%= authentication.provider_name %></div>
-          <div class="uid"><%= authentication.uid %></div>
-          <%= link_to "X", authentication, :confirm => 'Are you sure you want to remove this authentication option?', :method => :delete, :class => "remove" %>
-        </div>
-      <% end %>
-      <div class="clear"></div>
-    </div>
-  <% end %>
-<% end %>
-
-<% if @user == current_user %>
-  <div class="authentications">
-	<p><strong>Add a service to sign in with:</strong></p>
-	<a href="/auth/twitter" class="auth_provider">
-	  <%= image_tag "twitter_64.png", :size => "64x64", :alt => "Twitter" %>
-	  Twitter
-	</a>
-	<a href="/auth/linked_in" class="auth_provider">
-	  <%= image_tag "linked_in_64.png", :size => "64x64", :alt => "LinkedIn" %>
-	  LinkedIn
-	</a>
-	<a href="/auth/facebook" class="auth_provider">
-	  <%= image_tag "facebook_64.png", :size => "64x64", :alt => "Facebook" %>
-	  Facebook
-	</a>
+<div class="panel" >
+  <h3>Editing: <%= @user %> </h3>
+  <div>
+	<%= image_tag @user.avatar_url if @user.avatar? %>
+	
+	<%= render 'form' %>
+	
+	<% if @authentications %>
+	  <% unless @authentications.empty? %>
+	    <div class="authentications">
+	    <p><strong>These login options are available for this account:</strong></p>
+	      <% for authentication in @authentications %>
+	        <div class="authentication">
+	          <%= image_tag "#{authentication.provider}_32.png", :size => "32x32" %>
+	          <div class="provider"><%= authentication.provider_name %></div>
+	          <div class="uid"><%= authentication.uid %></div>
+	          <%= link_to "X", authentication, :confirm => 'Are you sure you want to remove this authentication option?', :method => :delete, :class => "remove" %>
+	        </div>
+	      <% end %>
+	      <div class="clear"></div>
+	    </div>
+	  <% end %>
+	<% end %>
+	
+	<% if @user == current_user %>
+	  <div class="authentications">
+		<p><strong>Add a service to sign in with:</strong></p>
+		<a href="/auth/twitter" class="auth_provider">
+		  <%= image_tag "twitter_64.png", :size => "64x64", :alt => "Twitter" %>
+		  Twitter
+		</a>
+		<a href="/auth/linked_in" class="auth_provider">
+		  <%= image_tag "linked_in_64.png", :size => "64x64", :alt => "LinkedIn" %>
+		  LinkedIn
+		</a>
+		<a href="/auth/facebook" class="auth_provider">
+		  <%= image_tag "facebook_64.png", :size => "64x64", :alt => "Facebook" %>
+		  Facebook
+		</a>
+	  </div>
+	<% end %>
+	<div class="clear"></div>
+	
+	<%= link_to 'Back', :back %>
   </div>
-<% end %>
-<div class="clear"></div>
-
-<%= link_to 'Back', :back %>
 </div>

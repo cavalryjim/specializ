@@ -15,13 +15,21 @@ $(function() {
 		dropDownWidth: '150px'
 	});
 	
-	$(".collapsibleContainer").collapsiblePanel();
+	$(".panel").panel({
+		collapsible:false
+	});
+	
+	$("#browserPanel").panel({
+        collapseType:'slide-left',
+        trueVerticalText:true,
+        width:'100%'
+    });
 	
 	
-	/*
+	
 	var browserWidth = $.cookie("browserWidth");
 	
-	var rBrowser = $( "#browser_div" ).resizable({
+	var rBrowser = $( "#browserPanel" ).resizable({
 		maxWidth: 400,
 		minWidth: 200,
 		minHeight: 600,
@@ -30,7 +38,6 @@ $(function() {
 		}
 	});
 	
-	 */
 	
 	var browserState = $.cookie("browserState");
 	var browserCol = $( "#browser_col" );

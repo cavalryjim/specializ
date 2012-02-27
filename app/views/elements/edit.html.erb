@@ -1,5 +1,8 @@
-<div class="collapsibleContainer" title="Editing: <%=@element%>" >
+<div class="panel" >
+  <h3>Editing: <%=@element%> </h3>
+  <div>
 	<%= render 'form' %>
 	
 	<%= link_to 'Back', topic_group_iteration_path( @topic_group, @iteration )%>
+  </div>
 </div>

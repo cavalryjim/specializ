@@ -1,9 +1,12 @@
-<div id="events_panel" class="collapsibleContainer" title="Events: Topics due this week" >
-<ul>
-<% @event_list.each do |event| %>
-
-	<li><%= link_to event.name, topic_group_iteration_path(event, event.iterations.last) %></li>
-
-<% end %>
-</ul>
+<div id="events_panel" class="panel" >
+  <h3>Events: Topics due this week</h3>
+  <div>
+	<ul>
+	<% @event_list.each do |event| %>
+	
+		<li><%= link_to event.name, topic_group_iteration_path(event, event.iterations.last) %></li>
+	
+	<% end %>
+	</ul>
+  </div>
 </div>
