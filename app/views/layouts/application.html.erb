@@ -25,12 +25,16 @@
 	 <table id="layout_table" >
 	  <tr>
 	    <td>
-	  <% if user_signed_in? %>
-		<!-- <td id="browser_col" >-->
-			<%= render 'layouts/browser' %>
-		<!-- </td>-->
-	  <% end %>
-          <div><%= yield %></div>
+		  <div id="container">
+		  <% if user_signed_in? %>
+			<!-- <td id="browser_col" >-->
+			<div id="lLeft">
+				<%= render 'layouts/browser' %>
+			</div>
+			<!-- </td>-->
+		  <% end %>
+	        <div id="lCenter"><%= yield %></div>
+		  </div>
   	    </td>
 	  </tr>
 	 </table>

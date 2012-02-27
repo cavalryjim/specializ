@@ -22,21 +22,20 @@ $(function() {
 	$("#browserPanel").panel({
         collapseType:'slide-left',
         trueVerticalText:true,
-        width:'100%'
+        //width:'100%'
     });
 	
 	
+	//var browserWidth = $.cookie("browserWidth");
 	
-	var browserWidth = $.cookie("browserWidth");
-	
-	var rBrowser = $( "#browserPanel" ).resizable({
-		maxWidth: 400,
-		minWidth: 200,
-		minHeight: 600,
-		stop: function(event, ui){
-			$.cookie("browserWidth", ui.size.width);
-		}
-	});
+	//var rBrowser = $( "#browserContainer" ).resizable({
+	//	maxWidth: 400,
+	//	minWidth: 200,
+	//	minHeight: 600,
+	//	stop: function(event, ui){
+	//		$.cookie("browserWidth", ui.size.width);
+	//	}
+	//});
 	
 	
 	var browserState = $.cookie("browserState");
@@ -313,8 +312,9 @@ function fnEvents(date) {
 		dataType: "html",
 		success: function(data){
 			$('#events_div').html(data);
-			$("#events_panel").attr("title", "Events: "+y+"-"+m+"-"+d);
-			$("#events_panel").collapsiblePanel();
+			//$("#events_panel").attr("title", "Events: "+y+"-"+m+"-"+d);
+			$("#events_panel h3").text("Events: "+y+"-"+m+"-"+d);
+			$("#events_panel").panel({ collapsible:false });
 		}
 	});
 }

@@ -323,13 +323,13 @@ div.field, div.actions {
 .SiteHeaderBar {
     padding-left: 0px;
     line-height: 30px;
-	background: #003366 none;
-	background: -webkit-gradient(linear, left top, left bottom, from(#003366), to(#000080));
-	background: -moz-linear-gradient(top, #003366, #000080);
-	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#003366, endColorstr=#000080);
-	-ms-filter: "progid:DXImageTransform.Microsoft.gradient(startColorstr=#FF003366, endColorstr=#FF000080)";
-	background: -ms-linear-gradient(top, #003366, #000080);
-	background: -o-linear-gradient(top, #003366, #000080);
+	background: #0066cc none;
+	background: -webkit-gradient(linear, left top, left bottom, from(#006699), to(#0066cc));
+	background: -moz-linear-gradient(top, #006699, #0066cc);
+	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#006699, endColorstr=#0066cc);
+	-ms-filter: "progid:DXImageTransform.Microsoft.gradient(startColorstr=#FF006699, endColorstr=#FF0066cc)";
+	background: -ms-linear-gradient(top, #006699, #0066cc);
+	background: -o-linear-gradient(top, #006699, #0066cc);
 }
 
 .SiteHeaderBarItemHover, .SiteHeaderBarItem:hover {
@@ -843,10 +843,38 @@ div.innerDetails table tr td {
 }
 
 table.portalTable tbody tr:nth-child(even) td, tbody tr.even td {background:#fff;}
-table.portalTable tbody, tr, td { padding:5px; }
+table.portalTable td { padding:5px; }
 
+
+/* JDavis: styling from the ui panel demo: http://idlesign.narod.ru/ui-panel/demo.htm# */
+.box { margin: 1em }
+.navPanel { margin: 0 0.5em 0.5em 0.5em; }
+.centralPanel { margin-bottom: 1em; }
+.fakeLink{ color:navy; cursor:pointer; }
+#desktop { background-color:#eee; padding:1.5em; padding-bottom:3em; color:#444; }
+#container{
+	margin:0; padding:0;
+}
+#lCenter{
+	padding:1em;
+	padding-top:0;
+	overflow:hidden;
+}
+#lLeft{
+    float: left;
+}
+#lRight{
+    float: right;
+}
+
+#browserPanel{
+	width:390px;
+}
 
 /*
+
+
+
 body, div, span, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, code, del, dfn, em, img, q, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, article, aside, dialog, figure, footer, header, hgroup, nav, section {margin:0;padding:0;border:0;font-size:100%;font:inherit;vertical-align:baseline;}
 article, aside, details, figcaption, figure, dialog, footer, header, hgroup, menu, nav, section {display:block;}
 body {line-height:1.5;background:white;}

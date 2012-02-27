@@ -1,0 +1,101 @@
+.LayoutGrid{_height:1em;*zoom:100%;width:946px;padding-left:12px;padding-right:12px}.LayoutGrid:after{clear:both;content:"\0020";display:block;height:0}.LayoutGrid-1{width:228px}.LayoutGrid-1-2{width:467px}.LayoutGrid-1-3{width:706px}.LayoutGrid-1-4{width:946px}.LayoutGrid-2{width:227px}.LayoutGrid-2-3{width:466px}.LayoutGrid-2-4{width:706px}.LayoutGrid-3{width:227px}.LayoutGrid-3-4{width:467px}.LayoutGrid-4{width:228px}.LayoutGrid-1,.LayoutGrid-1-2,.LayoutGrid-1-3,.LayoutGrid-1-4,.LayoutGrid-2-3 .LayoutGrid-2,.LayoutGrid-2-4 .LayoutGrid-2,.LayoutGrid-2-4 .LayoutGrid-2-3,.LayoutGrid-3-4 .LayoutGrid-3{clear:left; margin-left:0}.LayoutGrid-1,.LayoutGrid-1-2,.LayoutGrid-1-3,.LayoutGrid-1-4,.LayoutGrid-2,.LayoutGrid-2-3,.LayoutGrid-2-4,.LayoutGrid-3,.LayoutGrid-3-4,.LayoutGrid-4{float:left}.LayoutGrid-2,.LayoutGrid-2-3,.LayoutGrid-2-4,.LayoutGrid-3,.LayoutGrid-3-4,.LayoutGrid-4{margin-left:12px}@media screen and (max-device-width:480px) { .LayoutGrid {width:auto;padding:0} div[class*=LayoutGrid] { width:auto;float:none;margin:0 } }
+#SiteFooter .LayoutGrid-1 {
+    width: 169px;
+}
+#SiteFooter .LayoutGrid-1-2 {
+    width: 349px;
+}
+#SiteFooter .LayoutGrid-1-3 {
+    width: 529px;
+}
+#SiteFooter .LayoutGrid-1-4 {
+    width: 709px;
+}
+#SiteFooter .LayoutGrid-1-5 {
+    width: 940px;
+}
+#SiteFooter .LayoutGrid-2 {
+    width: 169px;
+}
+#SiteFooter .LayoutGrid-2-3 {
+    width: 349px;
+}
+#SiteFooter .LayoutGrid-2-4 {
+    width: 529px;
+}
+#SiteFooter .LayoutGrid-2-5 {
+    width: 760px;
+}
+#SiteFooter .LayoutGrid-3 {
+    width: 169px;
+}
+#SiteFooter .LayoutGrid-3-4 {
+    width: 349px;
+}
+#SiteFooter .LayoutGrid-3-5 {
+    width: 580px;
+}
+#SiteFooter .LayoutGrid-4 {
+    width: 169px;
+}
+#SiteFooter .LayoutGrid-4-5 {
+    width: 400px;
+}
+#SiteFooter .LayoutGrid-5 {
+    width: 220px;
+}
+#SiteFooter .LayoutGrid-1,
+#SiteFooter .LayoutGrid-1-2,
+#SiteFooter .LayoutGrid-1-3,
+#SiteFooter .LayoutGrid-1-4,
+#SiteFooter .LayoutGrid-1-5,
+#SiteFooter .LayoutGrid-2-3 .LayoutGrid-2,
+#SiteFooter .LayoutGrid-2-4 .LayoutGrid-2, 
+#SiteFooter .LayoutGrid-2-4 .LayoutGrid-2-3, 
+#SiteFooter .LayoutGrid-2-5 .LayoutGrid-2, 
+#SiteFooter .LayoutGrid-2-5 .LayoutGrid-2-3, 
+#SiteFooter .LayoutGrid-2-5 .LayoutGrid-2-4, 
+#SiteFooter .LayoutGrid-3-4 .LayoutGrid-3, 
+#SiteFooter .LayoutGrid-3-5 .LayoutGrid-3, 
+#SiteFooter .LayoutGrid-3-5 .LayoutGrid-3-4, 
+#SiteFooter .LayoutGrid-4-5 .LayoutGrid-4 {
+    clear: left;
+    margin-left: 0;
+}
+#SiteFooter .LayoutGrid-1, 
+#SiteFooter .LayoutGrid-1-2, 
+#SiteFooter .LayoutGrid-1-3, 
+#SiteFooter .LayoutGrid-1-4, 
+#SiteFooter .LayoutGrid-1-5, 
+#SiteFooter .LayoutGrid-2, 
+#SiteFooter .LayoutGrid-2-3, 
+#SiteFooter .LayoutGrid-2-4, 
+#SiteFooter .LayoutGrid-2-5, 
+#SiteFooter .LayoutGrid-3, 
+#SiteFooter .LayoutGrid-3-4, 
+#SiteFooter .LayoutGrid-3-5, 
+#SiteFooter .LayoutGrid-4, 
+#SiteFooter .LayoutGrid-4-5, 
+#SiteFooter .LayoutGrid-5 {
+    float: left;
+}
+#SiteFooter .LayoutGrid-2, 
+#SiteFooter .LayoutGrid-2-3, 
+#SiteFooter .LayoutGrid-2-4, 
+#SiteFooter .LayoutGrid-2-5, 
+#SiteFooter .LayoutGrid-3, 
+#SiteFooter .LayoutGrid-3-4, 
+#SiteFooter .LayoutGrid-3-5, 
+#SiteFooter .LayoutGrid-4, 
+#SiteFooter .LayoutGrid-4-5, 
+#SiteFooter .LayoutGrid-5 {
+    margin-left: 11px;
+}
+
+@media screen and (max-width: 480px) {
+	#SiteFooter .LayoutSlimGrid-1,
+	#SiteFooter .LayoutSlimGrid-1-2 {
+		clear:left; 
+		margin-left:0
+	}
+}

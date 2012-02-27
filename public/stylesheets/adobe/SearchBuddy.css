@@ -1,0 +1,130 @@
+/*-------------------------------------------------------------------
+Name:       SearchBuddy CSS
+Author:     dgasior
+Revision:   October 13, 2010  2:07 PM
+-------------------------------------------------------------------*/
+
+#globalnav #site-search { z-index: 8; }
+
+#site-search #sb-results { display: none; }
+
+#site-search.activated #sb-results {
+	display: block; 
+	position: absolute;
+	right: 0;
+	top: 40px;
+	z-index: 1000;
+}
+
+#site-search.activated #sb-results #sb-results-body {
+	width: 258px;
+	background: #FFF;
+	margin-left: 8px;
+	margin-right: 6px;
+	margin-bottom: -7px;
+	*margin-bottom: 10px;
+	border-bottom: solid 1px #333;
+	border-left: solid 1px #333;
+	border-right: solid 1px #333;
+}
+
+#sb-result-list {
+	list-style: none;
+	padding: 0;
+	margin-top: 0;
+	_margin-bottom: 0;
+	line-height: 1.35em;
+}
+
+#sb-result-list dd {
+	border-top: 1px solid #ccc;
+	margin: 0;
+	padding: 0.5em 0.7em 0 0.7em;
+}
+
+#sb-result-list dd.search-result { 
+	min-height: 74px;
+	_height: 80px;
+}
+
+#sb-result-list dd.search-suggestion {
+	padding-bottom: 0.5em;
+	padding-left: 1em;
+}
+
+#sb-result-list dd.no-result { padding-bottom: 0.5em; }
+
+#sb-result-list dd .link-list,
+#sb-result-list dd.search-suggestion p { 
+	margin: 0;
+	padding: 0;
+}
+
+#sb-result-list dd.search-all {
+	padding-top: 0.35em;
+	padding-bottom: 0.5em;
+}
+
+/*--- RESULTS > LINK LIST ---*/
+
+#sb-result-list dd li {
+	padding: 1px 0;
+	margin: 0;
+	float: none;
+}
+
+#sb-result-list dd li a,
+#sb-result-list dd.no-result a {
+	font-size: 1em;
+	text-decoration: none;
+	padding: 1px 1em 1px 0;
+}
+
+#sb-result-list dd.search-all { text-align: right }
+
+#sb-result-list a { 
+	font-weight: normal;
+	-moz-outline: none;
+}
+
+#sb-result-list dd h4  {
+	padding: 0;
+	margin: 0 0 2px;
+}
+
+#sb-result-list dd h4 a {
+	display: block;
+	text-decoration: none;
+	font-size: 1.125em;
+}
+
+#sb-result-list a:hover,
+#sb-result-list a.highlight { 
+	background-color: #CEE6F5; 
+	color: #000; 
+	text-decoration: none;
+}
+
+#sb-result-list h4,
+#sb-result-list dd.search-all a { color: #000; }
+
+#sb-result-list li a { color: #666; }
+
+#sb-result-list h4 a { color: #333; }
+
+#sb-result-list dd { color: #999; }
+
+#sb-result-list dd.no-result a { color: #047; }
+
+#sb-result-list dd.search-suggestion * { font-size: 1em; }
+
+#search-buddy-submit { cursor: pointer;}
+
+.search-result .pullout-content { margin-left: 60px; }
+.search-result .pullout-item { 
+	width: 50px;
+	float: left;
+	clear: left;
+	_height: 100%;
+}
+.search-result .pullout-item a:hover { background-color: transparent !important; }
