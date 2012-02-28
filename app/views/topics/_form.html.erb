@@ -5,7 +5,7 @@
     <% end %>
   <% end %>
 
-  <%= f.input :status, :collection => [['Open', 1], ['Closed', 2], ['Archived', 3]], :required => true %>
+  <%= f.input :status, :collection => [['Open', 1], ['Closed', 2], ['Archived', 3]], :required => true, :input_html => {:class => 'simple_select'} %>
   <%= f.input :name %>
   <%= f.input :description, :as => :text %>
   <%= f.association :groupings, :label => 'Participating groups', 

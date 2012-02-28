@@ -9,7 +9,7 @@
    
   <div align=left>
   Iteration: 
-  <%= select_tag(:iteration_select, options_from_collection_for_select(@iterations, :id, :num, @iteration.id ), :disabled => !@topic_group.active) %>
+  <%= select_tag(:iteration_select, options_from_collection_for_select(@iterations, :id, :num, @iteration.id ), :disabled => !@topic_group.active,  :class => 'simple_select') %>
   </div>
 </div>
 

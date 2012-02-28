@@ -83,9 +83,12 @@ $(function() {
 	hrTabs = $( "#hr_tabs" ).tabs({ cookie:{ expires:1 }}); // tabs used in the HR module
 	$( "#me_tabs" ).tabs({ cookie:{ expires:1 }});   // tabs used in the Me module
 	
-	$( ".plain_select").multiselect({
+	$( ".simple_select").multiselect({
+		multiple: false,
 		header: false,
-		multiple: false
+		minWidth: 100,
+		noneSelectedText: "Select an Option",
+		selectedList: 1
 	});
 	$( "#topic_grouping_ids").multiselect({
 		header: "Select groups that will participate",
