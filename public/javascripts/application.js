@@ -21,7 +21,7 @@ $(function() {
 	
 	$("#browserPanel").panel({
         collapseType:'slide-left',
-        trueVerticalText:true,
+        trueVerticalText:true
         //width:'100%'
     });
 	
@@ -173,10 +173,10 @@ $(function() {
 	}); 
 	
 	
-	$("#layout_table").colResizable({
-		postbackSafe:true,
-		minWidth: 200
-	});
+	//$("#layout_table").colResizable({
+	//	postbackSafe:true,
+	//	minWidth: 200
+	//});
 	
 	
 	// JDavis: image the opens / closes the element attributes div
