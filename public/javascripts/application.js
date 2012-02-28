@@ -269,9 +269,9 @@ $(function() {
 	
 	rTable = $( "#rating_table" ).dataTable({ // datatable where users rate the elements
 		"aoColumns": [
-		              { "sWidth": "75%" },
-		              { "sWidth": "20%" },
-		              { "sWidth": "5%", "bSortable": false },
+		              {  },
+		              { "sWidth": "115px" },
+		              { "sWidth": "5px", "bSortable": false },
 		              { "bVisible": false }
 		          ],
 		"bAutoWidth": false,
