@@ -7,6 +7,7 @@ var giRedraw = false;
 //$('html').addClass('js');
 
 $(function() {
+	
 	$( "#app_container" ).show(); //JDavis: this keeps from flashing unformatted content (fouc).
 	$(".best_in_place").best_in_place();
 	
@@ -25,8 +26,6 @@ $(function() {
         unfold: function() { $.cookie("browserState", "open"); }
     });
 	
-	
-	
 	//var browserWidth = $.cookie("browserWidth");
 	
 	//var rBrowser = $( "#browserContainer" ).resizable({
@@ -38,15 +37,16 @@ $(function() {
 	//	}
 	//});
 	
+	$("button, input:submit, input:button").button();
 	
-	bAccordion = $( "#accordion" ).accordion({ fillSpace: true }); // accordion on the _browser partial
+	bAccordion = $( "#accordion" ).accordion({ fillSpace: true }).show(); // accordion on the _browser partial
 	var browserState = $.cookie("browserState");
 	//var browserCol = $( "#browser_col" );
 	//var browserTrigger = $( "#browser_trigger" );
 	
 	if (browserState == 'closed') {
 		//browser.fold();
-		browser.panel('toggle', 1000, true);
+		browser.panel('toggle', 0, true);
 		//alert(browser.width);
 	}
 	
@@ -81,7 +81,8 @@ $(function() {
 	mTabs = $( "#manager_tabs" ).tabs({ cookie:{ expires:1 }}); // tabs used in the manager module
 	hrTabs = $( "#hr_tabs" ).tabs({ cookie:{ expires:1 }}); // tabs used in the HR module
 	$( "#me_tabs" ).tabs({ cookie:{ expires:1 }});   // tabs used in the Me module
-			
+	
+	
 	$( "#topic_grouping_ids").multiselect({
 		header: "Select groups that will participate",
 		minWidth: 300,
@@ -220,6 +221,7 @@ $(function() {
 	//	alert(event.target);
 	//	return false;
 	//});
+	
 	
 	// JDavis: this function responds to the dropdown selection on the manager page and navigates to the select topic.
 	$('#topic_select').change(function() {

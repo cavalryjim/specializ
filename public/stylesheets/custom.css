@@ -823,24 +823,6 @@ div.innerDetails table tr td {
 	text-align: right;
 }
 
-/* JDavis: this is styling for the container on the home page */
-.collapsibleContainer {
-	padding: 5px;
-	-moz-border-radius-topleft: 4px; -webkit-border-top-left-radius: 4px; -khtml-border-top-left-radius: 4px; border-top-left-radius: 4px;
-}
-
-
-.collapsibleContainerTitle
-{
-    cursor:pointer;
-}
-
-.collapsibleContainerTitle div
-{
-    padding-top:5px;
-    padding-left:10px;
-    
-}
 
 table.portalTable tbody tr:nth-child(even) td, tbody tr.even td {background:#fff;}
 table.portalTable td { padding:5px; }
@@ -856,7 +838,7 @@ table.portalTable td { padding:5px; }
 	margin:0; padding:0;
 }
 #lCenter{
-	padding:1em;
+	padding:.5em;
 	padding-top:0;
 	overflow:hidden;
 }
@@ -868,7 +850,7 @@ table.portalTable td { padding:5px; }
 }
 
 #browserPanel{
-	width:390px;
+	width:370px;
 }
 
 /*

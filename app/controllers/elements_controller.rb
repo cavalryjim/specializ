@@ -46,23 +46,21 @@ class ElementsController < ApplicationController
     #JDavis todo: New elements should only be current if the manager approves them
     @element.current = true 
     @element.created_by = current_user.id
-
-    respond_to do |format|
-      if @element.save  
-        if @element.add_to_iteration(@iteration.id, true, true)
-          gflash :success => "Element created."
-          format.html { redirect_to topic_group_iteration_url(@topic_group, @iteration) }
-          format.xml  { render :xml => @element, :status => :created, :location => @element }
-        else
-          @element.destroy #JDavis: I do not want a rogue element not assigned to an iteration.
-        end
+    
+    if @element.unique_to_iteration?(@iteration.id)   
+      if @element.save && @element.add_to_iteration(@iteration.id, true, true)
+        gflash :success => "Element created."
+        redirect_to topic_group_iteration_url(@topic_group, @iteration) 
       else
-        gflash :error => "There was a problem adding that element."
-        format.html { redirect_to topic_group_iteration_url(@topic_group, @iteration) }
-        format.xml  { render :xml => @element.errors, :status => :unprocessable_entity }
+        @element.destroy #JDavis: I do not want a rogue element not assigned to an iteration.
+        gflash :error => "There was a problem adding that item."
+        redirect_to topic_group_iteration_url(@topic_group, @iteration) 
       end
- 
+    else
+      gflash :error => "That item already exists."
+      redirect_to topic_group_iteration_url(@topic_group, @iteration) 
     end
+ 
   end
 
   # PUT /elements/1

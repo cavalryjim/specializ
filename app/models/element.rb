@@ -24,7 +24,8 @@ class Element < ActiveRecord::Base
   validates :created_by, :presence => true
   validates :current, :inclusion => {:in => [true, false]}
   #validates_associated :iteration
-  #validates_uniqueness_of :name, :scope => [ :iteration_ids ]
+  #validates :name, :uniqueness => { :scope => :iteration_id, :message => 'item already exists'}
+
   
   accepts_nested_attributes_for :element_attributes, :reject_if => lambda { |a| a[:name].blank? }, :allow_destroy => true
   
@@ -82,6 +83,15 @@ class Element < ActiveRecord::Base
   
   def has_attributes?
     self.element_attributes.first
+  end
+  
+  def unique_to_iteration?(iteration_id)
+    iteration = Iteration.find(iteration_id)
+    if iteration.elements.map{ |e| e.name.downcase }.include?(self.name.downcase)
+      return false
+    else
+      return true
+    end
   end
   
 end
