@@ -38,6 +38,7 @@ $(function() {
 	//});
 	
 	$("button, input:submit, input:button").button();
+	//$("select").selectmenu();
 	
 	bAccordion = $( "#accordion" ).accordion({ fillSpace: true }).show(); // accordion on the _browser partial
 	var browserState = $.cookie("browserState");
@@ -82,7 +83,10 @@ $(function() {
 	hrTabs = $( "#hr_tabs" ).tabs({ cookie:{ expires:1 }}); // tabs used in the HR module
 	$( "#me_tabs" ).tabs({ cookie:{ expires:1 }});   // tabs used in the Me module
 	
-	
+	$( ".plain_select").multiselect({
+		header: false,
+		multiple: false
+	});
 	$( "#topic_grouping_ids").multiselect({
 		header: "Select groups that will participate",
 		minWidth: 300,
@@ -91,7 +95,6 @@ $(function() {
 		      at: 'center'
 		   }
 	}).multiselectfilter(); // select widget in the manager module's setup tab
-	
 	$( "#groupings").multiselect({
 		header: "Select groups that will participate",
 		minWidth: 300
@@ -172,7 +175,6 @@ $(function() {
 		"bJQueryUI": true,
         "sPaginationType": "full_numbers"
 	}); 
-	
 	
 	//$("#layout_table").colResizable({
 	//	postbackSafe:true,
