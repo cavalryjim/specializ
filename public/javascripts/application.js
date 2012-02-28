@@ -8,7 +8,6 @@ var giRedraw = false;
 
 $(function() {
 	$( "#app_container" ).show(); //JDavis: this keeps from flashing unformatted content (fouc).
-	
 	$(".best_in_place").best_in_place();
 	
 	$('#navigation_horiz').naviDropDown({
@@ -19,11 +18,13 @@ $(function() {
 		collapsible:false
 	});
 	
-	$("#browserPanel").panel({
+	var browser = $("#browserPanel").panel({
         collapseType:'slide-left',
-        trueVerticalText:true
-        //width:'100%'
+        trueVerticalText:true, 
+        fold: function() { $.cookie("browserState", "closed"); },
+        unfold: function() { $.cookie("browserState", "open"); }
     });
+	
 	
 	
 	//var browserWidth = $.cookie("browserWidth");
@@ -39,27 +40,26 @@ $(function() {
 	
 	
 	var browserState = $.cookie("browserState");
-	var browserCol = $( "#browser_col" );
-	var browserTrigger = $( "#browser_trigger" );
+	//var browserCol = $( "#browser_col" );
+	//var browserTrigger = $( "#browser_trigger" );
 	
 	if (browserState == 'closed') {
-		browserCol.hide();
-		browserTrigger.html('My Topics +');
-	} else {
-		browserCol.show();
+		//browser.fold();
+		browser.panel('toggle', 1000, true);
+		//alert(browser.width);
 	}
 	
-	browserTrigger.click(function() // JDavis: this hides & shows the left-side browser.
-	  {
-		if (browserCol.is(':hidden')){
-			$(this).html('My Topics -');
-			$.cookie("browserState", "open");
-	} else {
-			$(this).html('My Topics +');
-			$.cookie("browserState", "closed");
-		}
-		$( "#browser_col" ).slideToggle("slow");
-	});
+	//browserTrigger.click(function() // JDavis: this hides & shows the left-side browser.
+	//  {
+	//	if (browserCol.is(':hidden')){
+	//		$(this).html('My Topics -');
+	//		$.cookie("browserState", "open");
+	//} else {
+	//		$(this).html('My Topics +');
+	//		$.cookie("browserState", "closed");
+	//	}
+	//	$( "#browser_col" ).slideToggle("slow");
+	//});
 	
 	
 	var hCalendar = $('#calendar').fullCalendar({
@@ -265,7 +265,7 @@ $(function() {
         var anSelected = fnGetSelected( rTable );
         rTable.fnDeleteRow( anSelected[0] );
     } ); 
-	
+    
 	
 	rTable = $( "#rating_table" ).dataTable({ // datatable where users rate the elements
 		"aoColumns": [
