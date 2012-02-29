@@ -1,14 +1,11 @@
 <div class="panel" >
-  <h3></h3>
+  <h3>Consensus Goal: <%= @topic_group.goal %>% agreement</h3>
   <div>
 	<p>
 	  Topic Description: 
 	  <%= @topic.description %> <br/>
 	</p>
-	<p>
-	  Consensus Goal: 
-	  <%= @topic_group.goal %> <br/>
-	</p>
+	
 	
 	<img src= <%= @topic_group.bar_chart %> />
   </div>
