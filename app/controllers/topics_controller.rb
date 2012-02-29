@@ -63,6 +63,12 @@ class TopicsController < ApplicationController
       #@selected_groups = []
     end
     
+    if @topic.errors.any?
+      @topic.errors.full_messages.each do |msg|
+        gflash :error => { :value => msg.to_s, :sticky => true}
+      end
+    end
+    
     respond_with(@topic)
   end
 
@@ -71,15 +77,25 @@ class TopicsController < ApplicationController
   def update
     @topic = Topic.find(params[:id])
     #groupings = []
-    if params[:topic][:grouping_ids] && @topic.update_attributes(params[:topic])  
-      @topic.update_groupings(params[:topic][:grouping_ids])
-      gflash :success => 'Topic updated.'
-    else
-      @topic.errors[:base] << "You must select one or more participating groups." unless params[:topic][:grouping_ids]
-      @topics = Topic.where(:company_id => current_user.company_id)
-      @assignments = Assignment.where(:topic_group_id => TopicGroup.where(:topic_id => @topic.id))
-      #@selected_groups = TopicGroup.where(:topic_id => @topic.id).map(&:grouping_id)
-    end  
+    if params[:topic][:status] == 1.to_s && @topic.status == 1
+      if params[:topic][:grouping_ids] && @topic.update_attributes(params[:topic])  
+        @topic.update_groupings(params[:topic][:grouping_ids])
+        gflash :success => 'Topic updated.'
+      else
+        @topic.errors[:base] << "You must select one or more participating groups." unless params[:topic][:grouping_ids]
+        @topics = Topic.where(:company_id => current_user.company_id)
+        @assignments = Assignment.where(:topic_group_id => TopicGroup.where(:topic_id => @topic.id))
+        #@selected_groups = TopicGroup.where(:topic_id => @topic.id).map(&:grouping_id)
+      end  
+    else 
+      gflash :success => 'Topic updated.' if @topic.update_attributes(params[:topic])
+    end
+    
+    if @topic.errors.any?
+      @topic.errors.full_messages.each do |msg|
+        gflash :error => { :value => msg.to_s, :sticky => true}
+      end
+    end
     
     respond_with(@topic)
     

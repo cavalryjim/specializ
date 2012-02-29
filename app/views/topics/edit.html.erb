@@ -1,3 +1,11 @@
+<script type="text/javascript" charset="utf-8">
+  <% if @topic.status == 2 %>
+	window.onload = function(){ mTabs.tabs({disabled: [1]}); }
+  <% end %>
+  <% if @topic.status == 3 %>
+	window.onload = function(){ mTabs.tabs({disabled: [1,2]}); }
+  <% end %>
+</script>
 
 <div class="panel" >
   <h3>Editing Topic: <%=@topic.name%> </h3>

@@ -31,6 +31,8 @@ class Topic < ActiveRecord::Base
   validates :due_days, :numericality => { :only_integer => true, :greater_than => 0 }, :if => :has_due_days?
   validates_associated :company
   
+  after_save :update_status
+  
   def to_param
     "#{id}-#{name.parameterize}"
   end
@@ -64,6 +66,22 @@ class Topic < ActiveRecord::Base
   
   def check_for_restart
     true
+  end
+  
+  def update_status
+    self.close if self.status == 2
+    self.archive if self.status == 3
+  end
+  
+  def close
+    self.topic_groups.where('active = true').each do |topic_group|
+      topic_group.close
+    end
+  end
+  
+  def archive
+    self.close
+    
   end
   
   private

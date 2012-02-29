@@ -3,6 +3,9 @@
 	
 }
 
+.fouc {display: none;} /* JDavis: this class is applied to several of the jQuery UI items to stop flashing unformatted content */
+.panel {display: none;} /* JDavis: same as above, trying to stop the flash of unformatted content */
+
 body {
 	background: none;
 }

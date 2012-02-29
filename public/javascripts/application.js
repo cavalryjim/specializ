@@ -8,8 +8,8 @@ var giRedraw = false;
 
 $(function() {
 	
-	$( "#app_container" ).show(); //JDavis: this keeps from flashing unformatted content (fouc).
-	$(".best_in_place").best_in_place();
+	//$( "#app_container" ).show(); //JDavis: this keeps from flashing unformatted content (fouc).
+	$( ".best_in_place" ).best_in_place();
 	
 	$('#navigation_horiz').naviDropDown({
 		dropDownWidth: '150px'
@@ -17,14 +17,14 @@ $(function() {
 	
 	$(".panel").panel({
 		collapsible:false
-	});
+	}).show();
 	
 	var browser = $("#browserPanel").panel({
         collapseType:'slide-left',
         trueVerticalText:true, 
         fold: function() { $.cookie("browserState", "closed"); },
         unfold: function() { $.cookie("browserState", "open"); }
-    });
+    }).show();
 	
 	//var browserWidth = $.cookie("browserWidth");
 	
@@ -79,15 +79,15 @@ $(function() {
 	
 	$( "#topic_group_datepicker").datepicker({ dateFormat: 'yy-mm-dd' });
 	
-	mTabs = $( "#manager_tabs" ).tabs({ cookie:{ expires:1 }}); // tabs used in the manager module
-	hrTabs = $( "#hr_tabs" ).tabs({ cookie:{ expires:1 }}); // tabs used in the HR module
-	$( "#me_tabs" ).tabs({ cookie:{ expires:1 }});   // tabs used in the Me module
+	mTabs = $( "#manager_tabs" ).tabs({ cookie:{ expires:1 }}).show(); // tabs used in the manager module
+	hrTabs = $( "#hr_tabs" ).tabs({ cookie:{ expires:1 }}).show(); // tabs used in the HR module
+	$( "#me_tabs" ).tabs({ cookie:{ expires:1 }}).show();   // tabs used in the Me module
 	
 	$( ".simple_select").multiselect({
 		multiple: false,
 		header: false,
 		minWidth: 100,
-		noneSelectedText: "Select an Option",
+		noneSelectedText: "Please select",
 		selectedList: 1
 	});
 	$( "#topic_grouping_ids").multiselect({
@@ -118,7 +118,7 @@ $(function() {
 		"bAutoWidth": false,
 		"bJQueryUI": true,
         "sPaginationType": "full_numbers"
-	}); 
+	}).show(); 
 	
 	$( "#group_staffing_table" ).dataTable({ // datatable in the admin module
 		"aoColumns": [
@@ -129,7 +129,7 @@ $(function() {
 		"bAutoWidth": false,
 		"bJQueryUI": true,
 		"sPaginationType": "full_numbers"
-	});
+	}).show();
 	
 	$( "#user_table" ).dataTable({ // datatable in the admin module
 		"aaSorting": [[2,'asc'], [1,'asc']],
@@ -143,7 +143,7 @@ $(function() {
 		"bAutoWidth": false,
 		"bJQueryUI": true,
 		"sPaginationType": "full_numbers"
-	});
+	}).show();
 	
 	$( "#member_table" ).dataTable({ // datatable listing the other user participating in a topic
 		"aoColumns": [
@@ -154,7 +154,7 @@ $(function() {
 		"bAutoWidth": false,
 		"bJQueryUI": true,
         "sPaginationType": "full_numbers"
-	}); 
+	}).show(); 
 	
 	$( "#topic_groups_table" ).dataTable({ // datatable listing the topic_groups belonging to a topic
 		"aoColumns": [
@@ -167,7 +167,7 @@ $(function() {
 		"bAutoWidth": false,
 		"bJQueryUI": true,
         "sPaginationType": "full_numbers"
-	}); 
+	}).show(); 
 	
 	$( "#new_elements_table" ).dataTable({ // datatable listing newly suggested elements needing manager approval
 		"aoColumns": [
@@ -177,7 +177,7 @@ $(function() {
 		"bAutoWidth": false,
 		"bJQueryUI": true,
         "sPaginationType": "full_numbers"
-	}); 
+	}).show(); 
 	
 	//$("#layout_table").colResizable({
 	//	postbackSafe:true,
@@ -290,7 +290,7 @@ $(function() {
 		}
 
 
-    }); 
+    }).show(); 
 });
 
 /* Get the rows which are currently selected */

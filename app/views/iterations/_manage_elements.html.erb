@@ -1,7 +1,7 @@
 	<% if can? :manage, @topic_group %>
 	  <div>
 	  	<%= form_tag(:controller => "users", :action => "approve_new_elements", :method => "post") do %>
-			<table id="new_elements_table" class="display">
+			<table id="new_elements_table" class="display fouc">
 			 <thead>
 			  <tr>
 				<th class="center">Approve</th>

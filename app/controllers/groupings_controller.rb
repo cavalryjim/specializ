@@ -122,10 +122,13 @@ class GroupingsController < ApplicationController
   
   def import_groups
     root = current_user.root_grouping
-    errors = root.import_groups(params[:file])
-    #current_user.delay(:run_at => Time.zone.now ).import_users(params[:file])
-   
-    gflash :success => 'There were ' + errors.to_s + ' errors.'
+    if params[:file]
+      errors = root.import_groups(params[:file])
+      #current_user.delay(:run_at => Time.zone.now ).import_users(params[:file])
+      gflash :success => 'There were ' + errors.to_s + ' errors.' 
+    else
+      gflash :notice => 'Please select an appropriate file to upload.'
+    end
     
     redirect_to hr_path
   end
