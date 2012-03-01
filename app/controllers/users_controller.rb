@@ -78,7 +78,9 @@ class UsersController < ApplicationController
   # PUT /users/1.xml
   def update
     return_path = params[:return_path]
-    
+   
+    @user.reset_password if params[:reset_credentials]
+      
     if params.has_key?(:multiselect_user_grouping_ids) && (return_path.to_s == users_path.to_s) && @user.update_attributes(params[:user]) 
       @user.update_roles(params[:user][:role_ids]) if params.has_key?(:multiselect_user_role_ids)
       @user.update_groupings(params[:user][:grouping_ids])

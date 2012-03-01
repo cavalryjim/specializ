@@ -15,6 +15,12 @@
 		:multiple => true, :required => true %>
 	<%= f.association :roles, :collection => current_user.available_roles.map{ |t| [t.name, t.id] }%>
 	<%= f.input :active %>
+	<% if !@user.new_record? %>
+		<div class="input boolean optional">
+		    <%= check_box_tag 'reset_credentials' %>
+		    <%= label_tag 'Reset password' %>
+		</div>
+	<% end %>
  <% end %>
 
   <%= f.hidden_field :company_id, :value => current_user.company_id %>

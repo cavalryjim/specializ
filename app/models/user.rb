@@ -133,7 +133,7 @@ class User < ActiveRecord::Base
   
   def notify_account(password)
     #UserMailer.new_account(self, password).deliver
-    UserMailer.delay.new_account(self, password)
+    UserMailer.delay.new_credentials(self, password)
   end
   
   def notify_iteration_close(iteration_id)
@@ -237,8 +237,14 @@ class User < ActiveRecord::Base
   def generate_password
     generated_password = Devise.friendly_token.first(6)
     self.password = generated_password
+    self.password_confirmation = generated_password
     #self.notify_account(generated_password) if send_copy
     return generated_password
+  end
+  
+  def reset_password
+    new_password = self.generate_password
+    self.notify_account(new_password) if self.save
   end
   
   def apply_omniauth(omniauth)
