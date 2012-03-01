@@ -13,9 +13,9 @@ class UserMailer < ActionMailer::Base
     mail(:to => "#{user} <#{user.email}>", :subject => 'Next Iteration')
   end
   
-  def new_account(user, generated_password)
+  def new_account(user, password)
     @user = user
-    @password = generated_password
+    @password = password
     mail(:to => "#{user} <#{user.email}>", :subject => 'New Account')
   end
   

@@ -56,19 +56,15 @@ class UsersController < ApplicationController
   # POST /users
   # POST /users.xml
   def create
-    
-    if params.has_key?(:user_roles)
-      @user.update_roles(params[:user_roles])  
-    else 
-      @user.add_employee_role
-    end
-    
+    @user = User.new(params[:user])
     @user.company_id = current_user.company_id
-    @user.generate_password if @user.password.nil?
+
+    password = @user.password.nil? ? @user.generate_password : false
     
-    if @user.save && params.has_key?(:user_groupings)
-      @user.update_groupings(params[:user_groupings])
-      @user.notify_account(@user.password)
+    if @user.save && params.has_key?(:multiselect_user_grouping_ids)
+      @user.update_groupings(params[:user][:grouping_ids])
+      @user.notify_account(password) if password
+      params.has_key?(:multiselect_user_role_ids) ? @user.update_roles(params[:user][:role_ids]) : @user.add_employee_role
       gflash :success => "User created."
     else
       @user.errors[:base] << "You must assign the user to one or more groups." unless params.has_key?(:user_groupings)

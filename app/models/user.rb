@@ -215,14 +215,10 @@ class User < ActiveRecord::Base
       u.last_name = row[1]
       u.active = true
       u.company_id = self.company_id
-      
-      if u.password.nil?
-        notify = true
-        u.generate_password 
-      end
-      
+      password = u.password.nil? ? u.generate_password : false
+     
       if u.save 
-        u.notify_account(u.password) if notify
+        u.notify_account(password) if password
         u.add_company_group
         u.add_employee_role
       else
@@ -242,6 +238,7 @@ class User < ActiveRecord::Base
     generated_password = Devise.friendly_token.first(6)
     self.password = generated_password
     #self.notify_account(generated_password) if send_copy
+    return generated_password
   end
   
   def apply_omniauth(omniauth)
