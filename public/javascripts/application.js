@@ -11,9 +11,9 @@ $(function() {
 	//$( "#app_container" ).show(); //JDavis: this keeps from flashing unformatted content (fouc).
 	$( ".best_in_place" ).best_in_place();
 	
-	$('#navigation_horiz').naviDropDown({
-		dropDownWidth: '150px'
-	});
+	//$('#navigation_horiz').naviDropDown({
+	//	dropDownWidth: '150px'
+	//});
 	
 	$(".panel").panel({
 		collapsible:false
@@ -66,15 +66,8 @@ $(function() {
 	
 	var hCalendar = $('#calendar').fullCalendar({
 		events: 'me/events',
-		
-		eventClick: function(event){
-		fnEvents(event.start);
-		},
-		
-		dayClick: function(date) {
-			fnEvents(date);
-		}
-	
+		eventClick: function(event){ fnEvents(event.start); },
+		dayClick: function(date) { fnEvents(date); }
 	});
 	
 	$( "#topic_group_datepicker").datepicker({ dateFormat: 'yy-mm-dd' });
@@ -234,8 +227,7 @@ $(function() {
 		if ($(this).attr('value') > 0)
 			window.location.pathname = '/topics/'+$(this).attr('value')+'/edit';
 		else
-			window.location.pathname = '/topics/new';
-			
+			window.location.pathname = '/topics/new';	
 	});
 	
 	// JDavis: this function responds to the dropdown selection on the grouping page and navigates to the select grouping.
@@ -260,18 +252,18 @@ $(function() {
 	$( "#rating_table input.jdstar" ).rating(); // JDavis: this line must come before rating_table dataTable()
 	
 	/* Add a click handler to the rows - this could be used as a callback */
-    $("#rating_table tbody").click(function(event) {
-        $(rTable.fnSettings().aoData).each(function (){
-            $(this.nTr).removeClass('row_selected');
-        });
-        $(event.target.parentNode).addClass('row_selected');
-    }); 
+    //$("#rating_table tbody").click(function(event) {
+    //    $(rTable.fnSettings().aoData).each(function (){
+    //        $(this.nTr).removeClass('row_selected');
+    //    });
+    //    $(event.target.parentNode).addClass('row_selected');
+    //}); 
      
     /* Add a click handler for the delete row */
-    $('#item_delete').click( function() {
-        var anSelected = fnGetSelected( rTable );
-        rTable.fnDeleteRow( anSelected[0] );
-    } ); 
+    //$('#item_delete').click( function() {
+    //    var anSelected = fnGetSelected( rTable );
+    //    rTable.fnDeleteRow( anSelected[0] );
+    //} ); 
     
 	
 	rTable = $( "#rating_table" ).dataTable({ // datatable where users rate the elements
