@@ -86,7 +86,7 @@ class Iteration < ActiveRecord::Base
   def completion_meter(submitted, total)
     completion_percentage = (submitted.to_f / total.to_f) * 100
     completion_meter = Gchart.meter(:data => [completion_percentage], 
-                                    :title => "Participation Level",
+                                    :title => completion_percentage.to_s + "% participation rate this iteration",
                                     :max_value => 100)
   end
   

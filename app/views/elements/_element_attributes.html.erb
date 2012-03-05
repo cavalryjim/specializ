@@ -1,7 +1,15 @@
-<p class="fields">
-  <%= f.label :name, "Attribute" %>
-  <%= f.text_field :name %>
-  <%= f.select :element_attribute_type_id, @element_attribute_types.map{ |t| [t.name, t.id] }%>
-  <%= link_to_remove_fields image_tag('trashcan.png'), f %>
-</p>
+<div class="fields">
+	<p>
+	  <%= f.label :name, "Attribute" %>
+	  <%= f.text_field :name %>
+	  <%= f.select :element_attribute_type_id, @element_attribute_types.map{ |t| [t.name, t.id] }%>
+	  <%= link_to_remove_fields image_tag('trashcan.png'), f %>
+	</p>
+	<%= f.fields_for :element_attribute_answers do |builder| %>
+	  <%= render 'elements/element_attribute_answers', :f => builder %>
+	<% end %>
+	<div>
+	  <%= link_to_add_fields "Add Answer", f, :element_attribute_answers, '/elements/' %>
+	</div>
+</div>
 
