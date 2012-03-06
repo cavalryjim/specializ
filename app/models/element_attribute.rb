@@ -34,4 +34,8 @@ class ElementAttribute < ActiveRecord::Base
     ElementAttributeType.find(self.element_attribute_type_id).symbol
   end
   
+  def type
+    self.element_attribute_type.name if self.element_attribute_type
+  end
+  
 end

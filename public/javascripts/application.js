@@ -270,8 +270,7 @@ $(function() {
 		"aoColumns": [
 		              {  },
 		              { "sWidth": "115px" },
-		              { "sWidth": "5px", "bSortable": false },
-		              { "bVisible": false }
+		              { "sWidth": "5px", "bSortable": false }
 		          ],
 		"bAutoWidth": false,
 		"bJQueryUI": true,
@@ -311,7 +310,6 @@ function fnEvents(date) {
 		dataType: "html",
 		success: function(data){
 			$('#events_div').html(data);
-			//$("#events_panel").attr("title", "Events: "+y+"-"+m+"-"+d);
 			$("#events_panel h3").text("Events: "+y+"-"+m+"-"+d);
 			$("#events_panel").panel({ collapsible:false });
 		}

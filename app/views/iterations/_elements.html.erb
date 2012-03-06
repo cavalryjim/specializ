@@ -20,12 +20,8 @@
 	  <tr>
 		<th class="center">Name</th>
 	    <th class="center">Rating</th>
-
 		<th></th> 
 
-		<th>hidden</th>
-
-		
 	  </tr>
 	 </thead>
 	
@@ -39,7 +35,7 @@
 			<!--</td>
 			<td>-->
 			  <%= best_in_place_if (@iteration.active), element, :name, :type => :input, :html_attrs => { :size => 60 } %>
-			  <%= link_to_if @iteration.active, image_tag('attr_add2.png', :size => '8x8'), edit_topic_group_iteration_element_path(@topic_group, @iteration, element) %>
+			  <%= link_to_if @iteration.active, image_tag('attr_add2.png', :size => '10x10'), edit_topic_group_iteration_element_path(@topic_group, @iteration, element) %>
 
 			  <% if element.has_attributes? %>
 			    <%= render 'inner_details', :element => element %>
@@ -59,8 +55,6 @@
 				<% end %>
 			</td>
 
-
-			<td><%= element.name.upcase %></td>
 		 </tr>
 
 		<% end %>
@@ -75,7 +69,9 @@
 
 			<td>-->
 			  <%= best_in_place_if ((can? :manage, @topic_group) && @iteration.last?), element, :name, :type => :input, :html_attrs => { :size => 60 } %>
-			  <%= link_to_if ((can? :manage, @topic_group) && @iteration.last?), image_tag('attr_add2.png', :size => '10x10'), edit_topic_group_iteration_element_path(@topic_group, @iteration, element) %>
+			  <% if ((can? :manage, @topic_group) && @iteration.last?) %>
+			  	<%= link_to image_tag('attr_add2.png', :size => '10x10'), edit_topic_group_iteration_element_path(@topic_group, @iteration, element) %>
+			  <% end %>
 
 			  <% if element.has_attributes? %>
 			    <%= render 'inner_details', :element => element %>
@@ -100,8 +96,6 @@
 				<% end %>
 			</td>
 			
-			<td><%= element.name.upcase %></td>
-
 		  </tr>
 			
 		<% end %>
