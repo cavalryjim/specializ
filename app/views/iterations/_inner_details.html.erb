@@ -5,9 +5,9 @@
 	    <td>
 		  <%= best_in_place_if (((can? :manage, @topic_group)||(can? :manage, e_attribute)) && @iteration.last?), e_attribute, :name, :type => :input, :html_attrs => { :size => 20 } %>
 		 
-		  <% if e_attribute.element_attribute_type && e_attribute.element_attribute_type.name == 'select' %>
+		  <% if e_attribute.element_attribute_type && e_attribute.element_attribute_type.name == 'Select' %>
 			<%= select_tag 'e_attribute[' + e_attribute.id.to_s + ']', 
-			   options_from_collection_for_select(e_attribute.element_attribute_answers, "id", "name"), :include_blank => true %>
+			   options_from_collection_for_select(e_attribute.element_attribute_options, "id", "name", e_attribute.value(current_user.id)), :include_blank => true %>
 	
 	      <% else %>
 			<%= text_field_tag 'e_attribute[' + e_attribute.id.to_s + ']', e_attribute.value(current_user.id), :disabled => !@iteration.active %>
@@ -23,8 +23,8 @@
 						:confirm => "Select 'OK' to delete. Any unsaved ratings may be lost.", :method => :delete%>
 					<% end %>
 --->
-		  </td>
-		</tr> 	
+		</td>
+	  </tr> 	
 	<% end %>
   </table>
 </div>

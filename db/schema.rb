@@ -88,7 +88,7 @@ ActiveRecord::Schema.define(:version => 20120305151600) do
 
   add_index "delayed_jobs", ["priority", "run_at"], :name => "delayed_jobs_priority"
 
-  create_table "element_attribute_answers", :force => true do |t|
+  create_table "element_attribute_options", :force => true do |t|
     t.string   "name"
     t.integer  "element_attribute_id"
     t.datetime "created_at"

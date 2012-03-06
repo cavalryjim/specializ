@@ -2,14 +2,14 @@
 	<p>
 	  <%= f.label :name, "Attribute" %>
 	  <%= f.text_field :name %>
-	  <%= f.select :element_attribute_type_id, @element_attribute_types.map{ |t| [t.name, t.id] }%>
+	  <%= f.select :element_attribute_type_id, @element_attribute_types.map{ |t| [t.name, t.id] } %>
 	  <%= link_to_remove_fields image_tag('trashcan.png'), f %>
 	</p>
-	<%= f.fields_for :element_attribute_answers do |builder| %>
-	  <%= render 'elements/element_attribute_answers', :f => builder %>
+	<%= f.fields_for :element_attribute_options do |builder| %>
+	  <%= render 'elements/element_attribute_options', :f => builder %>
 	<% end %>
 	<div>
-	  <%= link_to_add_fields "Add Answer", f, :element_attribute_answers, '/elements/' %>
+	  <%= link_to_add_fields "Add Option", f, :element_attribute_options, '/elements/' %>
 	</div>
 </div>
 

@@ -4,7 +4,7 @@
 #
 #  id          :integer(4)      not null, primary key
 #  name        :string(255)
-#  description :string(255)
+#  description :text
 #  company_id  :integer(4)
 #  parent_id   :integer(4)
 #  created_at  :datetime
