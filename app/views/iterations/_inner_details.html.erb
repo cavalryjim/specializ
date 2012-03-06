@@ -1,21 +1,30 @@
 <div class="innerDetails">
-	<table cellpadding="0" cellspacing="0" border="0" style="padding-left:50px;">
-		<% e_attributes(element).each do |e_attribute| %>
-			<tr class="fields">
-				<td>
-					<%= best_in_place_if (((can? :manage, @topic_group)||(can? :manage, e_attribute)) && @iteration.last?), e_attribute, :name, :type => :input, :html_attrs => { :size => 20 } %>
-					<%= text_field_tag 'e_attribute[' + e_attribute.id.to_s + ']', e_attribute.value(current_user.id), :disabled => !@iteration.active %>
-					<% if e_attribute.element_attribute_type %>
-						<%= e_attribute.symbol %>
-					<% end %>
+  <table cellpadding="0" cellspacing="0" border="0" style="padding-left:50px;">
+	<% e_attributes(element).each do |e_attribute| %>
+	  <tr class="fields">
+	    <td>
+		  <%= best_in_place_if (((can? :manage, @topic_group)||(can? :manage, e_attribute)) && @iteration.last?), e_attribute, :name, :type => :input, :html_attrs => { :size => 20 } %>
+		 
+		  <% if e_attribute.element_attribute_type && e_attribute.element_attribute_type.name == 'select' %>
+			<%= select_tag 'e_attribute[' + e_attribute.id.to_s + ']', 
+			   options_from_collection_for_select(e_attribute.element_attribute_answers, "id", "name"), :include_blank => true %>
+	
+	      <% else %>
+			<%= text_field_tag 'e_attribute[' + e_attribute.id.to_s + ']', e_attribute.value(current_user.id), :disabled => !@iteration.active %>
+			<% if e_attribute.element_attribute_type %>
+			  <%= e_attribute.symbol %>
+			<% end %>
+		  <% end%>
+	
+
 <!--- JDavis: if the user wants to delete an attribute, he needs to edit the element.
 					<% if @iteration.last? && ((can? :manage, @topic_group)||(can? :manage, e_attribute)) %>
 						<%= link_to image_tag('trashcan.png', :alt => "del"), topic_group_iteration_element_element_attribute_path(@topic_group, @iteration, element, e_attribute), 
 						:confirm => "Select 'OK' to delete. Any unsaved ratings may be lost.", :method => :delete%>
 					<% end %>
 --->
-				</td>
-			</tr> 	
-		<% end %>
-	</table>
+		  </td>
+		</tr> 	
+	<% end %>
+  </table>
 </div>
