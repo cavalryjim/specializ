@@ -18,11 +18,7 @@ class ElementAttributeOption < ActiveRecord::Base
   before_save :check_if_select
   
   def check_if_select
-    if self.element_attribute.type != 'Select'
-      false
-    else
-      true
-    end
+    self.element_attribute.type == 'Select' 
   end
   
 end
