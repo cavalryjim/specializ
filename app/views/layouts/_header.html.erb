@@ -61,18 +61,25 @@
   <% if (current_user.role? :pnetz_admin) && (current_user.email.split('@').last == 'peoplenetz.com') %>
 	<%= link_to "Peoplenetz", admin_path, :class => "SiteHeaderBarItem SiteHeaderBarLink" %>
   <% end %>
-  <div class="SiteHeaderSearch">
-	Signed in as <%= current_user.email %>
-	<%= link_to "(Sign out)", destroy_user_session_path, :method => :delete, :class => "SiteHeaderBarLink" %>
-  </div>
-<% else %>
-  <div class="SiteHeaderSearch">
-    <%= link_to "Request account", new_user_registration_path, :class => "SiteHeaderBarLink" %> or 
-	<%= link_to "log in", new_user_session_path, :class => "SiteHeaderBarLink" %>
-  </div>
 <% end %>
- </div>
-	
 
+
+   <div class="SiteHeaderSearch">
+	<% if user_signed_in? %>
+	  Signed in as <%= current_user.email %>
+	  <%= link_to "(Sign out)", destroy_user_session_path, :method => :delete, :class => "SiteHeaderBarLink" %>
+	<% else %>
+      <%= link_to "Request account", new_user_registration_path, :class => "SiteHeaderBarLink" %> or 
+	  <%= link_to "log in", new_user_session_path, :class => "SiteHeaderBarLink" %>
+	<% end %>
+
+	<!-- BEGIN ProvideSupport.com Graphics Chat Button Code -->
+	<div style="float:right;">
+	<div id="ciWMjj" style="z-index:100;position:absolute"></div><div id="scWMjj" style="display:inline"></div><div id="sdWMjj" style="display:none"></div><script type="text/javascript">var seWMjj=document.createElement("script");seWMjj.type="text/javascript";var seWMjjs=(location.protocol.indexOf("https")==0?"https":"http")+"://image.providesupport.com/js/peoplenetz/safe-standard.js?ps_h=WMjj&ps_t="+new Date().getTime();setTimeout("seWMjj.src=seWMjjs;document.getElementById('sdWMjj').appendChild(seWMjj)",1)</script><noscript><div style="display:inline"><a href="http://www.providesupport.com?messenger=peoplenetz">Live Help Chat</a></div></noscript>
+	</div>
+	<!-- END ProvideSupport.com Graphics Chat Button Code -->
+   </div>
+
+  </div>
 
 </header>
