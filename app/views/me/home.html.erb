@@ -16,7 +16,8 @@
 				<li><%= link_to "Create a topic", "http://www.youtube.com/watch?v=nlCo-ZFqrNM", :target => "_blank" %></li>
 				<li><%= link_to "Information on groups", "http://www.youtube.com/watch?v=8NJMWu3wT20", :target => "_blank" %></li>
 				<li><%= link_to "Import topic elements", "http://www.youtube.com/watch?v=oVy6mgb_lPo", :target => "_blank" %></li>
-				<%= link_to "...more", "#" %>
+				<%= link_to "...more", "#", :id => 'more_link' %>
+				
 			</ul>
 		   </div>
 		</div>
@@ -48,5 +49,9 @@
 	 </table>
 	</div>
    </div>
+
+  <div id="more_dialog" title="Tutorials" class="popup">
+	<%= render :partial => 'more' %>
+  </div>
 
 <% end %>

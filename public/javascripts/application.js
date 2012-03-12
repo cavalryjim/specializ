@@ -4,16 +4,11 @@ var meTabs;
 var giRedraw = false;
 
 
-//$('html').addClass('js');
-
 $(function() {
 	
 	//$( "#app_container" ).show(); //JDavis: this keeps from flashing unformatted content (fouc).
 	$( ".best_in_place" ).best_in_place();
 	
-	//$('#navigation_horiz').naviDropDown({
-	//	dropDownWidth: '150px'
-	//});
 	
 	$(".panel").panel({
 		collapsible:false
@@ -26,43 +21,16 @@ $(function() {
         unfold: function() { $.cookie("browserState", "open"); }
     }).show();
 	
-	//var browserWidth = $.cookie("browserWidth");
-	
-	//var rBrowser = $( "#browserContainer" ).resizable({
-	//	maxWidth: 400,
-	//	minWidth: 200,
-	//	minHeight: 600,
-	//	stop: function(event, ui){
-	//		$.cookie("browserWidth", ui.size.width);
-	//	}
-	//});
 	
 	$("button, input:submit, input:button").button();
-	//$("select").selectmenu();
 	
 	bAccordion = $( "#accordion" ).accordion({ fillSpace: true }).show(); // accordion on the _browser partial
 	var browserState = $.cookie("browserState");
-	//var browserCol = $( "#browser_col" );
-	//var browserTrigger = $( "#browser_trigger" );
+	
 	
 	if (browserState == 'closed') {
-		//browser.fold();
 		browser.panel('toggle', 0, true);
-		//alert(browser.width);
 	}
-	
-	//browserTrigger.click(function() // JDavis: this hides & shows the left-side browser.
-	//  {
-	//	if (browserCol.is(':hidden')){
-	//		$(this).html('My Topics -');
-	//		$.cookie("browserState", "open");
-	//} else {
-	//		$(this).html('My Topics +');
-	//		$.cookie("browserState", "closed");
-	//	}
-	//	$( "#browser_col" ).slideToggle("slow");
-	//});
-	
 	
 	var hCalendar = $('#calendar').fullCalendar({
 		events: 'me/events',
@@ -172,11 +140,6 @@ $(function() {
         "sPaginationType": "full_numbers"
 	}).show(); 
 	
-	//$("#layout_table").colResizable({
-	//	postbackSafe:true,
-	//	minWidth: 200
-	//});
-	
 	
 	// JDavis: image the opens / closes the element attributes div
 	$('#rating_table img.details').live( 'click', function () {
@@ -191,6 +154,10 @@ $(function() {
 		}
 		
 	} );
+	
+	$( ".popup" ).dialog({autoOpen: false, minWidth: 500});
+	
+	$( '#more_link' ).click(function() { $('#more_dialog').dialog( "open" ) });
 	
 	// JDavis: this is a popup form for submitting new elements in the 'Participate' tab.
 	var dElementForm = $('#element_dialog_form').dialog({
@@ -250,20 +217,6 @@ $(function() {
 	
 	// JDavis: for some reason, the rating stuff must come last or else shit breaks.
 	$( "#rating_table input.jdstar" ).rating(); // JDavis: this line must come before rating_table dataTable()
-	
-	/* Add a click handler to the rows - this could be used as a callback */
-    //$("#rating_table tbody").click(function(event) {
-    //    $(rTable.fnSettings().aoData).each(function (){
-    //        $(this.nTr).removeClass('row_selected');
-    //    });
-    //    $(event.target.parentNode).addClass('row_selected');
-    //}); 
-     
-    /* Add a click handler for the delete row */
-    //$('#item_delete').click( function() {
-    //    var anSelected = fnGetSelected( rTable );
-    //    rTable.fnDeleteRow( anSelected[0] );
-    //} ); 
     
 	
 	rTable = $( "#rating_table" ).dataTable({ // datatable where users rate the elements
@@ -284,7 +237,7 @@ $(function() {
     }).show(); 
 });
 
-/* Get the rows which are currently selected */
+/* Get the rows which are currently selected *****JDavis: this is not being used at the moment.....*/
 function fnGetSelected( oTableLocal )
 {
     var aReturn = new Array();

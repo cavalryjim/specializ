@@ -209,29 +209,56 @@ class User < ActiveRecord::Base
       
     book = Spreadsheet.open users_spreadsheet.path
     sheet1 = book.worksheet 0
+    add_groups_and_roles = false
+    last_user = User.new
+
     sheet1.each 1 do |row|  #JDavis: skipping the first row of the sheet.
-      u = User.find_or_initialize_by_email(row[2]) #JDavis: find_or_initialize_by_email
-      u.first_name = row[0]
-      u.last_name = row[1]
-      u.active = true
-      u.company_id = self.company_id
-      password = u.password.nil? ? u.generate_password : false
-     
-      if u.save 
-        u.notify_account(password) if password
-        u.add_company_group
-        u.add_employee_role
-      else
-        #error_list << u.errors
-        error_list = error_list + 1
+      if row[0].downcase != 'roles:' && row[0].downcase != 'groups:'
+        u = User.find_or_initialize_by_email(row[2]) #JDavis: find_or_initialize_by_email
+        u.first_name = row[0]
+        u.last_name = row[1]
+        u.active = true
+        u.company_id = self.company_id
+        password = u.encrypted_password.nil? ? u.generate_password : false
+       
+        if u.save 
+          u.notify_account(password) if password
+          u.add_company_group
+          u.add_employee_role
+          add_groups_and_roles = true
+          last_user = u
+        else
+          #error_list << u.errors
+          add_groups_and_roles = false
+          error_list = error_list + 1
+        end
       end
       
+      last_user.add_roles(row) if (row[0].downcase == 'roles:') && add_groups_and_roles && row.slice!(0)
+      last_user.add_groups(row) if (row[0].downcase == 'groups:') && add_groups_and_roles && row.slice!(0)
+     
     end
-    #return error_list
+    
+    return error_list
+  end
+  
+  def add_roles(role_names)
+    role_names.each do |role_name|
+      role = Role.find_by_name(role_name.to_s.downcase)
+      self.role_ids = self.role_ids << role.id if role
+    end
+    #true
+  end
+  
+  def add_groups(group_names)
+    group_names.each do |group_name|
+      grouping = Grouping.find_by_name_and_company_id(group_name.to_s, self.company_id)
+      self.grouping_ids = self.grouping_ids << grouping.id if grouping
+    end
   end
   
   def add_company_group
-    self.grouping_ids = self.grouping_ids << self.root_grouging.id unless self.grouping_ids.include?(self.root_grouging.id)
+    self.grouping_ids = self.grouping_ids << self.root_grouping.id unless self.grouping_ids.include?(self.root_grouping.id)
   end
   
   def generate_password

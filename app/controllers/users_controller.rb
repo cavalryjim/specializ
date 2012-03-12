@@ -138,6 +138,7 @@ class UsersController < ApplicationController
       errors = current_user.import_users(params[:file])
       #current_user.delay(:run_at => Time.zone.now ).import_users(params[:file])
       gflash :success => "Uploading users."
+      #gflash :notice => errors.to_s
     else
       gflash :notice => "Please select an appropriate file."
     end

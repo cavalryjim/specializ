@@ -66,8 +66,6 @@ class Grouping < ActiveRecord::Base
       
     book = Spreadsheet.open groups_spreadsheet.path
     sheet1 = book.worksheet 0
-    #info = ''
-    #num = 0
     parent_list = []
     
     sheet1.each 1 do |row|  #JDavis: skipping the first row of the sheet.
