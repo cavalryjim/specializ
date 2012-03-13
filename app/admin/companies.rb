@@ -1,4 +1,9 @@
 ActiveAdmin.register Company do
+  filter :name
+  filter :active, :as => :select
+  filter :expiration_date
+  filter :created_at
+  
   index do
     column :id
     column :name

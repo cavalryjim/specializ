@@ -6,6 +6,8 @@ ActiveAdmin.setup do |config|
   # for each of the active admin pages.
   #
   config.site_title = "Specializ"
+  config.site_title_link = "/"
+  #config.site_title_image = "specializ.png"
 
 
   # == Default Namespace

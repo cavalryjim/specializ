@@ -1,4 +1,11 @@
 ActiveAdmin.register User do
+  filter :company
+  filter :first_name
+  filter :last_name
+  filter :email
+  filter :active, :as => :select
+  filter :created_at
+  
   index do
     column :id
     column :first_name
@@ -18,7 +25,7 @@ ActiveAdmin.register User do
       f.input :password
       f.input :password_confirmation
       f.input :active
-      f.input :roles
+      f.input :roles, :as => :check_boxes
     end
     f.buttons
   end

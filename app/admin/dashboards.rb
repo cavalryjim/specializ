@@ -10,6 +10,16 @@ ActiveAdmin::Dashboards.build do
     end
     strong { link_to "View All Users", admin_users_path }
   end
+  
+  section "Recently Added Topic" do
+    table_for Topic.order("created_at desc").limit(5) do
+      column :name do |topic|
+        link_to topic, admin_topic_path(topic)
+      end
+      column :created_at
+    end
+    strong { link_to "View All Topics", admin_topics_path }
+  end
 
   # Define your dashboard sections here. Each block will be
   # rendered on the dashboard in the context of the view. So just
