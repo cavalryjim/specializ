@@ -18,6 +18,7 @@ ActiveAdmin.register User do
       f.input :password
       f.input :password_confirmation
       f.input :active
+      f.input :roles
     end
     f.buttons
   end

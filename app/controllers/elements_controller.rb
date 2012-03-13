@@ -43,7 +43,6 @@ class ElementsController < ApplicationController
     @topic_group = TopicGroup.find_by_id(params[:topic_group_id])
     @iteration = Iteration.find_by_id(params[:iteration_id])
     @element = Element.new(params[:element])
-    #JDavis todo: New elements should only be current if the manager approves them
     @element.current = true 
     @element.created_by = current_user.id
     
