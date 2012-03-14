@@ -7,7 +7,9 @@ ActiveAdmin.register Topic do
   
   index do
     column :id
-    column :name
+    column :name do |topic|
+      link_to topic, edit_admin_topic_path(topic)
+    end
     column :description
     column :status
     column :company

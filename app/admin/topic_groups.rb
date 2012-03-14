@@ -6,7 +6,9 @@ ActiveAdmin.register TopicGroup do
   
   index do
     column :id
-    column :name
+    column :name do |topic_group|
+      link_to topic_group, edit_admin_topic_group_path(topic_group)
+    end
     column :goal
     column :active
     column :due_date
@@ -24,7 +26,7 @@ ActiveAdmin.register TopicGroup do
       f.input :update_frequency, :hint => "Enter the number of days between automatically restarting the topic."
       f.input :due_date
       f.input :due_days, :hint => "Enter the number of days participants have to submit feedback."
-      f.input :elements_spreadsheet, :hint => "This is not used at the moment."
+      #f.input :elements_spreadsheet, :hint => "This is not used at the moment."
     end
     f.buttons
   end

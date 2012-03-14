@@ -6,6 +6,7 @@ ActiveAdmin::Dashboards.build do
         link_to user, admin_user_path(user)
       end
       column :email
+      column :company
       column :created_at
     end
     strong { link_to "View All Users", admin_users_path }
