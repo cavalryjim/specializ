@@ -30,6 +30,10 @@ class Company < ActiveRecord::Base
   before_create :set_expiration_date
   after_create :create_company_group
   
+  def to_s
+    self.name
+  end
+  
   private
   
   def set_expiration_date

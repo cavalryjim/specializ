@@ -6,7 +6,9 @@ ActiveAdmin.register Company do
   
   index do
     column :id
-    column :name
+    column :name do |company|
+      link_to company, edit_admin_company_path(company)
+    end
     column :active
     column :expiration_date
     column :logo
