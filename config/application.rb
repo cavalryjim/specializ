@@ -46,7 +46,8 @@ module Specializ
     config.autoload_paths += [config.root.join("app/presenters")]
     
     # JDavis: setting the default host for links embedded in emails
-    config.action_mailer.default_url_options = { :host => "specializ.heroku.com" }
+    #config.action_mailer.default_url_options = { :host => "specializ.heroku.com" }
+    config.action_mailer.default_url_options = { :host => "specializ.us" }
 
     #config.autoload_paths << "#{config.root}/lib/validators"
   end
