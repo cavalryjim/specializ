@@ -9,7 +9,8 @@ class AuthenticationsController < ApplicationController
     if authentication
       sign_in(authentication.user)
       gflash :success => "Signed in."
-      redirect_to root_url
+      #redirect_to root_url
+      redirect to root_path
     elsif current_user
       current_user.authentications.create!(:provider => omniauth['provider'], :uid => omniauth['uid'])
       gflash :success => "Authentication added."
