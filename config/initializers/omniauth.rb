@@ -3,7 +3,7 @@ Rails.application.config.middleware.use OmniAuth::Builder do
   provider :facebook, '372796496068260', '0780657164bc0df95d236435272b2975'
   provider :linked_in, '9vmisk52lyn5', 'CWElxQ2qcvWS6XaB'
   
-  # JDavis: Omniauth was redirecting to http instead of https.  Upgrading to rack 1.3.6 should fix.
-  #OmniAuth.config.full_host = 'https://www.specializ.us'
+  # JDavis: Omniauth was redirecting to http instead of https.  Upgrading to rack 1.3.6 should fix...did not work for Rails 3.0.*
+  OmniAuth.config.full_host = 'https://www.specializ.us'
   
 end
