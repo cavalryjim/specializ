@@ -41,5 +41,9 @@ Specializ::Application.configure do
     #Bullet.disable_browser_cache = true
   end
   
+  # JDavis: enabling ssl
+  #config.middleware.insert_before ActionDispatch::Static, "Rack::SSL"
+  config.middleware.insert_before ActionDispatch::Static, Rack::SSL, :exclude => proc { |env| env['HTTPS'] != 'on' }
+  
 end
 

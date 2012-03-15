@@ -28,6 +28,7 @@ gem 'simple_form', '~> 1.5.2'
 gem 'client_side_validations', '3.0.4'
 gem 'gon', '2.1.0'
 #gem 'encryptor', '~> 1.1.3'
+gem 'rack-ssl', '~> 1.3.2', :require => 'rack/ssl'
 
 
 
