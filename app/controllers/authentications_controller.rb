@@ -7,10 +7,11 @@ class AuthenticationsController < ApplicationController
     omniauth = request.env["omniauth.auth"]
     authentication = Authentication.find_by_provider_and_uid(omniauth['provider'], omniauth['uid'])
     if authentication
-      sign_in(authentication.user)
+      #sign_in(authentication.user)
       gflash :success => "Signed in."
       #redirect_to root_url
-      redirect_to me_path
+      #redirect_to me_path
+      sign_in_and_redirect(:user, authentication.user)
     elsif current_user
       current_user.authentications.create!(:provider => omniauth['provider'], :uid => omniauth['uid'])
       gflash :success => "Authentication added."
