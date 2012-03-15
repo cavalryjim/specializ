@@ -8,8 +8,12 @@ ActiveAdmin.register User do
   
   index do
     column :id
-    column :first_name
-    column :last_name
+    column :first_name do |user|
+      link_to user, edit_admin_user_path(user)
+    end
+    column :last_name do |user|
+      link_to user, edit_admin_user_path(user)
+    end
     column :email
     column :company
     
