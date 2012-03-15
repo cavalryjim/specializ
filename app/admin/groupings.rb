@@ -7,7 +7,9 @@ ActiveAdmin.register Grouping do
   
   index do
     column :id
-    column :name
+    column :name do |grouping|
+      link_to grouping, edit_admin_grouping_path(grouping)
+    end
     column :description
     column :company
     column :parent
