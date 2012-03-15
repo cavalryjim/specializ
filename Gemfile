@@ -6,7 +6,7 @@ source 'http://rubygems.org'
 #   for the gem version.  The '~> 0.2.2' would have been equivalent to: [‘>= 0.2.2’, ‘< 0.3.0’]
 
 
-gem 'rails', '3.0.9'
+gem 'rails', '3.0.12'
 gem 'mysql2', '0.2.18' # JDavis: with Rails 3.0.*, must use a mysql2 gem version < 0.3.  Moving from 0.2.7 to support windows.
 gem 'cancan', '~> 1.6.7'
 gem 'awesome_nested_set', '~> 2.0.2'
@@ -29,6 +29,7 @@ gem 'client_side_validations', '3.0.4'
 gem 'gon', '2.1.0'
 #gem 'encryptor', '~> 1.1.3'
 gem 'rack-ssl', '~> 1.3.2', :require => 'rack/ssl'
+#gem 'rack', '1.3.6'
 
 
 
