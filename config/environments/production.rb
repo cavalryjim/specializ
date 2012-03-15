@@ -49,5 +49,5 @@ Specializ::Application.configure do
   
   # JDavis: enabling ssl
   #config.middleware.insert_before ActionDispatch::Static, "Rack::SSL"
-  config.middleware.insert_before ActionDispatch::Static, Rack::SSL, :exclude => proc { |env| env['HTTPS'] != 'on' }
+  #config.middleware.insert_before ActionDispatch::Static, Rack::SSL, :exclude => proc { |env| env['HTTPS'] != 'on' }
 end

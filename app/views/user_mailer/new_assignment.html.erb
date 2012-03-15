@@ -2,5 +2,5 @@
 
 <p>You have been selected to participate in a topic!</p>
 
-<p><%= link_to @topic_group.name, topic_group_iteration_path(@topic_group, @topic_group.iterations.last, :only_path => false) %></p>
+<p><%= link_to @topic_group.name, topic_group_iteration_url(@topic_group, @topic_group.iterations.last, :protocol => 'https', :only_path => false) %></p>
 

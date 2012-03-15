@@ -2,5 +2,5 @@
 
 <p>All participating users have submitted input for the last iteration.  As a topic manager, you may need to approve newly suggested items.</p>
 
-<p><%= link_to @topic_group.name, topic_group_iteration_path(@topic_group, @topic_group.iterations.last, :only_path => false) %></p>
+<p><%= link_to @topic_group.name, topic_group_iteration_url(@topic_group, @topic_group.iterations.last, :protocol => 'https', :only_path => false) %></p>
 
