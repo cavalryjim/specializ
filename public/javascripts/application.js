@@ -159,6 +159,13 @@ $(function() {
 	
 	$( '#more_link' ).click(function() { $('#more_dialog').dialog( "open" ) });
 	
+	$( "#login_form" ).dialog({ 
+		autoOpen: true, 
+		minWidth: 500, 
+		closeOnEscape: false, 
+		open: function(event, ui) { $(".ui-dialog-titlebar-close").hide(); }
+	});
+	
 	// JDavis: this is a popup form for submitting new elements in the 'Participate' tab.
 	var dElementForm = $('#element_dialog_form').dialog({
 		autoOpen: false,
