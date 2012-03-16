@@ -47,7 +47,7 @@ module Specializ
     
     # JDavis: setting the default host for links embedded in emails
     #config.action_mailer.default_url_options = { :host => "specializ.heroku.com" }
-    config.action_mailer.default_url_options = { :protocol => 'https', :host => "specializ.us" }
+    config.action_mailer.default_url_options = { :protocol => 'https', :host => "www.specializ.us" }
 
     #config.autoload_paths << "#{config.root}/lib/validators"
     

@@ -20,7 +20,7 @@ Specializ::Application.configure do
   # JDavis: adding the following line for devise & active admin
   #config.action_mailer.default_url_options = { :host => 'localhost:3000' }
   #config.action_mailer.default_url_options = { :host => 'specializ.heroku.com' }
-  #config.action_mailer.default_url_options = { :protocol => 'https', :host => 'specializ.us' }
+  #config.action_mailer.default_url_options = { :protocol => 'https', :host => 'www.specializ.us' }
 
   # Print deprecation notices to the Rails logger
   config.active_support.deprecation = :log
