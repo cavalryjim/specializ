@@ -24,7 +24,7 @@ $(function() {
 	
 	$("button, input:submit, input:button").button();
 	
-	bAccordion = $( "#accordion" ).accordion({ fillSpace: true }).show(); // accordion on the _browser partial
+	bAccordion = $( "#accordion" ).accordion({ fillSpace: true, navigation: true }).show(); // accordion on the _browser partial
 	var browserState = $.cookie("browserState");
 	
 	
@@ -40,9 +40,9 @@ $(function() {
 	
 	$( "#topic_group_datepicker").datepicker({ dateFormat: 'yy-mm-dd' });
 	
-	mTabs = $( "#manager_tabs" ).tabs({ cookie:{ expires:1 }}).show(); // tabs used in the manager module
-	hrTabs = $( "#hr_tabs" ).tabs({ cookie:{ expires:1 }}).show(); // tabs used in the HR module
-	$( "#me_tabs" ).tabs({ cookie:{ expires:1 }}).show();   // tabs used in the Me module
+	mTabs = $( "#manager_tabs" ).tabs({ cookie:{ expires:1 } }).show(); // tabs used in the manager module
+	hrTabs = $( "#hr_tabs" ).tabs({ cookie:{ expires:1 } }).show(); // tabs used in the HR module
+	$( "#me_tabs" ).tabs({ cookie:{ expires:1 } }).show();   // tabs used in the Me module
 	
 	$( ".simple_select").multiselect({
 		multiple: false,

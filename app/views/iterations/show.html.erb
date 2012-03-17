@@ -42,9 +42,9 @@
 		<ul>
 			<li><a href="#tabs-1">Topic Info</a></li>
 			<li><a href="#tabs-2">Participate</a></li>
-			<li><a href="#tabs-3">Members</a></li>
 			<% if can? :manage, @topic_group %>
-				<li><a href="#tabs-4">Manage Participants</a></li>
+				<li><a href="#tabs-3">Manage Participants</a></li>
+				<!--><li><a href="#tabs-4">tbd</a></li>-->
 				<li><a href="#tabs-5">Manage Elements</a></li>
 			<% end %>
 		</ul>
@@ -57,14 +57,14 @@
 				<%= render 'elements' %>
 			</div>
 		</div>
-		<div id="tabs-3" class="ui-tabs-hide">
-			<%= render 'members', :topic_group => @topic_group, 
-								  :participating_users => @participating_users %>
-		</div>
 		<% if can? :manage, @topic_group %>
-			<div id="tabs-4" class="ui-tabs-hide">
-				<%= render 'manage' %>
+			<div id="tabs-3" class="ui-tabs-hide">
+				<%= render 'members', :topic_group => @topic_group, 
+									  :participating_users => @participating_users %>
 			</div>
+			<!--><div id="tabs-4" class="ui-tabs-hide">
+				<%= render 'manage' %>
+			</div>-->
 			<div id="tabs-5" class="ui-tabs-hide">
 				<%= render 'manage_elements' %>
 			</div>

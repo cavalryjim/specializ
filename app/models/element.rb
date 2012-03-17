@@ -86,12 +86,7 @@ class Element < ActiveRecord::Base
   end
   
   def unique_to_iteration?(iteration_id)
-    iteration = Iteration.find(iteration_id)
-    if iteration.elements.map{ |e| e.name.downcase }.include?(self.name.downcase)
-      return false
-    else
-      return true
-    end
+    !Iteration.find(iteration_id).elements.map{ |e| e.name.downcase }.include?(self.name.downcase)
   end
   
 end
