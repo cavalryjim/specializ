@@ -2,6 +2,7 @@
 	<table id="member_table" class="display fouc">
 	 <thead>
 	  <tr>
+	  	<th class="center">Submitted</th>
 	    <th class="center">Name</th>
 		<th class="center">Email</th>
 	    <th></th>
@@ -12,6 +13,11 @@
 	 <tbody>
 		<% participating_users.each do |user| %>
 		  <tr>
+		  	<td class="center">
+		  	  <% if user.submitted_list?(@iteration.id) %>
+		  	    <%= image_tag 'icons/tick.png' %>
+		  	  <% end%>
+		  	</td>
 		    <td><%= user %></td>
 		    <td><%= user.email %></td>
 		    <td class="center">

@@ -379,8 +379,8 @@ div.field, div.actions {
 .SiteHeaderBarItem {
     position: relative;
     float: left;
-    border-left: 1px solid #4c4c4c;
-    border-right: 1px solid #000;
+    /*border-left: 1px solid #4c4c4c;
+    border-right: 1px solid #000;*/
     padding: 1px 16px 0 16px;
     margin: 0;
     z-index: 1000;

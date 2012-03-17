@@ -16,6 +16,8 @@ class UserList < ActiveRecord::Base
   belongs_to :element
   belongs_to :iteration
   
+  attr_accessible :user_id, :element_id, :score, :iteration_id
+                  
   validates :user_id, :presence => true
   validates :element_id, :presence => true
   validates :score, :presence => true

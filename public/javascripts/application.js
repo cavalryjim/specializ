@@ -108,8 +108,9 @@ $(function() {
 	
 	$( "#member_table" ).dataTable({ // datatable listing the other user participating in a topic
 		"aoColumns": [
+		              { "sWidth": "5%", "bSortable": false },
 		              { "sWidth": "25%" },
-		              { "sWidth": "70%" },
+		              { "sWidth": "65%" },
 		              { "sWidth": "5%", "bSortable": false }
 		          ],
 		"bAutoWidth": false,

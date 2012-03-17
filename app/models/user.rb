@@ -153,22 +153,24 @@ class User < ActiveRecord::Base
     Iteration.find(iteration_id).new_elements.where(:created_by => self.id)
   end
   
-  def rate_elements(iteration_id, resubmit, new_elements, rated_elements, element_attributes)
+  def rate_elements(iteration_id, resubmit, rated_elements, element_attributes)
     self.user_lists.where(:iteration_id => iteration_id).update_all(:score => 0) if resubmit
     iteration = Iteration.find(iteration_id)
     topic_group = TopicGroup.find(iteration.topic_group_id)
     
-    if new_elements  
-      new_elements.each do |key, name|
-        new_element = Element.new
-        new_element.name = name
-        new_element.current = true
-        new_element.created_by = self.id
-        new_element.save
-        new_element.destroy if !new_element.add_to_iteration(iteration_id, true, false)
-        UserList.find_or_create_by_element_id_and_user_id_and_iteration_id(new_element.id, self.id, iteration.id, :score => 0) if new_element
-      end
-    end
+    #if new_elements  
+    #  new_elements.each do |key, name|
+    #    new_element = Element.new
+    #    new_element.name = name
+    #    new_element.current = true
+    #    new_element.created_by = self.id
+    #    if new_element.save && new_element.add_to_iteration(iteration_id, true, false)
+    #      UserList.find_or_create_by_element_id_and_user_id_and_iteration_id(new_element.id, self.id, iteration.id, :score => 0) if new_element
+    #    else
+    #      new_element.destroy 
+    #    end
+    #  end
+    #end
     
     if rated_elements
       rated_elements.each do |key, score|

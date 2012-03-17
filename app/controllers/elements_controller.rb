@@ -48,6 +48,7 @@ class ElementsController < ApplicationController
     
     if @element.unique_to_iteration?(@iteration.id)   
       if @element.save && @element.add_to_iteration(@iteration.id, true, true)
+        UserList.find_or_create_by_element_id_and_user_id_and_iteration_id(@element.id, current_user.id, @iteration.id, :score => 0)
         gflash :success => "Element created."
         redirect_to topic_group_iteration_url(@topic_group, @iteration) 
       else
