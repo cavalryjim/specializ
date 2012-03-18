@@ -34,9 +34,11 @@
 			  <% end %>
 			<!--</td>
 			<td>-->
-			  <%= best_in_place_if (@iteration.active), element, :name, :type => :input, :html_attrs => { :size => 60 } %>
-			  <%= link_to_if @iteration.active, image_tag('attr_add2.png', :size => '10x10'), edit_topic_group_iteration_element_path(@topic_group, @iteration, element) %>
-
+			  <%= best_in_place_if ((can? :manage, @topic_group) && @iteration.active), element, :name, :type => :input, :html_attrs => { :size => 60 } %>
+			  <% if can? :manage, element %>
+			    <%= link_to_if @iteration.active, image_tag('attr_add2.png', :size => '10x10'), edit_topic_group_iteration_element_path(@topic_group, @iteration, element) %>
+			  <% end %>
+			  
 			  <% if element.has_attributes? %>
 			    <%= render 'inner_details', :element => element %>
 			  <% end %>
@@ -49,7 +51,7 @@
 			</td>
  
 			<td class="center">
-				<% if @iteration.last? %>
+				<% if @iteration.last? && (can? :manage, element) %>
 					<%= link_to image_tag('icons/cross.png'), topic_group_iteration_element_path(@topic_group, @iteration, element), 
 						:confirm => "Select 'OK' to delete. Any unsaved ratings may be lost.", :method => :delete%>
 				<% end %>

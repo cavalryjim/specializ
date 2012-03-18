@@ -42,7 +42,6 @@ class Topic < ActiveRecord::Base
   end
   
   def update_groupings(grouping_ids)
-    
     grouping_ids.each do |grouping_id|
       grouping = Grouping.find(grouping_id)
       grouping.add_to_topic(self)
