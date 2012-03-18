@@ -57,7 +57,9 @@ class ElementsController < ApplicationController
         redirect_to topic_group_iteration_url(@topic_group, @iteration) 
       end
     else
-      gflash :error => "That item already exists."
+      element_id = @iteration.elements.where(:name => @element.name).first.id
+      UserList.find_or_create_by_element_id_and_user_id_and_iteration_id(element_id, current_user.id, @iteration.id, :score => 0)
+      gflash :success => "Element created."
       redirect_to topic_group_iteration_url(@topic_group, @iteration) 
     end
  

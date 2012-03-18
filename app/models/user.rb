@@ -150,7 +150,12 @@ class User < ActiveRecord::Base
   end
   
   def suggested_elements(iteration_id)
-    Iteration.find(iteration_id).new_elements.where(:created_by => self.id)
+    #Iteration.find(iteration_id).new_elements.where(:created_by => self.id)
+    #Iteration.find(iteration_id).new_elements.find(:all, :conditions => { 'user_list.user_id' => self.id })
+    #iteration = Iteration.find(iteration_id)
+    #iteration.elements.where(:user_lists => self.user_lists)
+    #Element.joins(:user_lists).where('user_list.user_id' => self.id, 'user_list.iteration_id' => iteration_id)
+    []
   end
   
   def rate_elements(iteration_id, resubmit, rated_elements, element_attributes)
