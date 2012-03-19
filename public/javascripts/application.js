@@ -156,6 +156,20 @@ $(function() {
 		
 	} );
 	
+	// JDavis: image the opens / closes the element attributes div
+	$('#new_elements_table img.details').live( 'click', function () {
+		var nTr = this.parentNode;
+		
+		if ($('div.innerDetails', nTr).is(':hidden')){
+			$('div.innerDetails', nTr).slideDown();
+			$('img.details', nTr).attr( 'src', "../../../images/details_close.png" );
+		} else {
+			$('div.innerDetails', nTr).slideUp();
+			$('img.details', nTr).attr( 'src', "../../../images/details_open.png" );
+		}
+		
+	} );
+	
 	$( ".popup" ).dialog({autoOpen: false, minWidth: 500});
 	
 	$( '#more_link' ).click(function() { $('#more_dialog').dialog( "open" ) });

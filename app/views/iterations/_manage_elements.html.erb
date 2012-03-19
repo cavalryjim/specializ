@@ -18,7 +18,19 @@
 		    <tr>
 			  <% name = 'approve['+new_element.id.to_s+']' %>
 			  <td class="center"> <%= check_box_tag name, 1, new_element.approved?(@iterations.last.id) %> </td>
-			  <td><%= new_element.name %></td>
+			  <td>
+				<% if new_element.has_attributes? %>
+			      <%= image_tag 'details_open.png', :class => 'details' %>
+			    <% end %>
+				<%= best_in_place new_element, :name, :type => :input, :html_attrs => { :size => 60 } %>
+			  
+			    <%= link_to image_tag('attr_add2.png', :size => '10x10'), edit_topic_group_iteration_element_path(@topic_group, @iteration, new_element) %>
+
+				<% if new_element.has_attributes? %>
+				  <%= render 'inner_details', :element => new_element %>
+				<% end %>
+				
+			  </td>
 			</tr>
 		  <% end %>
 		</tbody>

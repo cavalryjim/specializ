@@ -15,14 +15,6 @@
 			  <%= e_attribute.symbol %>
 			<% end %>
 		  <% end%>
-	
-
-<!--- JDavis: if the user wants to delete an attribute, he needs to edit the element.
-					<% if @iteration.last? && ((can? :manage, @topic_group)||(can? :manage, e_attribute)) %>
-						<%= link_to image_tag('trashcan.png', :alt => "del"), topic_group_iteration_element_element_attribute_path(@topic_group, @iteration, element, e_attribute), 
-						:confirm => "Select 'OK' to delete. Any unsaved ratings may be lost.", :method => :delete%>
-					<% end %>
---->
 		</td>
 	  </tr> 	
 	<% end %>
