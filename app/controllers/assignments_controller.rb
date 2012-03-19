@@ -77,14 +77,17 @@ class AssignmentsController < ApplicationController
   # DELETE /assignments/1
   # DELETE /assignments/1.xml
   def destroy
-    @topic = Topic.find(params[:topic_id])
+    @topic = Topic.find(params[:topic_id]) if params.has_key?(:topic_id)
+    @topic_group = TopicGroup.find(params[:topic_group_id]) if params.has_key?(:topic_group_id)
     #@assignment = Assignment.find(params[:id])
     gflash :success => "User removed." if @assignment.destroy
-
-    respond_to do |format|
-      format.html { redirect_to edit_topic_path(@topic) }
-      format.xml  { head :ok }
+    
+    if @topic_group
+      redirect_to topic_group_iteration_path(@topic_group, @topic_group.iterations.last)
+    else
+      redirect_to edit_topic_path(@topic) 
     end
+    
   end
   
   def get_autocomplete_items(parameters)

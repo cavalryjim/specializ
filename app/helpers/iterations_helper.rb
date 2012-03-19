@@ -26,5 +26,9 @@ module IterationsHelper
     element.element_attributes.find(:all)
   end
   
+  def assignment(topic_group, user)
+    user.assignments.where(:topic_group_id => topic_group.id).first.id
+  end
+  
   
 end
