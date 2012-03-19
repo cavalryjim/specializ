@@ -184,9 +184,10 @@ class User < ActiveRecord::Base
     iteration.iteration_lists.where(:new_element => true).update_all(:include => false)
     
     if approved_elements  
-      approved_elements.each do |key, value|
-        iteration_list = IterationList.find_or_initialize_by_element_id_and_iteration_id(key, iteration.id)
+      approved_elements.each do |element_id, value|
+        iteration_list = IterationList.find_or_initialize_by_element_id_and_iteration_id(element_id, iteration.id)
         iteration_list.include = true
+        iteration_list.new_element = iteration.active if iteration.topic_group.manager_ids.include?(Element.find(element_id).created_by)
         iteration_list.save
       end
     end

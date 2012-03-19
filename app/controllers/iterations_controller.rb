@@ -78,15 +78,14 @@ class IterationsController < ApplicationController
     last_iteration = topic_group.iterations.last
     
     # JDavis: should move this to the iteration model
-    new_iteration = last_iteration.user_lists.size > 0 ? last_iteration.start_new_iteration : last_iteration.reopen
+    new_iteration = last_iteration.user_lists.where('score > 0').size > 0 ? last_iteration.start_new_iteration : last_iteration.reopen
     topic_group.notify_users_new_iteration  
     topic_group.set_due_date
     
     gflash :success => 'Iteration started.' if new_iteration
     
-    respond_to do |format|
-      format.html { redirect_to topic_group_iteration_url(topic_group, new_iteration) }
-    end
+    redirect_to topic_group_iteration_url(topic_group, new_iteration)
+    
   end
  
   
