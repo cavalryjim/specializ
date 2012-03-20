@@ -132,6 +132,16 @@ class TopicGroup < ActiveRecord::Base
     end 
   end
   
+  def export_elements
+    Spreadsheet.client_encoding = 'UTF-8'
+    book = Spreadsheet::Workbook.new
+    sheet1 = book.create_worksheet :name => 'Iteration: ' + self.iterations.last.num.to_s
+    sheet1.row(1).push 'Charles Lowe', 'Author of the ruby-ole Library'
+    
+    book.write 
+
+  end
+  
   def notify_users_new_iteration
     self.participating_users.each do |user|
       user.notify_iteration_start(self)
@@ -147,6 +157,7 @@ class TopicGroup < ActiveRecord::Base
     
     return false
   end
+  
   
   private
     

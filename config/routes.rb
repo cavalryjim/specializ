@@ -44,6 +44,7 @@ Specializ::Application.routes.draw do
   resources :topic_groups do
     resources :assignments
     post 'close', :to => 'topic_groups#close'
+    post 'export', :to => 'topic_groups#export_elements'
     resources :iterations do
       post 'close', :to => 'iterations#close'
       post 'start', :to => 'iterations#start'

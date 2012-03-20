@@ -12,5 +12,8 @@
 				:hint => 'Change the due date.' %>
   <%=# f.input :update_frequency, :input_html => { :size => 4 }
  %>
-  <%= f.button :submit %>
+  <%= f.button :submit %> 
 <% end %>
+<p>
+  <%= link_to 'Export elements', topic_group_export_path(@topic_group), :method => 'post' %>
+</p>
