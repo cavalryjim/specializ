@@ -132,13 +132,13 @@ class TopicGroup < ActiveRecord::Base
     end 
   end
   
-  def export_elements
+  def export_elements(path)
     Spreadsheet.client_encoding = 'UTF-8'
     book = Spreadsheet::Workbook.new
     sheet1 = book.create_worksheet :name => 'Iteration: ' + self.iterations.last.num.to_s
     sheet1.row(1).push 'Charles Lowe', 'Author of the ruby-ole Library'
     
-    book.write 
+    book.write path
 
   end
   

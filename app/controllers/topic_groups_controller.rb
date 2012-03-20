@@ -118,17 +118,11 @@ class TopicGroupsController < ApplicationController
   
   def export_elements
     @topic_group = TopicGroup.find(params[:topic_group_id])
-     
-    Spreadsheet.client_encoding = 'UTF-8'
-    book = Spreadsheet::Workbook.new
-    sheet1 = book.create_worksheet :name => 'Iteration: ' + @topic_group.iterations.last.num.to_s
-    sheet1.row(1).push 'Charles Lowe', 'Author of the ruby-ole Library'
-    book.write @topic_group.name + '.xls'
-    
-    send_file @topic_group.name + '.xls'
+    path = ''
+    @topic_group.export_elements(path)
     
     
-    #redirect_to topic_group_iteration_path(@topic_group, @topic_group.iterations.last)
+    redirect_to topic_group_iteration_path(@topic_group, @topic_group.iterations.last)
   end
   
 end
