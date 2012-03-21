@@ -136,7 +136,18 @@ class TopicGroup < ActiveRecord::Base
     Spreadsheet.client_encoding = 'UTF-8'
     book = Spreadsheet::Workbook.new
     sheet1 = book.create_worksheet :name => 'Iteration: ' + self.iterations.last.num.to_s
-    sheet1.row(1).push 'Charles Lowe', 'Author of the ruby-ole Library'
+    i = 0
+    self.iterations.last.elements.each do |element|
+      i = i + 1
+      sheet1.row(i).push element.name.to_s, element.iteration_lists.where(:iteration_id => self.iterations.last.id).first.agreement
+      if element.has_attributes?
+        element.element_attributes.each do |attribute|
+          i = i + 1
+          sheet1.row(i).push ' - ' + attribute.name.to_s, attribute.avg
+        end
+      end
+    end
+ 
     file_path = Rails.root + 'tmp/' + "#{id}-#{name.parameterize}.xls"
     book.write file_path
     return file_path
