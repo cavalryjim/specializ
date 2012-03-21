@@ -1,27 +1,9 @@
-<%= form_for(@company) do |f| %>
-  <% if @company.errors.any? %>
-    <% @company.errors.full_messages.each do |msg| %>
-	  <%= js add_gritter( msg, :title => "Error", :image => :error, :sticky => true ) %>
-    <% end %>
-  <% end %>
+<%= simple_form_for @company do |f| %>
 
-  <div class="field">
-    <%= f.label :name %><br />
-    <%= f.text_field :name %>
-  </div>
-  <div class="field">
-    <%= f.label :active %><br />
-    <%= f.check_box :active %>
-  </div>
-  <div class="field">
-    <%= f.label :never_expires %><br />
-    <%= f.check_box :never_expires %>
-  </div>
-  <div class="field">
-    <%= f.label :expiration_date %><br />
-    <%= f.date_select :expiration_date %>
-  </div>
-  <div class="actions">
-    <%= f.submit %>
-  </div>
+  <%= f.input :name %>
+  <%= f.input :logo, :hint => "Please provide the URL for your company's logo." %>
+  <%= f.input :active, :disabled => !(can? :manage, :all) %>
+  <%= f.input :never_expires, :disabled => !(can? :manage, :all) %>
+  <%= f.input :expiration_date, :disabled => !(can? :manage, :all) %>
+  <%= f.button :submit %>
 <% end %>

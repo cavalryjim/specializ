@@ -39,6 +39,7 @@ Specializ::Application.routes.draw do
   match '/users/approve_new_elements', :to => 'users#approve_new_elements'
   match '/me/event_list/:date', :to => 'me#event_list'
   match '/me/events', :to => 'me#events'
+  get '/companies/:id', :to => 'companies#edit'
   #match '/ldap_settings', :to => 'companies#ldap_settings'
    
   resources :topic_groups do
@@ -81,6 +82,7 @@ Specializ::Application.routes.draw do
   end
   
   resources :ldap_settings
+  resources :companies
   
   root :to => 'me#home'
 

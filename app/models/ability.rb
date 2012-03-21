@@ -105,6 +105,9 @@ class Ability
         ldap.new_record? or 
         ldap.company_id == user.company_id
       end
+      can :manage, Company do |company|
+        company.id == user.company_id
+      end
     end
     
     if (user.role? :pnetz_admin) && user.active

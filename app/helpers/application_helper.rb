@@ -12,6 +12,7 @@ module ApplicationHelper
   
   def logo
     image_tag("specializ.png", :alt => "Specializ")
+    
   end
   
   def company_logo

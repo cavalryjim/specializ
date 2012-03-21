@@ -2,6 +2,9 @@
 
 
  <div class="SiteHeaderBar" id="shBar"> <!-- JDavis: color of the bar is set in this div class -->
+	<div class= "SiteHeaderBarItem" style="padding:0px; height:70px; background: #1B3277; vertical-align:middle;">
+      <%= image_tag("deloitte-logo4.png", :alt => "Deloitte", :style => "padding:0;" ) %>
+    </div>
 	<div class= "SiteHeaderBarItem">
 	  <%= link_to logo, root_path %>
 	</div>
@@ -54,6 +57,11 @@
 			<% end %>
 		  </span>
         </div>
+		<div class="SiteHeaderPanelRow SiteHeaderPanelLink">
+          <span class="SiteHeaderPanelHeader">
+			<%= link_to "Company info", edit_company_path(current_user.company_id) %>
+		  </span>
+        </div>
       </div>
 	</div>
   <% end %>
@@ -62,7 +70,6 @@
 	<%= link_to "Peoplenetz", admin_path, :class => "SiteHeaderBarItem SiteHeaderBarLink" %>
   <% end %>
 <% end %>
-
 
    <div class="SiteHeaderSearch">
 	<% if user_signed_in? %>
@@ -73,9 +80,10 @@
 	  <%= link_to "log in", new_user_session_path, :class => "SiteHeaderBarLink" %>
 	<% end %>
 
+
 	<!-- BEGIN ProvideSupport.com Graphics Chat Button Code -->
 	<div style="float:right;">
-	<div id="ciWMjj" style="z-index:100;position:absolute"></div><div id="scWMjj" style="display:inline"></div><div id="sdWMjj" style="display:none"></div><script type="text/javascript">var seWMjj=document.createElement("script");seWMjj.type="text/javascript";var seWMjjs=(location.protocol.indexOf("https")==0?"https":"http")+"://image.providesupport.com/js/peoplenetz/safe-standard.js?ps_h=WMjj&ps_t="+new Date().getTime();setTimeout("seWMjj.src=seWMjjs;document.getElementById('sdWMjj').appendChild(seWMjj)",1)</script><noscript><div style="display:inline"><a href="http://www.providesupport.com?messenger=peoplenetz">Live Help Chat</a></div></noscript>
+	<div id="ciWMjj" style="z-index:100;position:absolute;"></div><div id="scWMjj" style="display:inline"></div><div id="sdWMjj" style="display:none"></div><script type="text/javascript">var seWMjj=document.createElement("script");seWMjj.type="text/javascript";var seWMjjs=(location.protocol.indexOf("https")==0?"https":"http")+"://image.providesupport.com/js/peoplenetz/safe-standard.js?ps_h=WMjj&ps_t="+new Date().getTime();setTimeout("seWMjj.src=seWMjjs;document.getElementById('sdWMjj').appendChild(seWMjj)",1)</script><noscript><div style="display:inline"><a href="http://www.providesupport.com?messenger=peoplenetz">Live Help Chat</a></div></noscript>
 	</div>
 	<!-- END ProvideSupport.com Graphics Chat Button Code -->
    </div>

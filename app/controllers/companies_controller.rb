@@ -1,6 +1,29 @@
 class CompaniesController < ApplicationController
   before_filter :authenticate_user!
   load_and_authorize_resource
+  respond_to :html, :js, :json
+
+  # GET /companies/1/edit
+  def edit
+    @company = Company.find(params[:id])
+  end
+
+
+  # PUT /companies/1
+  # PUT /companies/1.xml
+  def update
+    @company = Company.find(params[:id])
+
+    gflash :success => 'Company updated.' if @company.update_attributes(params[:company])
+    
+    if @company.errors.any?
+      @company.errors.full_messages.each do |msg|
+        gflash :error => { :value => msg.to_s, :sticky => true}
+      end
+    end
+    
+    respond_with(@company)
+  end
   
 =begin
   # GET /companies
@@ -20,10 +43,7 @@ class CompaniesController < ApplicationController
   def show
     @company = Company.find(params[:id])
 
-    respond_to do |format|
-      format.html # show.html.erb
-      format.xml  { render :xml => @company }
-    end
+    respond_with(@topic)
   end
 
   # GET /companies/new
@@ -36,12 +56,7 @@ class CompaniesController < ApplicationController
       format.xml  { render :xml => @company }
     end
   end
-
-  # GET /companies/1/edit
-  def edit
-    @company = Company.find(params[:id])
-  end
-
+  
   # POST /companies
   # POST /companies.xml
   def create
@@ -57,23 +72,7 @@ class CompaniesController < ApplicationController
       end
     end
   end
-
-  # PUT /companies/1
-  # PUT /companies/1.xml
-  def update
-    @company = Company.find(params[:id])
-
-    respond_to do |format|
-      if @company.update_attributes(params[:company])
-        format.html { redirect_to(@company, :notice => 'Company was successfully updated.') }
-        format.xml  { head :ok }
-      else
-        format.html { render :action => "edit" }
-        format.xml  { render :xml => @company.errors, :status => :unprocessable_entity }
-      end
-    end
-  end
-
+  
   # DELETE /companies/1
   # DELETE /companies/1.xml
   def destroy
@@ -85,6 +84,7 @@ class CompaniesController < ApplicationController
       format.xml  { head :ok }
     end
   end
-=end 
   
+=end
+
 end
