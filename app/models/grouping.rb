@@ -40,8 +40,13 @@ class Grouping < ActiveRecord::Base
     topic_group = TopicGroup.find_or_initialize_by_topic_id_and_grouping_id(topic.id, self.id)
     topic_group.name = topic.name + ": " + self.fullname
     topic_group.goal = topic.goal
+    if topic.due_days
+      topic_group.due_date = topic.due_days.from_now 
+      topic_group.due_days = topic.due_days
+    end
+    topic_group.update_frequency = topic.update_frequency if topic.update_frequency
     topic_group.active = true
-    return topic_group.save  
+    topic_group.save  
   end
   
   def remove_from_topic(topic_id)

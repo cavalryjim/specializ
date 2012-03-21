@@ -2,7 +2,7 @@
 
 <%= @start %>
 <%= @stop %>
-<% @events.each do |event| %>
+<% @events.uniq_by{|e| e.due_date}.each do |event| %>
 {"title":"Due", "start":"<%= event.due_date %>"}<% if event != @events.last %>,<% end %>
 <% end %>
 ]
