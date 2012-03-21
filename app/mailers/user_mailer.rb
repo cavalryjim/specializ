@@ -1,5 +1,5 @@
 class UserMailer < ActionMailer::Base
-  default :from => "no-reply@peoplenetz.com"
+  default :from => "specializ@peoplenetz.com"
   
   def new_assignment(user, topic_group)
     @user = user
