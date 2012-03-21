@@ -155,9 +155,11 @@ class User < ActiveRecord::Base
   end
   
   def rate_elements(iteration_id, resubmit, rated_elements, element_attributes)
-    self.user_lists.where(:iteration_id => iteration_id).update_all(:score => 0) if resubmit
     iteration = Iteration.find(iteration_id)
     topic_group = TopicGroup.find(iteration.topic_group_id)
+    return 'You are not a participant.' if !topic_group.participating_users.include? self
+    
+    self.user_lists.where(:iteration_id => iteration_id).update_all(:score => 0) if resubmit
     
     if rated_elements
       rated_elements.each do |key, score|
@@ -178,6 +180,7 @@ class User < ActiveRecord::Base
     #JDavis: will want to move this process to the background later
     #iteration.delay.close(true) if (iteration.num_submitted_lists.to_f / topic_group.participating_users.count.to_f) == 1 
     iteration.close(true) if (iteration.num_submitted_lists.to_f / topic_group.participating_users.count.to_f) == 1 
+    return 'List submitted.'
   end
   
   def approve_new_elements(iteration, approved_elements)

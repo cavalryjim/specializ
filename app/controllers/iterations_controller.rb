@@ -23,6 +23,7 @@ class IterationsController < ApplicationController
     @element = Element.new
     gon.submitted = @submitted #JDavis: gon is a method for passing variables to javascript.
     @element_attribute_types = ElementAttributeType.all
+    @participant = @topic_group.participating_users.include? current_user
     
     if (can? :manage, @topic_group) && @topic_group.active
       @new_elements = @topic_group.iterations.last.new_elements

@@ -83,11 +83,11 @@
 		
 			<td id="rating" >
 			  
-				<%= radio_button_tag row_name(element.id), 1, score == 1, options = { :class => "jdstar", :disabled => !@iteration.active } %>
-				<%= radio_button_tag row_name(element.id), 2, score == 2, options = { :class => "jdstar", :disabled => !@iteration.active } %>
-				<%= radio_button_tag row_name(element.id), 3, score == 3, options = { :class => "jdstar", :disabled => !@iteration.active } %>
-				<%= radio_button_tag row_name(element.id), 4, score == 4, options = { :class => "jdstar", :disabled => !@iteration.active } %>
-				<%= radio_button_tag row_name(element.id), 5, score == 5, options = { :class => "jdstar", :disabled => !@iteration.active } %>
+				<%= radio_button_tag row_name(element.id), 1, score == 1, options = { :class => "jdstar", :disabled => !@iteration.active || !@participant } %>
+				<%= radio_button_tag row_name(element.id), 2, score == 2, options = { :class => "jdstar", :disabled => !@iteration.active || !@participant } %>
+				<%= radio_button_tag row_name(element.id), 3, score == 3, options = { :class => "jdstar", :disabled => !@iteration.active || !@participant } %>
+				<%= radio_button_tag row_name(element.id), 4, score == 4, options = { :class => "jdstar", :disabled => !@iteration.active || !@participant } %>
+				<%= radio_button_tag row_name(element.id), 5, score == 5, options = { :class => "jdstar", :disabled => !@iteration.active || !@participant } %>
 			 
 			</td>
 
@@ -109,7 +109,7 @@
   <%= hidden_field_tag(:iteration_id, @iteration.id) %>
   <%= hidden_field_tag(:resubmit, @submitted) %>
   <div align='right'> 
-	<%= submit_tag("Save List", :confirm => confirm_dialogue(@submitted), :disabled => !@iteration.active) %> 
+	<%= submit_tag("Save List", :confirm => confirm_dialogue(@submitted), :disabled => !@iteration.active || !@participant) %> 
   </div>
  
 <% end %>
