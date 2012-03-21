@@ -6,7 +6,7 @@
   <% end %>
   <%= f.input :first_name %>
   <%= f.input :last_name %>
-  <%= f.input :avatar %>
+  <%= f.input :avatar, :disabled => true, :hint => 'avatar upload not available at the moment.' %>
   <%= f.input :email %>
  
  <% if (can? :manage, @user) && @return_path != me_path %>
