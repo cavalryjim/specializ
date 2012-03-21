@@ -51,8 +51,8 @@ module Specializ
 
     #config.autoload_paths << "#{config.root}/lib/validators"
     
-    # JDavis: enabling ssl
+    # JDavis: enabling ssl ** update: setting this in the environments
     #config.middleware.insert_before ActionDispatch::Static, "Rack::SSL"
-    config.middleware.insert_before ActionDispatch::Static, Rack::SSL, :exclude => proc { |env| env['HTTPS'] != 'on' }
+    #config.middleware.insert_before ActionDispatch::Static, Rack::SSL, :exclude => proc { |env| env['HTTPS'] != 'on' }
   end
 end
