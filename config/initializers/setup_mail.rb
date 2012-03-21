@@ -1,9 +1,9 @@
 ActionMailer::Base.smtp_settings = {
-  :address              => "smtp.gmail.com",
+  :address              => "smtp.mailgun.org",
   :port                 => 587,
-  :domain               => "peoplenetz.com",
-  :user_name            => "jdavis@peoplenetz.com",
-  :password             => "&OE#omma1973",
+  :domain               => "app929801.mailgun.org",
+  :user_name            => "postmaster@app929801.mailgun.org",
+  :password             => "3fgmqzubwtd9",
   :authentication       => :plain,
   :enable_starttls_auto => true
 }

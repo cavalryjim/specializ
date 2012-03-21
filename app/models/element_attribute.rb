@@ -38,4 +38,9 @@ class ElementAttribute < ActiveRecord::Base
     self.element_attribute_type.name if self.element_attribute_type
   end
   
+  def avg
+    10
+  end
+    
+  
 end

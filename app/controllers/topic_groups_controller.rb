@@ -118,11 +118,9 @@ class TopicGroupsController < ApplicationController
   
   def export_elements
     @topic_group = TopicGroup.find(params[:topic_group_id])
-    path = ''
-    @topic_group.export_elements(path)
-    
-    
-    redirect_to topic_group_iteration_path(@topic_group, @topic_group.iterations.last)
+    #path = ''
+    file = @topic_group.export_elements 
+    send_file file  
   end
   
 end
