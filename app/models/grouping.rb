@@ -41,7 +41,7 @@ class Grouping < ActiveRecord::Base
     topic_group.name = topic.name + ": " + self.fullname
     topic_group.goal = topic.goal
     if topic.due_days
-      topic_group.due_date = topic.due_days.from_now 
+      topic_group.due_date = topic.due_days.days.from_now 
       topic_group.due_days = topic.due_days
     end
     topic_group.update_frequency = topic.update_frequency if topic.update_frequency
