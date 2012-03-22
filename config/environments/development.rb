@@ -46,5 +46,10 @@ Specializ::Application.configure do
   #config.middleware.insert_before ActionDispatch::Static, "Rack::SSL"
   config.middleware.insert_before ActionDispatch::Static, Rack::SSL, :exclude => proc { |env| env['HTTPS'] != 'on' }
   
+  # JDavis: this is for a heroku addon that handles backgroup processes.  Heroku takes care of the production environment.
+  ENV['IRON_WORKER_TOKEN'] = 'dngc_0NZBP4GBqkVH2kiFgefkO4'
+  ENV['IRON_WORKER_PROJECT_ID'] = '4f6b6490f6a48e5c14004825'
+
+  
 end
 

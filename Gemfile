@@ -1,12 +1,12 @@
-source 'http://rubygems.org'
 # JDavis: Please use a version number when adding gems to Specializ.
 # Specify the exact gem version via '3.0.9'.
 # Notation such as '>= 1.1.4' indicates you can use any version greater than or equal to 1.1.4
 # Notation such as '~> 0.2.2' is called a pessimistic version constraint and indicates a maximum upper limit
 #   for the gem version.  The '~> 0.2.2' would have been equivalent to: [‘>= 0.2.2’, ‘< 0.3.0’]
+source 'http://rubygems.org'
 
 
-gem 'rails', '3.0.12'
+gem 'rails', '3.0.12' #JDavis: moving to 3.0.12...like a boss!
 gem 'mysql2', '0.2.18' # JDavis: with Rails 3.0.*, must use a mysql2 gem version < 0.3.  Moving from 0.2.7 to support windows.
 gem 'cancan', '~> 1.6.7'
 gem 'awesome_nested_set', '~> 2.0.2'
@@ -30,6 +30,8 @@ gem 'gon', '2.1.0'
 #gem 'encryptor', '~> 1.1.3'
 gem 'rack-ssl', '~> 1.3.2', :require => 'rack/ssl'
 #gem 'rack', '1.3.6'
+gem 'iron_worker', '~> 2.3.13'
+gem 'typhoeus', '~> 0.3.3' # JDavis: To work, I had to install this: sudo apt-get install libcurl3-dev
 
 
 
