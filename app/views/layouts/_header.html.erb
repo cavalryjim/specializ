@@ -2,9 +2,11 @@
 
 
  <div class="SiteHeaderBar" id="shBar"> <!-- JDavis: color of the bar is set in this div class -->
-	<div class= "SiteHeaderBarItem" style="padding:0px; height:70px; background: #1B3277; vertical-align:middle;">
-      <%= image_tag("deloitte-logo4.png", :alt => "Deloitte", :style => "padding:0;" ) %>
-    </div>
+	<% if Company.find(current_user.company_id).logo %>
+	  <div class= "SiteHeaderBarItem" style="padding:0px; height:70px; background: #1B3277; vertical-align:middle;">
+        <%= image_tag(Company.find(current_user.company_id).logo, :style => "padding:0;" ) %>
+      </div>
+	<% end %>
 	<div class= "SiteHeaderBarItem">
 	  <%= link_to logo, root_path %>
 	</div>
