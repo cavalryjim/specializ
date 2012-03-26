@@ -7,3 +7,159 @@ a Delphi study.
 Regards,
 Dr. James Davis
 jdavis@peoplenetz.com
+
+Specializ Build Instructions
+by jdavis@peoplenetz.com 
+
+Below is a text version of the build file found at documentation/Specializ_Build_Instructions_{date}.doc
+
+Install of Ubuntu 10.04.3 LTS (32-bit) 
+Download the ISO file http://www.ubuntu.com/download/ubuntu/download
+Create a bootable USB (instructions on the Ubuntu download site) 
+When booting with the USB, I received an 'vesamenu.c32: not a COM32R image' error.  A workaround is to press TAB.  Type "live" and press enter at the 	boot prompt.
+Follow the instructions for installing Ubuntu.
+
+Install MySQL on Ubuntu 10.04
+First,Open SPM(Synaptic Package Manager) from System->Administration->Synaptic Package Manager.Enter your password(Ubuntu login account) if it ask else,proceed to next step.
+Now search for “mysql” by using the Quick Search box(on Top Upper part of the window).
+Select: mysql-server and mysql-client.  Any other dependent packages will be added automatically.
+Now click on Apply to begin the installation(Followed by downloading process).
+After few minutes,when the download will complete,installation begins automatically.  You will be prompted to enter root password for MySQL server.  Enter a strong password for that.
+You have installed MySQL(Client/server) on Ubuntu.
+Enter the MySQL command line, $  mysql -u root -p
+mysql> create user 'specializ'@'localhost' identified by 'password';
+mysql> grant all on specializ_development.* to 'specializ'@'localhost';
+mysql> grant all on specializ_test.* to 'specializ'@'localhost';
+mysql> exit;
+
+Install Git 
+Find additional instructions on installing get here: http://help.github.com/
+$ sudo apt-get install git-core git-gui git-docInstalls git-core git-gui git-doc 
+    
+Set Up SSH Keys
+1. Check for SSH keys. Have an existing key pair? You can skip to Step 4. 
+First, we need to check for existing ssh keys on your computer:
+$ cd ~/.ssh  (Checks to see if there is a directory named ".ssh" in your user directory)
+If it says “No such file or directory“ skip to step 3. Otherwise continue to step 2.
+2. Backup and remove existing SSH keys. 
+Since there is already an SSH directory you’ll want to back the old one up and remove it:
+$ ls  (Lists all the subdirectories in the current directory)
+config  id_rsa  id_rsa.pub      known_hosts
+$ mkdir key_backup  (makes a subdirectory called "key_backup" in the current directory)
+$ cp id_rsa* key_backup  (Copies the id_rsa and id_rsa.pub files into key_backup)
+$ rm id_rsa*  (Deletes the id_rsa and id_rsa.pub files)
+3. Generate a new SSH key. 
+To generate a new SSH key, enter the code below. We want the default settings so when asked to enter a file in which to save the key, just press enter.
+$ ssh-keygen -t rsa -C "your_email@youremail.com"  Creates a new ssh key using the provided email
+Generating public/private rsa key pair.
+Enter file in which to save the key (/Users/your_user_directory/.ssh/id_rsa):<press enter>
+Now you need to enter a passphrase.
+Why do passphrases matter?
+Passwords aren’t very secure, you already know this. If you use one that’s easy to remember, it’s easier to guess or brute-force (try many options until one works). If you use one that’s random it’s hard to remember, and thus you’re more inclined to write the password down. Both of these are Very Bad Things™. This is why you’re using ssh keys.
+But using a key without a passphrase is basically the same as writing down that random password in a file on your computer. Anyone who gains access to your drive has gained access to every system you use that key with. This is also a Very Bad Thing™. The solution is obvious: add a passphrase.
+But I don’t want to enter a long passphrase every time I use the key!
+Neither do we! Thankfully, there’s a nifty little tool called ssh-agent that can save your passphrase securely so you don’t have to re-enter it. If you’re on OSX Leopard or later your keys can be saved in the system’s keychain to make your life even easier.
+For more information about SSH key passphrases, check out our help guide.
+Enter passphrase (empty for no passphrase):<enter a passphrase>
+Enter same passphrase again:<enter passphrase again>
+Which should give you something like this:
+Your identification has been saved in /Users/your_user_directory/.ssh/id_rsa.
+Your public key has been saved in /Users/your_user_directory/.ssh/id_rsa.pub.
+The key fingerprint is:
+01:0f:f4:3b:ca:85:d6:17:a1:7d:f0:68:9d:f0:a2:db user_name@username.com
+The key's randomart image is:
++--[ RSA 2048]----+
+|     .+   +      |
+|       = o O .   |
+|        = * *    |
+|       o = +     |
+|      o S .      |
+|     o o =       |
+|      o . E      |
+|                 |
+|                 |
++-----------------+
+4. Add your SSH key to GitHub. 
+On the GitHub site Click “Account Settings” > Click “SSH Public Keys” > Click “Add another public key”
+Open the id_rsa.pub file with a text editor (Notepad, TextEdit, or gedit will do just fine). This is your public SSH key. You may need turn on “view hidden files” to find it because the .ssh directory is hidden. It’s important you copy your SSH key exactly as it is written without adding any newlines or whitespace. Now paste it into the “Key” field.
+
+     
+Hit “Add Key.”
+5. Test everything out. 
+To make sure everything is working you’ll now SSH to GitHub. Don’t change the “git@github.com” part. That’s supposed to be there.
+$ ssh -T git@github.com  (Attempts to ssh to github)
+Which should give you this:
+The authenticity of host 'github.com (207.97.227.239)' can't be established.
+RSA key fingerprint is 16:27:ac:a5:76:28:2d:36:63:1b:56:4d:eb:df:a6:48.
+Are you sure you want to continue connecting (yes/no)?
+Don’t worry, this is supposed to happen. Type “yes”.
+Hi username! You've successfully authenticated, but GitHub does not provide shell access.
+Sudo
+Are you using sudo? If you are using it, stop! You shouldn’t use sudo unless you have a very good reason.
+Then: Set Up Your Info
+Now that you have Git set up and your SSH keys entered into GitHub, it’s time to configure your personal info.
+1. Set your username and email. 
+Git tracks who makes each commit by checking the user’s name and email. In addition, we use this info to associate your commits with your GitHub account. To set these, enter the code below, replacing the name and email with your own. The name should be your actual name, not your GitHub username.
+        $ git config --global user.name "Firstname Lastname" (Sets the name of the user for all git instances on the system)
+        $ git config --global user.email "your_email@youremail.com" (Sets the email of the user for all git instances on the system)
+More about user info
+2. Set your GitHub token. 
+Some tools connect to GitHub without SSH. To use these tools properly you need to find and configure your API Token.
+On the GitHub site Click “Account Settings” > Click “Account Admin.”
+     
+At the command line run the following code, using your GitHub username and token in place of the ones shown.
+        $ git config --global github.user username  (Sets the GitHub username for all git instances on the system)
+        $ git config --global github.token 0123456789yourf0123456789token  (Sets the GitHub token for all git instances on the system)
+*Note* If you ever change your GitHub password, a new token will be created and will need to be updated.
+Lastly: Celebrate
+
+
+Install dev packages, RVM, and Ruby 1.9.2
+$ sudo aptitude install build-essential libssl-dev libreadline5 libreadline5-dev zlib1g zlib1g-dev 
+$ sudo apt-get install curl
+$ bash -s stable < <(curl -s https://raw.github.com/wayneeseguin/rvm/master/binscripts/rvm-installer)
+$  source /home/james/.bashrc
+$ rvm get head
+$ rvm reload
+$ rvm install 1.9.2-p290
+$  rvm --create use 1.9.2-p290@specializ
+$  rvm --default use 1.9.2-p290@specializ
+$ which gem  (if you did not use RVM, you will need to install RubyGems)
+output should look like this: /home/james/.rvm/rubies/ruby-1.9.2-p290/bin/gem
+
+Install Rails 3
+Once you’ve installed RubyGems, installing Rails 3 should be easy. Specializ was developed using Rails 3.0.12, and is installed as follows: $ gem install rails --version 3.0.9
+To verify that this worked, run the following command: $ rails -v
+Output: Rails 3.0.12
+
+Install Java (installing Java per Aptana's prequisites)
+$  sudo add-apt-repository 'deb http://archive.canonical.com/ lucid partner'
+$  sudo apt-get update
+$  sudo apt-get install sun-java6-jre sun-java6-plugin sun-java6-fonts
+$  java -version  (confirm java installation)
+
+Install IDE 
+While any text editor will allow you to write Ruby code, I prefer Aptana 3.
+Download Aptana Studio 3.0.7 Linux, x86 at http://aptana.com/products/studio3/download 
+Extract the package
+Double click on 'AptanaStudio3' to launch the application
+Select 'Import Project'
+Select 'Git Repository as New Project'
+URI: git@github.com:cavalryjim/specializ.git  
+Destination: ~/Projects/specializ  (the location does not matter...just remember where you put it)
+
+Install Gems, Create & Migrate Database 
+$  sudo apt-get install libmysqlclient-dev
+$  sudo apt-get install libxslt-dev libxml2-dev
+$ cd Projects/specializ  (or the directory where you downloaded the project)
+Projects/specializ$ bundle install  (this will install all of the gems associated with the project)
+Note: depending on the different versions of rails & rake gems you have on your machine, you may have to use 'bundle exec' in front of the rake command to specify you want the command ran against your bundled environment.
+Projects/specializ$ rake db:create  (this will create the MySQL database)
+Projects/specializ$ rake db:migrate (this creates the tables and structure of the db and may need to ran periodically as new objects are added.)
+Projects/specializ$ rake db:seed (this will create some initial records in the db)
+
+Run Specializ 
+Projects/specializ$ rails s   (this will start the application.)
+Goto http://localhost:3000/ and you should see the application running. 
+Login with admin@peoplenetz.com and password '63hookem05?'
+
