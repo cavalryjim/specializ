@@ -51,9 +51,9 @@
 		<div class="SiteHeaderPanelRow SiteHeaderPanelLink">
           <span class="SiteHeaderPanelHeader"> 
 			<% if Company.find(current_user.company_id).ldap_setting %>
-				<%= link_to_if(true, "LDAP", edit_ldap_setting_path(LdapSetting.find_by_company_id(current_user.company_id))) %></p>
+				<%= link_to_if(true, "LDAP", edit_ldap_setting_path(LdapSetting.find_by_company_id(current_user.company_id))) %>
 			<% else %>
-				 <%= link_to_if(true, "LDAP", new_ldap_setting_path) %></p>
+				 <%= link_to_if(true, "LDAP", new_ldap_setting_path) %>
 			<% end %>
 		  </span>
         </div>

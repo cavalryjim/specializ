@@ -30,8 +30,8 @@ gem 'gon', '2.1.0'
 #gem 'encryptor', '~> 1.1.3'
 gem 'rack-ssl', '~> 1.3.2', :require => 'rack/ssl'
 #gem 'rack', '1.3.6'
-gem 'iron_worker', '~> 2.3.13'
-gem 'typhoeus', '~> 0.3.3' # JDavis: To work, I had to install this: sudo apt-get install libcurl3-dev
+#gem 'iron_worker', '~> 2.3.13'
+#gem 'typhoeus', '~> 0.3.3' # JDavis: To work, I had to install this: sudo apt-get install libcurl3-dev
 
 
 

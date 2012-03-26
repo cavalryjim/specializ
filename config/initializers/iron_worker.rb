@@ -1,4 +1,5 @@
-IronWorker.configure do |config|
-  config.token = ENV['IRON_WORKER_TOKEN']
-  config.project_id = ENV['IRON_WORKER_PROJECT_ID']
-end
+# JDavis: not sure I am ready for IronWorker.....
+#IronWorker.configure do |config|
+#  config.token = ENV['IRON_WORKER_TOKEN']
+#  config.project_id = ENV['IRON_WORKER_PROJECT_ID']
+#end
