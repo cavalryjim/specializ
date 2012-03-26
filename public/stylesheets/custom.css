@@ -826,6 +826,10 @@ div.innerDetails table tr td {
 	text-align: right;
 }
 
+td.selected {
+	background: #ccc !important;
+}
+
 
 table.portalTable tbody tr:nth-child(even) td, tbody tr.even td {background:#fff;}
 table.portalTable td { padding:5px; }

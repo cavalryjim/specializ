@@ -32,6 +32,12 @@ $(function() {
 		browser.panel('toggle', 0, true);
 	}
 	
+	//$("#accordion table a").click(function(){
+	//	$(this).css('background-color',"#ccc")
+		//alert('clicked!');
+	//})
+
+	
 	var hCalendar = $('#calendar').fullCalendar({
 		events: 'me/events',
 		eventClick: function(event){ fnEvents(event.start); },
