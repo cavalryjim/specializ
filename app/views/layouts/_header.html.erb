@@ -34,34 +34,34 @@
 	</div>
 
   <% if current_user.role? :manager %>
-	<%= link_to "Manager", manager_path, :class => "SiteHeaderBarItem SiteHeaderBarLink" %>
+	<%= link_to "Manager", manager_path, :class => "SiteHeaderBarItem SiteHeaderBarLink closeBrowser" %>
   <% end %>
 
   <% if current_user.role? :hr %>
-  	<%= link_to "HR", hr_path, :class => "SiteHeaderBarItem SiteHeaderBarLink" %>
+  	<%= link_to "HR", hr_path, :class => "SiteHeaderBarItem SiteHeaderBarLink closeBrowser" %>
   <% end %>
 
   <% if current_user.role? :admin %>
   	<div class="SiteHeaderDropdownLink SiteHeaderBarItem">
-	  <%= link_to 'Admin', company_admin_path, :class=> "SiteHeaderBarLink" %>
-  	  <div class="SiteHeaderDropPanel" id="ProductsPanel">
+	  <%= link_to 'Admin', company_admin_path, :class => "SiteHeaderBarLink closeBrowser" %>
+  	  <div class="SiteHeaderDropPanel closeBrowser" id="ProductsPanel">
         <div class="SiteHeaderPanelRow SiteHeaderPanelLink">
           <span class="SiteHeaderPanelHeader">
-			<%= link_to "Users", company_admin_path %>
+			<%= link_to "Users", company_admin_path, :class => "closeBrowser" %>
 		  </span>
         </div>
 		<div class="SiteHeaderPanelRow SiteHeaderPanelLink">
           <span class="SiteHeaderPanelHeader"> 
 			<% if Company.find(current_user.company_id).ldap_setting %>
-				<%= link_to_if(true, "LDAP", edit_ldap_setting_path(LdapSetting.find_by_company_id(current_user.company_id))) %>
+				<%= link_to_if(true, "LDAP", edit_ldap_setting_path(LdapSetting.find_by_company_id(current_user.company_id)), :class => "closeBrowser") %>
 			<% else %>
-				 <%= link_to_if(true, "LDAP", new_ldap_setting_path) %>
+				 <%= link_to_if(true, "LDAP", new_ldap_setting_path, :class => "closeBrowser") %>
 			<% end %>
 		  </span>
         </div>
 		<div class="SiteHeaderPanelRow SiteHeaderPanelLink">
           <span class="SiteHeaderPanelHeader">
-			<%= link_to "Company info", edit_company_path(current_user.company_id) %>
+			<%= link_to "Company info", edit_company_path(current_user.company_id), :class => "closeBrowser" %>
 		  </span>
         </div>
       </div>

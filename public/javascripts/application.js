@@ -21,6 +21,9 @@ $(function() {
         unfold: function() { $.cookie("browserState", "open"); }
     }).show();
 	
+	$('.closeBrowser').live( 'click', function () {
+		$.cookie("browserState", "closed");
+	});
 	
 	$("button, input:submit, input:button").button();
 	
@@ -31,12 +34,6 @@ $(function() {
 	if (browserState == 'closed') {
 		browser.panel('toggle', 0, true);
 	}
-	
-	//$("#accordion table a").click(function(){
-	//	$(this).css('background-color',"#ccc")
-		//alert('clicked!');
-	//})
-
 	
 	var hCalendar = $('#calendar').fullCalendar({
 		events: 'me/events',
