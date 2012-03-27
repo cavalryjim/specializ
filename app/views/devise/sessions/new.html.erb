@@ -1,40 +1,39 @@
 
-<div id="login_form" title="Sign in through one of these services">
-	  <table class="portalTable">
-		<tr>
-	     <td>
+<div id="login_form" title="Sign in through one of these services" class="fouc">
+  <table class="portalTable">
+	<tr>
+	  <td>
+		<a href="/auth/twitter" class="auth_provider">
+		  <%= image_tag "twitter_64.png", :size => "64x64", :alt => "Twitter" %>
+			Twitter
+		</a>
+		<a href="/auth/linked_in" class="auth_provider">
+	   	  <%= image_tag "linked_in_64.png", :size => "64x64", :alt => "LinkedIn" %>
+			LinkedIn
+		</a>
+		<a href="/auth/facebook" class="auth_provider">
+		  <%= image_tag "facebook_64.png", :size => "64x64", :alt => "Facebook" %>
+			Facebook
+		</a>
 		
-		  <a href="/auth/twitter" class="auth_provider">
-		    <%= image_tag "twitter_64.png", :size => "64x64", :alt => "Twitter" %>
-			  Twitter
-		  </a>
-		  <a href="/auth/linked_in" class="auth_provider">
-			<%= image_tag "linked_in_64.png", :size => "64x64", :alt => "LinkedIn" %>
-			  LinkedIn
-		  </a>
-		  <a href="/auth/facebook" class="auth_provider">
-		    <%= image_tag "facebook_64.png", :size => "64x64", :alt => "Facebook" %>
-			  Facebook
-		  </a>
-		
-		 </td>
-		</tr>
+	  </td>
+	</tr>
 	
-		<tr>
-		 <td>
-			<%= simple_form_for(resource, :as => resource_name, :url => session_path(resource_name)) do |f| %>
-			  <%= f.input :email %>
-			  <%= f.input :password, :required => true %>
+	<tr>
+	  <td>
+		<%= simple_form_for(resource, :as => resource_name, :url => session_path(resource_name)) do |f| %>
+		  <%= f.input :email %>
+		  <%= f.input :password, :required => true %>
 		
-			  <% if devise_mapping.rememberable? %>
-			    <%= f.input :remember_me, :as => :boolean %> 
-			  <% end %>
+		  <% if devise_mapping.rememberable? %>
+			 <%= f.input :remember_me, :as => :boolean %> 
+		  <% end %>
 			
-			  <%= f.submit "Sign in" %>
-			<% end %>
-			<%= render :partial => "devise/shared/links" %> 
-		 </td>
-		</tr>
-	  </table>
+		  <%= f.submit "Sign in" %>
+		<% end %>
+		<%= render :partial => "devise/shared/links" %> 
+	  </td>
+	</tr>
+  </table>
  
 </div>
