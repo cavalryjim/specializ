@@ -129,7 +129,7 @@ $ which gem  (if you did not use RVM, you will need to install RubyGems)
 output should look like this: /home/james/.rvm/rubies/ruby-1.9.2-p290/bin/gem
 
 Install Rails 3
-Once you’ve installed RubyGems, installing Rails 3 should be easy. Specializ was developed using Rails 3.0.12, and is installed as follows: $ gem install rails --version 3.0.9
+Once you’ve installed RubyGems, installing Rails 3 should be easy. Specializ was developed using Rails 3.0.12, and is installed as follows: $ gem install rails --version 3.0.12
 To verify that this worked, run the following command: $ rails -v
 Output: Rails 3.0.12
 

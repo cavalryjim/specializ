@@ -94,7 +94,8 @@ class TopicGroup < ActiveRecord::Base
                             :legend => ["Consensus not reached", "Consensus goal reached"],
                             :width => 700,
                             :height => 240, 
-                            :max_value => 100)
+                            :max_value => 100,
+                            :use_ssl => true)
   end
   
   def staff(users)
