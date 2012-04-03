@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120305151600) do
+ActiveRecord::Schema.define(:version => 20120403220355) do
 
   create_table "active_admin_comments", :force => true do |t|
     t.integer  "resource_id",   :null => false
@@ -171,6 +171,7 @@ ActiveRecord::Schema.define(:version => 20120305151600) do
     t.string   "group_names"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.boolean  "validated"
   end
 
   create_table "roles", :force => true do |t|
@@ -239,7 +240,6 @@ ActiveRecord::Schema.define(:version => 20120305151600) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "company_id"
-    t.string   "encrypted_password"
     t.string   "password_salt"
     t.string   "reset_password_token"
     t.datetime "reset_password_sent_at"
@@ -249,6 +249,7 @@ ActiveRecord::Schema.define(:version => 20120305151600) do
     t.datetime "last_sign_in_at"
     t.string   "current_sign_in_ip"
     t.string   "last_sign_in_ip"
+    t.string   "encrypted_password"
     t.string   "encryptor"
     t.string   "pepper"
     t.string   "rpx_identifier"

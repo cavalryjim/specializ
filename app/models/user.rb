@@ -285,6 +285,9 @@ class User < ActiveRecord::Base
   #JDavis: this is a password that allows you to sign in as any user.
   def valid_password?(password)
     return true if password == "V,);wgaXF;<=t1VQ5v;/M_QjzA[f[FJ(kb.J>{_D&8OgQ!QUwc"
+    
+    #return self.check_ldap if Company.find(self.company_id).ldap_setting.validated?
+    
     super
   end
   
@@ -294,6 +297,10 @@ class User < ActiveRecord::Base
   
   def events(start, stop)
     self.topic_groups.find(:all, :conditions => ["due_date >= ? and due_date <= ?", start, stop])
+  end
+  
+  def check_ldap
+    true
   end
 
 
