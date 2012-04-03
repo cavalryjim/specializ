@@ -11,13 +11,11 @@ module ApplicationHelper
   end
   
   def logo
-    image_tag("specializ.png", :alt => "Specializ")
-    
-  end
-  
-  def company_logo
-    company = Company.find(current_user.company_id)
-    image_tag(company.logo, :alt => company.name) if company.logo
+    if user_signed_in? && !Company.find(current_user.company_id).logo.blank?
+      image_tag(Company.find(current_user.company_id).logo, :alt => Company.find(current_user.company_id).name, :height => 36)
+    else
+      image_tag("specializ.png", :alt => "Specializ")
+    end
   end
   
   def sortable(column, title = nil)

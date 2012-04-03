@@ -325,6 +325,7 @@ div.field, div.actions {
 
 .SiteHeaderBar {
     padding-left: 0px;
+    padding-bottom: 0;
     line-height: 25px;
 	background: #0066cc none;
 	background: -webkit-gradient(linear, left top, left bottom, from(#006699), to(#0066cc));
@@ -346,7 +347,7 @@ div.field, div.actions {
 .SiteHeaderBarItem:active, .SiteHeaderBarItemActive {
     margin-left: 0;
     margin-right: 0;
-    padding: 1px 16px 0 16px;
+    padding: 0 16px 0 16px;
 	
 	background: #303030 none;
 	background: -webkit-gradient(linear, left top, left bottom, from(#2d2d2d), to(#343434));
@@ -380,10 +381,14 @@ div.field, div.actions {
     float: left;
     /*border-left: 1px solid #4c4c4c;
     border-right: 1px solid #000;*/
-    padding: 1px 16px 0 16px;
+    padding: 0 16px 0 16px;
     margin: 0;
     z-index: 1000;
 	cursor: pointer;
+}
+
+.SiteHeaderBarItem img {
+	/*padding: 0 0 0 0;*/
 }
 
 .SiteHeaderBarItemFirst {
@@ -465,55 +470,14 @@ a.SiteHeaderUserItem:visited:hover,
 	cursor: pointer;
 }
 
-.SiteHeaderCartInfo {
-    width: 14px;
-    height: 14px;
-    line-height: 14px;
-    background: transparent url(../style/../style/default/SiteHeader/red_dot.png) left center no-repeat;
-    display: block;
-    float: right;
-	margin-left: 4px;
-	margin-top: 4px;
-	text-align: center;
-	color: #fff;
-	_padding-top: 0;	
-	cursor: pointer;
-}
 
-.ThreeDigitQuantity
-{
-	font-size: 8px;
-}
-
-a.SiteHeaderSearchButton {
-	width: 15px;
-    background: transparent url(../style/../style/default/SiteHeader/icon_search_mobile.png) no-repeat 50% 50%;
-}
-
-.SiteHeaderSearch {
+.SiteHeaderSignIn {
     float: right;
     width: 375px;
     height: 40px;
     text-align:right;
 }
 
-#search-submit {
-    display: none;
-}
-
-#search-input {
-    background-color: #2d2d2d;
-    border: none;
-    margin-left: 34px;
-    margin-top: 9px;
-    *margin-top: 0;
-    _margin-top: 9px;
-    padding-top: 4px;
-    _padding-top: 3px;
-    width: 220px;
-	color: #CCC;
-    font: 12px Arial,Helvetica,sans-serif;
-}
 
 @media screen and (-webkit-min-device-pixel-ratio:0) {
     #search-input {
@@ -571,31 +535,6 @@ a.SiteHeaderSearchButton {
     z-index: 99;
 }
 
-.CartHeaderPopPanel {    
-    border-top: 1px solid #D8D8D8;
-    background-color: #FFF;    
-    color: #333;
-    /*margin: 0;*/
-    overflow: hidden;
-    /*padding: 6px 0;*/
-}
-
-.CartHeaderPopPanelShadow {
-    position: absolute;
-    border: 1px solid;
-    border-top: 0;
-    border-color: #FFF #B0B0B0 #737373;
-    box-shadow: 0 4px 10px rgba(0,0,0,.5);
-    -moz-box-shadow: 0 4px 10px -moz-rgba(0,0,0,.5);
-    -webkit-box-shadow: 0 4px 10px rgba(0,0,0,.5);
-    filter: progid:DXImageTransform.Microsoft.Shadow(color='#999999', Direction=180, Strength=4);
-    filter: none\9;
-    top: 100%;
-    right: 0;
-    z-index: 99999 !important;
-}
-
-
 #modalContent .CartHeaderPopPanelShadow
 {
 	border-bottom: 0px;
@@ -617,14 +556,6 @@ a.SiteHeaderSearchButton {
 	width:485px;
 }
 
-.HoverCartBoxShot{
-	width: 50px;
-	position: relative;
-	clear: left;
-	float: left;
-	left: -60px;
-	margin-right: -60px;
-}
 
 div.SiteHeaderPanelRow {
     padding: 5px 12px;
@@ -689,7 +620,7 @@ a.SiteHeaderPanelLinkNoBar:visited:hover {
 
 /* navigation styles - END */ 
 
-
+/* 
 #home { background: #fff url(/images/bg-home-top.gif) no-repeat 0 0; }
 #home #content { background: url(/images/bg-home-right.gif) no-repeat right 34px; }
 
@@ -700,6 +631,7 @@ div.notice {
 	font-size: 12px;
 	border: 1px solid #EFD500;
 }
+*/
 
 #layout_table {
 	padding: 5px;
@@ -711,14 +643,12 @@ div.notice {
 	display: inline;
 }
 
-  
-}
+/* JDavis: simple_form is used to style most, if not all, of the forms in Specializ */
 
 .simple_form {
 	border: solid 1px #999;
 	padding: 5px;
 }
-
 
 .simple_form label {
   float: left;
@@ -740,7 +670,6 @@ div.notice {
   float: none;
   margin: 0;
 }
-
 
 .simple_form .error {
   clear: left;
@@ -767,8 +696,7 @@ div.notice {
 
 #layout_table tr td {
 	border: solid 1px #999;
-}**/
-
+}
 #browser_trigger {
 	width:75px;
 	height:20px;
@@ -778,6 +706,8 @@ div.notice {
 	text-align:center;
 	color:#FFFFFF;
 }
+**/
+
 
 h2,h3,h4 {
   margin: 0;
@@ -860,100 +790,4 @@ table.portalTable td { padding:5px; }
 #browserPanel{
 	width:370px;
 }
-
-/*
-
-
-
-body, div, span, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, code, del, dfn, em, img, q, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, article, aside, dialog, figure, footer, header, hgroup, nav, section {margin:0;padding:0;border:0;font-size:100%;font:inherit;vertical-align:baseline;}
-article, aside, details, figcaption, figure, dialog, footer, header, hgroup, menu, nav, section {display:block;}
-body {line-height:1.5;background:white;}
-table {border-collapse:separate;border-spacing:0;}
-caption, th, td {text-align:left;font-weight:normal;float:none !important;}
-table, th, td {vertical-align:middle;}
-blockquote:before, blockquote:after, q:before, q:after {content:'';}
-blockquote, q {quotes:"" "";}
-a img {
-	border:none;
-}
-
-html {font-size:100.01%;}
-body {font-size:75%;color:#222;background:#fff;font-family:"Helvetica Neue", Arial, Helvetica, sans-serif;}
-h1, h2, h3, h4, h5, h6 {font-weight:normal;color:#111;}
-h1 {font-size:3em;line-height:1;margin-bottom:0.5em;}
-h2 {font-size:2em;margin-bottom:0.75em;}
-h3 {font-size:1.5em;line-height:1;margin-bottom:1em;}
-h4 {font-size:1.2em;line-height:1.25;margin-bottom:1.25em;}
-h5 {font-size:1em;font-weight:bold;margin-bottom:1.5em;}
-h6 {font-size:1em;font-weight:bold;}
-h1 img, h2 img, h3 img, h4 img, h5 img, h6 img {margin:0;}
-p {margin:0 0 1.5em;}
-.left {float:left !important;}
-p .left {margin:1.5em 1.5em 1.5em 0;padding:0;}
-.right {float:right !important;}
-p .right {margin:1.5em 0 1.5em 1.5em;padding:0;}
-a:focus, a:hover {color:#09f;}
-a {color:#06c;text-decoration:underline;}
-blockquote {margin:1.5em;color:#666;font-style:italic;}
-strong, dfn {font-weight:bold;}
-em, dfn {font-style:italic;}
-sup, sub {line-height:0;}
-abbr, acronym {border-bottom:1px dotted #666;}
-address {margin:0 0 1.5em;font-style:italic;}
-del {color:#666;}
-pre {margin:1.5em 0;white-space:pre;}
-pre, code, tt {font:1em 'andale mono', 'lucida console', monospace;line-height:1.5;}
-li ul, li ol {margin:0;}
-ul, ol {margin:0 1.5em 1.5em 0;padding-left:1.5em;}
-ul {list-style-type:disc;}
-ol {list-style-type:decimal;}
-dl {margin:0 0 1.5em 0;}
-dl dt {font-weight:bold;}
-dd {margin-left:1.5em;}
-table {margin-bottom:1.4em;width:100%;}
-th {font-weight:bold;}
-thead th {background:#c3d9ff;}
-th, td, caption {padding:4px 10px 4px 5px;}
-tbody tr:nth-child(even) td, tbody tr.even td {background:#e5ecf9;}
-.small {font-size:.8em;margin-bottom:1.875em;line-height:1.875em;}
-.large {font-size:1.2em;line-height:2.5em;margin-bottom:1.25em;}
-.hide {display:none;}
-.quiet {color:#666;}
-.loud {color:#000;}
-.highlight {background:#ff0;}
-.added {background:#060;color:#fff;}
-.removed {background:#900;color:#fff;}
-.first {margin-left:0;padding-left:0;}
-.top {margin-top:0;padding-top:0;}
-.bottom {margin-bottom:0;padding-bottom:0;}
-
-label {font-weight:bold;}
-fieldset {padding:0 1.4em 1.4em 1.4em;margin:0 0 1.5em 0;border:1px solid #ccc;}
-legend {font-weight:bold;font-size:1.2em;margin-top:-0.2em;margin-bottom:1em;}
-fieldset, #IE8#HACK {padding-top:1.4em;}
-legend, #IE8#HACK {margin-top:0;margin-bottom:0;}
-input[type=text], input[type=password], input.text, input.title, textarea {background-color:#fff;border:1px solid #bbb;color:#000;}
-input[type=text]:focus, input[type=password]:focus, input.text:focus, input.title:focus, textarea:focus {border-color:#666;}
-select {background-color:#fff;border-width:1px;border-style:solid;}
-input[type=text], input[type=password], input.text, input.title, textarea, select {margin:0.5em 0;}
-input.text, input.title {width:300px;padding:5px;}
-input.title {font-size:1.5em;}
-textarea {width:390px;height:250px;padding:5px;}
-form.inline {line-height:3;}
-form.inline p {margin-bottom:0;}
-.error, .alert, .notice, .success, .info {padding:0.8em;margin-bottom:1em;border:2px solid #ddd;}
-.error, .alert {background:#fbe3e4;color:#8a1f11;border-color:#fbc2c4;}
-.notice {background:#fff6bf;color:#514721;border-color:#ffd324;}
-.success {background:#e6efc2;color:#264409;border-color:#c6d880;}
-.info {background:#d5edf8;color:#205791;border-color:#92cae4;}
-.error a, .alert a {color:#8a1f11;}
-.notice a {color:#514721;}
-.success a {color:#264409;}
-.info a {color:#205791;}
-
-.border {padding-right:4px;margin-right:5px;border-right:1px solid #ddd;}
-.box {padding:1.5em;margin-bottom:1.5em;background:#e5eCf9;}
-hr {background:#ddd;color:#ddd;clear:both;float:none;width:100%;height:1px;margin:0 0 17px;border:none;}
-hr.space {background:#fff;color:#fff;visibility:hidden;}
-*/
 

@@ -1,7 +1,8 @@
 <%= simple_form_for @company do |f| %>
 
   <%= f.input :name %>
-  <%= f.input :logo, :hint => "Please use https. EX: https://mycompany.com/logo.png", :input_html => { :size => 75 } %>
+  <%= f.input :logo, :hint => "Please use HTTPS. EX: https://mycompany.com/logo.png. A transparent png image with height of 36px works best.", 
+	:input_html => { :size => 75 } %>
   <%= f.input :active, :disabled => !(can? :manage, :all) %>
   <%= f.input :never_expires, :disabled => !(can? :manage, :all) %>
   <%= f.input :expiration_date, :disabled => !(can? :manage, :all) %>

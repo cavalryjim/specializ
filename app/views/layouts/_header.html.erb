@@ -2,16 +2,15 @@
 
 
  <div class="SiteHeaderBar" id="shBar"> <!-- JDavis: color of the bar is set in this div class -->
-	<% if user_signed_in? && !Company.find(current_user.company_id).logo.blank? %>
-	  <div class= "SiteHeaderBarItem" style="padding:0px; height:70px; background: #1B3277; vertical-align:middle;">
-        <%= image_tag(Company.find(current_user.company_id).logo, :style => "padding:0;" ) %>
-      </div>
-	<% end %>
-	<div class= "SiteHeaderBarItem">
-	  <%= link_to logo, root_path %>
-	</div>
+
   
-<% if user_signed_in? %>	
+  <div class= "SiteHeaderBarItem" style="padding: 0 0 0 0;">  
+	<%= link_to logo, root_path %>
+  </div>
+  
+	
+  
+  <% if user_signed_in? %>	
 	<div class="SiteHeaderDropdownLink SiteHeaderBarItem">
 	  <%= link_to 'Me', me_path, :class=> "SiteHeaderBarLink" %>
   	  <div class="SiteHeaderDropPanel" id="ProductsPanel">
@@ -73,7 +72,7 @@
   <% end %>
 <% end %>
 
-   <div class="SiteHeaderSearch">
+   <div class="SiteHeaderSignIn">
 	<% if user_signed_in? %>
 	  Signed in as <%= current_user.email %>
 	  <%= link_to "(Sign out)", destroy_user_session_path, :method => :delete, :class => "SiteHeaderBarLink" %>
