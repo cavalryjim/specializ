@@ -4,6 +4,15 @@
 	  	<%= js add_gritter( msg, :title => "Error", :image => :error, :sticky => true ) %>
     <% end %>
   <% end %>
+
+  <% if @assignment.new_record? %>
+	<div class="input string required" >
+		<label class="required" for="user"><abbr title="required">*</abbr> User</label>
+		<%= autocomplete_field_tag 'user', '', autocomplete_user_last_name_topic_assignments_path, :id_element => '#assignment_user_id' %>
+		<span class="hint">start typing the user's last name</span>
+	</div>
+  <% end %>
+  
   <%= f.input :topic_group_id, :collection => @topic_groups %>
   <%= f.input :manager %>
   <%= f.input :participating %>

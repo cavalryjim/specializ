@@ -10,7 +10,6 @@ gem 'rails', '3.0.12' #JDavis: moving to 3.0.12...like a boss!
 gem 'mysql2', '0.2.18' # JDavis: with Rails 3.0.*, must use a mysql2 gem version < 0.3.  Moving from 0.2.7 to support windows.
 gem 'cancan', '~> 1.6.7'
 gem 'awesome_nested_set', '~> 2.0.2'
-#gem 'will_paginate', '3.0.pre2' #JDavis: currently, not using this functionality.
 gem 'jquery-rails', '1.0.19'
 gem 'activeadmin', '~> 0.3.4'
 gem 'devise', '1.4.2'
@@ -19,7 +18,6 @@ gem 'rails3-jquery-autocomplete', '~> 1.0.4'
 gem 'googlecharts', '~> 1.6.8'
 gem 'spreadsheet', '~> 0.6.5.9'
 gem 'carrierwave', '~> 0.5.7'
-#gem 'omniauth', '0.2.0' # JDavis: may need to change to version 0.3.2, or 0.2.6.
 gem 'omniauth', '0.2.6'
 gem 'best_in_place', '~> 0.2.2'
 gem 'delayed_job_active_record', '~> 0.3.2'
@@ -28,15 +26,16 @@ gem 'daemons', '~> 1.1.6'
 gem 'simple_form', '~> 1.5.2'
 gem 'client_side_validations', '3.0.4'
 gem 'gon', '2.1.0'
-#gem 'encryptor', '~> 1.1.3'
 gem 'rack-ssl', '~> 1.3.2', :require => 'rack/ssl'
-#gem 'rack', '1.3.6'
-#gem 'iron_worker', '~> 2.3.13'
-#gem 'typhoeus', '~> 0.3.3' # JDavis: To work, I had to install this: sudo apt-get install libcurl3-dev
 gem 'net-ldap', '~> 0.2.2'
 
 
-
+#gem 'omniauth', '0.2.0' # JDavis: may need to change to version 0.3.2, or 0.2.6.
+#gem 'encryptor', '~> 1.1.3'
+#gem 'rack', '1.3.6'
+#gem 'iron_worker', '~> 2.3.13'
+#gem 'typhoeus', '~> 0.3.3' # JDavis: To work, I had to install this: sudo apt-get install libcurl3-dev
+#gem 'will_paginate', '3.0.pre2' #JDavis: currently, not using this functionality.
 
 #gem 'bcrypt-ruby', '~> 3.0.0'
 #gem 'omniauth-identity', '~> 1.0.0'

@@ -1,0 +1,6 @@
+sambaNTPassword:
+
+OpenSSL::Digest::MD4.hexdigest(Iconv.iconv("UCS-2", "UTF-8", pass).join).upcase
+
+For the def authenticate(user, pass) function I try to get LDAP to bind to the domain using their credentials, 
+if I catch an exception then the login failed, otherwise let them in.

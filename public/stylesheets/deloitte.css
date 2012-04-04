@@ -1,3 +1,10 @@
 body {
 	/*background: #002776;*/
+	background: #0066cc none;
+	background: -webkit-gradient(linear, left top, left bottom, from(#006699), to(#0066cc));
+	background: -moz-linear-gradient(top, #006699, #0066cc);
+	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#006699, endColorstr=#0066cc);
+	-ms-filter: "progid:DXImageTransform.Microsoft.gradient(startColorstr=#FF006699, endColorstr=#FF0066cc)";
+	background: -ms-linear-gradient(top, #006699, #0066cc);
+	background: -o-linear-gradient(top, #006699, #0066cc);
 }

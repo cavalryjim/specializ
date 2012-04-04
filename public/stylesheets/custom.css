@@ -21,7 +21,7 @@ body {
 
 header {
 	padding-top: 0px;
-	background: #003366;
+	/*background: #003366;*/
 }
 
 header img {
@@ -48,7 +48,7 @@ section {
 }
 
 #main_body {
-  border: 1px solid blue; 
+  /*border: 1px solid blue; */
   padding: 5px;
 }
 
@@ -76,39 +76,7 @@ a:visited {
 	color: #069;
 }
 
-/* Navigation */
-nav {
-	background-color: none;
-	float: right;
-/*	top: 0; */
-	padding: 0 0.7em;
-	white-space: nowrap;
-}
 
-nav ul {
-	margin: 0;
-	padding: 0;
-}
-
-nav ul li {
-	list-style-type: none;
-	display: inline-block;
-	padding: 0.2em 0;
-	color: #FF0000;
-}
-
-nav ul li a {
-	padding: 0 5px;
-	font-weight: bold;
-}
-
-nav ul li a:visited {
-  color: #09c;
-}
-
-nav ul li a:hover {
-	text-decoration: underline;
-}
 
 /* Browser */
 .browser {
@@ -327,13 +295,14 @@ div.field, div.actions {
     padding-left: 0px;
     padding-bottom: 0;
     line-height: 25px;
-	background: #0066cc none;
+    /* JDaivs: commenting out and moving to the background color to the body */
+	/*background: #0066cc none;
 	background: -webkit-gradient(linear, left top, left bottom, from(#006699), to(#0066cc));
 	background: -moz-linear-gradient(top, #006699, #0066cc);
 	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#006699, endColorstr=#0066cc);
 	-ms-filter: "progid:DXImageTransform.Microsoft.gradient(startColorstr=#FF006699, endColorstr=#FF0066cc)";
 	background: -ms-linear-gradient(top, #006699, #0066cc);
-	background: -o-linear-gradient(top, #006699, #0066cc);
+	background: -o-linear-gradient(top, #006699, #0066cc);*/
 }
 
 .SiteHeaderBarItemHover, .SiteHeaderBarItem:hover {
@@ -644,7 +613,6 @@ div.notice {
 }
 
 /* JDavis: simple_form is used to style most, if not all, of the forms in Specializ */
-
 .simple_form {
 	border: solid 1px #999;
 	padding: 5px;
@@ -758,7 +726,7 @@ div.innerDetails table tr td {
 }
 
 td.selected {
-	background: #ccc !important;
+	background: #92D400 !important;
 }
 
 
@@ -786,8 +754,8 @@ table.portalTable td { padding:5px; }
 #lRight{
     float: right;
 }
-
 #browserPanel{
 	width:370px;
 }
+
 

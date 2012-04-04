@@ -175,6 +175,13 @@ $(function() {
 	
 	$( ".popup" ).dialog({autoOpen: false, minWidth: 500});
 	
+	$( ".small_panel" ).dialog({
+		autoOpen: true, 
+		minWidth: 500, 
+		closeOnEscape: false, 
+		open: function(event, ui) { $(".ui-dialog-titlebar-close").hide(); }
+	});
+	
 	$( '#more_link' ).click(function() { $('#more_dialog').dialog( "open" ) });
 	
 	$( "#login_form" ).dialog({ 
