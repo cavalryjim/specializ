@@ -22,6 +22,10 @@
 	<tr>
 	  <td>
 		<%= simple_form_for(resource, :as => resource_name, :url => session_path(resource_name)) do |f| %>
+		  <div class="input string required">
+           <label class="required" for="company"><abbr title="required">*</abbr> Company</label>
+			<%= autocomplete_field_tag 'company', '', autocomplete_company_name_ajax_index_path, :id_element => '#user_company_id' %> 
+	  	  </div>
 		  <%= f.input :email %>
 		  <%= f.input :password, :required => true %>
 		
@@ -30,6 +34,7 @@
 		  <% end %>
 			
 		  <%= f.submit "Sign in" %>
+		  <%= f.input :company_id, :as => :hidden %>
 		<% end %>
 		<%= render :partial => "devise/shared/links" %> 
 	  </td>
