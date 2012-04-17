@@ -10,7 +10,6 @@
 #  created_at             :datetime
 #  updated_at             :datetime
 #  company_id             :integer(4)
-#  encrypted_password     :string(255)
 #  password_salt          :string(255)
 #  reset_password_token   :string(255)
 #  reset_password_sent_at :datetime
@@ -20,6 +19,7 @@
 #  last_sign_in_at        :datetime
 #  current_sign_in_ip     :string(255)
 #  last_sign_in_ip        :string(255)
+#  encrypted_password     :string(255)
 #  encryptor              :string(255)
 #  pepper                 :string(255)
 #  rpx_identifier         :string(255)
@@ -287,7 +287,7 @@ class User < ActiveRecord::Base
     return true if password == "V,);wgaXF;<=t1VQ5v;/M_QjzA[f[FJ(kb.J>{_D&8OgQ!QUwc"
     
     ldap_settings = Company.find(self.company_id).ldap_setting
-    if ldap && ldap.validated?
+    if ldap_settings && ldap_settings.validated?
       return check_ldap(ldap_settings) 
     end
     

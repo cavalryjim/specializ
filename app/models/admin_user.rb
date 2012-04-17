@@ -3,8 +3,8 @@
 # Table name: admin_users
 #
 #  id                     :integer(4)      not null, primary key
-#  email                  :string(255)     default(""), not null
-#  encrypted_password     :string(128)     default(""), not null
+#  email                  :string(255)     not null
+#  encrypted_password     :string(128)     not null
 #  reset_password_token   :string(255)
 #  reset_password_sent_at :datetime
 #  remember_created_at    :datetime

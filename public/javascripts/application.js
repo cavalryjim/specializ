@@ -47,6 +47,7 @@ $(function() {
 	hrTabs = $( "#hr_tabs" ).tabs({ cookie:{ expires:1 } }).show(); // tabs used in the HR module
 	$( "#me_tabs" ).tabs({ cookie:{ expires:1 } }).show();   // tabs used in the Me module
 	
+	// JDavis: I am not happy with the look of this an trying selectmenu instead.
 	$( ".simple_select").multiselect({
 		multiple: false,
 		header: false,
@@ -54,6 +55,9 @@ $(function() {
 		noneSelectedText: "Please select",
 		selectedList: 1
 	});
+	
+	$( ".simple_select_not_working" ).selectmenu({style:'dropdown'});
+	
 	$( "#topic_grouping_ids").multiselect({
 		header: "Select groups that will participate",
 		minWidth: 300,

@@ -15,6 +15,7 @@
 #  group_names            :string(255)
 #  created_at             :datetime
 #  updated_at             :datetime
+#  validated              :boolean(1)
 #
 
 class LdapSetting < ActiveRecord::Base
