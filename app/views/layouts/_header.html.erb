@@ -3,14 +3,11 @@
 
  <div class="SiteHeaderBar" id="shBar"> <!-- JDavis: color of the bar is set in this div class -->
 
+<% if user_signed_in? %>	
+   <div class= "SiteHeaderBarItem" style="padding: 0 0 0 0;">  
+	 <%= link_to logo, root_path %>
+   </div>
   
-  <div class= "SiteHeaderBarItem" style="padding: 0 0 0 0;">  
-	<%= link_to logo, root_path %>
-  </div>
-  
-	
-  
-  <% if user_signed_in? %>	
 	<div class="SiteHeaderDropdownLink SiteHeaderBarItem">
 	  <%= link_to 'Me', me_path, :class=> "SiteHeaderBarLink" %>
   	  <div class="SiteHeaderDropPanel" id="ProductsPanel">
@@ -70,6 +67,8 @@
   <% if (current_user.role? :pnetz_admin) && (current_user.email.split('@').last == 'peoplenetz.com') %>
 	<%= link_to "Peoplenetz", admin_path, :class => "SiteHeaderBarItem SiteHeaderBarLink" %>
   <% end %>
+<% else %>
+  <%= logo %>
 <% end %>
 
    <div class="SiteHeaderSignIn">
