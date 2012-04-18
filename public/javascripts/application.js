@@ -271,6 +271,11 @@ $(function() {
 
 
     }).show(); 
+	
+	// JDavis: Only the elemens currently displayed were getting submitted.  This fixes the problem.
+	$( '#rating_form' ).submit(function(){
+		$(rTable.fnGetHiddenNodes()).appendTo($('#hidden_rating_table'));
+	});
 });
 
 /* Get the rows which are currently selected *****JDavis: this is not being used at the moment.....*/

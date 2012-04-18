@@ -13,7 +13,7 @@
   </div>
 </div>
 
-<%= form_tag(:controller => "users", :action => "rate_elements", :method => "post") do %>
+<%= form_tag users_rate_elements_path, :id => 'rating_form' do %>
   <div>
 	<table id="rating_table" class="display fouc" >
 	 <thead>
@@ -103,6 +103,8 @@
 		<% end %>
 	 </tbody>
 	</table>
+
+	<table id="hidden_rating_table" class="fouc"></table>
 	
   </div>
   
