@@ -203,7 +203,7 @@ $(function() {
 	
 	var answer = $.cookie("confirmNewElement");
 	
-	$('#new_element_btn').click(function() {
+	$('.new_element_btn').click(function() {
 		if (!answer) {
 			answer = confirm("Submitting new items will cause you to lose any unsaved ratings.  Continue?");
 			$.cookie("confirmNewElement", answer);
