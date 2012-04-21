@@ -42,7 +42,8 @@ class Ability
       can [:create, :read], ElementAttribute
       can :manage, ElementAttribute do |e_attribute|
         e_attribute.new_record? or
-        e_attribute.element.created_by == user.id
+        e_attribute.element.created_by == user.id or
+        can? :manage, e_attribute.element
       end
       can :create, UserList
       can :manage, UserList do |user_list|
