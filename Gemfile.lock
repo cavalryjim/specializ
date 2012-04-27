@@ -217,6 +217,7 @@ GEM
     uniform_notifier (1.0.1)
     warden (1.0.6)
       rack (>= 1.0)
+    will_paginate (3.0.3)
 
 PLATFORMS
   ruby
@@ -249,3 +250,4 @@ DEPENDENCIES
   rspec-rails (= 2.6.1)
   simple_form (~> 1.5.2)
   spreadsheet (~> 0.6.5.9)
+  will_paginate (= 3.0.3)

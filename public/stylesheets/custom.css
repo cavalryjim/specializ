@@ -715,7 +715,7 @@ textarea {
 	padding:5px;
 }
 
-select {
+select.simple_select {
   margin: 0;
   font-size: 100%;
   vertical-align: middle;

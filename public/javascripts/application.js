@@ -110,6 +110,9 @@ $(function() {
 		          ],
 		"bAutoWidth": false,
 		"bJQueryUI": true,
+		"bProcessing": true,
+		"bServerSide": true,
+		"sAjaxSource": $('#user_table').data('source'),
 		"sPaginationType": "full_numbers"
 	}).show();
 	

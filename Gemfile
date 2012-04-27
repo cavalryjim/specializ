@@ -28,6 +28,7 @@ gem 'client_side_validations', '3.0.4'
 gem 'gon', '2.1.0'
 gem 'rack-ssl', '~> 1.3.2', :require => 'rack/ssl'
 gem 'net-ldap', '~> 0.2.2'
+gem 'will_paginate', '3.0.3' 
 
 
 #gem 'omniauth', '0.2.0' # JDavis: may need to change to version 0.3.2, or 0.2.6.
@@ -35,7 +36,6 @@ gem 'net-ldap', '~> 0.2.2'
 #gem 'rack', '1.3.6'
 #gem 'iron_worker', '~> 2.3.13'
 #gem 'typhoeus', '~> 0.3.3' # JDavis: To work, I had to install this: sudo apt-get install libcurl3-dev
-#gem 'will_paginate', '3.0.pre2' #JDavis: currently, not using this functionality.
 
 #gem 'bcrypt-ruby', '~> 3.0.0'
 #gem 'omniauth-identity', '~> 1.0.0'

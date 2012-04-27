@@ -8,7 +8,7 @@
 	</div>
 	
 	<div id='demo'>
-		<table id="user_table" class="display fouc">
+		<table id="user_table" class="display fouc" data-source="<%= users_url(format: 'json')%>">
 		 <thead>
 		  <tr>
 			<th class="center">Active</th>
@@ -19,19 +19,7 @@
 		  </tr>
 		 </thead>
 		 <tbody>
-		 <% for user in @users %>
-		  <tr>
-			<td class="center">
-			  <%= check_box_tag user.id, 1, user.active, { :disabled => true } %>
-			</td>
-		    <td><%= link_to user.first_name, edit_user_path(user) %></td>
-		    <td><%= link_to user.last_name, edit_user_path(user) %></td>
-			<td><%= link_to user.email, edit_user_path(user) %></td>
-		    <td class="center">
-			  <%= link_to image_tag('icons/cross.png'), user, :confirm => 'Remove this user from the system?', :method => :delete %>
-			</td>
-		  </tr>
-		 <% end %>
+		 
 		 </tbody>
 		</table><br/>
 	</div>

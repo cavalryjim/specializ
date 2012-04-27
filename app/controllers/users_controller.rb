@@ -11,7 +11,11 @@ class UsersController < ApplicationController
     @title = 'Admin'
     @users = User.where(:company_id => current_user.company_id)
     
-    respond_with @users
+    #respond_with @users
+    respond_to do |format|
+      format.html
+      format.json { render json: UsersDatatable.new(view_context, current_user.company_id)  }
+    end
   end
 
   # GET /users/1
