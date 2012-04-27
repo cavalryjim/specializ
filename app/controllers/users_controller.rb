@@ -9,7 +9,7 @@ class UsersController < ApplicationController
   # GET /users.xml
   def index
     @title = 'Admin'
-    @users = User.where(:company_id => current_user.company_id)
+    #@users = User.where(:company_id => current_user.company_id)
     
     #respond_with @users
     respond_to do |format|

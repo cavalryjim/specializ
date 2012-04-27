@@ -1,3 +1,5 @@
+# JDavis: This is a class to manage the json for the user_table.
+#         See http://railscasts.com/episodes/340-datatables for an explanation of the code.
 class UsersDatatable
   delegate :params, :h, :link_to, :image_tag, :edit_user_path, :check_box_tag, to: :@view
 
