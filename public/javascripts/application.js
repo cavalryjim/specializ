@@ -48,7 +48,7 @@ $(function() {
 	$( "#me_tabs" ).tabs({ cookie:{ expires:1 } }).show();   // tabs used in the Me module
 	
 	// JDavis: I am not happy with the look of this an trying selectmenu instead.
-	$( ".simple_select").multiselect({
+	$( ".simple_select_old").multiselect({
 		multiple: false,
 		header: false,
 		minWidth: 100,

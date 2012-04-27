@@ -715,6 +715,31 @@ textarea {
 	padding:5px;
 }
 
+select {
+  margin: 0;
+  font-size: 100%;
+  vertical-align: middle;
+  font-size: 13px;
+  font-weight: normal;
+  line-height: 18px;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  display: inline-block;
+  width: auto; /* JDavis: edit width here */
+  height: 28px;
+  padding: 4px;
+  margin-bottom: 9px;
+  font-size: 13px;
+  line-height: 28px;
+  color: #555555;
+  background-color: #ffffff;
+  border: 1px solid #cccccc;
+  -webkit-border-radius: 3px;
+     -moz-border-radius: 3px;
+          border-radius: 3px;
+  *margin-top: 4px;
+  /* For IE7, add top margin to align select with labels */
+}
+
 /* JDavis: this hides the element attributes and lets jQuery handle the display */
 div.innerDetails { 
 	display: none;
