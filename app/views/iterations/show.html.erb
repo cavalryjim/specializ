@@ -19,8 +19,8 @@
 		</div>
 		<% if can? :manage, @topic_group %>
 			<div id="tabs-3" class="ui-tabs-hide">
-				<%= render 'members', :topic_group => @topic_group, 
-									  :participating_users => @participating_users %>
+				<%= render 'participants', :topic_group => @topic_group, 
+									  	   :participating_users => @participating_users %>
 			</div>
 			<div id="tabs-5" class="ui-tabs-hide">
 				<%= render 'manage_elements' %>

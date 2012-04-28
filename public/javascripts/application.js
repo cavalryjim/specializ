@@ -116,7 +116,7 @@ $(function() {
 		"sPaginationType": "full_numbers"
 	}).show();
 	
-	$( "#member_table" ).dataTable({ // datatable listing the other user participating in a topic
+	$( "#participant_table" ).dataTable({ // datatable listing the topic_group participants
 		"aoColumns": [
 		              { "sWidth": "5%", "bSortable": false },
 		              { "sWidth": "25%" },
