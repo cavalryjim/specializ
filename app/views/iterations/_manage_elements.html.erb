@@ -10,6 +10,7 @@
 		<thead>
 		  <tr>
 			<th class="center">Approve</th>
+			<th></th>
 			<th class="center">New Suggestions</th>
 		  </tr>
 		</thead>
@@ -22,6 +23,8 @@
 				<% if new_element.has_attributes? %>
 			      <%= image_tag 'details_open.png', :class => 'details' %>
 			    <% end %>
+			  </td>
+			  <td>
 				<%= best_in_place new_element, :name, :type => :input, :html_attrs => { :size => 60 } %>
 			  
 			    <%= link_to image_tag('attr_add2.png', :size => '10x10'), edit_topic_group_iteration_element_path(@topic_group, @iteration, new_element) %>
@@ -29,7 +32,6 @@
 				<% if new_element.has_attributes? %>
 				  <%= render 'inner_details', :element => new_element %>
 				<% end %>
-				
 			  </td>
 			</tr>
 		  <% end %>

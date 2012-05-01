@@ -146,7 +146,8 @@ $(function() {
 	
 	$( "#new_elements_table" ).dataTable({ // datatable listing newly suggested elements needing manager approval
 		"aoColumns": [
-		              { "sWidth": "5%", "bSortable": false },
+		              { "sWidth": "7px", "bSortable": false },
+		              { "sWidth": "5px", "bSortable": false },
 		              { "sWidth": "90%" }
 		          ],
 		"bAutoWidth": false,
@@ -155,10 +156,9 @@ $(function() {
 	}).show(); 
 	
 	
-	// JDavis: image the opens / closes the element attributes div
+	// JDavis: image that opens / closes the element attributes div
 	$('#rating_table img.details').live( 'click', function () {
-		var nTr = this.parentNode;
-		
+		var nTr = this.parentNode.parentNode;
 		if ($('div.innerDetails', nTr).is(':hidden')){
 			$('div.innerDetails', nTr).slideDown();
 			$('img.details', nTr).attr( 'src', "../../../images/details_close.png" );
@@ -169,9 +169,9 @@ $(function() {
 		
 	} );
 	
-	// JDavis: image the opens / closes the element attributes div
+	// JDavis: image that opens / closes the element attributes div
 	$('#new_elements_table img.details').live( 'click', function () {
-		var nTr = this.parentNode;
+		var nTr = this.parentNode.parentNode;
 		
 		if ($('div.innerDetails', nTr).is(':hidden')){
 			$('div.innerDetails', nTr).slideDown();
@@ -263,6 +263,7 @@ $(function() {
 	
 	rTable = $( "#rating_table" ).dataTable({ // datatable where users rate the elements
 		"aoColumns": [
+		              { "sWidth": "5px", "bSortable": false },
 		              null ,
 		              { "sWidth": "115px" },
 		              { "sWidth": "5px", "bSortable": false }
