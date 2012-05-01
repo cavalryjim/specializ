@@ -20,7 +20,7 @@
 		    <td><%= user.email %></td>
 		    <td class="center">
 			  <% if can? :manage, topic_group %>
-				<%= link_to image_tag('icons/cross.png'), topic_group_assignment_path(@topic_group, assignment(@topic_group, user)), 
+				<%= link_to image_tag('icons/cross.png'), topic_group_assignment_path(@topic_group, assignment(@topic_group.id, user)), 
 				  :confirm => 'Remove this user from participating in this topic?', :method => :delete %>
 			  <% end %>
 			</td>

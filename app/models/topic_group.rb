@@ -18,7 +18,7 @@
 
 class TopicGroup < ActiveRecord::Base
   attr_accessible :name, :goal, :active, :update_frequency, :due_date, :due_days,
-                  :topic_id, :grouping_id, :elements_spreadsheet
+                  :topic_id, :grouping_id, :elements_spreadsheet, :participating_users
                   
   mount_uploader :elements_spreadsheet, ElementsSpreadsheetUploader
   

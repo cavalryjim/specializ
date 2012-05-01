@@ -20,6 +20,7 @@ Specializ::Application.routes.draw do
   match '/pages/me', :to => 'pages#me'
   match '/topic_groups/import_elements', :to => 'topic_groups#import_elements'
   match '/topic_groups/assign_topic', :to => 'topic_groups#assign_topic'
+  #match '/topic_groups/:id/participants', :to => 'topic_groups#participants'
   match '/topics/staff_topic', :to => 'topics#staff_topic'
   post '/topics', :to => 'topics#create'
   match '/topics/new', :to => 'topics#new'
@@ -49,6 +50,7 @@ Specializ::Application.routes.draw do
     resources :iterations do
       post 'close', :to => 'iterations#close'
       post 'start', :to => 'iterations#start'
+      match 'participants', :to => 'topic_groups#participants'
       resources :elements do
         resources :element_attributes
       end

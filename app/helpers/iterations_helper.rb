@@ -26,8 +26,12 @@ module IterationsHelper
     element.element_attributes.find(:all)
   end
   
-  def assignment(topic_group, user)
-    user.assignments.where(:topic_group_id => topic_group.id).first.id
+  def assignment(topic_group_id, user)
+    user.assignments.where(:topic_group_id => topic_group_id).first.id
+  end
+  
+  def submission_status_image(iteration_id, participant)
+    participant.submitted_list?(iteration_id) ? image_tag('icons/tick.png') : nil
   end
   
   

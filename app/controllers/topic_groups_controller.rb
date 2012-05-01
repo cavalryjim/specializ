@@ -123,4 +123,13 @@ class TopicGroupsController < ApplicationController
     send_file file  
   end
   
+  def participants
+    @topic_group = TopicGroup.find(params[:topic_group_id])
+    @iteration = Iteration.find(params[:iteration_id])
+    
+    respond_to do |format|
+      format.json { render json: ParticipantsDatatable.new(view_context, @topic_group.id, @iteration.id)  }
+    end
+  end
+  
 end

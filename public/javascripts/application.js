@@ -116,7 +116,7 @@ $(function() {
 		"sPaginationType": "full_numbers"
 	}).show();
 	
-	$( "#member_table" ).dataTable({ // datatable listing the other user participating in a topic
+	$( "#participant_table" ).dataTable({ // datatable listing the other user participating in a topic
 		"aoColumns": [
 		              { "sWidth": "5%", "bSortable": false },
 		              { "sWidth": "25%" },
@@ -125,6 +125,9 @@ $(function() {
 		          ],
 		"bAutoWidth": false,
 		"bJQueryUI": true,
+		"bProcessing": true,
+		"bServerSide": true,
+		"sAjaxSource": $('#participant_table').data('source'),
         "sPaginationType": "full_numbers"
 	}).show(); 
 	
