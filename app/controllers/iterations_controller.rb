@@ -29,11 +29,7 @@ class IterationsController < ApplicationController
       @new_elements = @topic_group.iterations.last.new_elements
     end
     
-    respond_to do |format|
-      format.html
-      format.json { render json: ParticipantsDatatable.new(view_context, @topic_group.id)  }
-    end
-    #respond_with(@iteration)
+    respond_with(@iteration)
   end
 
 
