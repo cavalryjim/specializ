@@ -30,7 +30,6 @@ $(function() {
 	bAccordion = $( "#accordion" ).accordion({ fillSpace: true, navigation: true }).show(); // accordion on the _browser partial
 	var browserState = $.cookie("browserState");
 	
-	
 	if (browserState == 'closed') {
 		browser.panel('toggle', 0, true);
 	}
