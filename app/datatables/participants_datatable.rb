@@ -1,11 +1,10 @@
-# JDavis: This is a class to manage the json for the user_table.
+# JDavis: This is a class to manage the json for the participants_table.
 #         See http://railscasts.com/episodes/340-datatables for an explanation of the code.
 class ParticipantsDatatable
   delegate :params, :h, :link_to, :image_tag, :topic_group_assignment_path, :submission_status_image, :assignment, to: :@view
 
   def initialize(view, topic_group_id, iteration_id)
     @view = view
-    #@topic_group_id = topic_group_id
     @topic_group_id = topic_group_id
     @iteration_id = iteration_id
   end
