@@ -27,6 +27,7 @@ class TopicGroup < ActiveRecord::Base
   has_many  :assignments, :dependent => :destroy
   has_many  :users, :through => :assignments
   has_many  :iterations, :dependent => :destroy
+  has_many  :elements, :dependent => :destroy
   has_many  :participating_users, :through => :assignments,
             :class_name => "User",
             :source => :user,
@@ -118,6 +119,7 @@ class TopicGroup < ActiveRecord::Base
         e.name = row[0]
         e.current = true
         e.created_by = current_user_id
+        e.topic_group_id = self.id
         if e.save 
           if !e.add_to_iteration(self.iterations.last.id, false, true)
             e.destroy #JDavis: no orphan elements.

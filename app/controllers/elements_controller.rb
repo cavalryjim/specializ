@@ -45,6 +45,7 @@ class ElementsController < ApplicationController
     @element = Element.new(params[:element])
     @element.current = true 
     @element.created_by = current_user.id
+    @element.topic_group_id = @topic_group.id
     
     if @element.unique_to_iteration?(@iteration.id)   
       if @element.save && @element.add_to_iteration(@iteration.id, true, true)

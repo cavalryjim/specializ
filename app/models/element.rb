@@ -13,13 +13,14 @@
 
 class Element < ActiveRecord::Base
   
+  belongs_to :topic_group
   has_many :iteration_lists, :dependent => :destroy
   has_many :iterations, :through => :iteration_lists
   has_many :user_lists, :dependent => :destroy
   has_many :users, :through => :user_lists
   has_many :element_attributes, :dependent => :destroy
   
-  attr_accessible :name, :current, :created_by, :edited_by, :element_attributes_attributes
+  attr_accessible :name, :current, :created_by, :edited_by, :element_attributes_attributes, :topic_group_id
   validates :name,  :presence => true
   validates :created_by, :presence => true
   validates :current, :inclusion => {:in => [true, false]}
