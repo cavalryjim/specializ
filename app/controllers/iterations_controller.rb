@@ -10,6 +10,7 @@ class IterationsController < ApplicationController
 
   # GET /iterations/1
   # GET /iterations/1.xml
+  # JDavis: Yes, this is a very busy def but it truly is 'where the magic happens'.  I will trim it down in the future.
   def show
     #@iteration = Iteration.find(params[:id])
     @topic_group = TopicGroup.find(@iteration.topic_group_id)

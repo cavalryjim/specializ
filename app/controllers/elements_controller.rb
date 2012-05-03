@@ -1,7 +1,6 @@
 class ElementsController < ApplicationController
   before_filter :authenticate_user!
   load_and_authorize_resource
-  #require 'will_paginate'
   respond_to :html,:json
   
 
@@ -22,8 +21,6 @@ class ElementsController < ApplicationController
     @topic_group = TopicGroup.find_by_id(params[:topic_group_id])
     @iteration = Iteration.find_by_id(params[:iteration_id])
     #@element = Element.new
-    
-    #3.times { @element.element_attributes.build }
    
     #respond_with(@element, @topic_group, @iteration, @element)
     
@@ -33,7 +30,6 @@ class ElementsController < ApplicationController
   def edit
     @topic_group = TopicGroup.find_by_id(params[:topic_group_id])
     @iteration = Iteration.find_by_id(params[:iteration_id])
-    #@element = Element.find(params[:id])
     @element_attribute_types = ElementAttributeType.all
   end
 
@@ -90,7 +86,6 @@ class ElementsController < ApplicationController
 
     respond_to do |format|
       format.html { redirect_to topic_group_iteration_url(@topic_group, @iteration) }
-      format.xml  { head :ok }
     end
   end
   

@@ -1,7 +1,7 @@
 class CompaniesController < ApplicationController
   before_filter :authenticate_user!
   load_and_authorize_resource
-  respond_to :html, :js, :json
+  respond_to :html, :json
 
   # GET /companies/1/edit
   def edit

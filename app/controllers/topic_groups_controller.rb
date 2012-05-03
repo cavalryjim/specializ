@@ -118,7 +118,6 @@ class TopicGroupsController < ApplicationController
   
   def export_elements
     @topic_group = TopicGroup.find(params[:topic_group_id])
-    #path = ''
     file = @topic_group.export_elements 
     send_file file  
   end
