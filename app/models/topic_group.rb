@@ -67,7 +67,7 @@ class TopicGroup < ActiveRecord::Base
   def bar_chart
     below_goal = [] # array to hold iteration.consensus values that are below the topic_group.goal
     above_goal = [] # array to hold iteration.consensus values that have reached the topic_group.goal
-    self.iterations.each do |iteration|
+    self.iterations.order(:num).each do |iteration|
       if iteration.consensus.to_f < self.goal.to_f
         below_goal << iteration.consensus
         above_goal << nil
@@ -79,7 +79,7 @@ class TopicGroup < ActiveRecord::Base
     #consensus_data = self.iterations.map { |i| i.consensus } #JDavis had to take this out to get red vs. green bars.
     consensus_data = [below_goal, above_goal]
     
-    x_axis = self.iterations.map { |a| a.num.to_s }
+    x_axis = self.iterations.order(:num).map { |a| a.num.to_s }
     y_axis = [0, 10, 20, 30, 40, 50, 60, 70, 80, 90, 100]
     bar_chart = Gchart.bar( :title => "Consensus Levels",
                             :title_alignment => :left,
