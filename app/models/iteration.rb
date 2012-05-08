@@ -49,7 +49,7 @@ class Iteration < ActiveRecord::Base
     if included_elements > 0
       consensus = (sum - (total_elements - included_elements) * 100 ) / included_elements
     else
-      consensus = 0
+      consensus = 0.1 #JDavis: changing this to .1 because the barchart did not like 0
     end
     #self.consensus = consensus.nan? ? 0 : consensus
     self.consensus = consensus
