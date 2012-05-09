@@ -15,23 +15,15 @@
 	</div>
 	 
 	<div id="main_body" >
-     <!-- 
-	 <% if user_signed_in? %>
-	  <div id="browser_trigger">
-    		My Topics -
-  	  </div>
-	 <% end %>
-	 -->
+     
 	 <table id="layout_table" >
 	  <tr>
 	    <td>
 		  <div id="container">
 		  <% if user_signed_in? %>
-			<!-- <td id="browser_col" >-->
 			<div id="lLeft">
 				<%= render 'layouts/browser' %>
 			</div>
-			<!-- </td>-->
 		  <% end %>
 	        <div id="lCenter"><%= yield %></div>
 		  </div>
