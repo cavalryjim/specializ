@@ -16,12 +16,16 @@
 	
 	<div id="tabs-3" class="ui-tabs-hide">
 	  <div id = "staff" >
-		<%= render 'staff' %>
+		<% if !@topic.new_record? %>
+		  <%= render 'staff' %>
+		<% end %>
       </div>
 	</div>
 	<div id="tabs-4" class="ui-tabs-hide">
 	  <div id = "manage" >
-		<%= render 'manage' %>
+		<% if !@topic.new_record? %>
+		  <%= render 'manage' %>
+		<% end %>
       </div>
 	</div>
 </div>

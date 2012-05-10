@@ -10,7 +10,7 @@
 </div>
 
 <div>
-	<table id="staffing_table" class="display fouc">
+	<table id="assignments_table" class="display fouc" data-source="<%= topic_assign_particpants_url(@topic, format: 'json') %>" >
 	 <thead>
 	  <tr>
 	    <th class="center">User</th>
@@ -20,10 +20,13 @@
 	  </tr>
 	 </thead>
 	 <tbody>
+<!--
 		<% @assignments.each do |assignment| %>
 		  <tr>
-		    <td><%= link_to User.find(assignment.user_id), edit_topic_assignment_path(@topic, assignment) %></td>
-		    <td><%= TopicGroup.find(assignment.topic_group_id).name %></td>
+		    <td><%= link_to assignment.user, edit_topic_assignment_path(@topic, assignment) %></td>
+		    <td>
+			  <%= assignment.topic_group %>
+			</td>
 		    <td class="center">
 			  <%= best_in_place assignment, :manager, :type => :checkbox  %>
 			</td>
@@ -33,6 +36,7 @@
 			</td>
 		  </tr>
 		<% end %>
+-->
 	 </tbody>
 	</table>
 </div>

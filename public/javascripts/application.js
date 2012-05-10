@@ -75,7 +75,7 @@ $(function() {
 	}).multiselectfilter();
 	$( "#user_role_ids").multiselect({header: "Assign roles to user"});
 	
-	$( "#staffing_table" ).dataTable({ // datatable in the manager module's staffing tab
+	$( "#assignments_table" ).dataTable({ // datatable in the manager module's staffing tab
 		"aoColumns": [
 		              { "sWidth": "25%" },
 		              { "sWidth": "65%" },
@@ -84,6 +84,9 @@ $(function() {
 		          ],
 		"bAutoWidth": false,
 		"bJQueryUI": true,
+		"bProcessing": true,
+		"bServerSide": true,
+		"sAjaxSource": $('#assignments_table').data('source'),
         "sPaginationType": "full_numbers"
 	}).show(); 
 	

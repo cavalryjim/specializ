@@ -17,7 +17,7 @@ class AssignmentsController < ApplicationController
   # GET /assignments/1.xml
   def show
     #@assignment = Assignment.find(params[:id])
-
+    
     
   end
 
