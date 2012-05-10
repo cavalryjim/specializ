@@ -40,7 +40,8 @@ class TopicsController < ApplicationController
   def edit
     @topic = Topic.find(params[:id])
     @topics = Topic.where(:company_id => current_user.company_id)
-    @assignments = Assignment.where(:topic_group_id => TopicGroup.where(:topic_id => @topic.id))
+    #@assignments = Assignment.where(:topic_group_id => TopicGroup.where(:topic_id => @topic.id))
+    @assignments = Assignment.where(:topic_group_id => @topic.topic_group_ids)
     #@selected_groups = TopicGroup.where(:topic_id => @topic.id).map(&:grouping_id)
     @title = @topic
     

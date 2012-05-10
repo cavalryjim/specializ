@@ -59,17 +59,16 @@ class AssignmentsController < ApplicationController
   # PUT /assignments/1
   # PUT /assignments/1.xml
   def update
-    @topic = Topic.find(params[:topic_id])
-    #@assignment = Assignment.find(params[:id])
-
+    @topic_group = @assignment.topic_group
+    
     respond_to do |format|
       if @assignment.update_attributes(params[:assignment])
-        gflash :success => "Assignement updated."
-        format.html { redirect_to edit_topic_path(@topic) }
-        format.xml  { head :ok }
+        #gflash :success => "Assignment updated."
+        format.html { redirect_to edit_topic_path(@topic_group.topic_id), :notice => "Assignment updated." }
+        format.json  { head :ok }
       else
         format.html { render :action => "edit" }
-        format.xml  { render :xml => @assignment.errors, :status => :unprocessable_entity }
+        format.json { render :json => @assignment.erros.full_messsages, :status => :unprocessable_entitiy }
       end
     end
   end
