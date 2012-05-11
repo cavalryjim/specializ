@@ -5,15 +5,16 @@ class AssignmentsDatatable
 
   def initialize(view, topic_id)
     @view = view
-    @topic_id = topic_id
+    @topic_group_id = topic_group_id
+    @iteration_id = iteration_id
   end
 
   def as_json(options = {})
     {
       sEcho: params[:sEcho].to_i,
       #iTotalRecords: User.where(:company_id => @company_id).count,
-      iTotalRecords: Assignment.where(:topic_group_id => TopicGroup.where(:topic_id => @topic_id)).count,
-      iTotalDisplayRecords: assignments.total_entries,
+      iTotalRecords: TopicGroup.find(@topic_group_id).participating_users.count,
+      iTotalDisplayRecords: participants.total_entries,
       aaData: data
     }
   end
@@ -21,29 +22,31 @@ class AssignmentsDatatable
 private
 
   def data
-    assignments.map do |assignment|
-      [ 
-        link_to(assignment.user, edit_topic_assignment_path(@topic_id, assignment)),
-        assignment.topic_group,
-        best_in_place(assignment, :manager, :type => :checkbox),
-        link_to(image_tag('icons/cross.png'), topic_assignment_path(@topic, assignment), 
+    participants.map do |participant|
+      [
+        
+        #image_tag('icons/tick.png') if participant.submitted_list?(@iteration_id),
+        submission_status_image(@iteration_id, participant),
+        participant.first_name + " " + participant.last_name,
+        participant.email,
+        #if can? :manage, topic_group %>
+        link_to(image_tag('icons/cross.png'), topic_group_assignment_path(@topic_group_id, assignment(@topic_group_id, participant)), 
           :confirm => 'Remove this user from participating in this topic?', :method => :delete)
       ]
     end
   end
 
-  def assignments
-    @assignments ||= fetch_assignments
+  def participants
+    @participants ||= fetch_participants
   end
 
-  def fetch_assignments
-    #assignments = TopicGroup.find(@topic_group_id).participating_users.order("#{sort_column} #{sort_direction}")
-    assignments = Assignment.where(:topic_group_id => TopicGroup.where(:topic_id => @topic_id))
-    assignments = assignments.page(page).per_page(per_page)
-    #if params[:sSearch].present?
-    #  participants = participants.where("last_name like :search or first_name like :search", search: "%#{params[:sSearch]}%")
-    #end
-    assignments
+  def fetch_participants
+    participants = TopicGroup.find(@topic_group_id).participating_users.order("#{sort_column} #{sort_direction}")
+    participants = participants.page(page).per_page(per_page)
+    if params[:sSearch].present?
+      participants = participants.where("last_name like :search or first_name like :search", search: "%#{params[:sSearch]}%")
+    end
+    participants
   end
 
   def page

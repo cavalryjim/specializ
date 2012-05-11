@@ -58,7 +58,7 @@ Specializ::Application.routes.draw do
   end
   
   resources :topics do
-    match 'assign_participants', :to => 'topics#assign_participants'
+    match 'assigned_participants', :to => 'topics#assigned_participants'
     resources :topic_groups
     resources :assignments do
       get :autocomplete_user_last_name, :on => :collection

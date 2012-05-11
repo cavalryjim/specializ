@@ -133,7 +133,7 @@ class TopicsController < ApplicationController
     redirect_to edit_topic_path(@topic)
   end
   
-  def assign_participants
+  def assigned_participants
     @topic = Topic.find(params[:topic_id])
     #@assignment = Assignment.find(params[:assignment_id])
     
