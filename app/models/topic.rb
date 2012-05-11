@@ -83,6 +83,14 @@ class Topic < ActiveRecord::Base
     
   end
   
+  def user_ids
+    user_ids = []
+    self.topic_groups.each do |topic_group|
+      user_ids = user_ids + topic_group.user_ids
+    end
+    user_ids
+  end
+  
   private
     
     
