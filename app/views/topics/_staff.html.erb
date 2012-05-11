@@ -20,23 +20,7 @@
 	  </tr>
 	 </thead>
 	 <tbody>
-<!--
-		<% @assignments.each do |assignment| %>
-		  <tr>
-		    <td><%= link_to assignment.user, edit_topic_assignment_path(@topic, assignment) %></td>
-		    <td>
-			  <%= assignment.topic_group %>
-			</td>
-		    <td class="center">
-			  <%= best_in_place assignment, :manager, :type => :checkbox  %>
-			</td>
-		    <td class="center">
-			  <%= link_to image_tag('icons/cross.png'), topic_assignment_path(@topic, assignment), 
-				:confirm => 'Remove this user from participating in this topic?', :method => :delete %>
-			</td>
-		  </tr>
-		<% end %>
--->
+	   
 	 </tbody>
 	</table>
 </div>

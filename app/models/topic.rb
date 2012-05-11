@@ -91,6 +91,14 @@ class Topic < ActiveRecord::Base
     user_ids
   end
   
+  def assignments
+    assignments = []
+    self.topic_groups.each do |topic_group|
+      assignments = assignments + topic_group.assignments
+    end
+    assignments
+  end
+  
   private
     
     

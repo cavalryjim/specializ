@@ -29,6 +29,7 @@ gem 'gon', '2.1.0'
 gem 'rack-ssl', '~> 1.3.2', :require => 'rack/ssl'
 gem 'net-ldap', '~> 0.2.2'
 gem 'will_paginate', '3.0.3' 
+#gem 'kaminari', '0.13.0'
 
 
 #gem 'omniauth', '0.2.0' # JDavis: may need to change to version 0.3.2, or 0.2.6.

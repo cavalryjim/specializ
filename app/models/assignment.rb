@@ -24,6 +24,10 @@ class Assignment < ActiveRecord::Base
   validates :manager, :inclusion => {:in => [true, false]}
   validates :participating, :inclusion => {:in => [true, false]}
   
+  def user_last_name
+    self.user.last_name
+  end
+  
 end
 
 

@@ -5,16 +5,16 @@ class AssignmentsDatatable
 
   def initialize(view, topic_id)
     @view = view
-    @topic_group_id = topic_group_id
-    @iteration_id = iteration_id
+    @topic_id = topic_id
+    
   end
 
   def as_json(options = {})
     {
       sEcho: params[:sEcho].to_i,
-      #iTotalRecords: User.where(:company_id => @company_id).count,
-      iTotalRecords: TopicGroup.find(@topic_group_id).participating_users.count,
-      iTotalDisplayRecords: participants.total_entries,
+      iTotalRecords: Topic.find(@topic_id).assignments.count,
+      #iTotalDisplayRecords: assignments.total_entries,
+      iTotalDisplayRecords: Topic.find(@topic_id).assignments.count,
       aaData: data
     }
   end
@@ -22,31 +22,33 @@ class AssignmentsDatatable
 private
 
   def data
-    participants.map do |participant|
+    assignments.map do |assignment|
       [
-        
-        #image_tag('icons/tick.png') if participant.submitted_list?(@iteration_id),
-        submission_status_image(@iteration_id, participant),
-        participant.first_name + " " + participant.last_name,
-        participant.email,
-        #if can? :manage, topic_group %>
-        link_to(image_tag('icons/cross.png'), topic_group_assignment_path(@topic_group_id, assignment(@topic_group_id, participant)), 
+        (assignment[0] + " " + assignment[1]), 
+        assignment[2],
+        (best_in_place Assignment.find(assignment[4]), :manager, :type => :checkbox),
+        link_to(image_tag('icons/cross.png'), topic_assignment_path(@topic_id, assignment[4]), 
           :confirm => 'Remove this user from participating in this topic?', :method => :delete)
+        
       ]
     end
   end
 
-  def participants
-    @participants ||= fetch_participants
+  def assignments
+    @assignments ||= fetch_assignments
   end
 
-  def fetch_participants
-    participants = TopicGroup.find(@topic_group_id).participating_users.order("#{sort_column} #{sort_direction}")
-    participants = participants.page(page).per_page(per_page)
+  def fetch_assignments
+    sql = "select u.first_name as first_name, u.last_name as last_name, tg.name as name, a.manager as manager, a.id as assignment_id from users as u, topic_groups as tg, assignments as a where tg.topic_id = " + @topic_id.to_s + " and u.id = a.user_id and tg.id = a.topic_group_id order by u.last_name;"
+    assignments = ActiveRecord::Base.connection.execute(sql)
+    assignments = assignments.to_a
+    assignments = Kaminari.paginate_array(assignments).page(page).per(per_page)
+    
     if params[:sSearch].present?
-      participants = participants.where("last_name like :search or first_name like :search", search: "%#{params[:sSearch]}%")
+      assignments = assignments.where("assignment[0] like :search or assignment[1] like :search", search: "%#{params[:sSearch]}%")
     end
-    participants
+    assignments
+    
   end
 
   def page

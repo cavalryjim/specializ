@@ -8,6 +8,9 @@ $(function() {
 	
 	//$( "#app_container" ).show(); //JDavis: this keeps from flashing unformatted content (fouc).
 	$( ".best_in_place" ).best_in_place();
+	//$( '.best_in_place' ).on('click', function(event){
+	//	$( ".best_in_place" ).best_in_place();
+	//});
 	
 	
 	$(".panel").panel({
@@ -86,8 +89,11 @@ $(function() {
 		"bJQueryUI": true,
 		"bProcessing": true,
 		"bServerSide": true,
+		//"fnInitComplete": function() { $( ".best_in_place" ).best_in_place(); },
+		"fnDrawCallback": function() { $( ".best_in_place" ).best_in_place(); },
 		"sAjaxSource": $('#assignments_table').data('source'),
         "sPaginationType": "full_numbers"
+        	
 	}).show(); 
 	
 	$( "#group_staffing_table" ).dataTable({ // datatable in the admin module
@@ -329,6 +335,7 @@ function add_fields(link, association, content) {
 	var regexp = new RegExp("new_" + association, "g")
 	$(link).parent().before(content.replace(regexp, new_id));
 }
+
 
 
 
