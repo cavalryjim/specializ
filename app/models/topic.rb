@@ -17,8 +17,11 @@
 
 class Topic < ActiveRecord::Base
   belongs_to :company
-  has_many :topic_groups, :dependent => :destroy
+  
   has_many :groupings, :through => :topic_groups
+  has_many :topic_groups, :dependent => :destroy
+  has_many :libraries, :through => :topic_libraries
+  has_many :topic_libraries, :dependent => :destroy
   
   attr_accessible :name, :description, :company_id, :status, :update_frequency, :due_days, :opt_out, :goal
   
@@ -53,6 +56,11 @@ class Topic < ActiveRecord::Base
       grouping = Grouping.find(grouping_id)
       grouping.remove_from_topic(self.id)
     end
+  end
+  
+  def update_libraries(library_ids)
+    
+    true
   end
   
   def has_update_frequency?

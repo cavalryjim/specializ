@@ -30,6 +30,7 @@ class TopicsController < ApplicationController
     @topic = Topic.new
     @topic.company_id = current_user.company_id
     @assignments = []
+    #@libraries = []
     #@selected_groups = []
     @title = 'Manager'
 
@@ -56,6 +57,7 @@ class TopicsController < ApplicationController
     
     if @topic.save && params[:topic][:grouping_ids]
       @topic.update_groupings(params[:topic][:grouping_ids])
+      @topic.update_libraries(params[:topic][:library_ids]) if params[:topic][:library_ids]
       gflash :success => 'Topic created.' 
     else
       @topic.errors[:base] << "You must select one or more participating groups." unless params[:topic][:grouping_ids]

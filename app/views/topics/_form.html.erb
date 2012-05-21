@@ -8,8 +8,11 @@
 		:multiple => true, :required => true, :disabled => @topic.status != 1 %>
   <%= f.input :goal, :label => 'Consensus goal', :required => true, :input_html => { :size => 4 }, 
 		:hint => 'Enter a percentage from 1 - 100.', :disabled => @topic.status != 1  %>
+  <%= f.association :libraries, :label => 'Libraries', 
+		:collection => nested_set_options(Library) {|i| "#{' -' * i.level} #{i.name}" },
+		:multiple => true, :required => false, :disabled => @topic.status != 1 %>
   <%= f.input :update_frequency, :input_html => { :size => 4 }, 
- 		:hint => 'If you need the Topic to periodically update, enter the nuber of days.', :disabled => @topic.status != 1  %>
+ 		:hint => 'If you need the Topic to periodically update, enter the number of days.', :disabled => @topic.status != 1  %>
   <%= f.input :due_days, :input_html => { :size => 4 }, 
 		:hint => 'Enter the number of days participants have to submit their input.', :disabled => @topic.status != 1  %> 
   <%= f.input :opt_out, :label => 'Allow participants to opt out?', :disabled => @topic.status != 1 %>

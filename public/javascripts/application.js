@@ -68,14 +68,26 @@ $(function() {
 		      at: 'center'
 		   }
 	}).multiselectfilter(); // select widget in the manager module's setup tab
+	
+	$( "#topic_library_ids").multiselect({
+		header: "Select libraries for topic",
+		minWidth: 300,
+		position: {
+		      my: 'center',
+		      at: 'center'
+		   }
+	}).multiselectfilter(); // select widget in the manager module's setup tab
+	
 	$( "#groupings").multiselect({
 		header: "Select groups that will participate",
 		minWidth: 300
 	}).multiselectfilter();
+	
 	$( "#user_grouping_ids").multiselect({
 		header: "Assign user to groups",
 		minWidth: 300
 	}).multiselectfilter();
+	
 	$( "#user_role_ids").multiselect({header: "Assign roles to user"});
 	
 	$( "#assignments_table" ).dataTable({ // datatable in the manager module's staffing tab

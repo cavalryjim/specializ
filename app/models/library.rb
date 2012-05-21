@@ -17,4 +17,10 @@
 class Library < ActiveRecord::Base
   acts_as_nested_set
   
+  has_many :topics, :through => :topic_libraries
+  has_many :topic_groups, :through => :topic_group_libraries
+  has_many :library_objectives, :dependent => :destroy
+  
+  attr_accessible :name, :number, :description, :parent_id 
+  
 end

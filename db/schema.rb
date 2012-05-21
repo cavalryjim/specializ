@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120521154526) do
+ActiveRecord::Schema.define(:version => 20120521200910) do
 
   create_table "active_admin_comments", :force => true do |t|
     t.integer  "resource_id",   :null => false
@@ -188,6 +188,15 @@ ActiveRecord::Schema.define(:version => 20120521154526) do
     t.datetime "updated_at"
   end
 
+  create_table "library_objectives", :force => true do |t|
+    t.string   "name"
+    t.string   "number"
+    t.text     "description"
+    t.integer  "library_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "roles", :force => true do |t|
     t.string   "name"
     t.string   "description"
@@ -202,6 +211,13 @@ ActiveRecord::Schema.define(:version => 20120521154526) do
 
   add_index "roles_users", ["role_id", "user_id"], :name => "index_roles_users_on_role_id_and_user_id", :unique => true
 
+  create_table "topic_group_libraries", :force => true do |t|
+    t.integer  "library_id"
+    t.integer  "topic_group_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "topic_groups", :force => true do |t|
     t.string   "name"
     t.integer  "goal"
@@ -214,6 +230,13 @@ ActiveRecord::Schema.define(:version => 20120521154526) do
     t.string   "elements_spreadsheet"
     t.date     "due_date"
     t.integer  "due_days"
+  end
+
+  create_table "topic_libraries", :force => true do |t|
+    t.integer  "library_id"
+    t.integer  "topic_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "topics", :force => true do |t|
