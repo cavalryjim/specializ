@@ -72,7 +72,7 @@ gem 'will_paginate', '3.0.3'
 # and rake tasks are available in development mode:
 group :development do
   gem 'rspec-rails', '2.6.1'
-  gem 'annotate', '2.4.0'
+  gem 'annotate', '2.4.0' # '$ annotate --position before'
   gem 'nifty-generators', '~> 0.4.6'
   gem 'bullet', '~> 2.1.0'  # JDavis: this gem is very verbose.
 end

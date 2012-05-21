@@ -163,6 +163,12 @@ $(function() {
         "sPaginationType": "full_numbers"
 	}).show(); 
 	
+	$( "#library_topic_group_table" ).dataTable({
+		"bAutoWidth": false,
+		"bJQueryUI": true,
+        "sPaginationType": "full_numbers"
+	}).show();
+	
 	
 	// JDavis: image that opens / closes the element attributes div
 	$('#rating_table img.details').live( 'click', function () {

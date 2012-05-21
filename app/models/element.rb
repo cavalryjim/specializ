@@ -2,13 +2,14 @@
 #
 # Table name: elements
 #
-#  id         :integer(4)      not null, primary key
-#  name       :string(255)
-#  current    :boolean(1)
-#  created_by :integer(4)
-#  edited_by  :integer(4)
-#  created_at :datetime
-#  updated_at :datetime
+#  id             :integer(4)      not null, primary key
+#  name           :string(255)
+#  current        :boolean(1)
+#  created_by     :integer(4)
+#  edited_by      :integer(4)
+#  created_at     :datetime
+#  updated_at     :datetime
+#  topic_group_id :integer(4)
 #
 
 class Element < ActiveRecord::Base
