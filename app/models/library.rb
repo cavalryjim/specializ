@@ -23,4 +23,17 @@ class Library < ActiveRecord::Base
   
   attr_accessible :name, :number, :description, :parent_id 
   
+  def ancestor_ids
+    classes = ''
+    
+    self.ancestors.each do |group|
+      classes = classes + " " + group.id.to_s
+    end
+    
+    classes
+  end
+  
+  def display_name
+    "#{' -' * self.level} #{self.name}"
+  end
 end

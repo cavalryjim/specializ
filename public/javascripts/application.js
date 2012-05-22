@@ -72,6 +72,13 @@ $(function() {
 	$( "#topic_library_ids").multiselect({
 		header: "Select libraries for topic",
 		minWidth: 300,
+		click: function(event, ui){
+		      //$callback.text(ui.value + ' ' + (ui.checked ? 'checked' : 'unchecked') );
+			  //alert(ui.value + " " + ui.checked);
+			str = "#topic_library_ids " + "." + ui.value;
+			$( "#topic_library_ids option " ).attr('selected', 'selected');
+			//alert(str);
+		   },
 		position: {
 		      my: 'center',
 		      at: 'center'
