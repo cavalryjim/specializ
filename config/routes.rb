@@ -88,6 +88,7 @@ Specializ::Application.routes.draw do
   resources :ldap_settings
   resources :companies
   resources :assignments
+  resources :libraries
   
   root :to => 'me#home'
 

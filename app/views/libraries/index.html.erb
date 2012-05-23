@@ -1,0 +1,22 @@
+<div class="panel" >
+  <h1>Listing libraries</h1>
+  <div>
+	<table>
+	  <tr>
+	    <th>Name</th>
+	    <th></th>
+	  </tr>
+	
+	<% @libraries.each do |library| %>
+	  <tr>
+	    <td><%= link_to_if (can? :edit, library), library.display_name, edit_library_path(library) %> </td>
+	    <td><%= link_to 'Destroy', library, :confirm => 'Are you sure?', :method => :delete %></td>
+	  </tr>
+	<% end %>
+	</table>
+	
+	<br />
+	
+	<%= link_to 'New Library', new_library_path %>
+  </div>
+</div>

@@ -6,7 +6,6 @@
 <div id="manager_tabs" class="ui-tabs fouc">
 	<ul>
 		<li><a href="#tabs-1">Setup</a></li>
-		<li><a href="#tabs-2">Library</a></li>
 		<li><a href="#tabs-3">Staff</a></li>
 		<li><a href="#tabs-4">Manage</a></li>
 	</ul>
@@ -14,13 +13,6 @@
 		<%= render 'form' %>
 	</div>
 
-	<div id="tabs-2" class="ui-tabs-hide">
-	  <div id = "library" >
-		<% if !@topic.new_record? %>
-		  <%= render 'library' %>
-		<% end %>
-      </div>
-	</div>
 	
 	<div id="tabs-3" class="ui-tabs-hide">
 	  <div id = "staff" >

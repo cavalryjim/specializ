@@ -59,8 +59,16 @@ class Topic < ActiveRecord::Base
   end
   
   def update_libraries(library_ids)
+    library_ids.each do |library_id|
+      TopicLibrary.find_or_create_by_topic_id_and_library_id(self.id, library_id) 
+    end
+      
+    libraries_to_remove = TopicLibrary.where(:topic_id => self.id).map(&:library_id) - library_ids.map(&:to_i)
+      
+    libraries_to_remove.each do |library_id|
+      TopicLibrary.find_by_topic_id_and_library_id(self.id, library_id).destroy
+    end
     
-    true
   end
   
   def has_update_frequency?

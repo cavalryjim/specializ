@@ -83,6 +83,7 @@ class TopicsController < ApplicationController
     if params[:topic][:status] == 1.to_s && @topic.status == 1
       if params[:topic][:grouping_ids] && @topic.update_attributes(params[:topic])  
         @topic.update_groupings(params[:topic][:grouping_ids])
+        @topic.update_libraries(params[:topic][:library_ids]) if params[:topic][:library_ids]
         gflash :success => 'Topic updated.'
       else
         @topic.errors[:base] << "You must select one or more participating groups." unless params[:topic][:grouping_ids]

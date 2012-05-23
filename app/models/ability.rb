@@ -82,6 +82,13 @@ class Ability
         Topic.find(topic_group.topic_id).company_id == user.company_id
       end
       can :manage, UserElementAttributeList
+      can :manage, Library do |library|
+        library.new_record? or
+        library.company_id == user.company_id
+      end
+      can :read, Library do |library|
+        library.company_id.nil?
+      end
       
     end
     

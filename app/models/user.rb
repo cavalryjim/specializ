@@ -314,6 +314,11 @@ class User < ActiveRecord::Base
     #end
     true
   end
+  
+  def libraries
+    libraries = Library.arel_table
+    Library.where(libraries[:company_id].eq(nil).or(libraries[:company_id].eq(self.company_id)))
+  end
 
 
 end

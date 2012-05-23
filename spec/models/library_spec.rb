@@ -12,6 +12,7 @@
 #  depth       :integer(4)
 #  created_at  :datetime
 #  updated_at  :datetime
+#  company_id  :integer(4)
 #
 
 require 'spec_helper'

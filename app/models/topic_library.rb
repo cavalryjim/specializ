@@ -15,4 +15,8 @@ class TopicLibrary < ActiveRecord::Base
   
   attr_accessible :topic_id, :library_id
   
+  validates :topic_id, :presence => true
+  validates :library_id, :presence => true
+  validates_uniqueness_of :library_id, :scope => [ :topic_id ]
+  
 end

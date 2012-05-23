@@ -74,25 +74,39 @@ $(function() {
 		minWidth: 300,
 		click: function(event, ui){
 		    //$callback.text(ui.value + ' ' + (ui.checked ? 'checked' : 'unchecked') );
-			//alert(ui.value + " " + ui.checked);
-			//str = "#topic_library_ids " + "." + ui.value;
-			//$( "#topic_library_ids option " ).attr('selected', 'selected');
-			//$( ".option_class1").attr('selected', 'selected');
-			//$("select#topic_library_ids").children().attr('selected', 'selected');
-			//alert($('select option:selected').val());    
-			//$("select#topic_library_ids option[value='2']").attr('selected', 'selected');
-			//alert(this.id);
-			//$('option[value="2"]').attr('selected','selected');
-			//var vals = $( "#topic_library_ids").val();
-			//vals.push('2');
-			//alert(vals);
-			$( "#topic_library_ids").val([1,2]);
-
-		   },
+			var subgroups = "select#topic_library_ids .option_class" + ui.value;
+			var selectedGroup = "select#topic_library_ids option[value=" + ui.value + "]";
+			if (ui.checked) {
+				$(selectedGroup).attr('selected', 'selected');
+				//$(subgroups).attr('selected', 'selected');
+				$(subgroups).removeAttr('selected');
+				$(subgroups).attr('disabled', 'disabled');
+			} else {
+				$(selectedGroup).removeAttr('selected');
+				$(subgroups).removeAttr('selected');
+				$(subgroups).removeAttr('disabled');
+			}
+			$( "#topic_library_ids").multiselect("refresh");
+		},
+		create: function(){
+			var values = $( "#topic_library_ids").val();
+			if (values != null) {
+				var subgroups2 = "";
+				var selectGroup2 = "";
+				//alert(values);
+				for ( var i=0 ; i < values.length ; i++ ) {
+					subgroups2 = "select#topic_library_ids .option_class" + values[i];
+					selectedGroup2 = "select#topic_library_ids option[value=" + values[i] + "]";
+					$(selectedGroup2).attr('selected', 'selected');
+					$(subgroups2).attr('disabled', 'disabled');
+				}
+				$( "#topic_library_ids").multiselect("refresh");
+			}
+		},
 		position: {
 		      my: 'center',
 		      at: 'center'
-		   }
+		}
 	}).multiselectfilter(); // select widget in the manager module's setup tab
 	
 	$( "#groupings").multiselect({
