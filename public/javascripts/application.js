@@ -73,11 +73,21 @@ $(function() {
 		header: "Select libraries for topic",
 		minWidth: 300,
 		click: function(event, ui){
-		      //$callback.text(ui.value + ' ' + (ui.checked ? 'checked' : 'unchecked') );
-			  //alert(ui.value + " " + ui.checked);
-			str = "#topic_library_ids " + "." + ui.value;
-			$( "#topic_library_ids option " ).attr('selected', 'selected');
-			//alert(str);
+		    //$callback.text(ui.value + ' ' + (ui.checked ? 'checked' : 'unchecked') );
+			//alert(ui.value + " " + ui.checked);
+			//str = "#topic_library_ids " + "." + ui.value;
+			//$( "#topic_library_ids option " ).attr('selected', 'selected');
+			//$( ".option_class1").attr('selected', 'selected');
+			//$("select#topic_library_ids").children().attr('selected', 'selected');
+			//alert($('select option:selected').val());    
+			//$("select#topic_library_ids option[value='2']").attr('selected', 'selected');
+			//alert(this.id);
+			//$('option[value="2"]').attr('selected','selected');
+			//var vals = $( "#topic_library_ids").val();
+			//vals.push('2');
+			//alert(vals);
+			$( "#topic_library_ids").val([1,2]);
+
 		   },
 		position: {
 		      my: 'center',

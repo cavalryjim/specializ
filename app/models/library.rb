@@ -23,11 +23,11 @@ class Library < ActiveRecord::Base
   
   attr_accessible :name, :number, :description, :parent_id 
   
-  def ancestor_ids
+  def html_classes
     classes = ''
     
     self.ancestors.each do |group|
-      classes = classes + " " + group.id.to_s
+      classes = classes + "option_class" + group.id.to_s + ' '
     end
     
     classes

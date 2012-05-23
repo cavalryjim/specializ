@@ -13,7 +13,7 @@
 	<label class="select optional" for="topic_library_ids"> Libraries</label>
     <select class="select optional" id="topic_library_ids" multiple="multiple" name="topic[library_ids][]">
 	  <% Library.all(:order => 'lft ASC').each do |library| %>
-	    <option value="<%= library.id %>" class="<%= library.ancestor_ids %>"><%= library.display_name %></option>
+	    <option value="<%= library.id %>" class="<%= library.html_classes %>"><%= library.display_name %></option>
 	  <% end %>
     </select>
   </div>
