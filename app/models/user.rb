@@ -235,6 +235,45 @@ class User < ActiveRecord::Base
     return error_list
   end
   
+  def import_libraries(libraries_spreadsheet)
+    error_list = 0
+    Spreadsheet.client_encoding = 'UTF-8'
+      
+    book = Spreadsheet.open libraries_spreadsheet.path
+    sheet1 = book.worksheet 0
+    parent_list = []
+    last_library = self.libraries.last
+    
+    sheet1.each 1 do |row|  #JDavis: skipping the first row of the sheet.
+      if (row[0] && (row[0].downcase == 'number:' || row[0].downcase == 'description:'))
+        last_library.add_description(row.last) if row[0] && (row[0].downcase == 'description:') 
+        last_library.add_number(row.last) if row[0] && (row[0].downcase == 'number:') 
+      else
+        if row.length == 1
+          parent_id = nil 
+        else
+          parent_id = parent_list[row.length-2]
+        end
+        #parent_id = Grouping.find_all_by_name(row[1]).last.id || self.id
+        name = row.last
+        new_library = Library.find_or_initialize_by_name_and_parent_id_and_company_id(name, parent_id, nil) 
+        #new_group.company_id = self.company_id
+        
+        if new_library.save
+          parent_list[row.length-1] = new_library.id 
+          last_library = new_library
+        else
+          error_list = error_list + 1  
+        end
+      
+      end
+      
+    end
+    
+    return error_list
+  
+  end
+  
   def add_roles(role_names)
     role_names.each do |role_name|
       role = Role.find_by_name(role_name.to_s.downcase)
@@ -319,6 +358,7 @@ class User < ActiveRecord::Base
     libraries = Library.arel_table
     Library.where(libraries[:company_id].eq(nil).or(libraries[:company_id].eq(self.company_id)))
   end
-
-
+  
 end
+
+

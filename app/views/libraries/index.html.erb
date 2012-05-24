@@ -24,5 +24,12 @@
 	<br />
 	
 	<%= link_to 'New Library', new_library_path %>
+
+    <div style="padding:5px;">
+		<%= form_tag({ :controller => "libraries", :action => "import_libraries" }, {:multipart => true} ) do %>
+			Upload libraries: <%= file_field_tag 'file' %>
+			<%= submit_tag("Submit Libraries", :confirm => 'Upload libraries from spreadsheet?') %>
+		<% end %>
+	</div>
   </div>
 </div>

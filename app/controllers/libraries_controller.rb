@@ -85,4 +85,18 @@ class LibrariesController < ApplicationController
       format.xml  { head :ok }
     end
   end
+  
+  def import_libraries
+    #root = current_user.root_grouping
+    
+    if params[:file]
+      errors = current_user.import_libraries(params[:file])
+      gflash :success => 'There were ' + errors.to_s + ' errors.' 
+    else
+      gflash :notice => 'Please select an appropriate file to upload.'
+    end
+    
+    redirect_to libraries_path
+  end
+  
 end

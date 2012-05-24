@@ -57,4 +57,14 @@ class Library < ActiveRecord::Base
     classes = classes + '"'
   end
   
+  def add_description(description)
+    self.description = description
+    self.save
+  end
+  
+  def add_number(number)
+    self.number = number
+    self.save
+  end
+  
 end

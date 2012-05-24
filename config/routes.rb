@@ -42,6 +42,7 @@ Specializ::Application.routes.draw do
   match '/me/events', :to => 'me#events'
   get '/companies/:id', :to => 'companies#edit'
   #match '/ldap_settings', :to => 'companies#ldap_settings'
+  match '/libraries/import_libraries', :to => 'libraries#import_libraries'
    
   resources :topic_groups do
     resources :assignments
@@ -85,10 +86,10 @@ Specializ::Application.routes.draw do
     get :autocomplete_company_name, :on => :collection, :full => true
   end
   
+  resources :libraries
   resources :ldap_settings
   resources :companies
   resources :assignments
-  resources :libraries
   
   root :to => 'me#home'
 
