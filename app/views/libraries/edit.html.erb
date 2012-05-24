@@ -1,6 +1,8 @@
-<h1>Editing library</h1>
 
-<%= render 'form' %>
-
-<%= link_to 'Show', @library %> |
-<%= link_to 'Back', libraries_path %>
+<div class="panel" style="height:600px;">
+	<h3>Editing Library: <%= @library.fullname %></h3>
+	<div>
+		<%= render 'form' %>
+	    <%= link_to 'Back', libraries_path %>
+	</div>
+</div>

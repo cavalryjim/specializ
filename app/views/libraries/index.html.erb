@@ -1,18 +1,24 @@
 <div class="panel" >
   <h1>Listing libraries</h1>
   <div>
-	<table>
+	<table id="libraries_table" class="display " >
+	 <thead>
 	  <tr>
+	  	<th>lft</th>
 	    <th>Name</th>
 	    <th></th>
 	  </tr>
+	 </thead>
 	
-	<% @libraries.each do |library| %>
-	  <tr>
-	    <td><%= link_to_if (can? :edit, library), library.display_name, edit_library_path(library) %> </td>
-	    <td><%= link_to 'Destroy', library, :confirm => 'Are you sure?', :method => :delete %></td>
-	  </tr>
-	<% end %>
+	 <tbody>
+	  <% @libraries.each do |library| %>
+	    <tr>
+	      <td><%= library.lft %></td>
+	      <td><%= link_to_if (can? :edit, library), library.display_name, edit_library_path(library) %> </td>
+	      <td><%= link_to_if (can? :delete, library), image_tag('icons/cross.png'), library, :confirm => 'Are you sure?', :method => :delete %></td>
+	    </tr>
+	  <% end %>
+	 </tbody>
 	</table>
 	
 	<br />

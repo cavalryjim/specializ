@@ -29,6 +29,10 @@ class Library < ActiveRecord::Base
     "#{' -' * self.level} #{self.name}"
   end
   
+  def fullname
+    self.self_and_ancestors.map(&:name).join("- ")
+  end
+  
   def add_to_topic(topic)
     TopicLibrary.create_or_update_by_topic_id_and_library_id(topic.id, self.id) 
   end

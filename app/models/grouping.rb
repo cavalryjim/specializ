@@ -29,7 +29,7 @@ class Grouping < ActiveRecord::Base
   validates_uniqueness_of :name, :scope => [ :company_id, :parent_id ]    # Unique for [name, company, parent]
   
   def fullname
-    return self.self_and_ancestors.map(&:name).join("- ")
+    self.self_and_ancestors.map(&:name).join("- ")
   end
   
   def to_s

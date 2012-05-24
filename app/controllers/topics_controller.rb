@@ -33,6 +33,7 @@ class TopicsController < ApplicationController
     #@libraries = []
     #@selected_groups = []
     @title = 'Manager'
+    
 
     respond_with(@topic)
   end

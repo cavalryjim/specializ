@@ -206,11 +206,19 @@ $(function() {
         "sPaginationType": "full_numbers"
 	}).show(); 
 	
-	$( "#library_topic_group_table" ).dataTable({
+	$( "#libraries_table" ).dataTable({
+		"aaSorting": [[0,'asc']],
+		"aoColumns": [
+		              { "bVisible": false },
+		              null,
+		              { "sWidth": "5px", "bSortable": false }
+		          ],
 		"bAutoWidth": false,
 		"bJQueryUI": true,
         "sPaginationType": "full_numbers"
 	}).show();
+	
+	
 	
 	
 	// JDavis: image that opens / closes the element attributes div
