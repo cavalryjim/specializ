@@ -50,7 +50,7 @@ $(function() {
 	$( "#me_tabs" ).tabs({ cookie:{ expires:1 } }).show();   // tabs used in the Me module
 	
 	$( "#libraries_tree" ).treeview({
-			persist: "location",
+			//persist: "location",
 			collapsed: true,
 			unique: true
 	});

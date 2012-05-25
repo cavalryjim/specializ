@@ -250,15 +250,10 @@ class User < ActiveRecord::Base
         last_library.add_number(row.last) if (row.first.downcase == 'number:') 
       else
         
-        if row.length == 1
-          parent_id = nil 
-        else
-          parent_id = parent_list[row.length-2]
-        end
-        #parent_id = Grouping.find_all_by_name(row[1]).last.id || self.id
         name = row.last
+        parent_id = (row.length==1) ? nil : parent_list[row.length-2]
+        
         new_library = Library.find_or_initialize_by_name_and_parent_id_and_company_id(name, parent_id, nil) 
-        #new_group.company_id = self.company_id
         
         if new_library.save
           parent_list[row.length-1] = new_library.id 
@@ -266,9 +261,7 @@ class User < ActiveRecord::Base
         else
           error_list = error_list + 1  
         end
-      
-      end
-      
+      end  
     end
     
     return error_list
