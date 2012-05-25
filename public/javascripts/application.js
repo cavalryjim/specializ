@@ -6,12 +6,7 @@ var giRedraw = false;
 
 $(function() {
 	
-	//$( "#app_container" ).show(); //JDavis: this keeps from flashing unformatted content (fouc).
 	$( ".best_in_place" ).best_in_place();
-	//$( '.best_in_place' ).on('click', function(event){
-	//	$( ".best_in_place" ).best_in_place();
-	//});
-	
 	
 	$(".panel").panel({
 		collapsible:false
@@ -48,6 +43,7 @@ $(function() {
 	mTabs = $( "#manager_tabs" ).tabs({ cookie:{ expires:1 } }).show(); // tabs used in the manager module
 	hrTabs = $( "#hr_tabs" ).tabs({ cookie:{ expires:1 } }).show(); // tabs used in the HR module
 	$( "#me_tabs" ).tabs({ cookie:{ expires:1 } }).show();   // tabs used in the Me module
+	$( "#library_tabs" ).tabs({ cookie:{ expires:1 } }).show();
 	
 	$( "#libraries_tree" ).treeview({
 			//persist: "location",
@@ -201,12 +197,11 @@ $(function() {
         "sPaginationType": "full_numbers"
 	}).show(); 
 	
-	$( "#libraries_table" ).dataTable({
-		"aaSorting": [[0,'asc']],
+	$( "#objectives_table" ).dataTable({
 		"aoColumns": [
-		              { "bVisible": false },
-		              null,
-		              { "sWidth": "5px", "bSortable": false }
+		              { "sWidth": "5%", "bSortable": true },
+		              { "sWidth": "7%", "bSortable": false },
+		              { "sWidth": "88%" }
 		          ],
 		"bAutoWidth": false,
 		"bJQueryUI": true,

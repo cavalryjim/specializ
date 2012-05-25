@@ -86,7 +86,9 @@ Specializ::Application.routes.draw do
     get :autocomplete_company_name, :on => :collection, :full => true
   end
   
-  resources :libraries
+  resources :libraries do
+    resources :library_objectives
+  end
   resources :ldap_settings
   resources :companies
   resources :assignments

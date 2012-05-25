@@ -1,0 +1,21 @@
+<h1>Listing library_objectives</h1>
+
+<table>
+  <tr>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @library_objectives.each do |library_objective| %>
+  <tr>
+    <td><%= link_to 'Show', library_objective %></td>
+    <td><%= link_to 'Edit', edit_library_objective_path(library_objective) %></td>
+    <td><%= link_to 'Destroy', library_objective, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Library objective', new_library_objective_path %>

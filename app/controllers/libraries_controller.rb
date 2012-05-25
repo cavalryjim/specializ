@@ -40,6 +40,8 @@ class LibrariesController < ApplicationController
   # GET /libraries/1/edit
   def edit
     @library = Library.find(params[:id])
+    @objectives = @library.library_objectives
+    
   end
 
   # POST /libraries
