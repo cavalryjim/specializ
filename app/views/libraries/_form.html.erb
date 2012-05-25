@@ -5,7 +5,7 @@
     <% end %>
   <% end %>
 
-  <%= f.input :name %>
+  <%= f.input :name, :disabled => disable_field?(:company_id) %>
   <%= f.input :number %>
   <%= f.input :description, :as => :text %>
   <%= f.input :parent_id, :label => 'Parent library', 

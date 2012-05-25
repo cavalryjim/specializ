@@ -1,26 +1,15 @@
 <div class="panel" >
   <h1>Listing libraries</h1>
   <div>
-	<table id="libraries_table" class="display " >
-	 <thead>
-	  <tr>
-	  	<th>lft</th>
-	    <th>Name</th>
-	    <th></th>
-	  </tr>
-	 </thead>
-	
-	 <tbody>
-	  <% @libraries.each do |library| %>
-	    <tr>
-	      <td><%= library.lft %></td>
-	      <td><%= link_to_if (can? :edit, library), library.display_name, edit_library_path(library) %> </td>
-	      <td><%= link_to_if (can? :delete, library), image_tag('icons/cross.png'), library, :confirm => 'Are you sure?', :method => :delete %></td>
-	    </tr>
+	<div >
+	  <%= nested_li(@libraries) do |library| %>
+		<% if library.leaf? %>
+	      <span class="file"><%= link_to library.name, edit_library_path(library) %></span>
+		<% else %>
+		  <span class="folder"><%= link_to library.name, edit_library_path(library) %></span>
+		<% end %>
 	  <% end %>
-	 </tbody>
-	</table>
-	
+	</div>
 	<br />
 	
 	<%= link_to 'New Library', new_library_path %>

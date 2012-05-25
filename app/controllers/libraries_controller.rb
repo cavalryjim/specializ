@@ -7,8 +7,8 @@ class LibrariesController < ApplicationController
   # GET /libraries
   # GET /libraries.xml
   def index
-    @libraries = current_user.libraries
-
+    @libraries = current_user.libraries.order('lft ASC')
+    
     respond_to do |format|
       format.html # index.html.erb
       format.xml  { render :xml => @libraries }

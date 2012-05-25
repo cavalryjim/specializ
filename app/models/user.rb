@@ -245,10 +245,11 @@ class User < ActiveRecord::Base
     last_library = self.libraries.last
     
     sheet1.each 1 do |row|  #JDavis: skipping the first row of the sheet.
-      if (row[0] && (row[0].downcase == 'number:' || row[0].downcase == 'description:'))
-        last_library.add_description(row.last) if row[0] && (row[0].downcase == 'description:') 
-        last_library.add_number(row.last) if row[0] && (row[0].downcase == 'number:') 
+      if ['number:','description:'].include?(row.first)
+        last_library.add_description(row.last) if (row.first.downcase == 'description:') 
+        last_library.add_number(row.last) if (row.first.downcase == 'number:') 
       else
+        
         if row.length == 1
           parent_id = nil 
         else

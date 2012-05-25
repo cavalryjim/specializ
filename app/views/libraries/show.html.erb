@@ -1,5 +1,9 @@
-<p id="notice"><%= notice %></p>
+<div class="panel" >
+  <h3><%= @topic_group.active? ? @topic_group.name : @topic_group.name + ' (closed)' %> </h3>
+  <div>
 
 
-<%= link_to 'Edit', edit_library_path(@library) %> |
-<%= link_to 'Back', libraries_path %>
+	
+	<%= link_to 'Back', libraries_path %>
+  </div>
+</div>
