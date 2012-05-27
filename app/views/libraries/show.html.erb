@@ -1,8 +1,7 @@
 <div class="panel" >
-  <h3><%= @topic_group.active? ? @topic_group.name : @topic_group.name + ' (closed)' %> </h3>
+  <h3>Viewing Library: <%= @library.fullname %> </h3>
   <div>
-
-
+	<%= render 'tabs' %>
 	
 	<%= link_to 'Back', libraries_path %>
   </div>

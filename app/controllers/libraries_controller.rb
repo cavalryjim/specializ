@@ -19,6 +19,7 @@ class LibrariesController < ApplicationController
   # GET /libraries/1.xml
   def show
     @library = Library.find(params[:id])
+    @objectives = @library.library_objectives
 
     respond_to do |format|
       format.html # show.html.erb
@@ -99,6 +100,20 @@ class LibrariesController < ApplicationController
     end
     
     redirect_to libraries_path
+  end
+  
+  # JDavis: this method imports objectives from a spreadsheet
+  def import_objectives
+     @library = Library.find(params[:library_id])
+     
+     if params[:file]
+      @library.import_objectives(params[:file])
+      gflash :success => "Objectives imported."
+     else
+      gflash :notice => "Please select an appropriate file."
+     end
+    
+    redirect_to :back
   end
   
 end

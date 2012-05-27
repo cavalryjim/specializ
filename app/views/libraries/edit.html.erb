@@ -2,6 +2,8 @@
 <div class="panel" style="height:600px;">
 	<h3>Editing Library: <%= @library.fullname %></h3>
 	<div>
-		<%= render 'tabs' %>
+	  <%= render 'tabs' %>
+
+	  <%= link_to 'Back', libraries_path %>
 	</div>
 </div>

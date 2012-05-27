@@ -5,13 +5,14 @@
     <% end %>
   <% end %>
 
-  <%= f.input :name, :disabled => disable_field?(:company_id) %>
-  <%= f.input :number %>
-  <%= f.input :description, :as => :text %>
+  <%= f.input :name, :disabled => !(can? :edit, @library) %>
+  <%= f.input :number, :disabled => !(can? :edit, @library) %>
+  <%= f.input :description, :as => :text, :disabled => !(can? :edit, @library) %>
   <%= f.input :parent_id, :label => 'Parent library', 
 		:collection => nested_set_options(Library) {|i| "#{' -' * i.level} #{i.name}" }, 
-		:include_blank => false, :input_html => { :class => 'simple_select' } %>
-  
-  <%= f.button :submit %>
+		:include_blank => false, :input_html => { :class => 'simple_select' }, :disabled => !(can? :edit, @library) %>
+  <% if can? :edit, @library %>
+  	<%= f.button :submit %>
+  <% end %>
 <% end %>
 

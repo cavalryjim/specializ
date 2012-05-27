@@ -4,9 +4,21 @@
 	<div >
 	  <%= nested_li(@libraries) do |library| %>
 		<% if library.leaf? %>
-	      <span class="file"><%= link_to library.name, edit_library_path(library) %></span>
+	      <span class="file">
+			<% if can? :edit, library %>
+			  <%= link_to library.name, edit_library_path(library) %>
+			<% else %>
+			  <%= link_to library.name, library %>
+			<% end %>
+		  </span>
 		<% else %>
-		  <span class="folder"><%= link_to library.name, edit_library_path(library) %></span>
+		  <span class="folder">
+			<% if can? :edit, library %>
+			  <%= link_to library.name, edit_library_path(library) %>
+			<% else %>
+			  <%= link_to library.name, library %>
+			<% end %>
+		  </span>
 		<% end %>
 	  <% end %>
 	</div>

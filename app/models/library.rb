@@ -67,4 +67,21 @@ class Library < ActiveRecord::Base
     self.save
   end
   
+  def import_objectives(objectives_spreadsheet)
+    Spreadsheet.client_encoding = 'UTF-8'
+      
+    book = Spreadsheet.open objectives_spreadsheet.path
+  
+    sheet1 = book.worksheet 0
+    sheet1.each 1 do |row|  #JDavis: skipping the first row of the sheet.
+      objective = LibraryObjective.new
+      objective.number = row[0]
+      objective.name = row[1]
+      objective.description = row[2]
+      objective.library_id = self.id
+      objective.save  
+    end  
+    
+  end
+  
 end

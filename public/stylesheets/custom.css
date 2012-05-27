@@ -638,6 +638,10 @@ form#user_new {
   margin-left: 185px;
 }
 
+.simple_form input[disabled='disabled'], .simple_form textarea[disabled='disabled'], .simple_form select[disabled='disabled'] {
+  background: #D8D8D8;
+}]
+
 .simple_form div.boolean label, .simple_form label.collection_radio {
   float: none;
   margin: 0;

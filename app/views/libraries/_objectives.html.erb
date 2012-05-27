@@ -1,5 +1,5 @@
 <div>
-	<table id="objectives_table" class="display fouc" data-source="<%= library_library_objectives_url(@library, format: 'json') %>">
+	<table id="objectives_table" class="display fouc" >
 	 <thead>
 	  <tr>
 	  	<th class="center">Num</th>
@@ -9,7 +9,31 @@
 	  </tr>
 	 </thead>
 	 <tbody>
+	  <% @objectives.each do |objective| %>
+	    <tr>
+	      <td>
+			<%= objective.number %>
+		  </td>
 		
+	      <td>
+			<%= objective.name %>
+		  </td>
+
+	      <td>
+			<%= objective.description %>
+		  </td>
+		</tr>
+      <% end %>
 	 </tbody>
 	</table>
+</div>
+
+<div>
+  <%= form_tag({ :controller => "libraries", :action => "import_objectives"}, {:multipart => true} ) do %>
+	
+    Upload objectives: <%= file_field_tag 'file', :disabled => !(can? :manage, @library) %>
+	
+	<%= hidden_field_tag(:library_id, @library.id) %>
+	<%= submit_tag("Submit List", :confirm => 'Upload objectives from spreadsheet?', :disabled => !(can? :manage, @library)) %>
+  <% end %>
 </div>

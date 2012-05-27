@@ -200,8 +200,8 @@ $(function() {
 	$( "#objectives_table" ).dataTable({
 		"aoColumns": [
 		              { "sWidth": "5%", "bSortable": true },
-		              { "sWidth": "7%", "bSortable": false },
-		              { "sWidth": "88%" }
+		              { "sWidth": "30%", "bSortable": true },
+		              { "sWidth": "65%", "bSortable": false }
 		          ],
 		"bAutoWidth": false,
 		"bJQueryUI": true,

@@ -43,6 +43,7 @@ Specializ::Application.routes.draw do
   get '/companies/:id', :to => 'companies#edit'
   #match '/ldap_settings', :to => 'companies#ldap_settings'
   match '/libraries/import_libraries', :to => 'libraries#import_libraries'
+  match '/libraries/import_objectives', :to => 'libraries#import_objectives'
    
   resources :topic_groups do
     resources :assignments
