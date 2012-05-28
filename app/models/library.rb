@@ -46,7 +46,11 @@ class Library < ActiveRecord::Base
     TopicLibrary.find_by_topic_id_and_library_id(topic_id, self.id) ? 'selected="selected"' : ''
   end
   
+  def html_class
+    
+  end
   
+
   def html_classes
     classes = 'class="  '
     

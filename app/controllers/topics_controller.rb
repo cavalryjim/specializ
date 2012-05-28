@@ -30,7 +30,7 @@ class TopicsController < ApplicationController
     @topic = Topic.new
     @topic.company_id = current_user.company_id
     @assignments = []
-    #@libraries = []
+    @libraries = current_user.libraries.order('lft ASC')
     #@selected_groups = []
     @title = 'Manager'
     
@@ -45,6 +45,7 @@ class TopicsController < ApplicationController
     #@assignments = Assignment.where(:topic_group_id => TopicGroup.where(:topic_id => @topic.id))
     @assignments = Assignment.where(:topic_group_id => @topic.topic_group_ids)
     #@selected_groups = TopicGroup.where(:topic_id => @topic.id).map(&:grouping_id)
+    @libraries = current_user.libraries.order('lft ASC')
     @title = @topic
     
     respond_with(@topic)
