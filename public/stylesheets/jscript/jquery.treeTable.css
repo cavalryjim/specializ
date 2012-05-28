@@ -4,6 +4,20 @@
  * table is assigned the +treeTable+ class.
  * ========================================================================= */
 
+.treeTable span {
+  background-position: center left;
+  background-repeat: no-repeat;
+  padding: .2em 0 .2em 1.5em;
+}
+
+.treeTable span.file {
+  background-image: url(../../images/treeTable/page_white_text.png);
+}
+
+.treeTable span.folder {
+  background-image: url(../../images/treeTable/folder.png);
+}
+
 /* jquery.treeTable.collapsible
  * ------------------------------------------------------------------------- */
 .treeTable tr td .expander {

@@ -60,6 +60,7 @@ $(function() {
 		   }
 	}).multiselectfilter(); // select widget in the manager module's setup tab
 	
+	// JDavis: this is not used but I want to save the functionality for another widget.
 	$( "#topic_library_ids").multiselect({
 		header: "Select libraries for topic",
 		minWidth: 300,
@@ -209,8 +210,8 @@ $(function() {
 	}).show();
 	
 	$( '#topic_library_table' ).treeTable({
-		  childPrefix: 'parent-is-',
-		  treeColumn: 2
+		indent: 20,
+		treeColumn: 2
 	});
 	
 	

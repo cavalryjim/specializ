@@ -46,8 +46,15 @@ class Library < ActiveRecord::Base
     TopicLibrary.find_by_topic_id_and_library_id(topic_id, self.id) ? 'selected="selected"' : ''
   end
   
+  def parent?
+    self.children.size > 0
+  end
+  
   def html_class
-    "parent-is-library-" + self.parent.id.to_s if self.child?
+    str = ""
+    str = "parent " if self.parent?
+    str = str + "child-of-node--" + self.ancestors.map(&:id).join("-") if self.child? 
+    return str
   end
   
 

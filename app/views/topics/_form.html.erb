@@ -8,18 +8,6 @@
 		:multiple => true, :required => true, :disabled => @topic.status != 1 %>
   <%= f.input :goal, :label => 'Consensus goal', :required => true, :input_html => { :size => 4 }, 
 		:hint => 'Enter a percentage from 1 - 100.', :disabled => @topic.status != 1  %>
-
-  <div class="input select optional">
-	<label class="select optional" for="topic_library_ids"> Libraries</label>
-    <select class="select optional" id="topic_library_ids" multiple="multiple" name="topic[library_ids][]">
-	  <% Library.all(:order => 'lft ASC').each do |library| %>
-	    <option value="<%= library.id %>" <%= library.html_classes.html_safe %> <%= library.selected?(@topic.id) %> >
-		  <%= library.display_name %>
-		</option>
-	  <% end %>
-    </select>
-  </div>
-
   <%= f.input :update_frequency, :input_html => { :size => 4 }, 
  		:hint => 'If you need the Topic to periodically update, enter the number of days.', :disabled => @topic.status != 1  %>
   <%= f.input :due_days, :input_html => { :size => 4 }, 
