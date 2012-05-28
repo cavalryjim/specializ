@@ -6,9 +6,9 @@ module TopicsHelper
   
   def display_as_file_or_folder(library)
     if library.parent?
-       "<span class='folder'>"+library.display_name+"</span>"
+       "<span class='folder'>"+library.name+"</span>"
      else
-       "<span class='file'>"+library.display_name+"</span>"
+       "<span class='file'>"+library.name+"</span>"
      end     
   end
   

@@ -29,6 +29,10 @@ class Library < ActiveRecord::Base
     "#{' -' * self.level} #{self.name}"
   end
   
+  def to_s
+    self.name
+  end
+  
   def fullname
     self.self_and_ancestors.map(&:name).join("- ")
   end
