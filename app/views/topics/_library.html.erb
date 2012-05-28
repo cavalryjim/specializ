@@ -1,6 +1,6 @@
 <h3>Libraries</h3>
 <div>
-	<table id="library_topic_group_table" class="display ">
+	<table id="topic_library_table" class="display ">
 	 <thead>
 	  <tr>
 	    <th class="center"></th>
@@ -11,7 +11,7 @@
 	 </thead>
 	 <tbody>
 	  <% @libraries.each do |library| %>
-	  	<tr id="library-<%=library.id%>" class="<%=library.html_class%>">
+	  	<tr id="library-<%=library.id.to_s%>" class="<%=library.html_class%>">
 		  <td width="5px"><%= check_box_tag library.id, library.selected?(@topic.id) %></td>
 
 		  <td width="7px">
@@ -19,8 +19,7 @@
 		  </td>
 
 		  <td>
-			
-			<%= library.name %>
+			<%= library.display_name %>
 		  </td>
 
 		</tr>

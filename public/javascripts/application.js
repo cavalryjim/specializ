@@ -208,7 +208,10 @@ $(function() {
         "sPaginationType": "full_numbers"
 	}).show();
 	
-	
+	$( '#topic_library_table' ).treeTable({
+		  childPrefix: 'parent-is-',
+		  treeColumn: 2
+	});
 	
 	
 	// JDavis: image that opens / closes the element attributes div

@@ -47,7 +47,7 @@ class Library < ActiveRecord::Base
   end
   
   def html_class
-    
+    "parent-is-library-" + self.parent.id.to_s if self.child?
   end
   
 
