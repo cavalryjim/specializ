@@ -148,8 +148,9 @@ class TopicsController < ApplicationController
     end
   end
   
-  def populate_from_library
+  def assign_libraries
     @topic = Topic.find(params[:topic_id])
+    jd
     
     #@topic.populate_from_library(params[:topic][:library_ids])
     gflash :success => "Topic items populated from selected libraries."

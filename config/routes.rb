@@ -61,7 +61,7 @@ Specializ::Application.routes.draw do
   
   resources :topics do
     match 'assigned_participants', :to => 'topics#assigned_participants'
-    match 'populate_from_library', :to => 'topics#populate_from_library'
+    match 'assign_libraries', :to => 'topics#assign_libraries'
     resources :topic_groups
     resources :assignments do
       get :autocomplete_user_last_name, :on => :collection

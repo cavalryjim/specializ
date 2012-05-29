@@ -1,5 +1,7 @@
 <h3>Libraries</h3>
-<div>
+
+<%= form_tag topic_assign_libraries_path(@topic), :id => 'topic_libraries_form' do %>
+  <div>
 	<table id="topic_library_table" class="display ">
 	 <thead>
 	  <tr>
@@ -11,8 +13,10 @@
 	 </thead>
 	 <tbody>
 	  <% @libraries.each do |library| %>
-	  	<tr id="node--<%=library.self_and_ancestors.map(&:id).join("-")%>" class="<%=library.html_class%>">
-		  <td width="5px"><%= check_box_tag "checkbox-"+library.id.to_s, library.selected?(@topic.id) %></td>
+	  	<tr id="node--<%=library.self_and_ancestors.map(&:id).join("-")%>" class="<%=row_classes(@topic.id, library)%>" >
+		  <td width="5px">
+			<%= check_box_tag "libraries["+library.id.to_s+"]", 1, library.selected?(@topic.id) %>
+		  </td>
 
 		  <td width="7px">
 			<%= library.number %>
@@ -26,8 +30,10 @@
 	  <% end %>
 	 </tbody>
 	</table>
-</div>
+  </div>
+  
+  <%= submit_tag("Assign Libraries", :confirm => 'Populate the topic from the selected libraries?') %> 
+  
 
-
-<%= button_to 'Populate Topic', topic_populate_from_library_path(@topic), :confirm => 'Populate the topic from the selected libraries?'  %> 
+<% end %>
 

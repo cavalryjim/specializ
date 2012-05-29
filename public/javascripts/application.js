@@ -65,13 +65,46 @@ $(function() {
 		treeColumn: 2
 	});
 	
-	$('#topic_library_table input[name^="checkbox-"]').click(function() {
-	    //$("#txtAge").toggle(this.checked);
-		var nTr = this.parentNode.parentNode;
-		var nTable = this.parentNode.parentNode.parentNode;
-		$('span', nTable).hide();
-		//alert(nTr.id);
-		//JDavis note: should be able to uncheck & disable for the entire table.
+	$('#topic_library_table input[name^="libraries"]').click(function() {
+		//var nTr = this.parentNode.parentNode;
+		
+		var nTd = this.parentNode;
+		var nTr = nTd.parentNode;
+		var nTable = nTr.parentNode;
+		var subgroups = ".desendant-of-" + nTr.id;
+		var classList = nTr.className.split(/\s+/);
+		//alert(classList);
+
+		
+		if (this.checked) {
+			$(subgroups + ' input[name^="libraries"]').removeAttr('checked');
+			$(subgroups + ' input[name^="libraries"]').attr('disabled', 'disabled');
+			for (var i = 0; i < classList.length; i++) {
+				var temp = new Array();
+				temp = classList[i].split('-of-')
+				if (temp[0] === 'desendant') {
+					$('#' + temp[1]).addClass("childSelected");
+				}
+				
+			}
+		} else {
+			$(subgroups + ' input[name^="libraries"]').removeAttr('selected');
+			$(subgroups + ' input[name^="libraries"]').removeAttr('disabled');
+			// JDavis: will need to check to see if 'childSelected' class needs to be removed.
+			for (var i = 0; i < classList.length; i++) {
+				var temp = new Array();
+				temp = classList[i].split('-of-')
+				if (temp[0] === 'desendant') {
+					//alert(temp[1]);
+					//$('#' + temp[1]).removeClass("childSelected");
+					// JDavis: could run through all the rows looking for row ids that start with the same name while checking
+					//    to see if the checkbox.checked.  Anything over 0 means the class stays.
+				}
+				
+			}
+			
+		}
+		
 	});
 	
 	// JDavis: this is not used but I want to save the functionality for another widget.

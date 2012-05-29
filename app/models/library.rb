@@ -38,16 +38,23 @@ class Library < ActiveRecord::Base
   end
   
   def add_to_topic(topic)
-    TopicLibrary.create_or_update_by_topic_id_and_library_id(topic.id, self.id) 
+    TopicLibrary.find_or_create_by_topic_id_and_library_id(topic.id, self.id) 
   end
   
   def remove_from_topic(topic_id)
     TopicLibrary.find_by_topic_id_and_library_id(topic_id, self.id).destroy
   end
   
-  # JDavis: me thinks this belongs in a helper and not the model....
   def selected?(topic_id)
-    TopicLibrary.find_by_topic_id_and_library_id(topic_id, self.id) ? 'selected="selected"' : ''
+    TopicLibrary.find_by_topic_id_and_library_id(topic_id, self.id)
+  end
+  
+  def descendants_selected?(topic_id)
+    descendants_selected = false
+    self.descendants.each do |group|
+      descendants_selected = true if group.selected?(topic_id)
+    end
+    descendants_selected
   end
   
   def parent?
@@ -57,7 +64,12 @@ class Library < ActiveRecord::Base
   def html_class
     str = ""
     str = "parent " if self.parent?
-    str = str + "child-of-node--" + self.ancestors.map(&:id).join("-") if self.child? 
+    if self.child? 
+      str = str + "child-of-node--" + self.ancestors.map(&:id).join("-") 
+      self.ancestors.each do |group|
+        str = str + "option_class" + group.id.to_s + ' '
+      end
+    end
     return str
   end
   
