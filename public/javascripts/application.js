@@ -60,6 +60,20 @@ $(function() {
 		   }
 	}).multiselectfilter(); // select widget in the manager module's setup tab
 	
+	$( '#topic_library_table' ).treeTable({
+		indent: 20,
+		treeColumn: 2
+	});
+	
+	$('#topic_library_table input[name^="checkbox-"]').click(function() {
+	    //$("#txtAge").toggle(this.checked);
+		var nTr = this.parentNode.parentNode;
+		var nTable = this.parentNode.parentNode.parentNode;
+		$('span', nTable).hide();
+		//alert(nTr.id);
+		//JDavis note: should be able to uncheck & disable for the entire table.
+	});
+	
 	// JDavis: this is not used but I want to save the functionality for another widget.
 	$( "#topic_library_ids").multiselect({
 		header: "Select libraries for topic",
@@ -208,12 +222,6 @@ $(function() {
 		"bJQueryUI": true,
         "sPaginationType": "full_numbers"
 	}).show();
-	
-	$( '#topic_library_table' ).treeTable({
-		indent: 20,
-		treeColumn: 2
-	});
-	
 	
 	// JDavis: image that opens / closes the element attributes div
 	$('#rating_table img.details').live( 'click', function () {

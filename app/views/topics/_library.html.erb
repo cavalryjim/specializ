@@ -12,7 +12,7 @@
 	 <tbody>
 	  <% @libraries.each do |library| %>
 	  	<tr id="node--<%=library.self_and_ancestors.map(&:id).join("-")%>" class="<%=library.html_class%>">
-		  <td width="5px"><%= check_box_tag library.id, library.selected?(@topic.id) %></td>
+		  <td width="5px"><%= check_box_tag "checkbox-"+library.id.to_s, library.selected?(@topic.id) %></td>
 
 		  <td width="7px">
 			<%= library.number %>
