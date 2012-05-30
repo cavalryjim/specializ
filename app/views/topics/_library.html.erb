@@ -22,7 +22,7 @@
 			<%= library.number %>
 		  </td>
 
-		  <td style="padding-left:<%=(library.level * 15).to_s%>px !important;">
+		  <td style="padding-left:<%=(library.level * 20).to_s%>px !important;">
 			<%= display_as_file_or_folder(library).html_safe %>
 		  </td>
 
@@ -31,7 +31,7 @@
 	 </tbody>
 	</table>
   </div>
-  
+  </br>
   <%= submit_tag("Assign Libraries", :confirm => 'Populate the topic from the selected libraries?') %> 
   
 

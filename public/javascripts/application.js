@@ -67,18 +67,18 @@ $(function() {
 	
 	$('#topic_library_table input[name^="libraries"]').click(function() {
 		//var nTr = this.parentNode.parentNode;
-		
 		var nTd = this.parentNode;
 		var nTr = nTd.parentNode;
 		var nTable = nTr.parentNode;
 		var subgroups = ".desendant-of-" + nTr.id;
 		var classList = nTr.className.split(/\s+/);
 		//alert(classList);
-
 		
 		if (this.checked) {
 			$(subgroups + ' input[name^="libraries"]').removeAttr('checked');
 			$(subgroups + ' input[name^="libraries"]').attr('disabled', 'disabled');
+			$('#'+ nTr.id).removeClass("childSelected");
+			$(subgroups).removeClass("childSelected");
 			for (var i = 0; i < classList.length; i++) {
 				var temp = new Array();
 				temp = classList[i].split('-of-')
@@ -90,15 +90,20 @@ $(function() {
 		} else {
 			$(subgroups + ' input[name^="libraries"]').removeAttr('selected');
 			$(subgroups + ' input[name^="libraries"]').removeAttr('disabled');
-			// JDavis: will need to check to see if 'childSelected' class needs to be removed.
+			$('#'+ nTr.id).removeClass("childSelected");
+			$(subgroups).removeClass("childSelected");
+			// JDavis: check to see if 'childSelected' class needs to be removed.
 			for (var i = 0; i < classList.length; i++) {
 				var temp = new Array();
 				temp = classList[i].split('-of-')
 				if (temp[0] === 'desendant') {
-					//alert(temp[1]);
-					//$('#' + temp[1]).removeClass("childSelected");
-					// JDavis: could run through all the rows looking for row ids that start with the same name while checking
-					//    to see if the checkbox.checked.  Anything over 0 means the class stays.
+					var str2 = ".desendant-of-" + temp[1];
+					var subgroupsSelected = new Array();
+					subgroupsSelected = $(str2 + " input:checked");
+					if (subgroupsSelected.length == 0) {
+						$('#' + temp[1]).removeClass("childSelected");
+					}
+					
 				}
 				
 			}
