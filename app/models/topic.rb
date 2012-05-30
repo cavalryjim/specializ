@@ -58,7 +58,7 @@ class Topic < ActiveRecord::Base
     end
   end
   
-  def update_libraries(library_ids)
+  def assign_libraries(library_ids)
     library_ids.each do |library_id|
       TopicLibrary.find_or_create_by_topic_id_and_library_id(self.id, library_id) 
     end

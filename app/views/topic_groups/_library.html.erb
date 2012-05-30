@@ -1,0 +1,39 @@
+<h3>Libraries</h3>
+
+<%= form_tag topic_group_assign_libraries_path(@topic_group), :id => 'topic_group_libraries_form' do %>
+  <div>
+	<table id="topic_group_library_table" class="display ">
+	 <thead>
+	  <tr>
+	    <th class="center"></th>
+	    <th class="center">Number</th>
+	    
+	    <th class="center">Name</th>
+	  </tr>
+	 </thead>
+	 <tbody>
+	  <% @libraries.each do |library| %>
+	  	<tr id="node--<%=library.self_and_ancestors.map(&:id).join("-")%>" class="<%=row_classes(@topic_group.id, library)%>" >
+		  <td width="5px">
+			<%= check_box_tag "libraries["+library.id.to_s+"]", 1, library.selected?(@topic_group.id) %>
+		  </td>
+
+		  <td width="7px">
+			<%= library.number %>
+		  </td>
+
+		  <td style="padding-left:<%=(library.level * 20).to_s%>px !important;">
+			<%= display_as_file_or_folder(library).html_safe %>
+		  </td>
+
+		</tr>
+	  <% end %>
+	 </tbody>
+	</table>
+  </div>
+  </br>
+  <%= submit_tag("Assign Libraries", :confirm => 'Populate the topic group from the selected libraries?') %> 
+  
+
+<% end %>
+

@@ -44,6 +44,7 @@ $(function() {
 	hrTabs = $( "#hr_tabs" ).tabs({ cookie:{ expires:1 } }).show(); // tabs used in the HR module
 	$( "#me_tabs" ).tabs({ cookie:{ expires:1 } }).show();   // tabs used in the Me module
 	$( "#library_tabs" ).tabs({ cookie:{ expires:1 } }).show();
+	$( "#topic_group_tabs" ).tabs({ cookie:{ expires:1 } }).show();
 	
 	$( "#libraries_tree" ).treeview({
 			//persist: "location",
@@ -65,7 +66,7 @@ $(function() {
 		treeColumn: 2
 	});
 	
-	$('#topic_library_table input[name^="libraries"]').click(function() {
+	$('#topic_library_table input[name^="libraries"], #topic_group_library_table input[name^="libraries"]').click(function() {
 		//var nTr = this.parentNode.parentNode;
 		var nTd = this.parentNode;
 		var nTr = nTd.parentNode;

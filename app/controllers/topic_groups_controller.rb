@@ -44,6 +44,8 @@ class TopicGroupsController < ApplicationController
   def edit
     @topic_group = TopicGroup.find(params[:id])
     @title = @topic_group
+    
+    @libraries = current_user.libraries.order('lft ASC')
   end
 
   # POST /topic_groups
@@ -129,6 +131,15 @@ class TopicGroupsController < ApplicationController
     respond_to do |format|
       format.json { render json: ParticipantsDatatable.new(view_context, @topic_group.id, @iteration.id)  }
     end
+  end
+  
+  def assign_libraries
+    @topic_group = TopicGroup.find(params[:topic_group_id])
+
+    @topic_group.assign_libraries(params[:libraries].map{|k,v| k})
+    gflash :success => "Topic group items populated from selected libraries."
+    
+    redirect_to edit_topic_topic_group_path(@topic_group.topic, @topic_group)
   end
   
 end

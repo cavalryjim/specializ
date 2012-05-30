@@ -21,9 +21,7 @@ module TopicsHelper
     if library.parent?
       str = "parent" 
       str = str + " childSelected" if library.descendants_selected?(topic_id)
-      #library.descendants.each do |group|
-      #  str = str + " ancestor-of-node--" + group.self_and_ancestors.map(&:id).join("-")
-      #end
+      
     end
     
     if library.child? 
@@ -32,7 +30,6 @@ module TopicsHelper
         str = str + " desendant-of-node--" + group.self_and_ancestors.map(&:id).join("-")
       end
     end
-    
     
     return str
   end

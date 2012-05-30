@@ -150,9 +150,8 @@ class TopicsController < ApplicationController
   
   def assign_libraries
     @topic = Topic.find(params[:topic_id])
-    jd
-    
-    #@topic.populate_from_library(params[:topic][:library_ids])
+
+    @topic.assign_libraries(params[:libraries].map{|k,v| k})
     gflash :success => "Topic items populated from selected libraries."
     
     redirect_to edit_topic_path(@topic)

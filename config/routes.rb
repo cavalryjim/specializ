@@ -46,6 +46,7 @@ Specializ::Application.routes.draw do
   match '/libraries/import_objectives', :to => 'libraries#import_objectives'
    
   resources :topic_groups do
+    match 'assign_libraries', :to => 'topics_groups#assign_libraries'
     resources :assignments
     post 'close', :to => 'topic_groups#close'
     post 'export', :to => 'topic_groups#export_elements'
