@@ -30,8 +30,4 @@ module TopicGroupsHelper
     return str
   end
   
-  def row_name(library)
-    "child-of-node--" + library.ancestors.map(&:id).join("-") if library.child? 
-  end
-  
 end
