@@ -115,6 +115,22 @@ class Topic < ActiveRecord::Base
     assignments
   end
   
+  def staff_topic(num)
+    topic_groups = self.topic_groups
+    percentage = num.to_f/100
+    users = []
+    
+    topic_groups.each do |topic_group|
+      group = Grouping.find(topic_group.grouping_id)
+      users = group.user_list(percentage)
+      topic_group.staff(users) if users.size > 0
+    end  
+  end
+  
+  def remove_all_participants
+    Assignment.find_all_by_topic_group_id(self.topic_group_ids).each{ |a| a.delete } if self.topic_group_ids.size > 0
+  end
+  
   private
     
     

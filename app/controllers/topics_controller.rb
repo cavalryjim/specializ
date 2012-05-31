@@ -120,21 +120,18 @@ class TopicsController < ApplicationController
   end
   
   #JDavis: Randomly select between 0 - 100% of the users in a group and staff to a topic_group.
-  def staff_topic
+  def staff_topic(restaff = true)
     @topic = Topic.find(params[:topic_id])
-    @topic_groups = @topic.topic_groups
-    new_notice = 'Topic staffed'
-    percentage = (params[:percentage]).to_f/100
-    users = []
+    value = params[:percentage].to_f if params.has_key?(:percentage)
     
-    @topic_groups.each do |topic_group|
-      group = Grouping.find(topic_group.grouping_id)
-      users = group.user_list(percentage)
-      topic_group.staff(users) if users.size > 0
+    if value > 0 && value <= 100
+      @topic.remove_all_participants if restaff
+      @topic.staff_topic(params[:percentage].to_f)
+      gflash :success => 'Topic staffed'
+    else
+      gflash :error => 'Please enter a valid number between 0 and 100'
     end
-    
-    gflash :success => new_notice
-    
+     
     redirect_to edit_topic_path(@topic)
   end
   

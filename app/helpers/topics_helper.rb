@@ -34,4 +34,12 @@ module TopicsHelper
     return str
   end
   
+  def staffing_confirmation(topic)
+    if topic.assignments.size > 0
+      "This will restaff the topic by removing existing participants.  Continue?"
+    else
+      "Staff the topic?"
+    end
+  end
+  
 end

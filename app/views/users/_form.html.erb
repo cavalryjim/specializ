@@ -4,6 +4,7 @@
 	  	<%= js add_gritter( msg, :title => "Error", :image => :error, :sticky => true ) %>
       <% end %>
   <% end %>
+  <%= image_tag @user.avatar_url if @user.avatar? %>
   <%= f.input :first_name %>
   <%= f.input :last_name %>
   <%= f.input :avatar, :disabled => true, :hint => 'avatar upload not available at the moment.' %>
