@@ -604,7 +604,8 @@ div.notice {
 
 #layout_table {
 	padding: 5px;
-	border: solid 1px #999;
+	/* border: solid 1px #999; */
+	
 	height: 700px;
 }
 
