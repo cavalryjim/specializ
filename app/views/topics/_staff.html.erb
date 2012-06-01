@@ -1,3 +1,5 @@
+<%= javascript_include_tag 'topic_staff' %>
+
 <h3>Listing assignments</h3>
 <div>
   <div align=left>
@@ -11,7 +13,7 @@
 </div>
 
 <div>
-	<%= select_tag( "topic_groups", options_from_collection_for_select(@topic.topic_groups, "id", "name"), { :include_blank => 'All Topic Groups', :class => 'simple_select' })%>
+	<%= select_tag( "topic_group_select", options_from_collection_for_select(@topic.topic_groups, "id", "name"), { :include_blank => 'All Topic Groups', :class => 'simple_select' })%>
 	<table id="assignments_table" class="display fouc" data-source="<%= topic_assigned_participants_url(@topic, format: 'json') %>" >
 	 <thead>
 	  <tr>

@@ -1,8 +1,6 @@
 var mTabs;
 var hrTabs;
 var meTabs;
-var giRedraw = false;
-
 
 $(function() {
 	
@@ -166,24 +164,6 @@ $(function() {
 	
 	$( "#user_role_ids").multiselect({header: "Assign roles to user"});
 	
-	$( "#assignments_table" ).dataTable({ // datatable in the manager module's staffing tab
-		"aoColumns": [
-		              { "sWidth": "25%" },
-		              { "sWidth": "65%" },
-		              { "sWidth": "5%", "bSortable": false },
-		              { "sWidth": "5%", "bSortable": false }
-		          ],
-		"bAutoWidth": false,
-		"bJQueryUI": true,
-		"bProcessing": true,
-		"bServerSide": true,
-		//"fnInitComplete": function() { $( ".best_in_place" ).best_in_place(); },
-		"fnDrawCallback": function() { $( ".best_in_place" ).best_in_place(); },
-		"sAjaxSource": $('#assignments_table').data('source'),
-        "sPaginationType": "full_numbers"
-        	
-	}).show(); 
-	
 	$( "#group_staffing_table" ).dataTable({ // datatable in the admin module
 		"aoColumns": [
 		              { "sWidth": "25%" },
@@ -262,6 +242,28 @@ $(function() {
         "sPaginationType": "full_numbers"
 	}).show();
 	
+	var aTable = $( "#assignments_table" ).dataTable({ // datatable in the manager module's staffing tab
+		"aoColumns": [
+		              { "sWidth": "25%" },
+		              { "sWidth": "65%" },
+		              { "sWidth": "5%", "bSortable": false },
+		              { "sWidth": "5%", "bSortable": false }
+		          ],
+		"bAutoWidth": false,
+		"bJQueryUI": true,
+		"bProcessing": true,
+		"bServerSide": true,
+		"fnDrawCallback": function() { $( ".best_in_place" ).best_in_place(); },
+		"sAjaxSource": $('#assignments_table').data('source'),
+	    "sPaginationType": "full_numbers"
+	    	
+	}).show(); 
+	
+	$( '#topic_group_select' ).change(function() {
+		//alert('filter by topic_group');
+		aTable.fnDraw();
+	});
+	
 	// JDavis: image that opens / closes the element attributes div
 	$('#rating_table img.details').live( 'click', function () {
 		var nTr = this.parentNode.parentNode;
@@ -328,14 +330,6 @@ $(function() {
 		return false;
 	});
 
-	//$('.element_link').click(function(event) {
-		//$( '#element_dialog_form' ).dialog( "open" );
-		//dElementForm.dialog( "open" );
-	//	alert(event.target);
-	//	return false;
-	//});
-	
-	
 	// JDavis: this function responds to the dropdown selection on the manager page and navigates to the select topic.
 	$('#topic_select').change(function() {
 		//alert($(this).attr('value'));
@@ -361,7 +355,6 @@ $(function() {
 		window.location.pathname = '/'+temp[1]+'/'+temp[2]+'/'+temp[3]+'/'+$(this).attr('value')+'#tabs-2';
 		//alert(window.location.pathname);
 	});
-	
 	
 	// JDavis: for some reason, the rating stuff must come last or else shit breaks.
 	$( "#rating_table input.jdstar" ).rating(); // JDavis: this line must come before rating_table dataTable()
@@ -392,8 +385,7 @@ $(function() {
 });
 
 /* Get the rows which are currently selected *****JDavis: this is not being used at the moment.....*/
-function fnGetSelected( oTableLocal )
-{
+function fnGetSelected( oTableLocal ) {
     var aReturn = new Array();
     var aTrs = oTableLocal.fnGetNodes();
      
@@ -433,6 +425,7 @@ function add_fields(link, association, content) {
 	var regexp = new RegExp("new_" + association, "g")
 	$(link).parent().before(content.replace(regexp, new_id));
 }
+
 
 
 
