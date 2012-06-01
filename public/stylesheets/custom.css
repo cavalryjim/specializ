@@ -7,7 +7,7 @@
 .panel {display: none;} /* JDavis: same as above, trying to stop the flash of unformatted content */
 
 body {
-	background: none;
+	background:none;
 }
 
 /* body {
