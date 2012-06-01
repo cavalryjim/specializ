@@ -47,6 +47,7 @@ Specializ::Application.routes.draw do
    
   resources :topic_groups do
     match 'assign_libraries', :to => 'topics_groups#assign_libraries'
+    match 'participants', :to => 'topic_groups#participants'
     resources :assignments
     post 'close', :to => 'topic_groups#close'
     post 'export', :to => 'topic_groups#export_elements'
@@ -61,7 +62,7 @@ Specializ::Application.routes.draw do
   end
   
   resources :topics do
-    match 'assigned_participants', :to => 'topics#assigned_participants'
+    #match 'assigned_participants', :to => 'topics#assigned_participants'
     match 'assign_libraries', :to => 'topics#assign_libraries'
     resources :topic_groups
     resources :assignments do

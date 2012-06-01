@@ -135,12 +135,12 @@ class TopicsController < ApplicationController
     redirect_to edit_topic_path(@topic)
   end
   
-  def assigned_participants
+  def assigned_participants(topic_group_id = Topic.find(params[:topic_id]).topic_groups.first.id)
     @topic = Topic.find(params[:topic_id])
     #@assignment = Assignment.find(params[:assignment_id])
     
     respond_to do |format|
-      format.json { render json: AssignmentsDatatable.new(view_context, @topic.id)  }
+      format.json { render json: AssignmentsDatatable.new(view_context, topic_group_id)  }
       #format.json { render json: @topic }
     end
   end

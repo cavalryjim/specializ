@@ -1,12 +1,12 @@
 # JDavis: This is a class to manage the json for the participants_table.
 #         See http://railscasts.com/episodes/340-datatables for an explanation of the code.
 class ParticipantsDatatable
-  delegate :params, :h, :link_to, :image_tag, :topic_group_assignment_path, :submission_status_image, :assignment, to: :@view
+  delegate :params, :h, :link_to, :image_tag, :topic_group_assignment_path, :submission_status_image, :edit_topic_assignment_path, :best_in_place, to: :@view
 
-  def initialize(view, topic_group_id, iteration_id)
+  def initialize(view, topic_group_id, include_iteration)
     @view = view
     @topic_group_id = topic_group_id
-    @iteration_id = iteration_id
+    @iteration_id = include_iteration if include_iteration
   end
 
   def as_json(options = {})
@@ -23,16 +23,27 @@ private
 
   def data
     participants.map do |participant|
+     assignment = Assignment.find_by_topic_group_id_and_user_id(@topic_group_id, participant.id)
+     if @iteration_id
       [
-        
         #image_tag('icons/tick.png') if participant.submitted_list?(@iteration_id),
         submission_status_image(@iteration_id, participant),
         participant.first_name + " " + participant.last_name,
         participant.email,
         #if can? :manage, topic_group %>
-        link_to(image_tag('icons/cross.png'), topic_group_assignment_path(@topic_group_id, assignment(@topic_group_id, participant)), 
+        link_to(image_tag('icons/cross.png'), topic_group_assignment_path(@topic_group_id, assignment), 
           :confirm => 'Remove this user from participating in this topic?', :method => :delete)
       ]
+     else
+      topic_group_name = TopicGroup.find(@topic_group_id).name
+      [
+        participant.first_name + " " + participant.last_name,
+        topic_group_name,
+        (best_in_place assignment, :manager, :type => :checkbox),
+        link_to(image_tag('icons/cross.png'), topic_group_assignment_path(@topic_group_id, assignment), 
+          :confirm => 'Remove this user from participating in this topic?', :method => :delete)
+      ]
+     end
     end
   end
 

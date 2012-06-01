@@ -126,10 +126,10 @@ class TopicGroupsController < ApplicationController
   
   def participants
     @topic_group = TopicGroup.find(params[:topic_group_id])
-    @iteration = Iteration.find(params[:iteration_id])
+    iteration_id = params.has_key?(:iteration_id) ? params[:iteration_id]  : false
     
     respond_to do |format|
-      format.json { render json: ParticipantsDatatable.new(view_context, @topic_group.id, @iteration.id)  }
+      format.json { render json: ParticipantsDatatable.new(view_context, @topic_group.id, iteration_id)  }
     end
   end
   

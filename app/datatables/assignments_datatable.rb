@@ -3,9 +3,9 @@
 class AssignmentsDatatable
   delegate :params, :h, :link_to, :image_tag, :topic_assignment_path, :edit_topic_assignment_path, :best_in_place, to: :@view
 
-  def initialize(view, topic_id)
+  def initialize(view, topic_group_id)
     @view = view
-    @topic_id = topic_id
+    @topic_group_id = topic_id
     
   end
 
@@ -39,7 +39,7 @@ private
   end
 
   def fetch_assignments
-    sql = "select u.first_name as first_name, u.last_name as last_name, tg.name as name, a.manager as manager, a.id as assignment_id from users as u, topic_groups as tg, assignments as a where tg.topic_id = " + @topic_id.to_s + " and u.id = a.user_id and tg.id = a.topic_group_id order by u.last_name;"
+    sql = "select u.first_name as first_name, u.last_name as last_name, tg.id as tg_id, a.manager as manager, a.id as assignment_id from users as u, topic_groups as tg, assignments as a where tg.topic_id = " + @topic_id.to_s + " and u.id = a.user_id and tg.id = a.topic_group_id order by u.last_name;"
     assignments = ActiveRecord::Base.connection.execute(sql)
     assignments = assignments.to_a
     assignments = Kaminari.paginate_array(assignments).page(page).per(per_page)
