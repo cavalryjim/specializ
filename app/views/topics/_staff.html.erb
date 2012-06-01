@@ -7,9 +7,11 @@
 		<%= submit_tag("Staff Topic", :confirm => staffing_confirmation(@topic), :disabled => @topic.topic_groups.size < 1 ) %>
 	<% end %>
   </div>
+  </br>
 </div>
 
 <div>
+	<%= select_tag( "topic_groups", options_from_collection_for_select(@topic.topic_groups, "id", "name"), { :include_blank => 'All Topic Groups', :class => 'simple_select' })%>
 	<table id="assignments_table" class="display fouc" data-source="<%= topic_assigned_participants_url(@topic, format: 'json') %>" >
 	 <thead>
 	  <tr>
