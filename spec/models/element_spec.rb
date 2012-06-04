@@ -10,6 +10,7 @@
 #  created_at     :datetime
 #  updated_at     :datetime
 #  topic_group_id :integer(4)
+#  description    :text
 #
 
 require 'spec_helper'

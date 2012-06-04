@@ -67,8 +67,12 @@
 			    <%= image_tag 'details_open.png', :class => 'details' %>
 			  <% end %>
 			</td>
-
+			
+		   <% if element.description %>
+			<td id="<%=element.id%>" class="element_tooltip">
+  		   <% else %>
 			<td>
+		   <% end %>
 			  <%= best_in_place_if ((can? :manage, @topic_group) && @iteration.last?), element, :name, :type => :input, :html_attrs => { :size => 60 } %>
 			  <% if ((can? :manage, @topic_group) && @iteration.last?) %>
 			  	<%= link_to image_tag('attr_add2.png', :size => '10x10'), edit_topic_group_iteration_element_path(@topic_group, @iteration, element) %>

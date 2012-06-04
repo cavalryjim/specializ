@@ -56,6 +56,7 @@ Specializ::Application.routes.draw do
       post 'start', :to => 'iterations#start'
       match 'participants', :to => 'topic_groups#participants'
       resources :elements do
+        match 'description', :to => 'elements#description'
         resources :element_attributes
       end
     end
@@ -82,7 +83,9 @@ Specializ::Application.routes.draw do
     #post 'import_users', :to => 'users#import_users'
   end
   
-  resources :elements
+  resources :elements do
+    match 'description', :to => 'elements#description'
+  end
   resources :element_attributes
   
   resources :ajax do

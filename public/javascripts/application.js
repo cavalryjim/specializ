@@ -6,6 +6,16 @@ $(function() {
 	
 	$( ".best_in_place" ).best_in_place();
 	
+	$( ".element_tooltip" ).tooltip({ 
+		bodyHandler: function() { 
+			//delay(500);
+	        var result = $("<span/>").html("loading description...");
+	        $.get("/elements/"+this.id+"/description.json", function(data) { result.html(data); }, "json"); 
+	        return result; 	
+	    }, 
+	    showURL: false 
+	});
+	
 	$(".panel").panel({
 		collapsible:false
 	}).show();

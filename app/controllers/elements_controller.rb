@@ -89,4 +89,10 @@ class ElementsController < ApplicationController
     end
   end
   
+  def description
+    element = Element.find(params[:element_id])
+    
+    respond_with(element.description.to_json)
+  end
+  
 end
