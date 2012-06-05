@@ -34,5 +34,8 @@ module IterationsHelper
     participant.submitted_list?(iteration_id) ? image_tag('icons/tick.png') : nil
   end
   
+  def score(element, iteration_id)
+    element.score(current_user.id ,@iteration.id)
+  end
   
 end

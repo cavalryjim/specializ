@@ -21,6 +21,7 @@
 	  <tr>
 		<th></th>
 		<th class="center">Name</th>
+		<th class="center">Agreement</th>
 	    <th class="center">Rating</th>
 		<th></th> 
 
@@ -45,6 +46,8 @@
 			    <%= render 'inner_details', :element => element %>
 			  <% end %>
 			</td>
+
+			<td></td>
 
 			<td>
 			  <%= my_suggestion(@iteration.active) %>
@@ -83,15 +86,18 @@
 			    <%= render 'inner_details', :element => element %>
 			  <% end %>			
 			</td>
-			<% score = element.score(current_user.id ,@iteration.id) %>
-		
+
+			<td class="center">
+			  <%= number_to_percentage(element.agreement_score(@iteration), :precision => 2, :strip_insignificant_zeros => true) %>
+			</td>
+
 			<td id="rating" >
 			  
-				<%= radio_button_tag row_name(element.id), 1, score == 1, options = { :class => "jdstar", :disabled => !@iteration.active || !@participant } %>
-				<%= radio_button_tag row_name(element.id), 2, score == 2, options = { :class => "jdstar", :disabled => !@iteration.active || !@participant } %>
-				<%= radio_button_tag row_name(element.id), 3, score == 3, options = { :class => "jdstar", :disabled => !@iteration.active || !@participant } %>
-				<%= radio_button_tag row_name(element.id), 4, score == 4, options = { :class => "jdstar", :disabled => !@iteration.active || !@participant } %>
-				<%= radio_button_tag row_name(element.id), 5, score == 5, options = { :class => "jdstar", :disabled => !@iteration.active || !@participant } %>
+				<%= radio_button_tag row_name(element.id), 1, score(element, @iteration.id) == 1, options = { :class => "jdstar", :disabled => !@iteration.active || !@participant } %>
+				<%= radio_button_tag row_name(element.id), 2, score(element, @iteration.id) == 2, options = { :class => "jdstar", :disabled => !@iteration.active || !@participant } %>
+				<%= radio_button_tag row_name(element.id), 3, score(element, @iteration.id) == 3, options = { :class => "jdstar", :disabled => !@iteration.active || !@participant } %>
+				<%= radio_button_tag row_name(element.id), 4, score(element, @iteration.id) == 4, options = { :class => "jdstar", :disabled => !@iteration.active || !@participant } %>
+				<%= radio_button_tag row_name(element.id), 5, score(element, @iteration.id) == 5, options = { :class => "jdstar", :disabled => !@iteration.active || !@participant } %>
 			 
 			</td>
 

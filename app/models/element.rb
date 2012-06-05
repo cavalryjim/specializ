@@ -70,6 +70,17 @@ class Element < ActiveRecord::Base
     return iteration_list.save
   end
   
+  def agreement_score(iteration)
+    agreement_score = IterationList.find_by_iteration_id_and_element_id(iteration.id, self.id).agreement
+    return agreement_score if agreement_score
+    
+    if iteration.active && (iteration.num > 1)
+      iteration = Iteration.find_by_topic_group_id_and_num(iteration.topic_group_id, (iteration.num - 1))
+      return IterationList.find_by_iteration_id_and_element_id(iteration.id, self.id).agreement
+    end
+    
+  end
+  
   def include?(iteration_id, total_participants)
     total_scored = self.user_lists.where('iteration_id = ? AND score > 0 ', iteration_id).size
     if ((total_scored.to_f / total_participants.to_f) >= 0.5)

@@ -372,6 +372,7 @@ $(function() {
 		"aoColumns": [
 		              { "sWidth": "5px", "bSortable": false },
 		              null ,
+		              { "sWidth": "55px" },
 		              { "sWidth": "115px" },
 		              { "sWidth": "5px", "bSortable": false }
 		          ],
