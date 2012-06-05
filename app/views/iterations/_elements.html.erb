@@ -13,7 +13,8 @@
   </div>
 </div>
 
-<%= form_tag users_rate_elements_path, :id => 'rating_form' do %>
+<!-- JDavis: adding autocomplete => off, else the radio buttons on Mozilla based browsers act crazy. -->
+<%= form_tag users_rate_elements_path, :id => 'rating_form', :autocomplete => "off" do %>
   <div>
 	<table id="rating_table" class="display fouc" >
 	 <thead>
