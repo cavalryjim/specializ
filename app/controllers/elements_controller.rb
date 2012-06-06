@@ -89,6 +89,7 @@ class ElementsController < ApplicationController
     end
   end
   
+  # JDavis: this provides the json for ajax tooltip that pops up when hovering over an element.
   def description
     element = Element.find(params[:element_id])
     

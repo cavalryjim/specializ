@@ -27,7 +27,7 @@
 			  <td>
 				<%= best_in_place new_element, :name, :type => :input, :html_attrs => { :size => 60 } %>
 			  
-			    <%= link_to image_tag('attr_add2.png', :size => '10x10'), edit_topic_group_iteration_element_path(@topic_group, @iteration, new_element) %>
+			    <%= link_to image_tag('attr_add2.png', :size => '10x10'), edit_topic_group_iteration_element_path(@topic_group, @iterations.last, new_element) %>
 
 				<% if new_element.has_attributes? %>
 				  <%= render 'inner_details', :element => new_element %>
@@ -48,10 +48,10 @@
 <div>
   <%= form_tag({ :controller => "topic_groups", :action => "import_elements"}, {:multipart => true} ) do %>
 	
-    Upload elements: <%= file_field_tag 'file' %>
+    Upload elements: <%= file_field_tag 'file', :disabled => @iterations.last.active? %>
+	<%= submit_tag("Submit List", :confirm => 'Upload list from spreadsheet?', :disabled => @iterations.last.active? ) %>
 	
-	<%= hidden_field_tag(:iteration_id, @iteration.id) %>
+	<%= hidden_field_tag(:iteration_id, @iterations.last.id) %>
 	<%= hidden_field_tag(:topic_group_id, @topic_group.id) %>
-	<%= submit_tag("Submit List", :confirm => 'Upload list from spreadsheet?', :disabled => @active) %>
   <% end %>
 </div>

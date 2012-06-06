@@ -8,34 +8,25 @@
 	
 	
 	<img src= <%= @topic_group.bar_chart %> />
+
+	<% if !@topic_group.active %>
+		<p>
+			This topic group is closed. The consensus goal for this group was <%= @topic_group.goal %>. The highest consensus reached was <%= @iterations.maximum('consensus') %>.  		
+		</p>
+		<p>
+			<%= link_to 'Export elements', topic_group_export_path(@topic_group), :method => 'post' %>
+		</p>
+	<% end %>
 	
-	<% if (can? :manage, @topic_group) %>
-	  	<% if @topic_group.active %>
-			<p>
-			  <% if @topic_group.iterations.last.active %>
-				<%= button_to 'Close current iteration', topic_group_iteration_close_path(@topic_group, @topic_group.iterations.last ), :confirm => 'Close the current iteration?' %> <br />
-			  <% elsif @iteration == @topic_group.iterations.last %>
-				<%= button_to 'Start new iteration', topic_group_iteration_start_path(@topic_group, @topic_group.iterations.last ), :confirm => 'Start a new iteration?' %> <br />
-			  <% end %>
-				
-			</p>
-	
-			<p>
-			  <% if !@topic_group.iterations.last.active? %>
-				<%= button_to 'Close topic group', topic_group_close_path(@topic_group), :confirm => 'This will close the topic group.  Are you sure?' %> <br />
-			  <% end %>
-			</p>
-		<% else %>
-			
-			<p>
-				This topic group is closed. The consensus goal for this group was <%= @topic_group.goal %>. The highest consensus reached was <%= @topic_group.iterations.maximum('consensus') %>.  
-				
-			</p>
-			<p>
-				<%= link_to 'Export elements', topic_group_export_path(@topic_group), :method => 'post' %>
-			</p>
-		
-		<% end %>
+	<% if ((can? :manage, @topic_group) && @topic_group.active) %>
+		<p>
+		  <% if @iterations.last.active? %>
+			<%= button_to 'Close current iteration', topic_group_iteration_close_path(@topic_group, @iterations.last ), :confirm => 'Close the current iteration?' %> <br />
+		  <% else %>
+			<%= button_to 'Start new iteration', topic_group_iteration_start_path(@topic_group, @iterations.last ), :confirm => 'Start a new iteration?' %> <br />
+			<%= button_to 'Close topic group', topic_group_close_path(@topic_group), :confirm => 'This will close the topic group.  Are you sure?' %>
+		  <% end %>	
+		</p>
 	<% end %>
   </div>
 </div>

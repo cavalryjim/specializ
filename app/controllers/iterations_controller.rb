@@ -14,12 +14,12 @@ class IterationsController < ApplicationController
   def show
     #@iteration = Iteration.find(params[:id])
     @topic_group = TopicGroup.find(@iteration.topic_group_id)
-    @iterations = @topic_group.iterations.sort_by{ |iteration| iteration.num }
+    @iterations = @topic_group.iterations
     @topic = Topic.find(@topic_group.topic_id)
     @elements = @iteration.current_elements
     @suggested_elements = current_user.suggested_elements(@iteration.id)
     @participating_users = @topic_group.participating_users
-    @submitted = current_user.submitted_list?(@iteration.id)
+    @submitted = current_user.submitted_list?(@iteration.id) #JDavis: move this to the helper.
     @title = @topic_group
     @element = Element.new
     gon.submitted = @submitted #JDavis: gon is a method for passing variables to javascript.
@@ -27,7 +27,7 @@ class IterationsController < ApplicationController
     @participant = @topic_group.participating_users.include? current_user
     
     if (can? :manage, @topic_group) && @topic_group.active
-      @new_elements = @topic_group.iterations.last.new_elements
+      @new_elements = @iterations.last.new_elements
     end
     
     respond_with(@iteration)

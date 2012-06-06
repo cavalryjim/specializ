@@ -1,0 +1,8 @@
+
+- add functionality for 'archiving' a topic
+- automatically restart topics that need to periodically update
+- import selected library objectives as topic_group elements
+- create more robust reports
+- add updated and more video tutorials
+- 
+

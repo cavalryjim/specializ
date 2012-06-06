@@ -37,9 +37,9 @@
 			  <% end %>
 			</td>
 			<td>
-			  <%= best_in_place_if ((can? :manage, @topic_group) && @iteration.active), element, :name, :type => :input, :html_attrs => { :size => 60 } %>
-			  <% if can? :manage, element %>
-			    <%= link_to_if @iteration.active, image_tag('attr_add2.png', :size => '10x10'), edit_topic_group_iteration_element_path(@topic_group, @iteration, element) %>
+			  <%= best_in_place_if ((can? :manage, element) && @iteration.last?), element, :name, :type => :input, :html_attrs => { :size => 60 } %>
+			  <% if @iteration.last? %>
+			    <%= link_to image_tag('attr_add2.png', :size => '10x10'), edit_topic_group_iteration_element_path(@topic_group, @iteration, element) %>
 			  <% end %>
 			  
 			  <% if element.has_attributes? %>
@@ -93,11 +93,11 @@
 
 			<td id="rating" >
 			  
-				<%= radio_button_tag row_name(element.id), 1, score(element, @iteration.id) == 1, options = { :class => "jdstar", :disabled => !@iteration.active || !@participant } %>
-				<%= radio_button_tag row_name(element.id), 2, score(element, @iteration.id) == 2, options = { :class => "jdstar", :disabled => !@iteration.active || !@participant } %>
-				<%= radio_button_tag row_name(element.id), 3, score(element, @iteration.id) == 3, options = { :class => "jdstar", :disabled => !@iteration.active || !@participant } %>
-				<%= radio_button_tag row_name(element.id), 4, score(element, @iteration.id) == 4, options = { :class => "jdstar", :disabled => !@iteration.active || !@participant } %>
-				<%= radio_button_tag row_name(element.id), 5, score(element, @iteration.id) == 5, options = { :class => "jdstar", :disabled => !@iteration.active || !@participant } %>
+				<%= radio_button_tag row_name(element.id), 1, score(element, @iteration.id) == 1, options = { :class => "jdstar", :disabled => (!@iteration.active || !@participant) } %>
+				<%= radio_button_tag row_name(element.id), 2, score(element, @iteration.id) == 2, options = { :class => "jdstar", :disabled => (!@iteration.active || !@participant) } %>
+				<%= radio_button_tag row_name(element.id), 3, score(element, @iteration.id) == 3, options = { :class => "jdstar", :disabled => (!@iteration.active || !@participant) } %>
+				<%= radio_button_tag row_name(element.id), 4, score(element, @iteration.id) == 4, options = { :class => "jdstar", :disabled => (!@iteration.active || !@participant) } %>
+				<%= radio_button_tag row_name(element.id), 5, score(element, @iteration.id) == 5, options = { :class => "jdstar", :disabled => (!@iteration.active || !@participant) } %>
 			 
 			</td>
 
@@ -121,13 +121,11 @@
   <%= hidden_field_tag(:iteration_id, @iteration.id) %>
   <%= hidden_field_tag(:resubmit, @submitted) %>
   <div align='right'> 
-	<%= submit_tag("Save List", :confirm => confirm_dialogue(@submitted), :disabled => !@iteration.active || !@participant) %> 
+	<%= submit_tag("Save List", :confirm => confirm_dialogue(@submitted), :disabled => (!@iteration.active || !@participant)) %> 
   </div>
  
 <% end %>
-<% if false %> <!--JDavis: was @iteration.active -->
-	<div align='left'> <button id="item_delete"> Remove Selected Item </button>	</div>
-<% end %>
+
 
 
 
