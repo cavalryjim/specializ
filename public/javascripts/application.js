@@ -27,9 +27,9 @@ $(function() {
         unfold: function() { $.cookie("browserState", "open"); }
     }).show();
 	
-	$('.closeBrowser').live( 'click', function () {
-		$.cookie("browserState", "closed");
-	});
+	//$('.closeBrowser').live( 'click', function () {
+	//	$.cookie("browserState", "closed");
+	//});
 	
 	$("button, input:submit, input:button").button();
 	
