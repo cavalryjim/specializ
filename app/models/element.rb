@@ -2,27 +2,30 @@
 #
 # Table name: elements
 #
-#  id             :integer(4)      not null, primary key
-#  name           :string(255)
-#  current        :boolean(1)
-#  created_by     :integer(4)
-#  edited_by      :integer(4)
-#  created_at     :datetime
-#  updated_at     :datetime
-#  topic_group_id :integer(4)
-#  description    :text
+#  id              :integer(4)      not null, primary key
+#  name            :string(255)
+#  current         :boolean(1)
+#  created_by      :integer(4)
+#  edited_by       :integer(4)
+#  created_at      :datetime
+#  updated_at      :datetime
+#  topic_group_id  :integer(4)
+#  description     :text
+#  mandatory       :boolean(1)
+#  element_type_id :integer(4)
 #
 
 class Element < ActiveRecord::Base
   
   belongs_to :topic_group
+  belongs_to :element_type
   has_many :iteration_lists, :dependent => :destroy
   has_many :iterations, :through => :iteration_lists
   has_many :user_lists, :dependent => :destroy
   has_many :users, :through => :user_lists
   has_many :element_attributes, :dependent => :destroy
   
-  attr_accessible :name, :current, :created_by, :edited_by, :element_attributes_attributes, :topic_group_id
+  attr_accessible :name, :current, :created_by, :edited_by, :element_attributes_attributes, :topic_group_id, :element_type_id
   validates :name,  :presence => true
   validates :created_by, :presence => true
   validates :current, :inclusion => {:in => [true, false]}

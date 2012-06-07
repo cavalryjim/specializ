@@ -18,9 +18,7 @@ class ElementAttribute < ActiveRecord::Base
   has_many   :element_attribute_options, :dependent => :destroy
   
   attr_accessible :name, :element_id, :element_attribute_type_id, :element_attribute_options_attributes
-  #validates :name,  :presence => true
   validates_associated :element
-  #validates_associated :element_attribute_type
   validates_uniqueness_of :name, :scope => [ :element_id ]
   
   accepts_nested_attributes_for :element_attribute_options, :reject_if => lambda { |a| a[:name].blank? }, :allow_destroy => true

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120604160134) do
+ActiveRecord::Schema.define(:version => 20120607213704) do
 
   create_table "active_admin_comments", :force => true do |t|
     t.integer  "resource_id",   :null => false
@@ -113,6 +113,15 @@ ActiveRecord::Schema.define(:version => 20120604160134) do
     t.integer  "element_attribute_type_id"
   end
 
+  create_table "element_types", :force => true do |t|
+    t.string   "name"
+    t.string   "description"
+    t.string   "symbol"
+    t.string   "validation"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "elements", :force => true do |t|
     t.string   "name"
     t.boolean  "current"
@@ -122,6 +131,8 @@ ActiveRecord::Schema.define(:version => 20120604160134) do
     t.datetime "updated_at"
     t.integer  "topic_group_id"
     t.text     "description"
+    t.boolean  "mandatory"
+    t.integer  "element_type_id"
   end
 
   create_table "groupings", :force => true do |t|
