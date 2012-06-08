@@ -13,8 +13,11 @@
 
 class ElementType < ActiveRecord::Base
   has_many :elements
+  has_many :element_type_options
   
   attr_accessible :name, :description, :symbol, :validation
   validates :name,  :presence => true
+  
+  accepts_nested_attributes_for :element_type_options, :reject_if => lambda { |a| a[:name].blank? }, :allow_destroy => true
   
 end

@@ -12,6 +12,7 @@
   <div class="field">
 	<%= f.label :name %>
   	<%= f.text_field :name %>
+	<%= f.collection_select(:element_type_id, ElementType.all, :id, :name, :prompt => 'select type' ) %>
   </div>
   <div class="field">
   	<%= f.fields_for :element_attributes do |builder| %>

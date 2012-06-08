@@ -38,4 +38,19 @@ module IterationsHelper
     element.score(current_user.id ,@iteration.id)
   end
   
+  def rating_method(element, iteration, participant)
+    
+    #JDavis: this is a good place for a case!
+    if element.element_type.name == 'yes_no'
+      instrument = select_tag(element.id, options_from_collection_for_select(element.element_type.element_type_options, "id", "name") )
+    else 
+      instrument = radio_button_tag row_name(element.id), 1, score(element, iteration.id) == 1, options = { :class => "jdstar", :disabled => (!iteration.active || !participant) } 
+      instrument = instrument + (radio_button_tag row_name(element.id), 2, score(element, iteration.id) == 2, options = { :class => "jdstar", :disabled => (!iteration.active || !participant) }) 
+      instrument = instrument + (radio_button_tag row_name(element.id), 3, score(element, iteration.id) == 3, options = { :class => "jdstar", :disabled => (!iteration.active || !participant) })
+      instrument = instrument + (radio_button_tag row_name(element.id), 4, score(element, iteration.id) == 4, options = { :class => "jdstar", :disabled => (!iteration.active || !participant) }) 
+      instrument = instrument + (radio_button_tag row_name(element.id), 5, score(element, iteration.id) == 5, options = { :class => "jdstar", :disabled => (!iteration.active || !participant) }) 
+    end
+    return instrument
+  end
+  
 end
