@@ -106,4 +106,8 @@ class Element < ActiveRecord::Base
     !Iteration.find(iteration_id).elements.map{ |e| e.name.downcase }.include?(self.name.downcase)
   end
   
+  def required?
+    mandatory
+  end
+  
 end
