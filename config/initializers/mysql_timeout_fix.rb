@@ -1,1 +1,3 @@
-ActiveRecord::Base.verify_active_connections!
+#ActiveRecord::Base.verify_active_connections!
+
+
