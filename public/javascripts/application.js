@@ -53,6 +53,7 @@ $(function() {
 	$( "#me_tabs" ).tabs({ cookie:{ expires:1 } }).show();   // tabs used in the Me module
 	$( "#library_tabs" ).tabs({ cookie:{ expires:1 } }).show();
 	$( "#topic_group_tabs" ).tabs({ cookie:{ expires:1 } }).show();
+	$( "#topic_group_survey_tabs").tabs({ cookie:{ expires:1 } }).show();
 	
 	$( "#libraries_tree" ).treeview({
 			//persist: "location",
