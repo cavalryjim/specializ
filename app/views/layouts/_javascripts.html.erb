@@ -3,10 +3,5 @@
 <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.16/jquery-ui.min.js"></script>
 
 
-<%= javascript_include_tag 'rails.validations', 'ui.panel' %>
-<%= javascript_include_tag 'best_in_place', 'jquery_ujs', 'autocomplete-rails', 'jquery.cookie' %>
-<%= javascript_include_tag 'jquery.dataTables.min' %>
-<%= javascript_include_tag 'application' %>
-<%= javascript_include_tag 'jquery.multiselect.min', 'jquery.multiselect.filter', 'ui.selectmenu', 'jquery.treeview' %>
-<%= javascript_include_tag 'dataTables.fnGetHiddenNodes', 'jquery.treeTable', 'jquery.tooltip' %>
-<%= javascript_include_tag 'fullcalendar.min', 'ZeroClipboard' %>
+<%= javascript_include_tag :all, :cache => true %>
+
