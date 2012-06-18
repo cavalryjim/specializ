@@ -39,19 +39,25 @@ module IterationsHelper
   end
   
   def rating_method(element, iteration, participant)
+  
+    return stars(element, iteration, participant) if !element.element_type.name
     
     case element.element_type.name
     when 'yes_no'
-      instrument = select_tag(element.id, options_from_collection_for_select(element.element_type.element_type_options, "id", "name"), {:include_blank => 'Select one'} )
+      select_tag(element.id, options_from_collection_for_select(element.element_type.element_type_options, "id", "name"), {:include_blank => 'Select one'} )
     else 
-      instrument = radio_button_tag row_name(element.id), 1, score(element, iteration.id) == 1, options = { :class => "jdstar", :disabled => (!iteration.active || !participant) } 
-      instrument = instrument + (radio_button_tag row_name(element.id), 2, score(element, iteration.id) == 2, options = { :class => "jdstar", :disabled => (!iteration.active || !participant) }) 
-      instrument = instrument + (radio_button_tag row_name(element.id), 3, score(element, iteration.id) == 3, options = { :class => "jdstar", :disabled => (!iteration.active || !participant) })
-      instrument = instrument + (radio_button_tag row_name(element.id), 4, score(element, iteration.id) == 4, options = { :class => "jdstar", :disabled => (!iteration.active || !participant) }) 
-      instrument = instrument + (radio_button_tag row_name(element.id), 5, score(element, iteration.id) == 5, options = { :class => "jdstar", :disabled => (!iteration.active || !participant) }) 
+      stars(element, iteration, participant)
     end
     #JDavis: this is a good place for a case!
-    return instrument
+    #return instrument
+  end
+  
+  def stars(element, iteration, participant)
+    instrument = radio_button_tag row_name(element.id), 1, score(element, iteration.id) == 1, options = { :class => "jdstar", :disabled => (!iteration.active || !participant) } 
+    instrument = instrument + (radio_button_tag row_name(element.id), 2, score(element, iteration.id) == 2, options = { :class => "jdstar", :disabled => (!iteration.active || !participant) }) 
+    instrument = instrument + (radio_button_tag row_name(element.id), 3, score(element, iteration.id) == 3, options = { :class => "jdstar", :disabled => (!iteration.active || !participant) })
+    instrument = instrument + (radio_button_tag row_name(element.id), 4, score(element, iteration.id) == 4, options = { :class => "jdstar", :disabled => (!iteration.active || !participant) }) 
+    instrument = instrument + (radio_button_tag row_name(element.id), 5, score(element, iteration.id) == 5, options = { :class => "jdstar", :disabled => (!iteration.active || !participant) })
   end
   
 end
