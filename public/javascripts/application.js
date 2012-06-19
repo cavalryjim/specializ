@@ -16,6 +16,17 @@ $(function() {
 	    showURL: false 
 	});
 	
+	$( ".topic #topic_topic_type" ).change(function() {
+		//alert('changed');
+		if ($(this).attr('value') != 1 ) {
+			$( "#topic_goal" ).attr('disabled', 'disabled');
+			$( "#topic_update_frequency" ).attr('disabled', 'disabled');
+		} else {
+			$( "#topic_goal" ).removeAttr('disabled');
+			$( "#topic_update_frequency" ).removeAttr('disabled');	
+		}
+	});
+	
 	$(".panel").panel({
 		collapsible:false
 	}).show();

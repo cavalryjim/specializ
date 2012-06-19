@@ -2,8 +2,8 @@
 
 <div>
   <div id="elementDiv" align=right>
-    <% if @iteration.active %>
-	  <button id="new_element_btn" class="new_element_btn"> Add New Item </button>
+    <% if @topic.topic_type == 1 || @topic.topic_type.nil? %>
+      <%= button_to('Add New Item', {}, :disabled => !@iteration.active, :class => 'new_element_btn', :remote => true )%>
     <% end %>
   </div>  
    

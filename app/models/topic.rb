@@ -23,12 +23,13 @@ class Topic < ActiveRecord::Base
   has_many :libraries, :through => :topic_libraries
   has_many :topic_libraries, :dependent => :destroy
   
-  attr_accessible :name, :description, :company_id, :status, :update_frequency, :due_days, :opt_out, :goal
+  attr_accessible :name, :description, :company_id, :status, :update_frequency, :due_days, :opt_out, :goal, :topic_type
   
   validates :name, :presence => true
   validates :company_id, :presence => true
-  validates :goal, :inclusion => { :in => 1..100 }
+  validates :goal, :inclusion => { :in => 1..100 }, :if => :has_goal?
   validates :status, :inclusion => { :in => 1..3 }
+  validates :topic_type, :inclusion => { :in => 1..2 }
   validates_uniqueness_of :name, :scope => [ :company_id ]    # Unique for [name, company]
   validates :update_frequency, :numericality => { :only_integer => true, :greater_than => 0 }, :if => :has_update_frequency?
   validates :due_days, :numericality => { :only_integer => true, :greater_than => 0 }, :if => :has_due_days?
@@ -77,6 +78,10 @@ class Topic < ActiveRecord::Base
   
   def has_due_days?
     due_days
+  end
+  
+  def has_goal?
+    self.topic_type == 1 || self.topic_type.nil?
   end
   
   def check_for_restart
