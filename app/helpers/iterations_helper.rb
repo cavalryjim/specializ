@@ -40,7 +40,7 @@ module IterationsHelper
   
   def rating_method(element, iteration, participant)
   
-    return stars(element, iteration, participant) if !element.element_type.name
+    return stars(element, iteration, participant) if element.element_type.nil?
     
     case element.element_type.name
     when 'yes_no'

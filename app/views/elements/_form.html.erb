@@ -12,7 +12,11 @@
   <div class="field">
 	<%= f.label :name %>
   	<%= f.text_field :name %>
-	<%= f.collection_select(:element_type_id, ElementType.all, :id, :name, :prompt => 'select type' ) %>
+  	<% if !@topic_group.topic.topic_type.nil? && !(@topic_group.topic.topic_type == 1) %>
+	  <%= f.collection_select(:element_type_id, ElementType.all, :id, :name, :prompt => 'select type' ) %>
+	<% else %>
+	  <%= f.hidden_field :element_type_id, :value => 1 %>
+	<% end %>
   </div>
   <div class="field">
   	<%= f.fields_for :element_attributes do |builder| %>

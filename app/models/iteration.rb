@@ -39,20 +39,25 @@ class Iteration < ActiveRecord::Base
   end
   
   def close(alert_manager = false)
-    self.current_elements.each do |element|
-      element.compute_agreement(self.id)
-    end
     
-    sum = self.iteration_lists.sum('agreement')
-    included_elements = self.iteration_lists.where(:include => true, :new_element => false).size
-    total_elements = self.iteration_lists.where(:new_element => false).size
-    if included_elements > 0
-      consensus = (sum - (total_elements - included_elements) * 100 ) / included_elements
-    else
-      consensus = 0.1 #JDavis: changing this to .1 because the barchart did not like 0
+    if self.topic_group.topic.topic_type.nil? || self.topic_group.topic.topic_type == 1
+      
+      self.current_elements.each do |element|
+        element.compute_agreement(self.id)
+      end
+      
+      sum = self.iteration_lists.sum('agreement')
+      included_elements = self.iteration_lists.where(:include => true, :new_element => false).size
+      total_elements = self.iteration_lists.where(:new_element => false).size
+      if included_elements > 0
+        consensus = (sum - (total_elements - included_elements) * 100 ) / included_elements
+      else
+        consensus = 0.1 #JDavis: changing this to .1 because the barchart did not like 0
+      end
+      #self.consensus = consensus.nan? ? 0 : consensus
+      self.consensus = consensus
+      
     end
-    #self.consensus = consensus.nan? ? 0 : consensus
-    self.consensus = consensus
     
     if alert_manager
       TopicGroup.find(self.topic_group_id).managers.each do |manager|
