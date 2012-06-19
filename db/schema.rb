@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120608200339) do
+ActiveRecord::Schema.define(:version => 20120618163352) do
 
   create_table "active_admin_comments", :force => true do |t|
     t.integer  "resource_id",   :null => false
@@ -29,8 +29,8 @@ ActiveRecord::Schema.define(:version => 20120608200339) do
   add_index "active_admin_comments", ["resource_type", "resource_id"], :name => "index_admin_notes_on_resource_type_and_resource_id"
 
   create_table "admin_users", :force => true do |t|
-    t.string   "email",                                                :null => false
-    t.string   "encrypted_password",     :limit => 128,                :null => false
+    t.string   "email",                                 :default => "", :null => false
+    t.string   "encrypted_password",     :limit => 128, :default => "", :null => false
     t.string   "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
@@ -271,6 +271,7 @@ ActiveRecord::Schema.define(:version => 20120608200339) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "goal"
+    t.integer  "topic_type",       :default => 1
   end
 
   create_table "user_element_attribute_lists", :force => true do |t|
@@ -298,6 +299,7 @@ ActiveRecord::Schema.define(:version => 20120608200339) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "company_id"
+    t.string   "encrypted_password"
     t.string   "password_salt"
     t.string   "reset_password_token"
     t.datetime "reset_password_sent_at"
@@ -307,7 +309,6 @@ ActiveRecord::Schema.define(:version => 20120608200339) do
     t.datetime "last_sign_in_at"
     t.string   "current_sign_in_ip"
     t.string   "last_sign_in_ip"
-    t.string   "encrypted_password"
     t.string   "encryptor"
     t.string   "pepper"
     t.string   "rpx_identifier"
