@@ -12,7 +12,7 @@
   <div class="field">
 	<%= f.label :name %>
   	<%= f.text_field :name %>
-  	<% if !@topic_group.topic.topic_type.nil? && !(@topic_group.topic.topic_type == 1) %>
+  	<% if !@topic_group.consensus_topic? %>
 	  <%= f.collection_select(:element_type_id, ElementType.all, :id, :name, :prompt => 'select type' ) %>
 	<% else %>
 	  <%= f.hidden_field :element_type_id, :value => 1 %>

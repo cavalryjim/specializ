@@ -38,7 +38,7 @@ class TopicGroup < ActiveRecord::Base
             :conditions => ['assignments.manager = ?', true]   
   
   validates :name, :presence => true
-  validates :goal, :inclusion => { :in => 1..100 }
+  validates :goal, :inclusion => { :in => 1..100 }, :if => :consensus_topic?
   validates :active, :inclusion => {:in => [true, false]}
   validates :topic_id, :presence => true
   validates :grouping_id, :presence => true
@@ -171,6 +171,10 @@ class TopicGroup < ActiveRecord::Base
     end
     
     return false
+  end
+  
+  def consensus_topic?
+    self.topic.consensus_topic?
   end
   
   

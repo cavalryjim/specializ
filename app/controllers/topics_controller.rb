@@ -34,7 +34,6 @@ class TopicsController < ApplicationController
     #@selected_groups = []
     @title = 'Manager'
     
-
     respond_with(@topic)
   end
 
@@ -57,7 +56,7 @@ class TopicsController < ApplicationController
     @topic = Topic.new(params[:topic])
     @topic.company_id = current_user.company_id
     
-    if @topic.save && params[:topic][:grouping_ids]
+    if @topic.save && params[:topic][:grouping_ids]   
       @topic.update_groupings(params[:topic][:grouping_ids])
       @topic.update_libraries(params[:topic][:library_ids]) if params[:topic][:library_ids]
       gflash :success => 'Topic created.' 

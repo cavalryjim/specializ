@@ -39,8 +39,8 @@ class Iteration < ActiveRecord::Base
   end
   
   def close(alert_manager = false)
-    
-    if self.topic_group.topic.topic_type.nil? || self.topic_group.topic.topic_type == 1
+    # JDavis: if this is a consensus topic
+    if self.topic_group.consensus_topic?
       
       self.current_elements.each do |element|
         element.compute_agreement(self.id)

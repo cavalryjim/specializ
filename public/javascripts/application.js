@@ -20,10 +20,14 @@ $(function() {
 		//alert('changed');
 		if ($(this).attr('value') != 1 ) {
 			$( "#topic_goal" ).attr('disabled', 'disabled');
+			//$( "#topic_goal" ).removeClass('required');
+			$( "#topic_goal" ).parent().find('abbr').hide();
 			$( "#topic_update_frequency" ).attr('disabled', 'disabled');
 		} else {
 			$( "#topic_goal" ).removeAttr('disabled');
-			$( "#topic_update_frequency" ).removeAttr('disabled');	
+			$( "#topic_goal" ).parent().find('abbr').show();
+			$( "#topic_update_frequency" ).removeAttr('disabled');
+			
 		}
 	});
 	

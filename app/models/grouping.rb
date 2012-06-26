@@ -39,7 +39,7 @@ class Grouping < ActiveRecord::Base
   def add_to_topic(topic)
     topic_group = TopicGroup.find_or_initialize_by_topic_id_and_grouping_id(topic.id, self.id)
     topic_group.name = topic.name + ": " + self.fullname
-    topic_group.goal = topic.goal
+    topic_group.goal = topic.goal if topic.consensus_topic?
     if topic.due_days
       topic_group.due_date = topic.due_days.days.from_now 
       topic_group.due_days = topic.due_days

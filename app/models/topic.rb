@@ -27,7 +27,7 @@ class Topic < ActiveRecord::Base
   
   validates :name, :presence => true
   validates :company_id, :presence => true
-  validates :goal, :inclusion => { :in => 1..100 }, :if => :has_goal?
+  validates :goal, :inclusion => { :in => 1..100 }, :if => :consensus_topic?
   validates :status, :inclusion => { :in => 1..3 }
   validates :topic_type, :inclusion => { :in => 1..2 }
   validates_uniqueness_of :name, :scope => [ :company_id ]    # Unique for [name, company]
@@ -80,7 +80,7 @@ class Topic < ActiveRecord::Base
     due_days
   end
   
-  def has_goal?
+  def consensus_topic?
     self.topic_type == 1 || self.topic_type.nil?
   end
   

@@ -142,8 +142,8 @@ class TopicGroupsController < ApplicationController
     redirect_to edit_topic_topic_group_path(@topic_group.topic, @topic_group)
   end
   
-  def survey
-    @topic_group = TopicGroup.find(params[:topic_group_id])
-  end  
+  #def survey
+  #  @topic_group = TopicGroup.find(params[:topic_group_id])
+  #end  
   
 end
