@@ -27,7 +27,6 @@ $(function() {
 			$( "#topic_goal" ).removeAttr('disabled');
 			$( "#topic_goal" ).parent().find('abbr').show();
 			$( "#topic_update_frequency" ).removeAttr('disabled');
-			
 		}
 	});
 	
