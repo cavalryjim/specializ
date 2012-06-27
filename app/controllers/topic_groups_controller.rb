@@ -43,6 +43,7 @@ class TopicGroupsController < ApplicationController
   # GET /topic_groups/1/edit
   def edit
     @topic_group = TopicGroup.find(params[:id])
+    @iterations = @topic_group.iterations
     @title = @topic_group
     
     @libraries = current_user.libraries.order('lft ASC')

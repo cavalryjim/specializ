@@ -69,7 +69,6 @@ class Topic < ActiveRecord::Base
     libraries_to_remove.each do |library_id|
       TopicLibrary.find_by_topic_id_and_library_id(self.id, library_id).destroy
     end
-    
   end
   
   def has_update_frequency?
@@ -81,7 +80,7 @@ class Topic < ActiveRecord::Base
   end
   
   def consensus_topic?
-    self.topic_type == 1 || self.topic_type.nil?
+    self.topic_type.nil? || self.topic_type == 1 
   end
   
   def check_for_restart
@@ -94,14 +93,13 @@ class Topic < ActiveRecord::Base
   end
   
   def close
-    self.topic_groups.where('active = true').each do |topic_group|
+    self.topic_groups.where(:active => true).each do |topic_group|
       topic_group.close
     end
   end
   
   def archive
     self.close
-    
   end
   
   def user_ids
