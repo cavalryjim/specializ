@@ -164,7 +164,11 @@ class User < ActiveRecord::Base
     if rated_elements
       rated_elements.each do |key, score|
         user_element_rating = UserList.find_or_initialize_by_user_id_and_element_id_and_iteration_id(self.id, key, iteration_id)
-        user_element_rating.score = score
+        if iteration.consensus_topic?
+          user_element_rating.score = score 
+        else
+          user_element_rating.encode(score) 
+        end
         user_element_rating.save
       end
     end

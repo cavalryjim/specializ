@@ -110,4 +110,8 @@ class Iteration < ActiveRecord::Base
     self == self.topic_group.iterations.last
   end
   
+  def consensus_topic?
+    self.topic_group.consensus_topic?
+  end
+  
 end

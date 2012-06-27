@@ -13,6 +13,7 @@
 #  created_at       :datetime
 #  updated_at       :datetime
 #  goal             :integer(4)
+#  topic_type       :integer(4)      default(1)
 #
 
 require 'spec_helper'

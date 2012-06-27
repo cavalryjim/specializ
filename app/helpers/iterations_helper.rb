@@ -44,7 +44,7 @@ module IterationsHelper
     
     case element.element_type.name
     when 'yes_no'
-      select_tag(element.id, options_from_collection_for_select(element.element_type.element_type_options, "id", "name"), {:include_blank => 'Select one'} )
+      select_tag(row_name(element.id), options_from_collection_for_select(element.element_type.element_type_options, "id", "name"), {:include_blank => 'Select one'} )
     else 
       stars(element, iteration, participant)
     end
