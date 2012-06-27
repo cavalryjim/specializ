@@ -1,7 +1,7 @@
 <%= simple_form_for @topic, :validate => true do |f| %>
 
-  <%= f.input :topic_type, :collection => [['Consensus', 1], ['Survey', 2]], :required => true, :input_html => {:class => 'simple_select'} %>
-  <%= f.input :status, :collection => [['Open', 1], ['Closed', 2], ['Archived', 3]], :required => true, :input_html => {:class => 'simple_select'} %>
+  <%= f.input :topic_type, :collection => [['Consensus', 1], ['Survey', 2]], :include_blank => false, :required => true, :input_html => {:class => 'simple_select'} %>
+  <%= f.input :status, :collection => [['Open', 1], ['Closed', 2], ['Archived', 3]], :required => true, :disabled => @topic.new_record?, :include_blank => false, :input_html => {:class => 'simple_select'} %>
   <%= f.input :name, :disabled => @topic.status != 1 %>
   <%= f.input :description, :as => :text, :disabled => @topic.status != 1 %>
   <%= f.association :groupings, :label => 'Participating groups', 
