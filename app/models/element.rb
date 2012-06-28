@@ -40,8 +40,21 @@ class Element < ActiveRecord::Base
   end
   
   def score(user_id, iteration_id)
-    user_score = UserList.find_by_element_id_and_user_id_and_iteration_id(self.id, user_id, iteration_id)
-    return user_score.nil? ? 0 : user_score.score
+    user_list = UserList.find_by_element_id_and_user_id_and_iteration_id(self.id, user_id, iteration_id)
+    if user_list.nil? || user_list.score.nil?
+      0
+    else
+      user_list.score
+    end 
+  end
+  
+  def value(user_id, iteration_id)
+    user_list = UserList.find_by_element_id_and_user_id_and_iteration_id(self.id, user_id, iteration_id)
+    if user_list.nil? || user_list.value.nil? 
+      0
+    else 
+      user_list.value
+    end
   end
   
   def add_to_iteration(iteration_id, new_element, include)

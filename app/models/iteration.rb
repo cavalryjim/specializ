@@ -2,13 +2,14 @@
 #
 # Table name: iterations
 #
-#  id             :integer(4)      not null, primary key
-#  num            :integer(4)
-#  consensus      :float
-#  active         :boolean(1)
-#  topic_group_id :integer(4)
-#  created_at     :datetime
-#  updated_at     :datetime
+#  id              :integer(4)      not null, primary key
+#  num             :integer(4)
+#  consensus       :float
+#  active          :boolean(1)
+#  topic_group_id  :integer(4)
+#  created_at      :datetime
+#  updated_at      :datetime
+#  consensus_topic :boolean(1)      default(TRUE)
 #
 
 class Iteration < ActiveRecord::Base
@@ -75,6 +76,7 @@ class Iteration < ActiveRecord::Base
     new_iteration.active = true
     new_iteration.topic_group_id = self.topic_group_id
     new_iteration.consensus = 0.0
+    new_iteration.consensus_topic = self.topic_group.consensus_topic?
     new_iteration.save
     self.iteration_lists.where(:include => true).each do |old_iteration_list|
       new_iteration_list = IterationList.new
@@ -108,10 +110,6 @@ class Iteration < ActiveRecord::Base
   
   def last?
     self == self.topic_group.iterations.last
-  end
-  
-  def consensus_topic?
-    self.topic_group.consensus_topic?
   end
   
 end

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120627191919) do
+ActiveRecord::Schema.define(:version => 20120628193233) do
 
   create_table "active_admin_comments", :force => true do |t|
     t.integer  "resource_id",   :null => false
@@ -178,6 +178,7 @@ ActiveRecord::Schema.define(:version => 20120627191919) do
     t.integer  "topic_group_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.boolean  "consensus_topic", :default => true
   end
 
   create_table "ldap_settings", :force => true do |t|

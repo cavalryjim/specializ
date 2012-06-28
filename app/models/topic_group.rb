@@ -181,7 +181,7 @@ class TopicGroup < ActiveRecord::Base
   private
     
     def create_first_iteration
-      Iteration.create(:topic_group_id => self.id, :num => 1, :active => false)
+      Iteration.create(:topic_group_id => self.id, :num => 1, :active => false, :consensus_topic => self.consensus_topic?)
     end
   
 end

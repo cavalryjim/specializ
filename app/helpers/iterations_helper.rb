@@ -34,8 +34,16 @@ module IterationsHelper
     participant.submitted_list?(iteration_id) ? image_tag('icons/tick.png') : nil
   end
   
-  def score(element, iteration_id)
-    element.score(current_user.id ,@iteration.id)
+  def score(element, iteration)
+    if iteration.consensus_topic?
+      element.score(current_user.id, iteration.id) 
+    else
+      element.value(current_user.id, iteration.id).to_i
+    end
+  end
+  
+  def value(element, iteration_id)
+    element.value(current_user.id, iteration_id)
   end
   
   def rating_method(element, iteration, participant)
@@ -44,7 +52,7 @@ module IterationsHelper
     
     case element.element_type.name
     when 'yes_no'
-      select_tag(row_name(element.id), options_from_collection_for_select(element.element_type.element_type_options, "id", "name"), {:include_blank => 'Select one'} )
+      select_tag(row_name(element.id), options_from_collection_for_select(element.element_type.element_type_options, :id, :name, value(element, iteration.id)), {:include_blank => 'Select one'} )
     else 
       stars(element, iteration, participant)
     end
@@ -53,11 +61,11 @@ module IterationsHelper
   end
   
   def stars(element, iteration, participant)
-    instrument = radio_button_tag row_name(element.id), 1, score(element, iteration.id) == 1, options = { :class => "jdstar", :disabled => (!iteration.active || !participant) } 
-    instrument = instrument + (radio_button_tag row_name(element.id), 2, score(element, iteration.id) == 2, options = { :class => "jdstar", :disabled => (!iteration.active || !participant) }) 
-    instrument = instrument + (radio_button_tag row_name(element.id), 3, score(element, iteration.id) == 3, options = { :class => "jdstar", :disabled => (!iteration.active || !participant) })
-    instrument = instrument + (radio_button_tag row_name(element.id), 4, score(element, iteration.id) == 4, options = { :class => "jdstar", :disabled => (!iteration.active || !participant) }) 
-    instrument = instrument + (radio_button_tag row_name(element.id), 5, score(element, iteration.id) == 5, options = { :class => "jdstar", :disabled => (!iteration.active || !participant) })
+    instrument = radio_button_tag row_name(element.id), 1, score(element, iteration) == 1, options = { :class => "jdstar", :disabled => (!iteration.active || !participant) } 
+    instrument = instrument + (radio_button_tag row_name(element.id), 2, score(element, iteration) == 2, options = { :class => "jdstar", :disabled => (!iteration.active || !participant) }) 
+    instrument = instrument + (radio_button_tag row_name(element.id), 3, score(element, iteration) == 3, options = { :class => "jdstar", :disabled => (!iteration.active || !participant) })
+    instrument = instrument + (radio_button_tag row_name(element.id), 4, score(element, iteration) == 4, options = { :class => "jdstar", :disabled => (!iteration.active || !participant) }) 
+    instrument = instrument + (radio_button_tag row_name(element.id), 5, score(element, iteration) == 5, options = { :class => "jdstar", :disabled => (!iteration.active || !participant) })
   end
   
 end

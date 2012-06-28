@@ -159,7 +159,7 @@ class User < ActiveRecord::Base
     topic_group = TopicGroup.find(iteration.topic_group_id)
     return 'You are not a participant.' if !topic_group.participating_users.include? self
     
-    self.user_lists.where(:iteration_id => iteration_id).update_all(:score => 0) if resubmit
+    self.user_lists.where(:iteration_id => iteration_id).update_all(:score => nil, :encoded_value => nil) if resubmit 
     
     if rated_elements
       rated_elements.each do |key, score|
