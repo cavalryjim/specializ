@@ -1,9 +1,9 @@
 Add the ability to push code to heroku
 heroku keys:add  (if you have not done so earlier)
 git remote add heroku git@heroku.com:specializ.git (this connects your local git with heroku)
-git push heroku
-heroku open
-heroku logs
+git push heroku  #JDavis: pushes your changes to heroku  *** remember to push your changes to GitHub first! ***
+heroku open #JDavis: this opens the application in your browser
+heroku logs --tail #JDavis: allows you to view the server logs.  Adding the '--tail' will give you a real-time scrolling view of the server log.
 heroku logs --ps cron.1  # JDavis: this command just checks for the nightly cron jobs.
 heroku rake db:migrate   # JDavis: this runs database migrations on heroku.
 

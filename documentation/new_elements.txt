@@ -1,4 +1,4 @@
-Basic documentation for creating and approving newly submitted elements.
+#JDavis: These are some notes I made about creating & approving new elements.
 
 Here are the fields we have to work with:
 element.current
@@ -21,7 +21,7 @@ iteration_list.include = false
 iteration_list.new_element = true
 element.current = false
 
-Start new iteration (change new_element to false if include = true...else delete element).
+Start new iteration (change new_element to false if include = true).
 iteration_list.include = true
 iteration_list.new_element = false
 element.current = true
