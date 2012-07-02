@@ -84,7 +84,7 @@ $(function() {
 		   }
 	}).multiselectfilter(); // select widget in the manager module's setup tab
 	
-	$( '#topic_library_table' ).treeTable({
+	$( '.library_tree_table' ).treeTable({
 		indent: 20,
 		treeColumn: 2
 	});

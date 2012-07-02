@@ -16,7 +16,7 @@
 		    <td><%= link_to topic_group.name, edit_topic_topic_group_path(@topic, topic_group)  %></td>
 		    <td class="center"><%= topic_group.goal %></td>
 			<td class="center"><%= topic_group.iterations.count %></td>
-			<td class="center"><%= topic_group.iterations.max_by{|i| i.consensus}.consensus %></td>
+			<td class="center"><%= highest_consensus(topic_group) %></td>
 			<td class="center"><%= check_box_tag topic_group.id, 1, topic_group.active, { :disabled => true } %></td>
 		  </tr>
 		<% end %>

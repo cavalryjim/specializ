@@ -1,7 +1,7 @@
 # JDavis: This is a class to manage the json for the participants_table.
 #         See http://railscasts.com/episodes/340-datatables for an explanation of the code.
 class ParticipantsDatatable
-  delegate :params, :h, :link_to, :image_tag, :topic_group_assignment_path, :submission_status_image, :edit_topic_assignment_path, :best_in_place, to: :@view
+  delegate :params, :h, :link_to, :image_tag, :topic_assignment_path, :topic_group_assignment_path, :submission_status_image, :edit_topic_assignment_path, :best_in_place, to: :@view
 
   def initialize(view, topic_group_id, include_iteration)
     @view = view
@@ -35,12 +35,12 @@ private
           :confirm => 'Remove this user from participating in this topic?', :method => :delete)
       ]
      else
-      topic_group_name = TopicGroup.find(@topic_group_id).name
+      topic_group = TopicGroup.find(@topic_group_id)
       [
         participant.first_name + " " + participant.last_name,
-        topic_group_name,
+        topic_group.name,
         (best_in_place assignment, :manager, :type => :checkbox),
-        link_to(image_tag('icons/cross.png'), topic_group_assignment_path(@topic_group_id, assignment), 
+        link_to(image_tag('icons/cross.png'), topic_assignment_path(topic_group.topic_id, assignment), 
           :confirm => 'Remove this user from participating in this topic?', :method => :delete)
       ]
      end

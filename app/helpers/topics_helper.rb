@@ -42,4 +42,8 @@ module TopicsHelper
     end
   end
   
+  def highest_consensus(topic_group)
+    topic_group.iterations.max_by{|i| i.consensus}.consensus if topic_group.consensus_topic?
+  end
+  
 end
