@@ -1,4 +1,5 @@
 Add the ability to push code to heroku
+git remote #JDavis: this returns a list of the repositories. If 'heroku' isn't listed, you need to add it.
 heroku keys:add  (if you have not done so earlier)
 git remote add heroku git@heroku.com:specializ.git (this connects your local git with heroku)
 git push heroku  #JDavis: pushes your changes to heroku  *** remember to push your changes to GitHub first! ***
