@@ -41,9 +41,10 @@ $(function() {
         unfold: function() { $.cookie("browserState", "open"); }
     }).show();
 	
-	//$('.closeBrowser').live( 'click', function () {
-	//	$.cookie("browserState", "closed");
-	//});
+	$('.closeBrowser').live( 'click', function () {
+		browser.panel('toggle', 0, true);
+		$.cookie("browserState", "closed");
+	});
 	
 	$("button, input:submit, input:button").button();
 	

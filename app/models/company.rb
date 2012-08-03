@@ -13,10 +13,10 @@
 #
 
 class Company < ActiveRecord::Base
-  has_many :groupings
+  has_many :groupings, :dependent => :destroy
   has_many :topics, :dependent => :destroy
   has_many :users
-  has_one :ldap_setting
+  has_one :ldap_setting, :dependent => :destroy
   has_many :libraries
   
   # Setup accessible (or protected) attributes for your model

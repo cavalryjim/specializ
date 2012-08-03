@@ -6,7 +6,8 @@ class TopicsController < ApplicationController
   # GET /topics
   # GET /topics.xml
   def index
-    @topics = Topic.where(:company_id => current_user.company_id)
+    #@topics = Topic.where(:company_id => current_user.company_id)
+    @topics = current_user.company.topics
 
     respond_to do |format|
       format.html # index.html.erb
@@ -17,7 +18,8 @@ class TopicsController < ApplicationController
   # GET /topics/1
   # GET /topics/1.xml
   def show
-    @topics = Topic.where(:company_id => current_user.company_id)
+    #@topics = Topic.where(:company_id => current_user.company_id)
+    @topics = current_user.company.topics
     @topic = Topic.find(params[:id])
    
     respond_with(@topic)
@@ -26,7 +28,8 @@ class TopicsController < ApplicationController
   # GET /topics/new
   # GET /topics/new.xml
   def new
-    @topics = Topic.where(:company_id => current_user.company_id)
+    #@topics = Topic.where(:company_id => current_user.company_id)
+    @topics = current_user.company.topics
     @topic = Topic.new
     @topic.company_id = current_user.company_id
     @assignments = []
@@ -40,7 +43,8 @@ class TopicsController < ApplicationController
   # GET /topics/1/edit
   def edit
     @topic = Topic.find(params[:id])
-    @topics = Topic.where(:company_id => current_user.company_id)
+    #@topics = Topic.where(:company_id => current_user.company_id)
+    @topics = current_user.company.topics
     #@assignments = Assignment.where(:topic_group_id => TopicGroup.where(:topic_id => @topic.id))
     @assignments = Assignment.where(:topic_group_id => @topic.topic_group_ids)
     #@selected_groups = TopicGroup.where(:topic_id => @topic.id).map(&:grouping_id)
@@ -62,7 +66,8 @@ class TopicsController < ApplicationController
       gflash :success => 'Topic created.' 
     else
       @topic.errors[:base] << "You must select one or more participating groups." unless params[:topic][:grouping_ids]
-      @topics = Topic.where(:company_id => current_user.company_id)
+      #@topics = Topic.where(:company_id => current_user.company_id)
+      @topics = current_user.company.topics
       @assignments = []
       #@selected_groups = []
     end
@@ -88,7 +93,8 @@ class TopicsController < ApplicationController
         gflash :success => 'Topic updated.'
       else
         @topic.errors[:base] << "You must select one or more participating groups." unless params[:topic][:grouping_ids]
-        @topics = Topic.where(:company_id => current_user.company_id)
+        #@topics = Topic.where(:company_id => current_user.company_id)
+        @topics = current_user.company.topics
         @assignments = Assignment.where(:topic_group_id => TopicGroup.where(:topic_id => @topic.id))
         #@selected_groups = TopicGroup.where(:topic_id => @topic.id).map(&:grouping_id)
       end  
